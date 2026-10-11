@@ -23,10 +23,11 @@ import mujoco
 from lxml import etree
 import yourdfpy
 
+MODEL_NAME = sys.argv[1] if len(sys.argv) > 1 else "unitree_go2"
 ROOT = Path(__file__).resolve().parents[1]
-CONFIG_PATH = ROOT / "pipeline" / "configs" / "unitree_go2.json"
-RAW = ROOT / "workspace" / "raw" / "unitree_go2"
-MODEL = ROOT / "models" / "unitree_go2"
+CONFIG_PATH = ROOT / "pipeline" / "configs" / f"{MODEL_NAME}.json"
+RAW = ROOT / "workspace" / "raw" / MODEL_NAME
+MODEL = ROOT / "models" / MODEL_NAME
 REPORTS = MODEL / "reports"
 
 
@@ -54,32 +55,57 @@ def build_plan(config):
         plan.append((ros_dir / item["src_rel"], item["dest"], "urdf"))
     pkg = s4["urdf_meshes"]["package"]
     pkg_root = ros_dir / s2["urdf"]["package_root"]
-    tree = etree.parse(str(ros_dir / s2["urdf"]["rel"]))
+    urdf_abs = ros_dir / s2["urdf"]["rel"]
+    ref_style = s2["urdf"].get("ref_style", "package")
+    tree = etree.parse(str(urdf_abs))
     mesh_refs, seen = 0, set()
     for mesh in tree.getroot().iter("mesh"):
         uri = mesh.get("filename") or ""
-        prefix = f"package://{pkg}/"
-        if uri.startswith(prefix):
-            mesh_refs += 1
-            rel = uri[len(prefix):]
-            if rel in seen:
+        if ref_style == "relative":
+            # G1 协议：uri 相对 URDF 自身目录（urdf 位于包根）——dest 必须保持
+            # "meshes/ 在 urdf 旁边"的相对关系（dest_root 配 "urdf"）。
+            # 越界（../ 逃逸）已由 S2 urdf:mesh-refs 检查（G1 实测 0）。
+            if uri.startswith(".."):
                 continue
-            seen.add(rel)
-            plan.append((pkg_root / rel, f"{s4['urdf_meshes']['dest_root']}/{rel}", "mesh"))
-    xd = s4["xacro_dir"]
-    base = ros_dir / xd["src_rel"]
-    for p in sorted(base.rglob("*")):
-        if p.is_file():
-            plan.append((p, f"{xd['dest']}/{p.relative_to(base).as_posix()}", "xacro"))
+            rel = uri
+            src = urdf_abs.parent / rel
+        else:
+            prefix = f"package://{pkg}/"
+            if not uri.startswith(prefix):
+                continue
+            rel = uri[len(prefix):]
+            src = pkg_root / rel
+        mesh_refs += 1
+        if rel in seen:
+            continue
+        seen.add(rel)
+        plan.append((src, f"{s4['urdf_meshes']['dest_root']}/{rel}", "mesh"))
+    xd = s4.get("xacro_dir")
+    if xd:
+        base = ros_dir / xd["src_rel"]
+        for p in sorted(base.rglob("*")):
+            if p.is_file():
+                plan.append((p, f"{xd['dest']}/{p.relative_to(base).as_posix()}", "xacro"))
     for item in s4["mjcf"]:
         plan.append((mjm_dir / item["src_rel"], item["dest"], "mjcf"))
     ad = s4["mjcf_assets"]
     abase = mjm_dir / ad["src_rel"]
-    for p in sorted(abase.rglob("*")):
-        if p.is_file():
-            plan.append((p, f"{ad['dest']}/{p.relative_to(abase).as_posix()}", "asset"))
+    if ad.get("mode") == "closure":
+        # G1：MJCF <mesh file=...> 相对 meshdir 的引用闭包（池含未收配置的网格，整拷冗余）
+        mxml = etree.parse(str(mjm_dir / s2["mjcf"]["model_rel"]))
+        meshdir = mxml.getroot().find("compiler").get("meshdir") if mxml.getroot().find("compiler") is not None else "."
+        for m in mxml.getroot().iter("mesh"):
+            f = m.get("file")
+            if not f:
+                continue
+            plan.append((abase / f, f"{ad['dest']}/{f}", "asset"))
+    else:
+        for p in sorted(abase.rglob("*")):
+            if p.is_file():
+                plan.append((p, f"{ad['dest']}/{p.relative_to(abase).as_posix()}", "asset"))
     for item in s4["images"]:
-        plan.append((mjm_dir / item["src_rel"], item["dest"], "image"))
+        src_dir = RAW / item["source"] if item.get("source") else mjm_dir
+        plan.append((src_dir / item["src_rel"], item["dest"], "image"))
     dests = [d for _, d, _ in plan]
     assert len(dests) == len(set(dests)), "入库计划出现重复 dest——F1 回归，立即停"
     plan.sort(key=lambda t: t[1])
@@ -109,28 +135,38 @@ def main():
         for line in mf.read_text(encoding="utf-8").splitlines():
             if line.strip():
                 h, p = line.split("  ", 1)
-                manifest.setdefault(h, p)
+                manifest.setdefault(h, set()).add(p)
     for r in rows:
         r["sha256"] = sha256_file(MODEL / r["dest"])
-        r["traceable"] = manifest.get(r["sha256"]) == r["src"]
+        r["traceable"] = r["src"] in manifest.get(r["sha256"], set())
     n_bad = [r["dest"] for r in rows if not r["traceable"]]
     add(results, "s4:traceability", "PASS" if not n_bad else "FAIL",
         f"{len(rows)} 个 raw 源入库文件 SHA256 全部命中 raw manifest 同路径行（逐文件可溯源）"
         + (f"；未命中：{n_bad}" if n_bad else ""))
 
     # 两源网格哈希交集 → 分/合决策
-    urdf_hashes = {r["sha256"] for r in rows if r["dest"].startswith("urdf_meshes/")}
-    mjcf_hashes = {r["sha256"] for r in rows if r["dest"].startswith("mjcf/assets/")}
+    mesh_urdf_prefix = s4["urdf_meshes"]["dest_root"] + ("/meshes/" if s4["urdf_meshes"].get("ref_relative", True) and s4["urdf_meshes"]["dest_root"] == "urdf" else "/")
+    mesh_mjcf_prefix = s4["mjcf_assets"]["dest"] + "/"
+    urdf_hashes = {r["sha256"] for r in rows if r["dest"].startswith(mesh_urdf_prefix)}
+    mjcf_hashes = {r["sha256"] for r in rows if r["dest"].startswith(mesh_mjcf_prefix)}
     overlap = urdf_hashes & mjcf_hashes
+    verdict = ("两侧同哈希（同源同内容，STL 同格式）——分目录落位以保持各自引用协议结构"
+               if len(overlap) and overlap == urdf_hashes == mjcf_hashes
+               else f"哈希交集 {len(overlap)} → 分目录")
     add(results, "s4:mesh-split-decision", "PASS",
-        f"URDF 侧 {mesh_refs} 处引用 → {len(urdf_hashes)} 个物理网格（dae）vs MJCF 侧 {len(mjcf_hashes)} 个（obj），"
-        f"哈希交集 {len(overlap)} → 决策：分目录；MJCF 网格落位 mjcf/assets/"
-        "（保持官方 meshdir 相对引用，不改官方一字节——§4 树中 mjcf_meshes/ 的实际形态，记录在案）")
+        f"URDF 侧 {mesh_refs} 处引用 → {len(urdf_hashes)} 个物理网格 vs MJCF 侧 {len(mjcf_hashes)} 个，"
+        f"{verdict}（不改官方一字节，保持官方 meshdir/相对引用结构，记录在案）")
 
-    # dae/ 与 meshes/ 同内容判定（R3-D3 遗留）
-    pkg_root = RAW / config["s2"]["urdf"]["source"] / config["s2"]["urdf"]["package_root"]
+    # dae/ 与 meshes/ 同内容判定（R3-D3 遗留，Go2 特有；config dae_parity 开关，缺省 SKIP）
     same, diff, single = 0, [], 0
-    for r in rows:
+    pkg_root = RAW / config["s2"]["urdf"]["source"] / config["s2"]["urdf"]["package_root"]
+    dae_parity = s4.get("dae_parity", False)
+    if not dae_parity:
+        add(results, "s4:dae-dir-parity", "SKIP",
+            "本模型 urdf 无 dae/ 与 meshes/ 双目录结构（G1 为 meshes/ 单池），R3-D3 判定不适用")
+        redundant_ok = False
+    if dae_parity:
+      for r in rows:
         if r["dest"].startswith("urdf_meshes/dae/"):
             rel = r["dest"][len("urdf_meshes/dae/"):]
             a, b = pkg_root / "dae" / rel, pkg_root / "meshes" / rel
@@ -141,14 +177,16 @@ def main():
                     diff.append(rel)
             else:
                 single += 1
-    redundant_ok = same > 0 and not diff
-    add(results, "s4:dae-dir-parity", "PASS" if redundant_ok else "WARN",
-        f"dae/ 与 meshes/ 同名对比（R3-D3 判定，物理文件口径）：同内容 {same}，不同 {len(diff)}{diff[:4]}，单侧 {single}"
-        + ("——meshes/ 为同内容冗余目录，不随库分发" if redundant_ok else "——两目录存在差异，需送审处置"))
+      redundant_ok = same > 0 and not diff
+      add(results, "s4:dae-dir-parity", "PASS" if redundant_ok else "WARN",
+          f"dae/ 与 meshes/ 同名对比（R3-D3 判定，物理文件口径）：同内容 {same}，不同 {len(diff)}{diff[:4]}，单侧 {single}"
+          + ("——meshes/ 为同内容冗余目录，不随库分发" if redundant_ok else "——两目录存在差异，需送审处置"))
 
     # 覆盖率对账：raw 两个目标子目录 vs 入库 + 排除清单
-    scope = (f"{config['s2']['urdf']['source']}/{config['s2']['urdf']['package_root']}/",
-             f"{config['s2']['mjcf']['source']}/unitree_robots/go2/")
+    # scope 前缀动态算（原硬编码 unitree_robots/go2 对 M1 假阴性——G1 实测教训）
+    scope_prefixes = (f"{config['s2']['urdf']['source']}/{config['s2']['urdf']['package_root']}/",
+                      f"{config['s2']['mjcf']['source']}/{config['s4']['mjcf'][0]['src_rel'].rsplit('/', 1)[0]}/")
+    scope = scope_prefixes
     excluded = set()
     for item in s4["excluded"]:
         p = RAW / item["src"]
@@ -169,10 +207,7 @@ def main():
         and p.relative_to(RAW).as_posix() not in covered)
     raw_total = sum(1 for p in RAW.rglob("*")
                     if p.is_file() and ".git" not in p.parts and "manifest" not in p.name)
-    # G2：目标子目录 = 完整子目录前缀（robots/go2_description 与 unitree_robots/go2），
-    # robots/README.md 这类中间层文件归入"根级及中间层"桶，算式才平
-    scope_prefixes = (f"{config['s2']['urdf']['source']}/{config['s2']['urdf']['package_root']}/",
-                      f"{config['s2']['mjcf']['source']}/{config['s4']['mjcf'][0]['src_rel'].rsplit('/', 1)[0]}/")
+    # G2：目标子目录 = 完整子目录前缀；robots/README.md 这类中间层归"根级及中间层"桶
     scope_files = sum(1 for p in RAW.rglob("*")
                       if p.is_file() and ".git" not in p.parts and "manifest" not in p.name
                       and p.relative_to(RAW).as_posix().startswith(scope_prefixes))
@@ -184,17 +219,18 @@ def main():
         f"（未覆盖：{uncovered or '无'}）——算式每行必须平（F1 教训）")
 
     # 最小复验：均指向入库新路径
+    rc = s4["recheck"]
     try:
-        m = mujoco.MjModel.from_xml_path(str(MODEL / "mjcf" / "go2.xml"))
+        m = mujoco.MjModel.from_xml_path(str(MODEL / rc["mjcf"]))
         add(results, "s4:recheck-mjcf", "PASS",
-            f"入库后 mjcf/go2.xml 编译通过：nbody={m.nbody} ngeom={m.ngeom}（meshdir=assets 相对结构保持）")
+            f"入库后 {rc['mjcf']} 编译通过：nbody={m.nbody} ngeom={m.ngeom} nmesh={m.nmesh}（官方相对引用结构保持）")
     except Exception as exc:
         add(results, "s4:recheck-mjcf", "FAIL", f"{type(exc).__name__}: {exc}")
     try:
-        u = yourdfpy.URDF.load(str(MODEL / "urdf" / "go2_description.urdf"),
-                               mesh_dir=str(MODEL / "urdf_meshes"), load_meshes=False)
+        u = yourdfpy.URDF.load(str(MODEL / rc["urdf"]),
+                               mesh_dir=str(MODEL / rc["urdf_mesh_dir"]), load_meshes=False)
         add(results, "s4:recheck-urdf", "PASS",
-            f"入库后 URDF yourdfpy 解析通过：{len(u.link_map)} links（package:// 重映射到 urdf_meshes/）")
+            f"入库后 URDF yourdfpy 解析通过：{len(u.link_map)} links（{rc['note']}）")
     except Exception as exc:
         add(results, "s4:recheck-urdf", "FAIL", f"{type(exc).__name__}: {exc}")
 
@@ -218,7 +254,7 @@ def main():
     model_readme = MODEL / "README.md"
     if not model_readme.exists():  # S4 只补骨架；S7 全文模型页不被重跑覆盖
         model_readme.write_text(
-            f"# unitree_go2 — 模型页（S4 入库骨架，S7 补全）\n\n"
+            f"# {MODEL_NAME} — 模型页（S4 入库骨架，S7 补全）\n\n"
             f"> **provenance**：unitreerobotics/unitree_ros@`{pins['unitree_ros']}` + "
             f"unitreerobotics/unitree_mujoco@`{pins['unitree_mujoco']}`；license BSD-3-Clause"
             f"（SOURCE.md / LICENSE-upstream-*）；模型资产+质检截图 {physical} 文件 / {total / 1e6:.1f} MB"

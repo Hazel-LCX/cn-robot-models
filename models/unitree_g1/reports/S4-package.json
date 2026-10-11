@@ -1,0 +1,473 @@
+{
+  "rows": [
+    {
+      "dest": "images/g1_23dof.png",
+      "src": "unitree_ros/robots/g1_description/images/g1_23dof.png",
+      "kind": "image",
+      "sha256": "8cd8db7c7abd7a7123cc1bc702e9a7aefb22ac18e8a5b52745b7b60cd371e1d3",
+      "traceable": true
+    },
+    {
+      "dest": "mjcf/g1_23dof.xml",
+      "src": "unitree_mujoco/unitree_robots/g1/g1_23dof.xml",
+      "kind": "mjcf",
+      "sha256": "2876f3331af5b5a63bb71d78aa28a733d9b743fdb955b439fad88d2c86a4cb22",
+      "traceable": true
+    },
+    {
+      "dest": "mjcf/meshes/head_link.STL",
+      "src": "unitree_mujoco/unitree_robots/g1/meshes/head_link.STL",
+      "kind": "asset",
+      "sha256": "d297328b3569fc85074355e76cba6c889d19de5361224bcd3c5b8ce82e13b9b6",
+      "traceable": true
+    },
+    {
+      "dest": "mjcf/meshes/left_ankle_pitch_link.STL",
+      "src": "unitree_mujoco/unitree_robots/g1/meshes/left_ankle_pitch_link.STL",
+      "kind": "asset",
+      "sha256": "d49e3abc6f5b12e532062cd575b87b5ef40cd2a3fc18f54a1ca5bba4f773d51d",
+      "traceable": true
+    },
+    {
+      "dest": "mjcf/meshes/left_ankle_roll_link.STL",
+      "src": "unitree_mujoco/unitree_robots/g1/meshes/left_ankle_roll_link.STL",
+      "kind": "asset",
+      "sha256": "c4092af943141d4d9f74232f3cfa345afc6565f46a077793b8ae0e68b39dc33f",
+      "traceable": true
+    },
+    {
+      "dest": "mjcf/meshes/left_elbow_link.STL",
+      "src": "unitree_mujoco/unitree_robots/g1/meshes/left_elbow_link.STL",
+      "kind": "asset",
+      "sha256": "fa752198accd104d5c4c3a01382e45165b944fbbc5acce085059223324e5bed3",
+      "traceable": true
+    },
+    {
+      "dest": "mjcf/meshes/left_hip_pitch_link.STL",
+      "src": "unitree_mujoco/unitree_robots/g1/meshes/left_hip_pitch_link.STL",
+      "kind": "asset",
+      "sha256": "4725168105ee768ee31638ef22b53f6be2d7641bfd7cfefe803488d884776fa4",
+      "traceable": true
+    },
+    {
+      "dest": "mjcf/meshes/left_hip_roll_link.STL",
+      "src": "unitree_mujoco/unitree_robots/g1/meshes/left_hip_roll_link.STL",
+      "kind": "asset",
+      "sha256": "91f25922ee8a7c3152790051bebad17b4d9cd243569c38fe340285ff93a97acf",
+      "traceable": true
+    },
+    {
+      "dest": "mjcf/meshes/left_hip_yaw_link.STL",
+      "src": "unitree_mujoco/unitree_robots/g1/meshes/left_hip_yaw_link.STL",
+      "kind": "asset",
+      "sha256": "a16d88aa6ddac8083aa7ad55ed317bea44b1fa003d314fba88965b7ed0f3b55b",
+      "traceable": true
+    },
+    {
+      "dest": "mjcf/meshes/left_knee_link.STL",
+      "src": "unitree_mujoco/unitree_robots/g1/meshes/left_knee_link.STL",
+      "kind": "asset",
+      "sha256": "8d92b9e3d3a636761150bb8025e32514c4602b91c7028d523ee42b3e632de477",
+      "traceable": true
+    },
+    {
+      "dest": "mjcf/meshes/left_shoulder_pitch_link.STL",
+      "src": "unitree_mujoco/unitree_robots/g1/meshes/left_shoulder_pitch_link.STL",
+      "kind": "asset",
+      "sha256": "f0d1cfd02fcf0d42f95e678eeca33da3afbcc366ffba5c052847773ec4f31d52",
+      "traceable": true
+    },
+    {
+      "dest": "mjcf/meshes/left_shoulder_roll_link.STL",
+      "src": "unitree_mujoco/unitree_robots/g1/meshes/left_shoulder_roll_link.STL",
+      "kind": "asset",
+      "sha256": "fb9df21687773522598dc384f1a2945c7519f11cbc8bd372a49170316d6eee88",
+      "traceable": true
+    },
+    {
+      "dest": "mjcf/meshes/left_shoulder_yaw_link.STL",
+      "src": "unitree_mujoco/unitree_robots/g1/meshes/left_shoulder_yaw_link.STL",
+      "kind": "asset",
+      "sha256": "1aa97e9748e924336567992181f78c7cd0652fd52a4afcca3df6b2ef6f9e712e",
+      "traceable": true
+    },
+    {
+      "dest": "mjcf/meshes/left_wrist_roll_rubber_hand.STL",
+      "src": "unitree_mujoco/unitree_robots/g1/meshes/left_wrist_roll_rubber_hand.STL",
+      "kind": "asset",
+      "sha256": "e81030abd023bd9e4a308ef376d814a2c12d684d8a7670c335bbd5cd7809c909",
+      "traceable": true
+    },
+    {
+      "dest": "mjcf/meshes/logo_link.STL",
+      "src": "unitree_mujoco/unitree_robots/g1/meshes/logo_link.STL",
+      "kind": "asset",
+      "sha256": "8571a0a19bc4916fa55f91449f51d5fdefd751000054865a842449429d5f155b",
+      "traceable": true
+    },
+    {
+      "dest": "mjcf/meshes/pelvis.STL",
+      "src": "unitree_mujoco/unitree_robots/g1/meshes/pelvis.STL",
+      "kind": "asset",
+      "sha256": "5ba6bbc888e630550140d3c26763f10206da8c8bd30ed886b8ede41c61f57a31",
+      "traceable": true
+    },
+    {
+      "dest": "mjcf/meshes/pelvis_contour_link.STL",
+      "src": "unitree_mujoco/unitree_robots/g1/meshes/pelvis_contour_link.STL",
+      "kind": "asset",
+      "sha256": "5cc5c2c7a312329e3feeb2b03d3fc09fc29705bd01864f6767e51be959662420",
+      "traceable": true
+    },
+    {
+      "dest": "mjcf/meshes/right_ankle_pitch_link.STL",
+      "src": "unitree_mujoco/unitree_robots/g1/meshes/right_ankle_pitch_link.STL",
+      "kind": "asset",
+      "sha256": "15be426539ec1be70246d4d82a168806db64a41301af8b35c197a33348c787a9",
+      "traceable": true
+    },
+    {
+      "dest": "mjcf/meshes/right_ankle_roll_link.STL",
+      "src": "unitree_mujoco/unitree_robots/g1/meshes/right_ankle_roll_link.STL",
+      "kind": "asset",
+      "sha256": "4b66222ea56653e627711b56d0a8949b4920da5df091da0ceb343f54e884e3a5",
+      "traceable": true
+    },
+    {
+      "dest": "mjcf/meshes/right_elbow_link.STL",
+      "src": "unitree_mujoco/unitree_robots/g1/meshes/right_elbow_link.STL",
+      "kind": "asset",
+      "sha256": "1be925d7aa268bb8fddf5362b9173066890c7d32092c05638608126e59d1e2ab",
+      "traceable": true
+    },
+    {
+      "dest": "mjcf/meshes/right_hip_pitch_link.STL",
+      "src": "unitree_mujoco/unitree_robots/g1/meshes/right_hip_pitch_link.STL",
+      "kind": "asset",
+      "sha256": "e4f3c99d7f4a7d34eadbef9461fc66e3486cb5442db1ec50c86317d459f1a9c6",
+      "traceable": true
+    },
+    {
+      "dest": "mjcf/meshes/right_hip_roll_link.STL",
+      "src": "unitree_mujoco/unitree_robots/g1/meshes/right_hip_roll_link.STL",
+      "kind": "asset",
+      "sha256": "4c254ef66a356f492947f360dd931965477b631e3fcc841f91ccc46d945d54f6",
+      "traceable": true
+    },
+    {
+      "dest": "mjcf/meshes/right_hip_yaw_link.STL",
+      "src": "unitree_mujoco/unitree_robots/g1/meshes/right_hip_yaw_link.STL",
+      "kind": "asset",
+      "sha256": "e479c2936ca2057e9eb2f7dff6c189b7419d7b8484dea0b298cbb36a2a6aa668",
+      "traceable": true
+    },
+    {
+      "dest": "mjcf/meshes/right_knee_link.STL",
+      "src": "unitree_mujoco/unitree_robots/g1/meshes/right_knee_link.STL",
+      "kind": "asset",
+      "sha256": "63c4008449c9bbe701a6e2b557b7a252e90cf3a5abcf54cee46862b9a69f8ec8",
+      "traceable": true
+    },
+    {
+      "dest": "mjcf/meshes/right_shoulder_pitch_link.STL",
+      "src": "unitree_mujoco/unitree_robots/g1/meshes/right_shoulder_pitch_link.STL",
+      "kind": "asset",
+      "sha256": "24cdb387e0128dfe602770a81c56cdce3a0181d34d039a11d1aaf8819b7b8c02",
+      "traceable": true
+    },
+    {
+      "dest": "mjcf/meshes/right_shoulder_roll_link.STL",
+      "src": "unitree_mujoco/unitree_robots/g1/meshes/right_shoulder_roll_link.STL",
+      "kind": "asset",
+      "sha256": "962b97c48f9ce9e8399f45dd9522e0865d19aa9fd299406b2d475a8fc4a53e81",
+      "traceable": true
+    },
+    {
+      "dest": "mjcf/meshes/right_shoulder_yaw_link.STL",
+      "src": "unitree_mujoco/unitree_robots/g1/meshes/right_shoulder_yaw_link.STL",
+      "kind": "asset",
+      "sha256": "a0b76489271da0c72461a344c9ffb0f0c6e64f019ea5014c1624886c442a2fe5",
+      "traceable": true
+    },
+    {
+      "dest": "mjcf/meshes/right_wrist_roll_rubber_hand.STL",
+      "src": "unitree_mujoco/unitree_robots/g1/meshes/right_wrist_roll_rubber_hand.STL",
+      "kind": "asset",
+      "sha256": "0729aff1ac4356f9314de13a46906267642e58bc47f0d8a7f17f6590a6242ccf",
+      "traceable": true
+    },
+    {
+      "dest": "mjcf/meshes/torso_link.STL",
+      "src": "unitree_mujoco/unitree_robots/g1/meshes/torso_link.STL",
+      "kind": "asset",
+      "sha256": "e96d023f0368a4e3450b86ca5d4f10227d8141156a373e7da8cb3c93266523e0",
+      "traceable": true
+    },
+    {
+      "dest": "mjcf/meshes/waist_support_link.STL",
+      "src": "unitree_mujoco/unitree_robots/g1/meshes/waist_support_link.STL",
+      "kind": "asset",
+      "sha256": "1fae9e1bb609848a1667d32eed8d6083ae443538a306843056a2a660f1b2926a",
+      "traceable": true
+    },
+    {
+      "dest": "mjcf/meshes/waist_yaw_link.STL",
+      "src": "unitree_mujoco/unitree_robots/g1/meshes/waist_yaw_link.STL",
+      "kind": "asset",
+      "sha256": "2883f20e03f09b669b5b4ce10677ee6b5191c0934b584d7cbaef2d0662856ffb",
+      "traceable": true
+    },
+    {
+      "dest": "mjcf/scene_23dof.xml",
+      "src": "unitree_mujoco/unitree_robots/g1/scene_23dof.xml",
+      "kind": "mjcf",
+      "sha256": "5582080972f72f5426a388ba8e2dde32d2e7d9c549b14666a58f710ac4b11647",
+      "traceable": true
+    },
+    {
+      "dest": "urdf/g1_23dof.urdf",
+      "src": "unitree_ros/robots/g1_description/g1_23dof.urdf",
+      "kind": "urdf",
+      "sha256": "5d5a7380ec2f747e82dfd7c61fe70515715d413c3521a02911ef5dd9a007e374",
+      "traceable": true
+    },
+    {
+      "dest": "urdf/meshes/head_link.STL",
+      "src": "unitree_ros/robots/g1_description/meshes/head_link.STL",
+      "kind": "mesh",
+      "sha256": "005fb67fbd3eff94aa8bf4a6e83238174e9f91b6721f7111594322f223724411",
+      "traceable": true
+    },
+    {
+      "dest": "urdf/meshes/left_ankle_pitch_link.STL",
+      "src": "unitree_ros/robots/g1_description/meshes/left_ankle_pitch_link.STL",
+      "kind": "mesh",
+      "sha256": "d49e3abc6f5b12e532062cd575b87b5ef40cd2a3fc18f54a1ca5bba4f773d51d",
+      "traceable": true
+    },
+    {
+      "dest": "urdf/meshes/left_ankle_roll_link.STL",
+      "src": "unitree_ros/robots/g1_description/meshes/left_ankle_roll_link.STL",
+      "kind": "mesh",
+      "sha256": "c4092af943141d4d9f74232f3cfa345afc6565f46a077793b8ae0e68b39dc33f",
+      "traceable": true
+    },
+    {
+      "dest": "urdf/meshes/left_elbow_link.STL",
+      "src": "unitree_ros/robots/g1_description/meshes/left_elbow_link.STL",
+      "kind": "mesh",
+      "sha256": "fa752198accd104d5c4c3a01382e45165b944fbbc5acce085059223324e5bed3",
+      "traceable": true
+    },
+    {
+      "dest": "urdf/meshes/left_hip_pitch_link.STL",
+      "src": "unitree_ros/robots/g1_description/meshes/left_hip_pitch_link.STL",
+      "kind": "mesh",
+      "sha256": "4725168105ee768ee31638ef22b53f6be2d7641bfd7cfefe803488d884776fa4",
+      "traceable": true
+    },
+    {
+      "dest": "urdf/meshes/left_hip_roll_link.STL",
+      "src": "unitree_ros/robots/g1_description/meshes/left_hip_roll_link.STL",
+      "kind": "mesh",
+      "sha256": "91f25922ee8a7c3152790051bebad17b4d9cd243569c38fe340285ff93a97acf",
+      "traceable": true
+    },
+    {
+      "dest": "urdf/meshes/left_hip_yaw_link.STL",
+      "src": "unitree_ros/robots/g1_description/meshes/left_hip_yaw_link.STL",
+      "kind": "mesh",
+      "sha256": "a16d88aa6ddac8083aa7ad55ed317bea44b1fa003d314fba88965b7ed0f3b55b",
+      "traceable": true
+    },
+    {
+      "dest": "urdf/meshes/left_knee_link.STL",
+      "src": "unitree_ros/robots/g1_description/meshes/left_knee_link.STL",
+      "kind": "mesh",
+      "sha256": "8d92b9e3d3a636761150bb8025e32514c4602b91c7028d523ee42b3e632de477",
+      "traceable": true
+    },
+    {
+      "dest": "urdf/meshes/left_shoulder_pitch_link.STL",
+      "src": "unitree_ros/robots/g1_description/meshes/left_shoulder_pitch_link.STL",
+      "kind": "mesh",
+      "sha256": "f0d1cfd02fcf0d42f95e678eeca33da3afbcc366ffba5c052847773ec4f31d52",
+      "traceable": true
+    },
+    {
+      "dest": "urdf/meshes/left_shoulder_roll_link.STL",
+      "src": "unitree_ros/robots/g1_description/meshes/left_shoulder_roll_link.STL",
+      "kind": "mesh",
+      "sha256": "fb9df21687773522598dc384f1a2945c7519f11cbc8bd372a49170316d6eee88",
+      "traceable": true
+    },
+    {
+      "dest": "urdf/meshes/left_shoulder_yaw_link.STL",
+      "src": "unitree_ros/robots/g1_description/meshes/left_shoulder_yaw_link.STL",
+      "kind": "mesh",
+      "sha256": "1aa97e9748e924336567992181f78c7cd0652fd52a4afcca3df6b2ef6f9e712e",
+      "traceable": true
+    },
+    {
+      "dest": "urdf/meshes/left_wrist_roll_rubber_hand.STL",
+      "src": "unitree_ros/robots/g1_description/meshes/left_wrist_roll_rubber_hand.STL",
+      "kind": "mesh",
+      "sha256": "e81030abd023bd9e4a308ef376d814a2c12d684d8a7670c335bbd5cd7809c909",
+      "traceable": true
+    },
+    {
+      "dest": "urdf/meshes/logo_link.STL",
+      "src": "unitree_ros/robots/g1_description/meshes/logo_link.STL",
+      "kind": "mesh",
+      "sha256": "8571a0a19bc4916fa55f91449f51d5fdefd751000054865a842449429d5f155b",
+      "traceable": true
+    },
+    {
+      "dest": "urdf/meshes/pelvis.STL",
+      "src": "unitree_ros/robots/g1_description/meshes/pelvis.STL",
+      "kind": "mesh",
+      "sha256": "5ba6bbc888e630550140d3c26763f10206da8c8bd30ed886b8ede41c61f57a31",
+      "traceable": true
+    },
+    {
+      "dest": "urdf/meshes/pelvis_contour_link.STL",
+      "src": "unitree_ros/robots/g1_description/meshes/pelvis_contour_link.STL",
+      "kind": "mesh",
+      "sha256": "5cc5c2c7a312329e3feeb2b03d3fc09fc29705bd01864f6767e51be959662420",
+      "traceable": true
+    },
+    {
+      "dest": "urdf/meshes/right_ankle_pitch_link.STL",
+      "src": "unitree_ros/robots/g1_description/meshes/right_ankle_pitch_link.STL",
+      "kind": "mesh",
+      "sha256": "15be426539ec1be70246d4d82a168806db64a41301af8b35c197a33348c787a9",
+      "traceable": true
+    },
+    {
+      "dest": "urdf/meshes/right_ankle_roll_link.STL",
+      "src": "unitree_ros/robots/g1_description/meshes/right_ankle_roll_link.STL",
+      "kind": "mesh",
+      "sha256": "4b66222ea56653e627711b56d0a8949b4920da5df091da0ceb343f54e884e3a5",
+      "traceable": true
+    },
+    {
+      "dest": "urdf/meshes/right_elbow_link.STL",
+      "src": "unitree_ros/robots/g1_description/meshes/right_elbow_link.STL",
+      "kind": "mesh",
+      "sha256": "1be925d7aa268bb8fddf5362b9173066890c7d32092c05638608126e59d1e2ab",
+      "traceable": true
+    },
+    {
+      "dest": "urdf/meshes/right_hip_pitch_link.STL",
+      "src": "unitree_ros/robots/g1_description/meshes/right_hip_pitch_link.STL",
+      "kind": "mesh",
+      "sha256": "e4f3c99d7f4a7d34eadbef9461fc66e3486cb5442db1ec50c86317d459f1a9c6",
+      "traceable": true
+    },
+    {
+      "dest": "urdf/meshes/right_hip_roll_link.STL",
+      "src": "unitree_ros/robots/g1_description/meshes/right_hip_roll_link.STL",
+      "kind": "mesh",
+      "sha256": "4c254ef66a356f492947f360dd931965477b631e3fcc841f91ccc46d945d54f6",
+      "traceable": true
+    },
+    {
+      "dest": "urdf/meshes/right_hip_yaw_link.STL",
+      "src": "unitree_ros/robots/g1_description/meshes/right_hip_yaw_link.STL",
+      "kind": "mesh",
+      "sha256": "e479c2936ca2057e9eb2f7dff6c189b7419d7b8484dea0b298cbb36a2a6aa668",
+      "traceable": true
+    },
+    {
+      "dest": "urdf/meshes/right_knee_link.STL",
+      "src": "unitree_ros/robots/g1_description/meshes/right_knee_link.STL",
+      "kind": "mesh",
+      "sha256": "63c4008449c9bbe701a6e2b557b7a252e90cf3a5abcf54cee46862b9a69f8ec8",
+      "traceable": true
+    },
+    {
+      "dest": "urdf/meshes/right_shoulder_pitch_link.STL",
+      "src": "unitree_ros/robots/g1_description/meshes/right_shoulder_pitch_link.STL",
+      "kind": "mesh",
+      "sha256": "24cdb387e0128dfe602770a81c56cdce3a0181d34d039a11d1aaf8819b7b8c02",
+      "traceable": true
+    },
+    {
+      "dest": "urdf/meshes/right_shoulder_roll_link.STL",
+      "src": "unitree_ros/robots/g1_description/meshes/right_shoulder_roll_link.STL",
+      "kind": "mesh",
+      "sha256": "962b97c48f9ce9e8399f45dd9522e0865d19aa9fd299406b2d475a8fc4a53e81",
+      "traceable": true
+    },
+    {
+      "dest": "urdf/meshes/right_shoulder_yaw_link.STL",
+      "src": "unitree_ros/robots/g1_description/meshes/right_shoulder_yaw_link.STL",
+      "kind": "mesh",
+      "sha256": "a0b76489271da0c72461a344c9ffb0f0c6e64f019ea5014c1624886c442a2fe5",
+      "traceable": true
+    },
+    {
+      "dest": "urdf/meshes/right_wrist_roll_rubber_hand.STL",
+      "src": "unitree_ros/robots/g1_description/meshes/right_wrist_roll_rubber_hand.STL",
+      "kind": "mesh",
+      "sha256": "0729aff1ac4356f9314de13a46906267642e58bc47f0d8a7f17f6590a6242ccf",
+      "traceable": true
+    },
+    {
+      "dest": "urdf/meshes/torso_link.STL",
+      "src": "unitree_ros/robots/g1_description/meshes/torso_link.STL",
+      "kind": "mesh",
+      "sha256": "e96d023f0368a4e3450b86ca5d4f10227d8141156a373e7da8cb3c93266523e0",
+      "traceable": true
+    },
+    {
+      "dest": "urdf/meshes/waist_support_link.STL",
+      "src": "unitree_ros/robots/g1_description/meshes/waist_support_link.STL",
+      "kind": "mesh",
+      "sha256": "1fae9e1bb609848a1667d32eed8d6083ae443538a306843056a2a660f1b2926a",
+      "traceable": true
+    },
+    {
+      "dest": "urdf/meshes/waist_yaw_link.STL",
+      "src": "unitree_ros/robots/g1_description/meshes/waist_yaw_link.STL",
+      "kind": "mesh",
+      "sha256": "2883f20e03f09b669b5b4ce10677ee6b5191c0934b584d7cbaef2d0662856ffb",
+      "traceable": true
+    }
+  ],
+  "checks": [
+    {
+      "check": "s4:traceability",
+      "status": "PASS",
+      "detail": "62 个 raw 源入库文件 SHA256 全部命中 raw manifest 同路径行（逐文件可溯源）"
+    },
+    {
+      "check": "s4:mesh-split-decision",
+      "status": "PASS",
+      "detail": "URDF 侧 50 处引用 → 29 个物理网格 vs MJCF 侧 29 个，哈希交集 28 → 分目录（不改官方一字节，保持官方 meshdir/相对引用结构，记录在案）"
+    },
+    {
+      "check": "s4:dae-dir-parity",
+      "status": "SKIP",
+      "detail": "本模型 urdf 无 dae/ 与 meshes/ 双目录结构（G1 为 meshes/ 单池），R3-D3 判定不适用"
+    },
+    {
+      "check": "s4:coverage",
+      "status": "PASS",
+      "detail": "raw 全量 299（除 .git/manifest）= 根级及中间层 9 + 目标子目录 290；子目录 290 全覆盖 = 入库 62 + 排除 228（其中 meshes/ 冗余 0）（未覆盖：无）——算式每行必须平（F1 教训）"
+    },
+    {
+      "check": "s4:recheck-mjcf",
+      "status": "PASS",
+      "detail": "入库后 mjcf/g1_23dof.xml 编译通过：nbody=31 ngeom=62 nmesh=29（官方相对引用结构保持）"
+    },
+    {
+      "check": "s4:recheck-urdf",
+      "status": "PASS",
+      "detail": "入库后 URDF yourdfpy 解析通过：33 links（relative 引用协议——meshes/ 与 urdf 同目录的相对关系保持）"
+    }
+  ],
+  "total_bytes": 40516538,
+  "physical_files": 62,
+  "non_raw": []
+}

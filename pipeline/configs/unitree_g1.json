@@ -40,7 +40,7 @@
   "s3": {
     "official": {
       "mass_kg": 35.0,
-      "tolerance": 0.10,
+      "tolerance": 0.1,
       "evidence": "官网原文「带电池重量 约35kg」（unitree.com/cn/g1 规格表，2026-10-11 浏览器渲染，截图 4 张 evidence/official-g1-spec-page-screenshot-{1..4}.png + 渲染文本 official-g1-spec-page.txt 互证）；顺带实证：总自由度 23 个关节电机（↔ URDF 23 revolute 精确一致）、膝关节最大扭矩 90N.m（脚注[1]：整机口径下最大关节电机的最大扭矩；EDU 版 120N.m，页面宣传区取 120 同口径自洽）、单腿 6+腰 1+单臂 5（6×2+1+5×2=23 数学自洽）、运动空间 腰 Z±155°/膝 0~165°/髋 P±154°、R-30~+170°、Y±158°（↔ S3 限位对账素材）",
       "caliber": "官网标称口径=带电池整机（原文实证）；URDF/MJCF 均无电池 link——严格口径不可比，总量对比仅作 sanity，不作逐 link 真值依据（M0 同法）"
     },
@@ -49,19 +49,972 @@
         0.005,
         0.5
       ],
-      "axis_tolerance": 1e-6,
+      "axis_tolerance": 1e-06,
       "mass_diff_warn": 0.02
     },
-    "cross_alias": { "base": "pelvis" },
+    "cross_alias": {
+      "base": "pelvis"
+    },
     "notes": {
       "joint_range": "注：官网「超大关节运动空间」对账基准——腰 Z±155°、膝 0~165°、髋 P±154°/R-30~+170°/Y±158°（规格表原文，evidence/official-g1-spec-page.txt）；URDF 限位逐关节对账见体检表",
       "upstream_png": "上游对照素材：images/g1_23dof.png（23dof 配置官方渲染图，配图候选）；images/ 下另有 29dof/29dof_with_hand/dual_arm 三张属未收配置"
     }
   },
   "s4": {
-    "status": "drafted_after_s2——入库清单/网格闭包/排除桶在 S2 解析 23dof 引用面后写实（含 32 个未收变体的逐件 excluded、mujoco meshes/ 共享池的整拷或闭包决策、配图选择）；写实时删除本 status 键",
-    "urdf": [],
-    "mjcf": []
+    "urdf": [
+      {
+        "src_rel": "robots/g1_description/g1_23dof.urdf",
+        "dest": "urdf/g1_23dof.urdf"
+      }
+    ],
+    "urdf_meshes": {
+      "package": "g1_description",
+      "dest_root": "urdf",
+      "note": "relative 引用协议：meshes/ 必须与 urdf 同目录（相对关系保持）——与 Go2 的独立 urdf_meshes/ 布局不同"
+    },
+    "mjcf": [
+      {
+        "src_rel": "unitree_robots/g1/g1_23dof.xml",
+        "dest": "mjcf/g1_23dof.xml"
+      },
+      {
+        "src_rel": "unitree_robots/g1/scene_23dof.xml",
+        "dest": "mjcf/scene_23dof.xml"
+      }
+    ],
+    "mjcf_assets": {
+      "src_rel": "unitree_robots/g1/meshes",
+      "dest": "mjcf/meshes",
+      "mode": "closure",
+      "note": "23dof.xml 经 meshdir=meshes 引用 29 件 STL；池 60 件中其余 31 件属 29dof/手部配置（整拷否决）"
+    },
+    "images": [
+      {
+        "source": "unitree_ros",
+        "src_rel": "robots/g1_description/images/g1_23dof.png",
+        "dest": "images/g1_23dof.png"
+      }
+    ],
+    "excluded": [
+      {
+        "src": "unitree_ros/robots/g1_description/g1_23dof.xml",
+        "why": "J1：23 配置中未收的变体文件（本库收 g1_23dof 配对，29dof 系留 M2+）"
+      },
+      {
+        "src": "unitree_ros/robots/g1_description/g1_23dof_mode_10.urdf",
+        "why": "J1：23 配置中未收的变体文件（本库收 g1_23dof 配对，29dof 系留 M2+）"
+      },
+      {
+        "src": "unitree_ros/robots/g1_description/g1_23dof_rev_1_0.urdf",
+        "why": "J1：23 配置中未收的变体文件（本库收 g1_23dof 配对，29dof 系留 M2+）"
+      },
+      {
+        "src": "unitree_ros/robots/g1_description/g1_23dof_rev_1_0.xml",
+        "why": "J1：23 配置中未收的变体文件（本库收 g1_23dof 配对，29dof 系留 M2+）"
+      },
+      {
+        "src": "unitree_ros/robots/g1_description/g1_29dof.urdf",
+        "why": "J1：23 配置中未收的变体文件（本库收 g1_23dof 配对，29dof 系留 M2+）"
+      },
+      {
+        "src": "unitree_ros/robots/g1_description/g1_29dof.xml",
+        "why": "J1：23 配置中未收的变体文件（本库收 g1_23dof 配对，29dof 系留 M2+）"
+      },
+      {
+        "src": "unitree_ros/robots/g1_description/g1_29dof_lock_waist.urdf",
+        "why": "J1：23 配置中未收的变体文件（本库收 g1_23dof 配对，29dof 系留 M2+）"
+      },
+      {
+        "src": "unitree_ros/robots/g1_description/g1_29dof_lock_waist.xml",
+        "why": "J1：23 配置中未收的变体文件（本库收 g1_23dof 配对，29dof 系留 M2+）"
+      },
+      {
+        "src": "unitree_ros/robots/g1_description/g1_29dof_lock_waist_rev_1_0.urdf",
+        "why": "J1：23 配置中未收的变体文件（本库收 g1_23dof 配对，29dof 系留 M2+）"
+      },
+      {
+        "src": "unitree_ros/robots/g1_description/g1_29dof_lock_waist_rev_1_0.xml",
+        "why": "J1：23 配置中未收的变体文件（本库收 g1_23dof 配对，29dof 系留 M2+）"
+      },
+      {
+        "src": "unitree_ros/robots/g1_description/g1_29dof_lock_waist_with_hand_rev_1_0.urdf",
+        "why": "J1：23 配置中未收的变体文件（本库收 g1_23dof 配对，29dof 系留 M2+）"
+      },
+      {
+        "src": "unitree_ros/robots/g1_description/g1_29dof_lock_waist_with_hand_rev_1_0.xml",
+        "why": "J1：23 配置中未收的变体文件（本库收 g1_23dof 配对，29dof 系留 M2+）"
+      },
+      {
+        "src": "unitree_ros/robots/g1_description/g1_29dof_mode_11.urdf",
+        "why": "J1：23 配置中未收的变体文件（本库收 g1_23dof 配对，29dof 系留 M2+）"
+      },
+      {
+        "src": "unitree_ros/robots/g1_description/g1_29dof_mode_12.urdf",
+        "why": "J1：23 配置中未收的变体文件（本库收 g1_23dof 配对，29dof 系留 M2+）"
+      },
+      {
+        "src": "unitree_ros/robots/g1_description/g1_29dof_mode_13.urdf",
+        "why": "J1：23 配置中未收的变体文件（本库收 g1_23dof 配对，29dof 系留 M2+）"
+      },
+      {
+        "src": "unitree_ros/robots/g1_description/g1_29dof_mode_14.urdf",
+        "why": "J1：23 配置中未收的变体文件（本库收 g1_23dof 配对，29dof 系留 M2+）"
+      },
+      {
+        "src": "unitree_ros/robots/g1_description/g1_29dof_mode_15.urdf",
+        "why": "J1：23 配置中未收的变体文件（本库收 g1_23dof 配对，29dof 系留 M2+）"
+      },
+      {
+        "src": "unitree_ros/robots/g1_description/g1_29dof_mode_15_with_dex1_1.urdf",
+        "why": "J1：23 配置中未收的变体文件（本库收 g1_23dof 配对，29dof 系留 M2+）"
+      },
+      {
+        "src": "unitree_ros/robots/g1_description/g1_29dof_mode_16.urdf",
+        "why": "J1：23 配置中未收的变体文件（本库收 g1_23dof 配对，29dof 系留 M2+）"
+      },
+      {
+        "src": "unitree_ros/robots/g1_description/g1_29dof_mode_18.urdf",
+        "why": "J1：23 配置中未收的变体文件（本库收 g1_23dof 配对，29dof 系留 M2+）"
+      },
+      {
+        "src": "unitree_ros/robots/g1_description/g1_29dof_rev_1_0.urdf",
+        "why": "J1：23 配置中未收的变体文件（本库收 g1_23dof 配对，29dof 系留 M2+）"
+      },
+      {
+        "src": "unitree_ros/robots/g1_description/g1_29dof_rev_1_0.xml",
+        "why": "J1：23 配置中未收的变体文件（本库收 g1_23dof 配对，29dof 系留 M2+）"
+      },
+      {
+        "src": "unitree_ros/robots/g1_description/g1_29dof_rev_1_0_with_inspire_hand_DFQ.urdf",
+        "why": "J1：23 配置中未收的变体文件（本库收 g1_23dof 配对，29dof 系留 M2+）"
+      },
+      {
+        "src": "unitree_ros/robots/g1_description/g1_29dof_rev_1_0_with_inspire_hand_FTP.urdf",
+        "why": "J1：23 配置中未收的变体文件（本库收 g1_23dof 配对，29dof 系留 M2+）"
+      },
+      {
+        "src": "unitree_ros/robots/g1_description/g1_29dof_with_hand.urdf",
+        "why": "J1：23 配置中未收的变体文件（本库收 g1_23dof 配对，29dof 系留 M2+）"
+      },
+      {
+        "src": "unitree_ros/robots/g1_description/g1_29dof_with_hand.xml",
+        "why": "J1：23 配置中未收的变体文件（本库收 g1_23dof 配对，29dof 系留 M2+）"
+      },
+      {
+        "src": "unitree_ros/robots/g1_description/g1_29dof_with_hand_rev_1_0.urdf",
+        "why": "J1：23 配置中未收的变体文件（本库收 g1_23dof 配对，29dof 系留 M2+）"
+      },
+      {
+        "src": "unitree_ros/robots/g1_description/g1_29dof_with_hand_rev_1_0.xml",
+        "why": "J1：23 配置中未收的变体文件（本库收 g1_23dof 配对，29dof 系留 M2+）"
+      },
+      {
+        "src": "unitree_ros/robots/g1_description/g1_comp.urdf",
+        "why": "J1：23 配置中未收的变体文件（本库收 g1_23dof 配对，29dof 系留 M2+）"
+      },
+      {
+        "src": "unitree_ros/robots/g1_description/g1_dual_arm.urdf",
+        "why": "J1：23 配置中未收的变体文件（本库收 g1_23dof 配对，29dof 系留 M2+）"
+      },
+      {
+        "src": "unitree_ros/robots/g1_description/g1_dual_arm.xml",
+        "why": "J1：23 配置中未收的变体文件（本库收 g1_23dof 配对，29dof 系留 M2+）"
+      },
+      {
+        "src": "unitree_ros/robots/g1_description/g1_pl.urdf",
+        "why": "J1：23 配置中未收的变体文件（本库收 g1_23dof 配对，29dof 系留 M2+）"
+      },
+      {
+        "src": "unitree_ros/robots/g1_description/images/g1_29dof.png",
+        "why": "上游渲染图（未收配置的图示），配图仅收 g1_23dof.png"
+      },
+      {
+        "src": "unitree_ros/robots/g1_description/images/g1_29dof_with_hand.png",
+        "why": "上游渲染图（未收配置的图示），配图仅收 g1_23dof.png"
+      },
+      {
+        "src": "unitree_ros/robots/g1_description/images/g1_dual_arm.png",
+        "why": "上游渲染图（未收配置的图示），配图仅收 g1_23dof.png"
+      },
+      {
+        "src": "unitree_ros/robots/g1_description/inspire_hand/config.yaml",
+        "why": "灵巧手模型目录，非 23dof 范围"
+      },
+      {
+        "src": "unitree_ros/robots/g1_description/inspire_hand/DFQ_left_hand.urdf",
+        "why": "灵巧手模型目录，非 23dof 范围"
+      },
+      {
+        "src": "unitree_ros/robots/g1_description/inspire_hand/DFQ_right_hand.urdf",
+        "why": "灵巧手模型目录，非 23dof 范围"
+      },
+      {
+        "src": "unitree_ros/robots/g1_description/inspire_hand/FTP_left_hand.urdf",
+        "why": "灵巧手模型目录，非 23dof 范围"
+      },
+      {
+        "src": "unitree_ros/robots/g1_description/inspire_hand/FTP_right_hand.urdf",
+        "why": "灵巧手模型目录，非 23dof 范围"
+      },
+      {
+        "src": "unitree_ros/robots/g1_description/merge_g1_29dof_and_inspire_hand.ipynb",
+        "why": "上游合并工具 notebook，非模型件"
+      },
+      {
+        "src": "unitree_ros/robots/g1_description/meshes/backpack_link.STL",
+        "why": "meshes/ 池中 23dof 引用闭包外的网格（29dof/手部/腰部配置件；ros 池含 2 件小写 .stl 的 Dex1 手网格，后缀大小写混杂如实记录）"
+      },
+      {
+        "src": "unitree_ros/robots/g1_description/meshes/d455_link.STL",
+        "why": "meshes/ 池中 23dof 引用闭包外的网格（29dof/手部/腰部配置件；ros 池含 2 件小写 .stl 的 Dex1 手网格，后缀大小写混杂如实记录）"
+      },
+      {
+        "src": "unitree_ros/robots/g1_description/meshes/Dex1_base_link.STL",
+        "why": "meshes/ 池中 23dof 引用闭包外的网格（29dof/手部/腰部配置件；ros 池含 2 件小写 .stl 的 Dex1 手网格，后缀大小写混杂如实记录）"
+      },
+      {
+        "src": "unitree_ros/robots/g1_description/meshes/dex1_col_1.stl",
+        "why": "meshes/ 池中 23dof 引用闭包外的网格（29dof/手部/腰部配置件；ros 池含 2 件小写 .stl 的 Dex1 手网格，后缀大小写混杂如实记录）"
+      },
+      {
+        "src": "unitree_ros/robots/g1_description/meshes/dex1_col_2.stl",
+        "why": "meshes/ 池中 23dof 引用闭包外的网格（29dof/手部/腰部配置件；ros 池含 2 件小写 .stl 的 Dex1 手网格，后缀大小写混杂如实记录）"
+      },
+      {
+        "src": "unitree_ros/robots/g1_description/meshes/Dex1_finger_link_1.STL",
+        "why": "meshes/ 池中 23dof 引用闭包外的网格（29dof/手部/腰部配置件；ros 池含 2 件小写 .stl 的 Dex1 手网格，后缀大小写混杂如实记录）"
+      },
+      {
+        "src": "unitree_ros/robots/g1_description/meshes/Dex1_finger_link_2.STL",
+        "why": "meshes/ 池中 23dof 引用闭包外的网格（29dof/手部/腰部配置件；ros 池含 2 件小写 .stl 的 Dex1 手网格，后缀大小写混杂如实记录）"
+      },
+      {
+        "src": "unitree_ros/robots/g1_description/meshes/handle_link.STL",
+        "why": "meshes/ 池中 23dof 引用闭包外的网格（29dof/手部/腰部配置件；ros 池含 2 件小写 .stl 的 Dex1 手网格，后缀大小写混杂如实记录）"
+      },
+      {
+        "src": "unitree_ros/robots/g1_description/meshes/head_base_link_with_2dof_head.STL",
+        "why": "meshes/ 池中 23dof 引用闭包外的网格（29dof/手部/腰部配置件；ros 池含 2 件小写 .stl 的 Dex1 手网格，后缀大小写混杂如实记录）"
+      },
+      {
+        "src": "unitree_ros/robots/g1_description/meshes/head_link_with_2dof_head.STL",
+        "why": "meshes/ 池中 23dof 引用闭包外的网格（29dof/手部/腰部配置件；ros 池含 2 件小写 .stl 的 Dex1 手网格，后缀大小写混杂如实记录）"
+      },
+      {
+        "src": "unitree_ros/robots/g1_description/meshes/head_servo_link.STL",
+        "why": "meshes/ 池中 23dof 引用闭包外的网格（29dof/手部/腰部配置件；ros 池含 2 件小写 .stl 的 Dex1 手网格，后缀大小写混杂如实记录）"
+      },
+      {
+        "src": "unitree_ros/robots/g1_description/meshes/L_hand_base_link.STL",
+        "why": "meshes/ 池中 23dof 引用闭包外的网格（29dof/手部/腰部配置件；ros 池含 2 件小写 .stl 的 Dex1 手网格，后缀大小写混杂如实记录）"
+      },
+      {
+        "src": "unitree_ros/robots/g1_description/meshes/left_base_link.STL",
+        "why": "meshes/ 池中 23dof 引用闭包外的网格（29dof/手部/腰部配置件；ros 池含 2 件小写 .stl 的 Dex1 手网格，后缀大小写混杂如实记录）"
+      },
+      {
+        "src": "unitree_ros/robots/g1_description/meshes/left_hand_index_0_link.STL",
+        "why": "meshes/ 池中 23dof 引用闭包外的网格（29dof/手部/腰部配置件；ros 池含 2 件小写 .stl 的 Dex1 手网格，后缀大小写混杂如实记录）"
+      },
+      {
+        "src": "unitree_ros/robots/g1_description/meshes/left_hand_index_1_link.STL",
+        "why": "meshes/ 池中 23dof 引用闭包外的网格（29dof/手部/腰部配置件；ros 池含 2 件小写 .stl 的 Dex1 手网格，后缀大小写混杂如实记录）"
+      },
+      {
+        "src": "unitree_ros/robots/g1_description/meshes/left_hand_middle_0_link.STL",
+        "why": "meshes/ 池中 23dof 引用闭包外的网格（29dof/手部/腰部配置件；ros 池含 2 件小写 .stl 的 Dex1 手网格，后缀大小写混杂如实记录）"
+      },
+      {
+        "src": "unitree_ros/robots/g1_description/meshes/left_hand_middle_1_link.STL",
+        "why": "meshes/ 池中 23dof 引用闭包外的网格（29dof/手部/腰部配置件；ros 池含 2 件小写 .stl 的 Dex1 手网格，后缀大小写混杂如实记录）"
+      },
+      {
+        "src": "unitree_ros/robots/g1_description/meshes/left_hand_palm_link.STL",
+        "why": "meshes/ 池中 23dof 引用闭包外的网格（29dof/手部/腰部配置件；ros 池含 2 件小写 .stl 的 Dex1 手网格，后缀大小写混杂如实记录）"
+      },
+      {
+        "src": "unitree_ros/robots/g1_description/meshes/left_hand_thumb_0_link.STL",
+        "why": "meshes/ 池中 23dof 引用闭包外的网格（29dof/手部/腰部配置件；ros 池含 2 件小写 .stl 的 Dex1 手网格，后缀大小写混杂如实记录）"
+      },
+      {
+        "src": "unitree_ros/robots/g1_description/meshes/left_hand_thumb_1_link.STL",
+        "why": "meshes/ 池中 23dof 引用闭包外的网格（29dof/手部/腰部配置件；ros 池含 2 件小写 .stl 的 Dex1 手网格，后缀大小写混杂如实记录）"
+      },
+      {
+        "src": "unitree_ros/robots/g1_description/meshes/left_hand_thumb_2_link.STL",
+        "why": "meshes/ 池中 23dof 引用闭包外的网格（29dof/手部/腰部配置件；ros 池含 2 件小写 .stl 的 Dex1 手网格，后缀大小写混杂如实记录）"
+      },
+      {
+        "src": "unitree_ros/robots/g1_description/meshes/left_index_1.STL",
+        "why": "meshes/ 池中 23dof 引用闭包外的网格（29dof/手部/腰部配置件；ros 池含 2 件小写 .stl 的 Dex1 手网格，后缀大小写混杂如实记录）"
+      },
+      {
+        "src": "unitree_ros/robots/g1_description/meshes/left_index_2.STL",
+        "why": "meshes/ 池中 23dof 引用闭包外的网格（29dof/手部/腰部配置件；ros 池含 2 件小写 .stl 的 Dex1 手网格，后缀大小写混杂如实记录）"
+      },
+      {
+        "src": "unitree_ros/robots/g1_description/meshes/left_index_force_sensor_1.STL",
+        "why": "meshes/ 池中 23dof 引用闭包外的网格（29dof/手部/腰部配置件；ros 池含 2 件小写 .stl 的 Dex1 手网格，后缀大小写混杂如实记录）"
+      },
+      {
+        "src": "unitree_ros/robots/g1_description/meshes/left_index_force_sensor_2.STL",
+        "why": "meshes/ 池中 23dof 引用闭包外的网格（29dof/手部/腰部配置件；ros 池含 2 件小写 .stl 的 Dex1 手网格，后缀大小写混杂如实记录）"
+      },
+      {
+        "src": "unitree_ros/robots/g1_description/meshes/left_index_force_sensor_3.STL",
+        "why": "meshes/ 池中 23dof 引用闭包外的网格（29dof/手部/腰部配置件；ros 池含 2 件小写 .stl 的 Dex1 手网格，后缀大小写混杂如实记录）"
+      },
+      {
+        "src": "unitree_ros/robots/g1_description/meshes/left_little_1.STL",
+        "why": "meshes/ 池中 23dof 引用闭包外的网格（29dof/手部/腰部配置件；ros 池含 2 件小写 .stl 的 Dex1 手网格，后缀大小写混杂如实记录）"
+      },
+      {
+        "src": "unitree_ros/robots/g1_description/meshes/left_little_2.STL",
+        "why": "meshes/ 池中 23dof 引用闭包外的网格（29dof/手部/腰部配置件；ros 池含 2 件小写 .stl 的 Dex1 手网格，后缀大小写混杂如实记录）"
+      },
+      {
+        "src": "unitree_ros/robots/g1_description/meshes/left_little_force_sensor_1.STL",
+        "why": "meshes/ 池中 23dof 引用闭包外的网格（29dof/手部/腰部配置件；ros 池含 2 件小写 .stl 的 Dex1 手网格，后缀大小写混杂如实记录）"
+      },
+      {
+        "src": "unitree_ros/robots/g1_description/meshes/left_little_force_sensor_2.STL",
+        "why": "meshes/ 池中 23dof 引用闭包外的网格（29dof/手部/腰部配置件；ros 池含 2 件小写 .stl 的 Dex1 手网格，后缀大小写混杂如实记录）"
+      },
+      {
+        "src": "unitree_ros/robots/g1_description/meshes/left_little_force_sensor_3.STL",
+        "why": "meshes/ 池中 23dof 引用闭包外的网格（29dof/手部/腰部配置件；ros 池含 2 件小写 .stl 的 Dex1 手网格，后缀大小写混杂如实记录）"
+      },
+      {
+        "src": "unitree_ros/robots/g1_description/meshes/left_middle_1.STL",
+        "why": "meshes/ 池中 23dof 引用闭包外的网格（29dof/手部/腰部配置件；ros 池含 2 件小写 .stl 的 Dex1 手网格，后缀大小写混杂如实记录）"
+      },
+      {
+        "src": "unitree_ros/robots/g1_description/meshes/left_middle_2.STL",
+        "why": "meshes/ 池中 23dof 引用闭包外的网格（29dof/手部/腰部配置件；ros 池含 2 件小写 .stl 的 Dex1 手网格，后缀大小写混杂如实记录）"
+      },
+      {
+        "src": "unitree_ros/robots/g1_description/meshes/left_middle_force_sensor_1.STL",
+        "why": "meshes/ 池中 23dof 引用闭包外的网格（29dof/手部/腰部配置件；ros 池含 2 件小写 .stl 的 Dex1 手网格，后缀大小写混杂如实记录）"
+      },
+      {
+        "src": "unitree_ros/robots/g1_description/meshes/left_middle_force_sensor_2.STL",
+        "why": "meshes/ 池中 23dof 引用闭包外的网格（29dof/手部/腰部配置件；ros 池含 2 件小写 .stl 的 Dex1 手网格，后缀大小写混杂如实记录）"
+      },
+      {
+        "src": "unitree_ros/robots/g1_description/meshes/left_middle_force_sensor_3.STL",
+        "why": "meshes/ 池中 23dof 引用闭包外的网格（29dof/手部/腰部配置件；ros 池含 2 件小写 .stl 的 Dex1 手网格，后缀大小写混杂如实记录）"
+      },
+      {
+        "src": "unitree_ros/robots/g1_description/meshes/left_palm_force_sensor.STL",
+        "why": "meshes/ 池中 23dof 引用闭包外的网格（29dof/手部/腰部配置件；ros 池含 2 件小写 .stl 的 Dex1 手网格，后缀大小写混杂如实记录）"
+      },
+      {
+        "src": "unitree_ros/robots/g1_description/meshes/left_ring_1.STL",
+        "why": "meshes/ 池中 23dof 引用闭包外的网格（29dof/手部/腰部配置件；ros 池含 2 件小写 .stl 的 Dex1 手网格，后缀大小写混杂如实记录）"
+      },
+      {
+        "src": "unitree_ros/robots/g1_description/meshes/left_ring_2.STL",
+        "why": "meshes/ 池中 23dof 引用闭包外的网格（29dof/手部/腰部配置件；ros 池含 2 件小写 .stl 的 Dex1 手网格，后缀大小写混杂如实记录）"
+      },
+      {
+        "src": "unitree_ros/robots/g1_description/meshes/left_ring_force_sensor_1.STL",
+        "why": "meshes/ 池中 23dof 引用闭包外的网格（29dof/手部/腰部配置件；ros 池含 2 件小写 .stl 的 Dex1 手网格，后缀大小写混杂如实记录）"
+      },
+      {
+        "src": "unitree_ros/robots/g1_description/meshes/left_ring_force_sensor_2.STL",
+        "why": "meshes/ 池中 23dof 引用闭包外的网格（29dof/手部/腰部配置件；ros 池含 2 件小写 .stl 的 Dex1 手网格，后缀大小写混杂如实记录）"
+      },
+      {
+        "src": "unitree_ros/robots/g1_description/meshes/left_ring_force_sensor_3.STL",
+        "why": "meshes/ 池中 23dof 引用闭包外的网格（29dof/手部/腰部配置件；ros 池含 2 件小写 .stl 的 Dex1 手网格，后缀大小写混杂如实记录）"
+      },
+      {
+        "src": "unitree_ros/robots/g1_description/meshes/left_rubber_hand.STL",
+        "why": "meshes/ 池中 23dof 引用闭包外的网格（29dof/手部/腰部配置件；ros 池含 2 件小写 .stl 的 Dex1 手网格，后缀大小写混杂如实记录）"
+      },
+      {
+        "src": "unitree_ros/robots/g1_description/meshes/left_thumb_1.STL",
+        "why": "meshes/ 池中 23dof 引用闭包外的网格（29dof/手部/腰部配置件；ros 池含 2 件小写 .stl 的 Dex1 手网格，后缀大小写混杂如实记录）"
+      },
+      {
+        "src": "unitree_ros/robots/g1_description/meshes/left_thumb_2.STL",
+        "why": "meshes/ 池中 23dof 引用闭包外的网格（29dof/手部/腰部配置件；ros 池含 2 件小写 .stl 的 Dex1 手网格，后缀大小写混杂如实记录）"
+      },
+      {
+        "src": "unitree_ros/robots/g1_description/meshes/left_thumb_3.STL",
+        "why": "meshes/ 池中 23dof 引用闭包外的网格（29dof/手部/腰部配置件；ros 池含 2 件小写 .stl 的 Dex1 手网格，后缀大小写混杂如实记录）"
+      },
+      {
+        "src": "unitree_ros/robots/g1_description/meshes/left_thumb_4.STL",
+        "why": "meshes/ 池中 23dof 引用闭包外的网格（29dof/手部/腰部配置件；ros 池含 2 件小写 .stl 的 Dex1 手网格，后缀大小写混杂如实记录）"
+      },
+      {
+        "src": "unitree_ros/robots/g1_description/meshes/left_thumb_force_sensor_1.STL",
+        "why": "meshes/ 池中 23dof 引用闭包外的网格（29dof/手部/腰部配置件；ros 池含 2 件小写 .stl 的 Dex1 手网格，后缀大小写混杂如实记录）"
+      },
+      {
+        "src": "unitree_ros/robots/g1_description/meshes/left_thumb_force_sensor_2.STL",
+        "why": "meshes/ 池中 23dof 引用闭包外的网格（29dof/手部/腰部配置件；ros 池含 2 件小写 .stl 的 Dex1 手网格，后缀大小写混杂如实记录）"
+      },
+      {
+        "src": "unitree_ros/robots/g1_description/meshes/left_thumb_force_sensor_3.STL",
+        "why": "meshes/ 池中 23dof 引用闭包外的网格（29dof/手部/腰部配置件；ros 池含 2 件小写 .stl 的 Dex1 手网格，后缀大小写混杂如实记录）"
+      },
+      {
+        "src": "unitree_ros/robots/g1_description/meshes/left_thumb_force_sensor_4.STL",
+        "why": "meshes/ 池中 23dof 引用闭包外的网格（29dof/手部/腰部配置件；ros 池含 2 件小写 .stl 的 Dex1 手网格，后缀大小写混杂如实记录）"
+      },
+      {
+        "src": "unitree_ros/robots/g1_description/meshes/left_thumb_swing.STL",
+        "why": "meshes/ 池中 23dof 引用闭包外的网格（29dof/手部/腰部配置件；ros 池含 2 件小写 .stl 的 Dex1 手网格，后缀大小写混杂如实记录）"
+      },
+      {
+        "src": "unitree_ros/robots/g1_description/meshes/left_wrist_pitch_link.STL",
+        "why": "meshes/ 池中 23dof 引用闭包外的网格（29dof/手部/腰部配置件；ros 池含 2 件小写 .stl 的 Dex1 手网格，后缀大小写混杂如实记录）"
+      },
+      {
+        "src": "unitree_ros/robots/g1_description/meshes/left_wrist_pitch_link_5010.STL",
+        "why": "meshes/ 池中 23dof 引用闭包外的网格（29dof/手部/腰部配置件；ros 池含 2 件小写 .stl 的 Dex1 手网格，后缀大小写混杂如实记录）"
+      },
+      {
+        "src": "unitree_ros/robots/g1_description/meshes/left_wrist_roll_link.STL",
+        "why": "meshes/ 池中 23dof 引用闭包外的网格（29dof/手部/腰部配置件；ros 池含 2 件小写 .stl 的 Dex1 手网格，后缀大小写混杂如实记录）"
+      },
+      {
+        "src": "unitree_ros/robots/g1_description/meshes/left_wrist_roll_link_5010.STL",
+        "why": "meshes/ 池中 23dof 引用闭包外的网格（29dof/手部/腰部配置件；ros 池含 2 件小写 .stl 的 Dex1 手网格，后缀大小写混杂如实记录）"
+      },
+      {
+        "src": "unitree_ros/robots/g1_description/meshes/left_wrist_yaw_link.STL",
+        "why": "meshes/ 池中 23dof 引用闭包外的网格（29dof/手部/腰部配置件；ros 池含 2 件小写 .stl 的 Dex1 手网格，后缀大小写混杂如实记录）"
+      },
+      {
+        "src": "unitree_ros/robots/g1_description/meshes/left_wrist_yaw_link_5010.STL",
+        "why": "meshes/ 池中 23dof 引用闭包外的网格（29dof/手部/腰部配置件；ros 池含 2 件小写 .stl 的 Dex1 手网格，后缀大小写混杂如实记录）"
+      },
+      {
+        "src": "unitree_ros/robots/g1_description/meshes/Link11_L.STL",
+        "why": "meshes/ 池中 23dof 引用闭包外的网格（29dof/手部/腰部配置件；ros 池含 2 件小写 .stl 的 Dex1 手网格，后缀大小写混杂如实记录）"
+      },
+      {
+        "src": "unitree_ros/robots/g1_description/meshes/Link11_R.STL",
+        "why": "meshes/ 池中 23dof 引用闭包外的网格（29dof/手部/腰部配置件；ros 池含 2 件小写 .stl 的 Dex1 手网格，后缀大小写混杂如实记录）"
+      },
+      {
+        "src": "unitree_ros/robots/g1_description/meshes/Link12_L.STL",
+        "why": "meshes/ 池中 23dof 引用闭包外的网格（29dof/手部/腰部配置件；ros 池含 2 件小写 .stl 的 Dex1 手网格，后缀大小写混杂如实记录）"
+      },
+      {
+        "src": "unitree_ros/robots/g1_description/meshes/Link12_R.STL",
+        "why": "meshes/ 池中 23dof 引用闭包外的网格（29dof/手部/腰部配置件；ros 池含 2 件小写 .stl 的 Dex1 手网格，后缀大小写混杂如实记录）"
+      },
+      {
+        "src": "unitree_ros/robots/g1_description/meshes/Link13_L.STL",
+        "why": "meshes/ 池中 23dof 引用闭包外的网格（29dof/手部/腰部配置件；ros 池含 2 件小写 .stl 的 Dex1 手网格，后缀大小写混杂如实记录）"
+      },
+      {
+        "src": "unitree_ros/robots/g1_description/meshes/Link13_R.STL",
+        "why": "meshes/ 池中 23dof 引用闭包外的网格（29dof/手部/腰部配置件；ros 池含 2 件小写 .stl 的 Dex1 手网格，后缀大小写混杂如实记录）"
+      },
+      {
+        "src": "unitree_ros/robots/g1_description/meshes/Link14_L.STL",
+        "why": "meshes/ 池中 23dof 引用闭包外的网格（29dof/手部/腰部配置件；ros 池含 2 件小写 .stl 的 Dex1 手网格，后缀大小写混杂如实记录）"
+      },
+      {
+        "src": "unitree_ros/robots/g1_description/meshes/Link14_R.STL",
+        "why": "meshes/ 池中 23dof 引用闭包外的网格（29dof/手部/腰部配置件；ros 池含 2 件小写 .stl 的 Dex1 手网格，后缀大小写混杂如实记录）"
+      },
+      {
+        "src": "unitree_ros/robots/g1_description/meshes/Link15_L.STL",
+        "why": "meshes/ 池中 23dof 引用闭包外的网格（29dof/手部/腰部配置件；ros 池含 2 件小写 .stl 的 Dex1 手网格，后缀大小写混杂如实记录）"
+      },
+      {
+        "src": "unitree_ros/robots/g1_description/meshes/Link15_R.STL",
+        "why": "meshes/ 池中 23dof 引用闭包外的网格（29dof/手部/腰部配置件；ros 池含 2 件小写 .stl 的 Dex1 手网格，后缀大小写混杂如实记录）"
+      },
+      {
+        "src": "unitree_ros/robots/g1_description/meshes/Link16_L.STL",
+        "why": "meshes/ 池中 23dof 引用闭包外的网格（29dof/手部/腰部配置件；ros 池含 2 件小写 .stl 的 Dex1 手网格，后缀大小写混杂如实记录）"
+      },
+      {
+        "src": "unitree_ros/robots/g1_description/meshes/Link16_R.STL",
+        "why": "meshes/ 池中 23dof 引用闭包外的网格（29dof/手部/腰部配置件；ros 池含 2 件小写 .stl 的 Dex1 手网格，后缀大小写混杂如实记录）"
+      },
+      {
+        "src": "unitree_ros/robots/g1_description/meshes/Link17_L.STL",
+        "why": "meshes/ 池中 23dof 引用闭包外的网格（29dof/手部/腰部配置件；ros 池含 2 件小写 .stl 的 Dex1 手网格，后缀大小写混杂如实记录）"
+      },
+      {
+        "src": "unitree_ros/robots/g1_description/meshes/Link17_R.STL",
+        "why": "meshes/ 池中 23dof 引用闭包外的网格（29dof/手部/腰部配置件；ros 池含 2 件小写 .stl 的 Dex1 手网格，后缀大小写混杂如实记录）"
+      },
+      {
+        "src": "unitree_ros/robots/g1_description/meshes/Link18_L.STL",
+        "why": "meshes/ 池中 23dof 引用闭包外的网格（29dof/手部/腰部配置件；ros 池含 2 件小写 .stl 的 Dex1 手网格，后缀大小写混杂如实记录）"
+      },
+      {
+        "src": "unitree_ros/robots/g1_description/meshes/Link18_R.STL",
+        "why": "meshes/ 池中 23dof 引用闭包外的网格（29dof/手部/腰部配置件；ros 池含 2 件小写 .stl 的 Dex1 手网格，后缀大小写混杂如实记录）"
+      },
+      {
+        "src": "unitree_ros/robots/g1_description/meshes/Link19_L.STL",
+        "why": "meshes/ 池中 23dof 引用闭包外的网格（29dof/手部/腰部配置件；ros 池含 2 件小写 .stl 的 Dex1 手网格，后缀大小写混杂如实记录）"
+      },
+      {
+        "src": "unitree_ros/robots/g1_description/meshes/Link19_R.STL",
+        "why": "meshes/ 池中 23dof 引用闭包外的网格（29dof/手部/腰部配置件；ros 池含 2 件小写 .stl 的 Dex1 手网格，后缀大小写混杂如实记录）"
+      },
+      {
+        "src": "unitree_ros/robots/g1_description/meshes/Link20_L.STL",
+        "why": "meshes/ 池中 23dof 引用闭包外的网格（29dof/手部/腰部配置件；ros 池含 2 件小写 .stl 的 Dex1 手网格，后缀大小写混杂如实记录）"
+      },
+      {
+        "src": "unitree_ros/robots/g1_description/meshes/Link20_R.STL",
+        "why": "meshes/ 池中 23dof 引用闭包外的网格（29dof/手部/腰部配置件；ros 池含 2 件小写 .stl 的 Dex1 手网格，后缀大小写混杂如实记录）"
+      },
+      {
+        "src": "unitree_ros/robots/g1_description/meshes/Link21_L.STL",
+        "why": "meshes/ 池中 23dof 引用闭包外的网格（29dof/手部/腰部配置件；ros 池含 2 件小写 .stl 的 Dex1 手网格，后缀大小写混杂如实记录）"
+      },
+      {
+        "src": "unitree_ros/robots/g1_description/meshes/Link21_R.STL",
+        "why": "meshes/ 池中 23dof 引用闭包外的网格（29dof/手部/腰部配置件；ros 池含 2 件小写 .stl 的 Dex1 手网格，后缀大小写混杂如实记录）"
+      },
+      {
+        "src": "unitree_ros/robots/g1_description/meshes/Link22_L.STL",
+        "why": "meshes/ 池中 23dof 引用闭包外的网格（29dof/手部/腰部配置件；ros 池含 2 件小写 .stl 的 Dex1 手网格，后缀大小写混杂如实记录）"
+      },
+      {
+        "src": "unitree_ros/robots/g1_description/meshes/Link22_R.STL",
+        "why": "meshes/ 池中 23dof 引用闭包外的网格（29dof/手部/腰部配置件；ros 池含 2 件小写 .stl 的 Dex1 手网格，后缀大小写混杂如实记录）"
+      },
+      {
+        "src": "unitree_ros/robots/g1_description/meshes/neck_pitch_link_with_2dof_head.STL",
+        "why": "meshes/ 池中 23dof 引用闭包外的网格（29dof/手部/腰部配置件；ros 池含 2 件小写 .stl 的 Dex1 手网格，后缀大小写混杂如实记录）"
+      },
+      {
+        "src": "unitree_ros/robots/g1_description/meshes/pelvis_ver0529.STL",
+        "why": "meshes/ 池中 23dof 引用闭包外的网格（29dof/手部/腰部配置件；ros 池含 2 件小写 .stl 的 Dex1 手网格，后缀大小写混杂如实记录）"
+      },
+      {
+        "src": "unitree_ros/robots/g1_description/meshes/R_hand_base_link.STL",
+        "why": "meshes/ 池中 23dof 引用闭包外的网格（29dof/手部/腰部配置件；ros 池含 2 件小写 .stl 的 Dex1 手网格，后缀大小写混杂如实记录）"
+      },
+      {
+        "src": "unitree_ros/robots/g1_description/meshes/right_base_link.STL",
+        "why": "meshes/ 池中 23dof 引用闭包外的网格（29dof/手部/腰部配置件；ros 池含 2 件小写 .stl 的 Dex1 手网格，后缀大小写混杂如实记录）"
+      },
+      {
+        "src": "unitree_ros/robots/g1_description/meshes/right_hand_index_0_link.STL",
+        "why": "meshes/ 池中 23dof 引用闭包外的网格（29dof/手部/腰部配置件；ros 池含 2 件小写 .stl 的 Dex1 手网格，后缀大小写混杂如实记录）"
+      },
+      {
+        "src": "unitree_ros/robots/g1_description/meshes/right_hand_index_1_link.STL",
+        "why": "meshes/ 池中 23dof 引用闭包外的网格（29dof/手部/腰部配置件；ros 池含 2 件小写 .stl 的 Dex1 手网格，后缀大小写混杂如实记录）"
+      },
+      {
+        "src": "unitree_ros/robots/g1_description/meshes/right_hand_middle_0_link.STL",
+        "why": "meshes/ 池中 23dof 引用闭包外的网格（29dof/手部/腰部配置件；ros 池含 2 件小写 .stl 的 Dex1 手网格，后缀大小写混杂如实记录）"
+      },
+      {
+        "src": "unitree_ros/robots/g1_description/meshes/right_hand_middle_1_link.STL",
+        "why": "meshes/ 池中 23dof 引用闭包外的网格（29dof/手部/腰部配置件；ros 池含 2 件小写 .stl 的 Dex1 手网格，后缀大小写混杂如实记录）"
+      },
+      {
+        "src": "unitree_ros/robots/g1_description/meshes/right_hand_palm_link.STL",
+        "why": "meshes/ 池中 23dof 引用闭包外的网格（29dof/手部/腰部配置件；ros 池含 2 件小写 .stl 的 Dex1 手网格，后缀大小写混杂如实记录）"
+      },
+      {
+        "src": "unitree_ros/robots/g1_description/meshes/right_hand_thumb_0_link.STL",
+        "why": "meshes/ 池中 23dof 引用闭包外的网格（29dof/手部/腰部配置件；ros 池含 2 件小写 .stl 的 Dex1 手网格，后缀大小写混杂如实记录）"
+      },
+      {
+        "src": "unitree_ros/robots/g1_description/meshes/right_hand_thumb_1_link.STL",
+        "why": "meshes/ 池中 23dof 引用闭包外的网格（29dof/手部/腰部配置件；ros 池含 2 件小写 .stl 的 Dex1 手网格，后缀大小写混杂如实记录）"
+      },
+      {
+        "src": "unitree_ros/robots/g1_description/meshes/right_hand_thumb_2_link.STL",
+        "why": "meshes/ 池中 23dof 引用闭包外的网格（29dof/手部/腰部配置件；ros 池含 2 件小写 .stl 的 Dex1 手网格，后缀大小写混杂如实记录）"
+      },
+      {
+        "src": "unitree_ros/robots/g1_description/meshes/right_index_1.STL",
+        "why": "meshes/ 池中 23dof 引用闭包外的网格（29dof/手部/腰部配置件；ros 池含 2 件小写 .stl 的 Dex1 手网格，后缀大小写混杂如实记录）"
+      },
+      {
+        "src": "unitree_ros/robots/g1_description/meshes/right_index_2.STL",
+        "why": "meshes/ 池中 23dof 引用闭包外的网格（29dof/手部/腰部配置件；ros 池含 2 件小写 .stl 的 Dex1 手网格，后缀大小写混杂如实记录）"
+      },
+      {
+        "src": "unitree_ros/robots/g1_description/meshes/right_index_force_sensor_1.STL",
+        "why": "meshes/ 池中 23dof 引用闭包外的网格（29dof/手部/腰部配置件；ros 池含 2 件小写 .stl 的 Dex1 手网格，后缀大小写混杂如实记录）"
+      },
+      {
+        "src": "unitree_ros/robots/g1_description/meshes/right_index_force_sensor_2.STL",
+        "why": "meshes/ 池中 23dof 引用闭包外的网格（29dof/手部/腰部配置件；ros 池含 2 件小写 .stl 的 Dex1 手网格，后缀大小写混杂如实记录）"
+      },
+      {
+        "src": "unitree_ros/robots/g1_description/meshes/right_index_force_sensor_3.STL",
+        "why": "meshes/ 池中 23dof 引用闭包外的网格（29dof/手部/腰部配置件；ros 池含 2 件小写 .stl 的 Dex1 手网格，后缀大小写混杂如实记录）"
+      },
+      {
+        "src": "unitree_ros/robots/g1_description/meshes/right_little_1.STL",
+        "why": "meshes/ 池中 23dof 引用闭包外的网格（29dof/手部/腰部配置件；ros 池含 2 件小写 .stl 的 Dex1 手网格，后缀大小写混杂如实记录）"
+      },
+      {
+        "src": "unitree_ros/robots/g1_description/meshes/right_little_2.STL",
+        "why": "meshes/ 池中 23dof 引用闭包外的网格（29dof/手部/腰部配置件；ros 池含 2 件小写 .stl 的 Dex1 手网格，后缀大小写混杂如实记录）"
+      },
+      {
+        "src": "unitree_ros/robots/g1_description/meshes/right_little_force_sensor_1.STL",
+        "why": "meshes/ 池中 23dof 引用闭包外的网格（29dof/手部/腰部配置件；ros 池含 2 件小写 .stl 的 Dex1 手网格，后缀大小写混杂如实记录）"
+      },
+      {
+        "src": "unitree_ros/robots/g1_description/meshes/right_little_force_sensor_2.STL",
+        "why": "meshes/ 池中 23dof 引用闭包外的网格（29dof/手部/腰部配置件；ros 池含 2 件小写 .stl 的 Dex1 手网格，后缀大小写混杂如实记录）"
+      },
+      {
+        "src": "unitree_ros/robots/g1_description/meshes/right_little_force_sensor_3.STL",
+        "why": "meshes/ 池中 23dof 引用闭包外的网格（29dof/手部/腰部配置件；ros 池含 2 件小写 .stl 的 Dex1 手网格，后缀大小写混杂如实记录）"
+      },
+      {
+        "src": "unitree_ros/robots/g1_description/meshes/right_middle_1.STL",
+        "why": "meshes/ 池中 23dof 引用闭包外的网格（29dof/手部/腰部配置件；ros 池含 2 件小写 .stl 的 Dex1 手网格，后缀大小写混杂如实记录）"
+      },
+      {
+        "src": "unitree_ros/robots/g1_description/meshes/right_middle_2.STL",
+        "why": "meshes/ 池中 23dof 引用闭包外的网格（29dof/手部/腰部配置件；ros 池含 2 件小写 .stl 的 Dex1 手网格，后缀大小写混杂如实记录）"
+      },
+      {
+        "src": "unitree_ros/robots/g1_description/meshes/right_middle_force_sensor_1.STL",
+        "why": "meshes/ 池中 23dof 引用闭包外的网格（29dof/手部/腰部配置件；ros 池含 2 件小写 .stl 的 Dex1 手网格，后缀大小写混杂如实记录）"
+      },
+      {
+        "src": "unitree_ros/robots/g1_description/meshes/right_middle_force_sensor_2.STL",
+        "why": "meshes/ 池中 23dof 引用闭包外的网格（29dof/手部/腰部配置件；ros 池含 2 件小写 .stl 的 Dex1 手网格，后缀大小写混杂如实记录）"
+      },
+      {
+        "src": "unitree_ros/robots/g1_description/meshes/right_middle_force_sensor_3.STL",
+        "why": "meshes/ 池中 23dof 引用闭包外的网格（29dof/手部/腰部配置件；ros 池含 2 件小写 .stl 的 Dex1 手网格，后缀大小写混杂如实记录）"
+      },
+      {
+        "src": "unitree_ros/robots/g1_description/meshes/right_palm_force_sensor.STL",
+        "why": "meshes/ 池中 23dof 引用闭包外的网格（29dof/手部/腰部配置件；ros 池含 2 件小写 .stl 的 Dex1 手网格，后缀大小写混杂如实记录）"
+      },
+      {
+        "src": "unitree_ros/robots/g1_description/meshes/right_ring_1.STL",
+        "why": "meshes/ 池中 23dof 引用闭包外的网格（29dof/手部/腰部配置件；ros 池含 2 件小写 .stl 的 Dex1 手网格，后缀大小写混杂如实记录）"
+      },
+      {
+        "src": "unitree_ros/robots/g1_description/meshes/right_ring_2.STL",
+        "why": "meshes/ 池中 23dof 引用闭包外的网格（29dof/手部/腰部配置件；ros 池含 2 件小写 .stl 的 Dex1 手网格，后缀大小写混杂如实记录）"
+      },
+      {
+        "src": "unitree_ros/robots/g1_description/meshes/right_ring_force_sensor_1.STL",
+        "why": "meshes/ 池中 23dof 引用闭包外的网格（29dof/手部/腰部配置件；ros 池含 2 件小写 .stl 的 Dex1 手网格，后缀大小写混杂如实记录）"
+      },
+      {
+        "src": "unitree_ros/robots/g1_description/meshes/right_ring_force_sensor_2.STL",
+        "why": "meshes/ 池中 23dof 引用闭包外的网格（29dof/手部/腰部配置件；ros 池含 2 件小写 .stl 的 Dex1 手网格，后缀大小写混杂如实记录）"
+      },
+      {
+        "src": "unitree_ros/robots/g1_description/meshes/right_ring_force_sensor_3.STL",
+        "why": "meshes/ 池中 23dof 引用闭包外的网格（29dof/手部/腰部配置件；ros 池含 2 件小写 .stl 的 Dex1 手网格，后缀大小写混杂如实记录）"
+      },
+      {
+        "src": "unitree_ros/robots/g1_description/meshes/right_rubber_hand.STL",
+        "why": "meshes/ 池中 23dof 引用闭包外的网格（29dof/手部/腰部配置件；ros 池含 2 件小写 .stl 的 Dex1 手网格，后缀大小写混杂如实记录）"
+      },
+      {
+        "src": "unitree_ros/robots/g1_description/meshes/right_thumb_1.STL",
+        "why": "meshes/ 池中 23dof 引用闭包外的网格（29dof/手部/腰部配置件；ros 池含 2 件小写 .stl 的 Dex1 手网格，后缀大小写混杂如实记录）"
+      },
+      {
+        "src": "unitree_ros/robots/g1_description/meshes/right_thumb_2.STL",
+        "why": "meshes/ 池中 23dof 引用闭包外的网格（29dof/手部/腰部配置件；ros 池含 2 件小写 .stl 的 Dex1 手网格，后缀大小写混杂如实记录）"
+      },
+      {
+        "src": "unitree_ros/robots/g1_description/meshes/right_thumb_3.STL",
+        "why": "meshes/ 池中 23dof 引用闭包外的网格（29dof/手部/腰部配置件；ros 池含 2 件小写 .stl 的 Dex1 手网格，后缀大小写混杂如实记录）"
+      },
+      {
+        "src": "unitree_ros/robots/g1_description/meshes/right_thumb_4.STL",
+        "why": "meshes/ 池中 23dof 引用闭包外的网格（29dof/手部/腰部配置件；ros 池含 2 件小写 .stl 的 Dex1 手网格，后缀大小写混杂如实记录）"
+      },
+      {
+        "src": "unitree_ros/robots/g1_description/meshes/right_thumb_force_sensor_1.STL",
+        "why": "meshes/ 池中 23dof 引用闭包外的网格（29dof/手部/腰部配置件；ros 池含 2 件小写 .stl 的 Dex1 手网格，后缀大小写混杂如实记录）"
+      },
+      {
+        "src": "unitree_ros/robots/g1_description/meshes/right_thumb_force_sensor_2.STL",
+        "why": "meshes/ 池中 23dof 引用闭包外的网格（29dof/手部/腰部配置件；ros 池含 2 件小写 .stl 的 Dex1 手网格，后缀大小写混杂如实记录）"
+      },
+      {
+        "src": "unitree_ros/robots/g1_description/meshes/right_thumb_force_sensor_3.STL",
+        "why": "meshes/ 池中 23dof 引用闭包外的网格（29dof/手部/腰部配置件；ros 池含 2 件小写 .stl 的 Dex1 手网格，后缀大小写混杂如实记录）"
+      },
+      {
+        "src": "unitree_ros/robots/g1_description/meshes/right_thumb_force_sensor_4.STL",
+        "why": "meshes/ 池中 23dof 引用闭包外的网格（29dof/手部/腰部配置件；ros 池含 2 件小写 .stl 的 Dex1 手网格，后缀大小写混杂如实记录）"
+      },
+      {
+        "src": "unitree_ros/robots/g1_description/meshes/right_wrist_pitch_link.STL",
+        "why": "meshes/ 池中 23dof 引用闭包外的网格（29dof/手部/腰部配置件；ros 池含 2 件小写 .stl 的 Dex1 手网格，后缀大小写混杂如实记录）"
+      },
+      {
+        "src": "unitree_ros/robots/g1_description/meshes/right_wrist_pitch_link_5010.STL",
+        "why": "meshes/ 池中 23dof 引用闭包外的网格（29dof/手部/腰部配置件；ros 池含 2 件小写 .stl 的 Dex1 手网格，后缀大小写混杂如实记录）"
+      },
+      {
+        "src": "unitree_ros/robots/g1_description/meshes/right_wrist_roll_link.STL",
+        "why": "meshes/ 池中 23dof 引用闭包外的网格（29dof/手部/腰部配置件；ros 池含 2 件小写 .stl 的 Dex1 手网格，后缀大小写混杂如实记录）"
+      },
+      {
+        "src": "unitree_ros/robots/g1_description/meshes/right_wrist_roll_link_5010.STL",
+        "why": "meshes/ 池中 23dof 引用闭包外的网格（29dof/手部/腰部配置件；ros 池含 2 件小写 .stl 的 Dex1 手网格，后缀大小写混杂如实记录）"
+      },
+      {
+        "src": "unitree_ros/robots/g1_description/meshes/right_wrist_yaw_link.STL",
+        "why": "meshes/ 池中 23dof 引用闭包外的网格（29dof/手部/腰部配置件；ros 池含 2 件小写 .stl 的 Dex1 手网格，后缀大小写混杂如实记录）"
+      },
+      {
+        "src": "unitree_ros/robots/g1_description/meshes/right_wrist_yaw_link_5010.STL",
+        "why": "meshes/ 池中 23dof 引用闭包外的网格（29dof/手部/腰部配置件；ros 池含 2 件小写 .stl 的 Dex1 手网格，后缀大小写混杂如实记录）"
+      },
+      {
+        "src": "unitree_ros/robots/g1_description/meshes/torso_constraint_L_link.STL",
+        "why": "meshes/ 池中 23dof 引用闭包外的网格（29dof/手部/腰部配置件；ros 池含 2 件小写 .stl 的 Dex1 手网格，后缀大小写混杂如实记录）"
+      },
+      {
+        "src": "unitree_ros/robots/g1_description/meshes/torso_constraint_L_rod_link.STL",
+        "why": "meshes/ 池中 23dof 引用闭包外的网格（29dof/手部/腰部配置件；ros 池含 2 件小写 .stl 的 Dex1 手网格，后缀大小写混杂如实记录）"
+      },
+      {
+        "src": "unitree_ros/robots/g1_description/meshes/torso_constraint_R_link.STL",
+        "why": "meshes/ 池中 23dof 引用闭包外的网格（29dof/手部/腰部配置件；ros 池含 2 件小写 .stl 的 Dex1 手网格，后缀大小写混杂如实记录）"
+      },
+      {
+        "src": "unitree_ros/robots/g1_description/meshes/torso_constraint_R_rod_link.STL",
+        "why": "meshes/ 池中 23dof 引用闭包外的网格（29dof/手部/腰部配置件；ros 池含 2 件小写 .stl 的 Dex1 手网格，后缀大小写混杂如实记录）"
+      },
+      {
+        "src": "unitree_ros/robots/g1_description/meshes/torso_link_23dof_rev_1_0.STL",
+        "why": "meshes/ 池中 23dof 引用闭包外的网格（29dof/手部/腰部配置件；ros 池含 2 件小写 .stl 的 Dex1 手网格，后缀大小写混杂如实记录）"
+      },
+      {
+        "src": "unitree_ros/robots/g1_description/meshes/torso_link_rev_1_0.STL",
+        "why": "meshes/ 池中 23dof 引用闭包外的网格（29dof/手部/腰部配置件；ros 池含 2 件小写 .stl 的 Dex1 手网格，后缀大小写混杂如实记录）"
+      },
+      {
+        "src": "unitree_ros/robots/g1_description/meshes/torso_link_with_2dof_head.STL",
+        "why": "meshes/ 池中 23dof 引用闭包外的网格（29dof/手部/腰部配置件；ros 池含 2 件小写 .stl 的 Dex1 手网格，后缀大小写混杂如实记录）"
+      },
+      {
+        "src": "unitree_ros/robots/g1_description/meshes/waist_constraint_L.STL",
+        "why": "meshes/ 池中 23dof 引用闭包外的网格（29dof/手部/腰部配置件；ros 池含 2 件小写 .stl 的 Dex1 手网格，后缀大小写混杂如实记录）"
+      },
+      {
+        "src": "unitree_ros/robots/g1_description/meshes/waist_constraint_R.STL",
+        "why": "meshes/ 池中 23dof 引用闭包外的网格（29dof/手部/腰部配置件；ros 池含 2 件小写 .stl 的 Dex1 手网格，后缀大小写混杂如实记录）"
+      },
+      {
+        "src": "unitree_ros/robots/g1_description/meshes/waist_roll_link.STL",
+        "why": "meshes/ 池中 23dof 引用闭包外的网格（29dof/手部/腰部配置件；ros 池含 2 件小写 .stl 的 Dex1 手网格，后缀大小写混杂如实记录）"
+      },
+      {
+        "src": "unitree_ros/robots/g1_description/meshes/waist_roll_link_rev_1_0.STL",
+        "why": "meshes/ 池中 23dof 引用闭包外的网格（29dof/手部/腰部配置件；ros 池含 2 件小写 .stl 的 Dex1 手网格，后缀大小写混杂如实记录）"
+      },
+      {
+        "src": "unitree_ros/robots/g1_description/meshes/waist_yaw_custom.STL",
+        "why": "meshes/ 池中 23dof 引用闭包外的网格（29dof/手部/腰部配置件；ros 池含 2 件小写 .stl 的 Dex1 手网格，后缀大小写混杂如实记录）"
+      },
+      {
+        "src": "unitree_ros/robots/g1_description/meshes/waist_yaw_link_rev_1_0.STL",
+        "why": "meshes/ 池中 23dof 引用闭包外的网格（29dof/手部/腰部配置件；ros 池含 2 件小写 .stl 的 Dex1 手网格，后缀大小写混杂如实记录）"
+      },
+      {
+        "src": "unitree_ros/robots/g1_description/meshes/xl330_link.STL",
+        "why": "meshes/ 池中 23dof 引用闭包外的网格（29dof/手部/腰部配置件；ros 池含 2 件小写 .stl 的 Dex1 手网格，后缀大小写混杂如实记录）"
+      },
+      {
+        "src": "unitree_ros/robots/g1_description/motor_info.md",
+        "why": "上游包文档（A2 复查无许可声明）"
+      },
+      {
+        "src": "unitree_ros/robots/g1_description/README.md",
+        "why": "上游包文档（A2 复查无许可声明）"
+      },
+      {
+        "src": "unitree_mujoco/unitree_robots/g1/g1_29dof.xml",
+        "why": "未收配置/全场景包装（scene.xml 含地形依赖）"
+      },
+      {
+        "src": "unitree_mujoco/unitree_robots/g1/g1_joint_index_dds.md",
+        "why": "上游 DDS 关节索引文档（A2 复查无许可声明）"
+      },
+      {
+        "src": "unitree_mujoco/unitree_robots/g1/height_field.png",
+        "why": "地形演示专用图"
+      },
+      {
+        "src": "unitree_mujoco/unitree_robots/g1/images/g1_23dof.png",
+        "why": "mujoco 侧页面图，非模型件"
+      },
+      {
+        "src": "unitree_mujoco/unitree_robots/g1/images/g1_29dof.png",
+        "why": "上游渲染图（未收配置的图示），配图仅收 g1_23dof.png"
+      },
+      {
+        "src": "unitree_mujoco/unitree_robots/g1/images/g1_29dof_with_hand.png",
+        "why": "上游渲染图（未收配置的图示），配图仅收 g1_23dof.png"
+      },
+      {
+        "src": "unitree_mujoco/unitree_robots/g1/images/g1_dual_arm.png",
+        "why": "上游渲染图（未收配置的图示），配图仅收 g1_23dof.png"
+      },
+      {
+        "src": "unitree_mujoco/unitree_robots/g1/meshes/left_hand_index_0_link.STL",
+        "why": "meshes/ 池中 23dof 引用闭包外的网格（29dof/手部/腰部配置件；ros 池含 2 件小写 .stl 的 Dex1 手网格，后缀大小写混杂如实记录）"
+      },
+      {
+        "src": "unitree_mujoco/unitree_robots/g1/meshes/left_hand_index_1_link.STL",
+        "why": "meshes/ 池中 23dof 引用闭包外的网格（29dof/手部/腰部配置件；ros 池含 2 件小写 .stl 的 Dex1 手网格，后缀大小写混杂如实记录）"
+      },
+      {
+        "src": "unitree_mujoco/unitree_robots/g1/meshes/left_hand_middle_0_link.STL",
+        "why": "meshes/ 池中 23dof 引用闭包外的网格（29dof/手部/腰部配置件；ros 池含 2 件小写 .stl 的 Dex1 手网格，后缀大小写混杂如实记录）"
+      },
+      {
+        "src": "unitree_mujoco/unitree_robots/g1/meshes/left_hand_middle_1_link.STL",
+        "why": "meshes/ 池中 23dof 引用闭包外的网格（29dof/手部/腰部配置件；ros 池含 2 件小写 .stl 的 Dex1 手网格，后缀大小写混杂如实记录）"
+      },
+      {
+        "src": "unitree_mujoco/unitree_robots/g1/meshes/left_hand_palm_link.STL",
+        "why": "meshes/ 池中 23dof 引用闭包外的网格（29dof/手部/腰部配置件；ros 池含 2 件小写 .stl 的 Dex1 手网格，后缀大小写混杂如实记录）"
+      },
+      {
+        "src": "unitree_mujoco/unitree_robots/g1/meshes/left_hand_thumb_0_link.STL",
+        "why": "meshes/ 池中 23dof 引用闭包外的网格（29dof/手部/腰部配置件；ros 池含 2 件小写 .stl 的 Dex1 手网格，后缀大小写混杂如实记录）"
+      },
+      {
+        "src": "unitree_mujoco/unitree_robots/g1/meshes/left_hand_thumb_1_link.STL",
+        "why": "meshes/ 池中 23dof 引用闭包外的网格（29dof/手部/腰部配置件；ros 池含 2 件小写 .stl 的 Dex1 手网格，后缀大小写混杂如实记录）"
+      },
+      {
+        "src": "unitree_mujoco/unitree_robots/g1/meshes/left_hand_thumb_2_link.STL",
+        "why": "meshes/ 池中 23dof 引用闭包外的网格（29dof/手部/腰部配置件；ros 池含 2 件小写 .stl 的 Dex1 手网格，后缀大小写混杂如实记录）"
+      },
+      {
+        "src": "unitree_mujoco/unitree_robots/g1/meshes/left_rubber_hand.STL",
+        "why": "meshes/ 池中 23dof 引用闭包外的网格（29dof/手部/腰部配置件；ros 池含 2 件小写 .stl 的 Dex1 手网格，后缀大小写混杂如实记录）"
+      },
+      {
+        "src": "unitree_mujoco/unitree_robots/g1/meshes/left_wrist_pitch_link.STL",
+        "why": "meshes/ 池中 23dof 引用闭包外的网格（29dof/手部/腰部配置件；ros 池含 2 件小写 .stl 的 Dex1 手网格，后缀大小写混杂如实记录）"
+      },
+      {
+        "src": "unitree_mujoco/unitree_robots/g1/meshes/left_wrist_roll_link.STL",
+        "why": "meshes/ 池中 23dof 引用闭包外的网格（29dof/手部/腰部配置件；ros 池含 2 件小写 .stl 的 Dex1 手网格，后缀大小写混杂如实记录）"
+      },
+      {
+        "src": "unitree_mujoco/unitree_robots/g1/meshes/left_wrist_yaw_link.STL",
+        "why": "meshes/ 池中 23dof 引用闭包外的网格（29dof/手部/腰部配置件；ros 池含 2 件小写 .stl 的 Dex1 手网格，后缀大小写混杂如实记录）"
+      },
+      {
+        "src": "unitree_mujoco/unitree_robots/g1/meshes/right_hand_index_0_link.STL",
+        "why": "meshes/ 池中 23dof 引用闭包外的网格（29dof/手部/腰部配置件；ros 池含 2 件小写 .stl 的 Dex1 手网格，后缀大小写混杂如实记录）"
+      },
+      {
+        "src": "unitree_mujoco/unitree_robots/g1/meshes/right_hand_index_1_link.STL",
+        "why": "meshes/ 池中 23dof 引用闭包外的网格（29dof/手部/腰部配置件；ros 池含 2 件小写 .stl 的 Dex1 手网格，后缀大小写混杂如实记录）"
+      },
+      {
+        "src": "unitree_mujoco/unitree_robots/g1/meshes/right_hand_middle_0_link.STL",
+        "why": "meshes/ 池中 23dof 引用闭包外的网格（29dof/手部/腰部配置件；ros 池含 2 件小写 .stl 的 Dex1 手网格，后缀大小写混杂如实记录）"
+      },
+      {
+        "src": "unitree_mujoco/unitree_robots/g1/meshes/right_hand_middle_1_link.STL",
+        "why": "meshes/ 池中 23dof 引用闭包外的网格（29dof/手部/腰部配置件；ros 池含 2 件小写 .stl 的 Dex1 手网格，后缀大小写混杂如实记录）"
+      },
+      {
+        "src": "unitree_mujoco/unitree_robots/g1/meshes/right_hand_palm_link.STL",
+        "why": "meshes/ 池中 23dof 引用闭包外的网格（29dof/手部/腰部配置件；ros 池含 2 件小写 .stl 的 Dex1 手网格，后缀大小写混杂如实记录）"
+      },
+      {
+        "src": "unitree_mujoco/unitree_robots/g1/meshes/right_hand_thumb_0_link.STL",
+        "why": "meshes/ 池中 23dof 引用闭包外的网格（29dof/手部/腰部配置件；ros 池含 2 件小写 .stl 的 Dex1 手网格，后缀大小写混杂如实记录）"
+      },
+      {
+        "src": "unitree_mujoco/unitree_robots/g1/meshes/right_hand_thumb_1_link.STL",
+        "why": "meshes/ 池中 23dof 引用闭包外的网格（29dof/手部/腰部配置件；ros 池含 2 件小写 .stl 的 Dex1 手网格，后缀大小写混杂如实记录）"
+      },
+      {
+        "src": "unitree_mujoco/unitree_robots/g1/meshes/right_hand_thumb_2_link.STL",
+        "why": "meshes/ 池中 23dof 引用闭包外的网格（29dof/手部/腰部配置件；ros 池含 2 件小写 .stl 的 Dex1 手网格，后缀大小写混杂如实记录）"
+      },
+      {
+        "src": "unitree_mujoco/unitree_robots/g1/meshes/right_rubber_hand.STL",
+        "why": "meshes/ 池中 23dof 引用闭包外的网格（29dof/手部/腰部配置件；ros 池含 2 件小写 .stl 的 Dex1 手网格，后缀大小写混杂如实记录）"
+      },
+      {
+        "src": "unitree_mujoco/unitree_robots/g1/meshes/right_wrist_pitch_link.STL",
+        "why": "meshes/ 池中 23dof 引用闭包外的网格（29dof/手部/腰部配置件；ros 池含 2 件小写 .stl 的 Dex1 手网格，后缀大小写混杂如实记录）"
+      },
+      {
+        "src": "unitree_mujoco/unitree_robots/g1/meshes/right_wrist_roll_link.STL",
+        "why": "meshes/ 池中 23dof 引用闭包外的网格（29dof/手部/腰部配置件；ros 池含 2 件小写 .stl 的 Dex1 手网格，后缀大小写混杂如实记录）"
+      },
+      {
+        "src": "unitree_mujoco/unitree_robots/g1/meshes/right_wrist_yaw_link.STL",
+        "why": "meshes/ 池中 23dof 引用闭包外的网格（29dof/手部/腰部配置件；ros 池含 2 件小写 .stl 的 Dex1 手网格，后缀大小写混杂如实记录）"
+      },
+      {
+        "src": "unitree_mujoco/unitree_robots/g1/meshes/torso_constraint_L_link.STL",
+        "why": "meshes/ 池中 23dof 引用闭包外的网格（29dof/手部/腰部配置件；ros 池含 2 件小写 .stl 的 Dex1 手网格，后缀大小写混杂如实记录）"
+      },
+      {
+        "src": "unitree_mujoco/unitree_robots/g1/meshes/torso_constraint_L_rod_link.STL",
+        "why": "meshes/ 池中 23dof 引用闭包外的网格（29dof/手部/腰部配置件；ros 池含 2 件小写 .stl 的 Dex1 手网格，后缀大小写混杂如实记录）"
+      },
+      {
+        "src": "unitree_mujoco/unitree_robots/g1/meshes/torso_constraint_R_link.STL",
+        "why": "meshes/ 池中 23dof 引用闭包外的网格（29dof/手部/腰部配置件；ros 池含 2 件小写 .stl 的 Dex1 手网格，后缀大小写混杂如实记录）"
+      },
+      {
+        "src": "unitree_mujoco/unitree_robots/g1/meshes/torso_constraint_R_rod_link.STL",
+        "why": "meshes/ 池中 23dof 引用闭包外的网格（29dof/手部/腰部配置件；ros 池含 2 件小写 .stl 的 Dex1 手网格，后缀大小写混杂如实记录）"
+      },
+      {
+        "src": "unitree_mujoco/unitree_robots/g1/meshes/waist_constraint_L.STL",
+        "why": "meshes/ 池中 23dof 引用闭包外的网格（29dof/手部/腰部配置件；ros 池含 2 件小写 .stl 的 Dex1 手网格，后缀大小写混杂如实记录）"
+      },
+      {
+        "src": "unitree_mujoco/unitree_robots/g1/meshes/waist_constraint_R.STL",
+        "why": "meshes/ 池中 23dof 引用闭包外的网格（29dof/手部/腰部配置件；ros 池含 2 件小写 .stl 的 Dex1 手网格，后缀大小写混杂如实记录）"
+      },
+      {
+        "src": "unitree_mujoco/unitree_robots/g1/meshes/waist_roll_link.STL",
+        "why": "meshes/ 池中 23dof 引用闭包外的网格（29dof/手部/腰部配置件；ros 池含 2 件小写 .stl 的 Dex1 手网格，后缀大小写混杂如实记录）"
+      },
+      {
+        "src": "unitree_mujoco/unitree_robots/g1/scene.xml",
+        "why": "未收配置/全场景包装（scene.xml 含地形依赖）"
+      },
+      {
+        "src": "unitree_mujoco/unitree_robots/g1/scene_29dof.xml",
+        "why": "未收配置/全场景包装（scene.xml 含地形依赖）"
+      },
+      {
+        "src": "unitree_mujoco/unitree_robots/g1/unitree_hfield.png",
+        "why": "地形演示专用图"
+      }
+    ],
+    "recheck": {
+      "mjcf": "mjcf/g1_23dof.xml",
+      "urdf": "urdf/g1_23dof.urdf",
+      "urdf_mesh_dir": "urdf",
+      "note": "relative 引用协议——meshes/ 与 urdf 同目录的相对关系保持"
+    }
   },
   "s6": {
     "warmup_steps": 100,
