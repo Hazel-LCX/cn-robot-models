@@ -1,0 +1,14 @@
+# ===== 可丢弃中间态：raw 快照与修复稿。入库产物只在 models/ 与 reports/ =====
+workspace/
+
+# ===== 独立环境（env_check.py 定路线，可随时重建，不入库）=====
+.venv/
+
+# ===== Python 运行残渣 =====
+__pycache__/
+*.py[cod]
+*.egg-info/
+
+# ===== 系统杂物 =====
+Thumbs.db
+.DS_Store

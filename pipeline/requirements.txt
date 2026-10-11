@@ -1,0 +1,9 @@
+# M0 依赖清单（下限约束，故意不锁死）
+# 理由：M0 期允许小版本漂移换环境兼容性；S6 出基准数字前用 pip freeze 锁版本，
+# 基准报告本来就要求记录版本号，两边对得上。
+mujoco>=3.2
+yourdfpy
+trimesh>=4.0
+numpy
+scipy
+lxml
