@@ -29,7 +29,10 @@
   },
   "s3": {
     "official": {
-      "status": "pending——S3 前官网侦察补证（零编造原则；deeprobotics.cn 官网 Lite3 规格页）"
+      "mass_kg": 12.0,
+      "tolerance": 0.1,
+      "evidence": "官网原文「重量（带电池）12kg」（deeprobotics.cn/robot/index/product1.html 产品参数区，2026-10-11 浏览器渲染截图 4 张 evidence/official-lite3-spec-page-screenshot-{1..4}.png）；站立尺寸 610×370×406mm、持续行走负载 5kg、最大斜坡 40°；**官网未公布关节级参数（扭矩/限位/自由度数）**——S3 限位对账无官网基准，纯体检+披露（如实记录）；页面四版本标签（基础/探索/专业/激光），默认显示基础版口径",
+      "caliber": "官网标称口径=带电池整机；URDF/MJCF 均无电池 link——严格口径不可比，总量对比仅作 sanity（M0/M1 同法）"
     },
     "sanity": {
       "ratio_range": [
@@ -38,6 +41,13 @@
       ],
       "axis_tolerance": 1e-06,
       "mass_diff_warn": 0.02
+    },
+    "cross_alias": {
+      "base": "TORSO"
+    },
+    "notes": {
+      "joint_range": "注：官网未公布关节级参数（扭矩/限位/自由度数）——限位对账无官网基准，纯体检+披露（S3 侦察实测）",
+      "upstream_png": "上游无碰撞示意图（Lite3 目录仅 urdf/mjcf/usd 三件套，无图片资产）"
     }
   },
   "s4": {
