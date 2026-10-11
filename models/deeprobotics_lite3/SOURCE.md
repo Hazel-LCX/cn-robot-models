@@ -19,16 +19,16 @@
 
 ## 2. 官方性验证（A4 证据链——强度分层如实呈现）
 
-**路径②成立，路径①未命中**（与 M0 unitree 双路径全中相比，证据强度弱一层，如实分层）：
+**双路径全中（R14 复核升级，按 M0 同强度关闭）**：
 
-- **路径①未命中**：deeprobotics.cn（36,355 B）与 deeprobotics.us（248,851 B）两官网域全文抓取**均无 github 字样**（原件 `evidence/deeprobotics-homepage-{cn,us}.html.txt`）——官网不直链 GitHub org；
+- **路径①命中（R14 行动项②更正）**：官网**支持页** `https://www.deeprobotics.cn/robot/index/support` 含 **"DeepRoboticsLab(点击跳转GitHub)" 直链 → github.com/DeepRoboticsLab/**（原件 `evidence/deeprobotics-support-page.html.txt`，2026-10-11 实抓；审核台 R14 一手复核发现——工作台首轮仅抓首页属欠采样，`deeprobotics-homepage-link.html.txt` 已留痕更正不删原文）；
 - **路径②成立**：org API 原件（`evidence/github-org-DeepRoboticsLab.json`）多字段品牌互指——org name `DEEPRoboticsLab`、blog `https://www.deeprobotics.us/`（官网域）、twitter `DeepRobotics_CN`、email `info@deeprobotics.us`、location China；repo API 原件 `fork: false, archived: false`；org 下 28 仓（Lite3_rl_deploy/Lite3_MotionSDK/deep-robotics-sdk2 等）与官网产品线（Lite3/M20/DR02）互为生态佐证。
 
 ## 3. License 核对结论
 
 | 仓库 | License | 版权方 | 原文快照 |
 |---|---|---|---|
-| deep_robotics_model | **BSD-3-Clause**（SPDX 端点复核一致） | 杭州云深处科技（Deep Robotics）——版权行以快照原文为准 | `LICENSE-upstream-deep_robotics_model.txt`（1502 B，contents base64 = blob 正本） |
+| deep_robotics_model | **BSD-3-Clause**（SPDX 端点复核一致） | **Copyright (c) 2024, DeepRoboticsLab**（快照原文逐字引用，N1；公司主体关联见 §2 官方性佐证） | `LICENSE-upstream-deep_robotics_model.txt`（1502 B，contents base64 = blob 正本） |
 
 **三条结论**（BSD-3 逐条对应，与 unitree 同判）：
 

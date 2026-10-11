@@ -83,6 +83,10 @@ def clone_sparse(name, cfg):
                     "origin", cfg["pin"]], timeout=570)
                 sh(["git", "-C", str(repo_dir), "checkout", "--detach", "FETCH_HEAD"])
                 head = sh(["git", "-C", str(repo_dir), "rev-parse", "HEAD"])
+            # L9 根因落码补全：clone -c 只在 clone 进程生效（不写 local config），
+            # sparse-checkout set 独立进程会读全局 autocrlf 把文本件转 CRLF——
+            # 显式写入 local config（K2 门首战实测拦截 Lite3.xml 后修复），检出即正本。
+            sh(["git", "-C", str(repo_dir), "config", "core.autocrlf", "false"])
             sh(["git", "-C", str(repo_dir), "sparse-checkout", "set", cfg["subdir"]])
             return head, label
         except Exception as exc:  # noqa: BLE001 —— 记录后换下一条网络路径

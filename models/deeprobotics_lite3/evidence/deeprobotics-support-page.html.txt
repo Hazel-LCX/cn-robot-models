@@ -1,0 +1,24 @@
+# 证据原件：deeprobotics.cn 官网支持页 HTML——GitHub 直链原文片段（R14 行动项①，2026-10-11）
+# GET https://www.deeprobotics.cn/robot/index/support（HTTP 200）· 页面 59846 B
+# 关键命中：'DeepRoboticsLab(点击跳转GitHub)' 直链 → github.com/DeepRoboticsLab/
+# 审核台 R14 一手复核发现；工作台首轮仅抓首页欠抽样致'路径①未命中'误判——note 件留痕更正
+
+github 首次出现位置字节 35545；前后文：
+
+ src="/public/static/robot/images/pdf.png">绝影 X20.pdf <small>(点击下载)</small></a>
+                                        </div>    
+            </div> 
+            <div id="resource" style="display:none">
+                <div class="file">                        
+                    <a href="https://github.com/DeepRoboticsLab/" target="_blank">DeepRoboticsLab<small>(点击跳转GitHub)</small></a>
+                </div>    
+            </div>     
+        </div>
+    </div>
+    <div id="faq"></div>
+    <div class="title" >常见问题</div>
+
+    <div class="faq">
+                <div class="item_faq" data-tag=0>
+            <div class="question">
+                1.若手柄无法连接机器人怎么办？                <span><img src=

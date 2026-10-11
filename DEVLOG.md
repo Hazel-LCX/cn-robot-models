@@ -153,3 +153,6 @@
 - R13 读毕（M1 闭环）后用户令开 **M2**。四家异厂深查（trees API + license 端点 + 官网抓取）：**云深处 deep_robotics_model 推荐**（BSD-3 + **单仓双格式** URDF×9/MJCF×8 多机型——unitree 分仓模式之外的新形态）；众擎出局（**无 LICENSE 文件**，红线）；智元出局（license NOASSERTION + 平台内嵌宇树 G1 非自家机型）；加速进化备选（BSD-3 但本仓纯 URDF，双格式需跨仓配 gym）。
 - **推荐定案候选：Lite3（四足）**——M1 已验人形，M2 选同形态使"厂商"成唯一新变量；配对 urdf/mjcf 各 4 件同名 STL；usd/ excluded。**S0 产出**：SOURCE.md（状态=待审）+ license 快照（1502B，sha256 `6bc5967b1cfb`，blob 正本）+ evidence 6 件。**A4 强度分层如实呈现**：路径①未命中（两官网域均无 github 字样）、路径②成立（org 四字段品牌互指 + 非 fork + 28 仓生态互证）——比 M0 弱一层，请审核台裁定是否足闭门。
 - 状态：**协议②已触发**（选型定案 + license 结论确认 + A4 证据强度裁定三决策点），停手等审核台；本地 commit 未 push。
+- **S1（Lite3 拉取）完成——blob-parity 门自动化首战告捷**：首拉门拦截 `Lite3/mjcf/Lite3.xml` CRLF 失真（L9 根因复现：sparse set 独立进程读全局 autocrlf）→ **根治落码补全**：clone 后显式写 local config（一处写处处生效）→ 重拉 **15/15 失配 0**；license 快照 MATCH 一次过（`6bc5967b…` blob 正本）。**引用协议第三变体**：`./meshes/x.STL` 显式相对前缀（go2 package://、g1 无前缀、Lite3 带./），MJCF 无 meshdir file 相对 xml 目录——build_plan 相对路径规范化（防 dest 污染）。**两侧网格 4/4 全同哈希**。
+- **S2（Lite3）全绿 10/0/0**：URDF 17 links/16 joints（**12 revolute ↔ Go2 同为 12 关节四足**，同形态对照成立）、大小写失配 0、MJCF 编译 nbody=18/njnt=13/nmesh=13。**closure 去重补丁**（F1 同哲学）：MJCF asset 段 13 个 mesh 元素引 4 物理件（重复定义 MuJoCo 不报错，nmesh 虚胖——入库 xml 原样保留，披露素材）；collision 全缺（visual 4/collision 0，S3 清点素材）。
+- 状态：S1/S2 commit 待批；下一步官网侦察（Lite3 规格口径）→ S3 → S4 → S5 回归 → S6/S7。

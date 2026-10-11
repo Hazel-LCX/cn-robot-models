@@ -423,6 +423,26 @@ R5 原三项（README 定稿 / LICENSES-SOURCE 一致 / .gitattributes clone 验
 
 ---
 
+## R14 · 协议②：M2 选型定案 + S0 license 门 + A4 证据升级（2026-10-11 · 审核台）
+
+**审核台独立实证**（照旧：对象库/端点一手实测，不采信报告文本）：
+- **license 正本三端一致**：本地快照 1502 B sha256 `6bc5967b…` = `/license` 端点内容 = contents 端点 base64——**blob 正本一次到位**（M0 的 A2 反复、M1 的 K2 复发在 M2 均未重演，K 系列教训已内化为流程）；spdx=BSD-3-Clause、fork:false、archived:false；
+- **锚点零漂移**：审核台自有 `ls-remote` main = `75824b51…` = 送审锚点（2026-09-28）；
+- **侦察数据抽查全对**：`Lite3/` 21 项（根 3 + mjcf 6 + urdf 6 + usd 6）、两侧 `Lite3.urdf`/`Lite3.xml` + 同名 4 STL（hip/shank/thigh/torso）独立目录非共享池 ✓；booster 本仓 mjcf=0（urdf×10 = K1/T1/T2 人形）✓；engineai license 端点 HTTPError（无 LICENSE）✓；agibot NOASSERTION + 内嵌宇树 G1/G2 robot_cfg（平台仓坐实）✓；
+- **A4 现场复核（审核台一手证据，本轮最重要发现）**：官网**支持页** `https://www.deeprobotics.cn/robot/index/support` 实抓含 **"DeepRoboticsLab(点击跳转GitHub)" 直链 → `github.com/DeepRoboticsLab/`**——**路径①实际命中**。工作台"未命中"结论系**首页范围欠抽样**（其 note 件自证只抓了首页 36,355 B；厂商放开发者入口的自然位置是支持页而非首页）。
+
+**裁定**：
+1. **M2 选型定案 = 云深处 Lite3（`deeprobotics_lite3`），批准**。一次只引入一个新变量（厂商）的归因设计正确；单仓双格式（同仓两子目录）对 S1/S4 双源逻辑的适配正是泛化考题本体；体量 21 项小而干净、usd/ 超范围 excluded 合理；DR02/M20 系留 M3+、booster 备选（跨仓配对多一跳）排序合理。四家裁定全部维持——**engineai 无 license 出局 = 本库红线第一次实战挡件**，挡的就是该挡的；agibot NOASSERTION + 平台副本无增量出局 ✓。
+2. **S0 license 门关闭，放行 S1**。三条结论成立（BSD-3 与 unitree 同判）；网格随仓库 license（根级单 LICENSE.txt 覆盖全仓、Lite3/ 21 项无独立声明已核）；快照即 blob 正本、无需 S1 重生，但 **S1 的 blob-parity 门照跑——自动化首战**（同仓双源的 config 结构适配 = 泛化下半场）。商标声明 B3 沿用（Deep Robotics / Lite3）。
+3. **A4 裁定：证据升级为双路径全中，按 M0 同强度关闭**。工作台行动项（S1 前顺手完成，不需送审）：① 抓支持页原文落 `evidence/`，homepage-link note 件留痕更正（"未命中"限定为首页范围、支持页命中——不删原文，附更正注记）；② SOURCE.md §2 更新为"路径①（支持页直链）+ 路径②（org 字段生态）双中"。**弱证据先例无需开**——但"如实分层 + 审核台复核补强"这套 A4 方法论本身已是泛化成果，记入总账。
+4. **N1（小额修正，SOURCE.md §3 落实）**：版权方单元格写"杭州云深处科技（Deep Robotics）"，快照原文版权行实为 **"Copyright (c) 2024, DeepRoboticsLab"**——版权方按快照逐字引用（org 名）；公司主体关联属 §2 官方性佐证内容，不混入版权行。J1/K 系列同规：**单元格里的每个声明都要与原件逐字对得上**。
+
+**越界检查**：无——协议②正确停手、S1 未动、侦察件留 `workspace/m2_recon/`（gitignored）合规。
+
+**总账**：M2 开局干净——正本一次到位、红线首次实战、A4 被审核台一手复核升级为双路径。泛化考题下半场在 S1（同仓双源适配 + blob-parity 自动化首战）；记住 R11 教训：S1 若有 config 外改码，即时回线。
+
+---
+
 
 
 

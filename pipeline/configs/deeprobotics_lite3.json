@@ -1,0 +1,103 @@
+{
+  "model": "deeprobotics_lite3",
+  "format_source": "official",
+  "sources": [
+    {
+      "name": "deep_robotics_model",
+      "repo": "DeepRoboticsLab/deep_robotics_model",
+      "pin": "75824b516ecc8fa3f8f7ce5d6577e1e86d6b614f",
+      "subdir": "Lite3",
+      "license_path": "LICENSE.txt",
+      "note": "M2：云深处 Lite3 四足；单仓双格式（同仓两子目录，unitree 分仓模式之外的泛化形态）——S2/S4 的 urdf/mjcf source 字段将同名复指本克隆；usd/ 超范围 excluded；R14：A4 双路径全中（支持页直链+org 互证）、N1 版权行逐字 Copyright (c) 2024, DeepRoboticsLab"
+    }
+  ],
+  "s2": {
+    "urdf": {
+      "source": "deep_robotics_model",
+      "rel": "Lite3/urdf/Lite3.urdf",
+      "package": "Lite3",
+      "package_root": "Lite3",
+      "ref_style": "relative",
+      "note": "S1 实测：13 处引用为 './meshes/x.STL' 显式相对前缀（第三种变体——go2 package://、g1 无前缀 relative、Lite3 带./），relative 分支 Path 规范化兼容；MJCF 无 meshdir，file 同为 './meshes/' 相对 xml 目录"
+    },
+    "mjcf": {
+      "source": "deep_robotics_model",
+      "model_rel": "Lite3/mjcf/Lite3.xml",
+      "scene_rel": "Lite3/mjcf/Lite3.xml"
+    },
+    "notes": {}
+  },
+  "s3": {
+    "official": {
+      "status": "pending——S3 前官网侦察补证（零编造原则；deeprobotics.cn 官网 Lite3 规格页）"
+    },
+    "sanity": {
+      "ratio_range": [
+        0.005,
+        0.5
+      ],
+      "axis_tolerance": 1e-06,
+      "mass_diff_warn": 0.02
+    }
+  },
+  "s4": {
+    "urdf": [
+      {
+        "src_rel": "Lite3/urdf/Lite3.urdf",
+        "dest": "urdf/Lite3.urdf"
+      }
+    ],
+    "urdf_meshes": {
+      "package": "Lite3",
+      "dest_root": "urdf",
+      "note": "relative（./ 前缀变体）：meshes/ 与 urdf 同目录，与 G1 同构"
+    },
+    "mjcf": [
+      {
+        "src_rel": "Lite3/mjcf/Lite3.xml",
+        "dest": "mjcf/Lite3.xml"
+      }
+    ],
+    "mjcf_assets": {
+      "src_rel": "Lite3/mjcf",
+      "dest": "mjcf",
+      "mode": "closure",
+      "note": "无 meshdir，file='./meshes/x.STL' 相对 xml 目录闭包 4 件；两侧网格独立目录"
+    },
+    "images": [],
+    "recheck": {
+      "mjcf": "mjcf/Lite3.xml",
+      "urdf": "urdf/Lite3.urdf",
+      "urdf_mesh_dir": "urdf",
+      "note": "relative（./ 前缀）——meshes/ 与 urdf 同目录"
+    },
+    "excluded": [
+      {
+        "src": "deep_robotics_model/Lite3/usd/configuration/Lite3_base.usd",
+        "why": "USD 格式件，超出本库 URDF/MJCF 双格式范围（R14 送审件已声明 excluded）"
+      },
+      {
+        "src": "deep_robotics_model/Lite3/usd/configuration/Lite3_physics.usd",
+        "why": "USD 格式件，超出本库 URDF/MJCF 双格式范围（R14 送审件已声明 excluded）"
+      },
+      {
+        "src": "deep_robotics_model/Lite3/usd/configuration/Lite3_robot.usd",
+        "why": "USD 格式件，超出本库 URDF/MJCF 双格式范围（R14 送审件已声明 excluded）"
+      },
+      {
+        "src": "deep_robotics_model/Lite3/usd/configuration/Lite3_sensor.usd",
+        "why": "USD 格式件，超出本库 URDF/MJCF 双格式范围（R14 送审件已声明 excluded）"
+      },
+      {
+        "src": "deep_robotics_model/Lite3/usd/Lite3.usd",
+        "why": "USD 格式件，超出本库 URDF/MJCF 双格式范围（R14 送审件已声明 excluded）"
+      }
+    ]
+  },
+  "s6": {
+    "warmup_steps": 100,
+    "bench_steps": 10000,
+    "repeats": 5,
+    "scenario": "固定 qpos0、纯重力、无控制器（四足站立初始姿态，测引擎步进吞吐，不掺控制变量）"
+  }
+}

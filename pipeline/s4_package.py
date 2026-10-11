@@ -68,7 +68,7 @@ def build_plan(config):
             # 越界（../ 逃逸）已由 S2 urdf:mesh-refs 检查（G1 实测 0）。
             if uri.startswith(".."):
                 continue
-            rel = uri
+            rel = Path(uri).as_posix()  # Lite3 的 "./meshes/x.STL" 变体规范化，防 dest 污染对账
             src = urdf_abs.parent / rel
         else:
             prefix = f"package://{pkg}/"
@@ -95,10 +95,15 @@ def build_plan(config):
         # G1：MJCF <mesh file=...> 相对 meshdir 的引用闭包（池含未收配置的网格，整拷冗余）
         mxml = etree.parse(str(mjm_dir / s2["mjcf"]["model_rel"]))
         meshdir = mxml.getroot().find("compiler").get("meshdir") if mxml.getroot().find("compiler") is not None else "."
+        seen_asset = set()
         for m in mxml.getroot().iter("mesh"):
             f = m.get("file")
             if not f:
                 continue
+            f = Path(f).as_posix()  # "./meshes/x.STL" 变体规范化（Lite3 无 meshdir，file 相对 xml 目录）
+            if f in seen_asset:
+                continue  # 上游可能重复定义同 file（Lite3 实测 asset 段 13 元素/4 物理件——引用行 ≠ 文件数，F1 同哲学）
+            seen_asset.add(f)
             plan.append((abase / f, f"{ad['dest']}/{f}", "asset"))
     else:
         for p in sorted(abase.rglob("*")):

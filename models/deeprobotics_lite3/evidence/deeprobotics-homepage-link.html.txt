@@ -1,2 +1,7 @@
 # 证据原件：deeprobotics.cn 首页 2026-10-11 抓取，全文未含 github.com 直链（路径①未命中，如实记录）
 # 页面字节数 36355
+
+
+---
+
+> **R14 更正（2026-10-11）**：本件结论"官网无 github 直链"**限定为首页范围**（本件只抓了 deeprobotics.cn 首页 36,355 B——欠抽样）。审核台 R14 一手复核：官网**支持页** `/robot/index/support` 含 "DeepRoboticsLab(点击跳转GitHub)" 直链 → 路径①实际命中。证据见 `deeprobotics-support-page.html.txt`。原文保留不删。
