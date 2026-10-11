@@ -39,15 +39,23 @@
   },
   "s3": {
     "official": {
-      "status": "pending——S3 前官网侦察补证（零编造原则：无规格页截图不落数值；s3_physics 读到本块无 mass_kg 应显式报错拒跑，而非静默）"
+      "mass_kg": 35.0,
+      "tolerance": 0.10,
+      "evidence": "官网原文「带电池重量 约35kg」（unitree.com/cn/g1 规格表，2026-10-11 浏览器渲染，截图 4 张 evidence/official-g1-spec-page-screenshot-{1..4}.png + 渲染文本 official-g1-spec-page.txt 互证）；顺带实证：总自由度 23 个关节电机（↔ URDF 23 revolute 精确一致）、膝关节最大扭矩 90N.m（脚注[1]：整机口径下最大关节电机的最大扭矩；EDU 版 120N.m，页面宣传区取 120 同口径自洽）、单腿 6+腰 1+单臂 5（6×2+1+5×2=23 数学自洽）、运动空间 腰 Z±155°/膝 0~165°/髋 P±154°、R-30~+170°、Y±158°（↔ S3 限位对账素材）",
+      "caliber": "官网标称口径=带电池整机（原文实证）；URDF/MJCF 均无电池 link——严格口径不可比，总量对比仅作 sanity，不作逐 link 真值依据（M0 同法）"
     },
     "sanity": {
       "ratio_range": [
         0.005,
         0.5
       ],
-      "axis_tolerance": 1e-06,
+      "axis_tolerance": 1e-6,
       "mass_diff_warn": 0.02
+    },
+    "cross_alias": { "base": "pelvis" },
+    "notes": {
+      "joint_range": "注：官网「超大关节运动空间」对账基准——腰 Z±155°、膝 0~165°、髋 P±154°/R-30~+170°/Y±158°（规格表原文，evidence/official-g1-spec-page.txt）；URDF 限位逐关节对账见体检表",
+      "upstream_png": "上游对照素材：images/g1_23dof.png（23dof 配置官方渲染图，配图候选）；images/ 下另有 29dof/29dof_with_hand/dual_arm 三张属未收配置"
     }
   },
   "s4": {

@@ -28,10 +28,11 @@ import numpy as np
 import trimesh
 from lxml import etree
 
+MODEL = sys.argv[1] if len(sys.argv) > 1 else "unitree_go2"
 ROOT = Path(__file__).resolve().parents[1]
-CONFIG_PATH = ROOT / "pipeline" / "configs" / "unitree_go2.json"
-RAW = ROOT / "workspace" / "raw" / "unitree_go2"
-REPORTS = ROOT / "models" / "unitree_go2" / "reports"
+CONFIG_PATH = ROOT / "pipeline" / "configs" / f"{MODEL}.json"
+RAW = ROOT / "workspace" / "raw" / MODEL
+REPORTS = ROOT / "models" / MODEL / "reports"
 
 MESH_EXTENTS = {}
 
