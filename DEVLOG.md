@@ -2,6 +2,15 @@
 
 > 纪律：每次会话结束追加一条，新的在上。
 
+## 2026-10-11（会话 7：R4 消化 + S4 入库全绿）
+
+- R4 回写读取：**S3 认可（审核台独立复核 raw 数字，forensics 数学自洽）/ calf 不修+披露批准 / 四脚本细审通过 / AGENT-LAB 首查账通过 / 零越界 / 放行 S4**；E1–E6 领取（E1 留 S7 查验）。
+- **E2/E3/E5/E6 随本轮落实**：foot 措辞更正（"自闭合空 body：零质量/零 geom/零 site，触地几何挂于 calf 的 foot class geom"）；三处 Go2 硬编码 config 化（alias/行程注/png 注）；MJCF 惯量方法论披露写入 S3 报告（URDF 独立数学检查 vs MJCF 编译器背书，不对称如实披露）；collision 网格检查显式 SKIP 行 + enumerate 冗余清理。**S3 重跑 PASS 8 / WARN 4 / FAIL 0 / SKIP 1——数字与 R4 预期完全一致**。
+- **S4 入库（s4_package.py + config s4 段）：43 文件 / 81.4 MB，PASS 6 / FAIL 0 / WARN 0**——traceability 43/43 命中 manifest 同路径行；两源网格哈希交集 0 → 分目录，MJCF 网格落 `mjcf/assets/`（保持官方 meshdir，不改官方一字节）；**R3-D3 遗留裁决：dae/ vs meshes/ 同内容 17 / 不同 0 → meshes/ 为冗余目录不随库分发**；coverage 未覆盖=无；入库路径 MJCF 编译 + yourdfpy 双复验通过。
+- s4 自查两处修复后重跑：meshes/ 冗余排除逻辑（原从 rows 筛——rows 里根本没有未入库文件；改为从 dae rel 拼路径）、raw_count 排除 .git。
+- 待核小账（下会话顺手，不阻塞）：coverage 算术 43+20 vs 62 的口径差 + find 40 vs 43 的 .md 过滤口径——traceability 43/43 与 uncovered=无 两个硬判据已过。
+- 状态：S4 过 → S5 预览 + S6 基准（无送审点挡路，连做）；E1（calf 披露块 + 规格页截图）在 S7 收尾查验 → 终审。
+
 ## 2026-10-11（会话 6：S3 物理体检 · 零修复纯体检 → 专项审送审）
 
 - s3_physics.py 上线（质量口径声明置顶 + 体检矩阵 + C1 双清点表 + URDF↔MJCF 交叉对账）。结果 **PASS 8 / WARN 4 / FAIL 0**，零修复纯体检。

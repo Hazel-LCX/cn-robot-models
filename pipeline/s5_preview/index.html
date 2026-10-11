@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>宇树 Go2 — 仿真模型质检预览（cn-robot-models）</title>
+<style>
+  html,body{margin:0;height:100%;font-family:"Microsoft YaHei",system-ui,sans-serif;background:#101418;color:#dfe6ee;overflow:hidden}
+  #app{position:absolute;inset:0}
+  #panel{position:absolute;top:12px;left:12px;width:320px;max-height:calc(100% - 24px);overflow:auto;
+         background:rgba(16,20,24,.88);border:1px solid #2c3a48;border-radius:8px;padding:12px 14px;font-size:12px;line-height:1.55}
+  #panel h1{font-size:14px;margin:0 0 6px}
+  .ok{color:#5ad19b}.bad{color:#ff7b72}
+  .joint{margin:5px 0}
+  .joint label{display:flex;justify-content:space-between;color:#b8c9da}
+  .joint input[type=range]{width:100%}
+  .joint.over input[type=range]{accent-color:#ff7b72}
+  .joint.over label span:first-child{color:#ff7b72}
+  #status{margin-top:8px;color:#9fb4c7;white-space:pre-wrap}
+  #net{margin:4px 0}
+</style>
+<script type="importmap">
+{ "imports": { "three": "./libs/three.module.js", "three/addons/": "./libs/" } }
+</script>
+</head>
+<body>
+<div id="app"></div>
+<div id="panel">
+  <h1>宇树 Go2 · 质检预览</h1>
+  <div id="meta">加载中…</div>
+  <div id="net"></div>
+  <div id="sliders"></div>
+  <div id="status"></div>
+</div>
+<script type="module" src="./preview.js"></script>
+</body>
+</html>

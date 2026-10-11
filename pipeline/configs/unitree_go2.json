@@ -76,5 +76,11 @@
       { "src": "unitree_ros/robots/go2_description/urdf/Amended_collision_model.png", "why": "上游碰撞示意图，S3 报告引用名即可" },
       { "src": "unitree_ros/robots/go2_description/urdf/Normal_collision_model.png", "why": "同上" }
     ]
+  },
+  "s6": {
+    "warmup_steps": 100,
+    "bench_steps": 10000,
+    "repeats": 5,
+    "scenario": "固定 qpos0、纯重力、无控制器（姿态会倒是预期，测的是引擎步进吞吐，不掺控制变量）"
   }
 }
