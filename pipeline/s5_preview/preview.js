@@ -87,8 +87,11 @@ for (const j of jointEls) {
 // ---- 网格加载：按扩展名分流；STL 无 UV/材质 → 统一中性着色（格式天性，如实标注不伪装） ----
 const daeLoader = new ColladaLoader();
 const stlLoader = new STLLoader();
+// DoubleSide（R19）：负 scale 镜像（lite3 hip/thigh `1 -1 1` 等）翻转三角形绕向，
+// FrontSide 会让镜像腿内翻缺面；闭合实体背面本就被深度测试遮挡，双面渲染零观感代价
 const STL_MATERIAL = new THREE.MeshStandardMaterial({
   color: 0x8d99a6, metalness: 0.15, roughness: 0.55,
+  side: THREE.DoubleSide,
 });
 const jobs = [];
 let meshCount = 0;

@@ -1,9 +1,12 @@
 # deeprobotics_lite3 — 云深处 绝影 Lite3（M2 · 异厂泛化）
 
-![Lite3 预览截图](images/preview-lite3-v4.png)
+![Lite3 预览截图](images/preview-lite3-v8.png)
 
 > **管道预览页**渲染截图（`?model=deeprobotics_lite3`）——模型文件即本页所述入库件，零外网依赖；
 > 首次异厂收录：单仓双格式（unitree 为分仓模式）、引用协议第三变体（`./meshes/`）、碰撞全基元。
+> **截图换版说明（R19）**：本页旧截图（v4 版）系本库预览器未应用 `<mesh scale>` 时的缺陷渲染产物
+> （Lite3.urdf 6 处 scale 含 5 处镜像——hip/thigh 左右腿共用 STL 的镜像技巧未被应用，两腿同手性）；
+> 现图（v8）为 scale + DoubleSide 修复后的正确渲染（四腿实心、左右镜像正确，AGENT-LAB L12 后续）。
 
 ## Provenance（来源与授权）
 
