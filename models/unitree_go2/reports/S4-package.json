@@ -11,224 +11,224 @@
       "dest": "mjcf/assets/base_0.obj",
       "src": "unitree_mujoco/unitree_robots/go2/assets/base_0.obj",
       "kind": "asset",
-      "sha256": "25134a5dc51ae6ad50a4c452c219cff5c10add573dae56b2098c4b0eaee4cc61",
+      "sha256": "8cdc53719002a5ee737d867904e534a6d6fa930b616bdcc1b3131e577d4e46c0",
       "traceable": true
     },
     {
       "dest": "mjcf/assets/base_1.obj",
       "src": "unitree_mujoco/unitree_robots/go2/assets/base_1.obj",
       "kind": "asset",
-      "sha256": "119384942f6fe896473da8442fa1f0b91bcdbe3ef18754cc85217b481fb1b670",
+      "sha256": "39d2f4724ff64dd5a0640c308fd98902a2946660a8d033ec8dbf368fd5af0dd6",
       "traceable": true
     },
     {
       "dest": "mjcf/assets/base_2.obj",
       "src": "unitree_mujoco/unitree_robots/go2/assets/base_2.obj",
       "kind": "asset",
-      "sha256": "08c84b27583be4589be8e83c3fb38ebc654154a4118a879661c25ac37a6f4a04",
+      "sha256": "29cae463f95d678e4ede863c36c9b19b0d356b8340412add10670d70bdcc3095",
       "traceable": true
     },
     {
       "dest": "mjcf/assets/base_3.obj",
       "src": "unitree_mujoco/unitree_robots/go2/assets/base_3.obj",
       "kind": "asset",
-      "sha256": "c485dee967b8d37f422ce51b35886b504c2754f8794b2b1c2c5828a80e6a88b9",
+      "sha256": "f51ba43bf300e68957a0c1aa83eaf3e4926f4ac7e64a0d6c33ae5d21fcbcf5f6",
       "traceable": true
     },
     {
       "dest": "mjcf/assets/base_4.obj",
       "src": "unitree_mujoco/unitree_robots/go2/assets/base_4.obj",
       "kind": "asset",
-      "sha256": "7930e5f6614097cdccc36734f62f8f861642a37b844b8474976bdc2940a2d842",
+      "sha256": "49ddec0129546e5dd2075d5beacf7f207baa2860aeff7626818e64d2efbf3821",
       "traceable": true
     },
     {
       "dest": "mjcf/assets/calf_0.obj",
       "src": "unitree_mujoco/unitree_robots/go2/assets/calf_0.obj",
       "kind": "asset",
-      "sha256": "cf31a09f97204d62e9a448ef0ce45e150ae8294989351989fb968b4ff3560b0b",
+      "sha256": "4a818cd563c5b7e2a271504442d05fd777d38cbaa028d4a10ad29c9f87bb355e",
       "traceable": true
     },
     {
       "dest": "mjcf/assets/calf_1.obj",
       "src": "unitree_mujoco/unitree_robots/go2/assets/calf_1.obj",
       "kind": "asset",
-      "sha256": "8c586d68205926f5b4e7e121ef37e47b663a45cfcf6e2869873cff2a99e80f2d",
+      "sha256": "51950c3a153ae3208592df86ea11c9d6756f8f645ebca5caf6910c61aeb03817",
       "traceable": true
     },
     {
       "dest": "mjcf/assets/calf_mirror_0.obj",
       "src": "unitree_mujoco/unitree_robots/go2/assets/calf_mirror_0.obj",
       "kind": "asset",
-      "sha256": "5ed525542abd3b1897b3f1f55feac97e8b49ff8f9284e0f8afddeb085450403b",
+      "sha256": "6dc0406207a1c08a5953fd5962aca1a270fd06593d30d100205e05c1b32d4af2",
       "traceable": true
     },
     {
       "dest": "mjcf/assets/calf_mirror_1.obj",
       "src": "unitree_mujoco/unitree_robots/go2/assets/calf_mirror_1.obj",
       "kind": "asset",
-      "sha256": "28bbdc6311f06e5efce183a78ebb2b422e18b35f02356006266b5b97a1b45aee",
+      "sha256": "f84f5af90b914633165beb3a5493ee499169144c5797dcf04c6eb5842f74b31a",
       "traceable": true
     },
     {
       "dest": "mjcf/assets/foot.obj",
       "src": "unitree_mujoco/unitree_robots/go2/assets/foot.obj",
       "kind": "asset",
-      "sha256": "228f80ff74ca93033976ca05d908513e1dba6b2372c6cc72f8c5de944481ef46",
+      "sha256": "df9e78a7c0110d02557439010f2a5f11f0ec4fd907b32704145dbd6aa7affc0b",
       "traceable": true
     },
     {
       "dest": "mjcf/assets/hip_0.obj",
       "src": "unitree_mujoco/unitree_robots/go2/assets/hip_0.obj",
       "kind": "asset",
-      "sha256": "2df3b24a0012826021356d8861f2bb354f2f2feef2f4f0b4539d33dd6540ed54",
+      "sha256": "cc29932ab4d251ce3f72389ec4c1f757e44eee138b87e772b648c2bc76b506cd",
       "traceable": true
     },
     {
       "dest": "mjcf/assets/hip_1.obj",
       "src": "unitree_mujoco/unitree_robots/go2/assets/hip_1.obj",
       "kind": "asset",
-      "sha256": "c456392ad509f3c78d8a7084296be10a306576b8aad014dfd9be28f738578584",
+      "sha256": "3fd5bd9b2ef6abe622c0739d3c67eaa1679b19b47132951972c4892a779ea7cf",
       "traceable": true
     },
     {
       "dest": "mjcf/assets/thigh_0.obj",
       "src": "unitree_mujoco/unitree_robots/go2/assets/thigh_0.obj",
       "kind": "asset",
-      "sha256": "201b41523863d8d8e9e8bfdc936ee2d1c5ee794467a41d959bc4cc4493a6551b",
+      "sha256": "bb3edfe6a7b04f4f4dff1ce7b05d426ddce941e276cc6372fb542055893c71ec",
       "traceable": true
     },
     {
       "dest": "mjcf/assets/thigh_1.obj",
       "src": "unitree_mujoco/unitree_robots/go2/assets/thigh_1.obj",
       "kind": "asset",
-      "sha256": "a363dd76e33e73ca8593c606c4d581f5d493080f41b92038bb21a001b95ef60e",
+      "sha256": "3a631822f9f7d2114b1b79dcdff5abf95103630abb7d91d1f3b8b18117132ed2",
       "traceable": true
     },
     {
       "dest": "mjcf/assets/thigh_mirror_0.obj",
       "src": "unitree_mujoco/unitree_robots/go2/assets/thigh_mirror_0.obj",
       "kind": "asset",
-      "sha256": "80b96e40faf2ebc769fc180225ef26278dfef73e14408eb95b3e76936b58ce23",
+      "sha256": "07abaedce761f1dd48647384ac14ba1959276bc78d5a2a62051e8f1c6093933b",
       "traceable": true
     },
     {
       "dest": "mjcf/assets/thigh_mirror_1.obj",
       "src": "unitree_mujoco/unitree_robots/go2/assets/thigh_mirror_1.obj",
       "kind": "asset",
-      "sha256": "3d2cf7d14ee1ebe100ccf57a5a6152b67d85dff7e8abaecbe71f1abe066ccc88",
+      "sha256": "db984a3e983eabbc9b38183427cca9ab0bb3bdb049f9eab030e06edda36579d6",
       "traceable": true
     },
     {
       "dest": "mjcf/go2.xml",
       "src": "unitree_mujoco/unitree_robots/go2/go2.xml",
       "kind": "mjcf",
-      "sha256": "08e3993fb2584b1a256d362fa260efe29c3782ca001b7c19a6aa5b80ff51bed4",
+      "sha256": "2014a3d76e30f17ab9447d8a67bd015291f74fa4d71ae30d005f1a32bd693d4b",
       "traceable": true
     },
     {
       "dest": "mjcf/scene.xml",
       "src": "unitree_mujoco/unitree_robots/go2/scene.xml",
       "kind": "mjcf",
-      "sha256": "e23eadbbb09108287fddd396ec35696989a008f184b0132b3c849ffb41b39a35",
+      "sha256": "6c1fda780e7883665d1c84113b9275b6d448f586a8b1c110e438a37417cbccd0",
       "traceable": true
     },
     {
       "dest": "urdf/go2_description.urdf",
       "src": "unitree_ros/robots/go2_description/urdf/go2_description.urdf",
       "kind": "urdf",
-      "sha256": "252809b6d3ca5c3b66a0be01173441966e837f8f375e76e4f5b35d28f4fa31d6",
+      "sha256": "7d19fe48e2e689ee1a032ab99f2a4a8b671d87e73de48d3e65811682a5b48b9e",
       "traceable": true
     },
     {
       "dest": "urdf_meshes/dae/base.dae",
       "src": "unitree_ros/robots/go2_description/dae/base.dae",
       "kind": "mesh",
-      "sha256": "f777940215d5072dfb047726282455dff00c58655675148c21c79b3e606bfd7a",
+      "sha256": "e52bebbb5c7ff1f6aedee620c9b5b349f6e965360ecc63a9bb743eeff2d0be64",
       "traceable": true
     },
     {
       "dest": "urdf_meshes/dae/calf.dae",
       "src": "unitree_ros/robots/go2_description/dae/calf.dae",
       "kind": "mesh",
-      "sha256": "a875e0e2bb2433d8433faadafc9bfae4f3b0c6a5d64ba8eb75821239c091f3dc",
+      "sha256": "29872fa1a435b92bc2b395fdfa7f0aee26101db3c494681896bd4ef24ee7883c",
       "traceable": true
     },
     {
       "dest": "urdf_meshes/dae/calf_mirror.dae",
       "src": "unitree_ros/robots/go2_description/dae/calf_mirror.dae",
       "kind": "mesh",
-      "sha256": "c65ac56ddfca59b6edfcb68654d2863855707098aa188d338f9b80b1ac11cd54",
+      "sha256": "79c66be7ed06760bd5001c067a1fb0ac517f639d8b1a5f89be471903b3f359e1",
       "traceable": true
     },
     {
       "dest": "urdf_meshes/dae/foot.dae",
       "src": "unitree_ros/robots/go2_description/dae/foot.dae",
       "kind": "mesh",
-      "sha256": "f37a2d16dd2e6975297c5ec26b4d1f2ce2052c4d64715e25e7ea8f8476268e86",
+      "sha256": "ffbd95fd641866ce9bd277aa249b92dafc9148d70131fa2c52709a35ce5b710b",
       "traceable": true
     },
     {
       "dest": "urdf_meshes/dae/hip.dae",
       "src": "unitree_ros/robots/go2_description/dae/hip.dae",
       "kind": "mesh",
-      "sha256": "1f1a020683056677d73682c6783907bb13c8a9c14b2736c7cce2a630523e0597",
+      "sha256": "8735e10617afe252cef0844c1d139d15bc6d4c653660d742fea9fe05c2704d8f",
       "traceable": true
     },
     {
       "dest": "urdf_meshes/dae/thigh.dae",
       "src": "unitree_ros/robots/go2_description/dae/thigh.dae",
       "kind": "mesh",
-      "sha256": "167a6c6545f792f9e7ea53abe7e66dae4d72b53e0ef532ae9903a1f7907b384f",
+      "sha256": "a622381ae308897ff143b8bbf02f075457c342b22984205040424a5a983246fa",
       "traceable": true
     },
     {
       "dest": "urdf_meshes/dae/thigh_mirror.dae",
       "src": "unitree_ros/robots/go2_description/dae/thigh_mirror.dae",
       "kind": "mesh",
-      "sha256": "ab1d3b0ef1184735e79bd53c011c4f668a731a23b532d37e07ef74e65201bce2",
+      "sha256": "c7bae0b0565c2aa4b7cc15a538d795e9153e0f10c821cc18429e92693172bdc6",
       "traceable": true
     },
     {
       "dest": "xacro/const.xacro",
       "src": "unitree_ros/robots/go2_description/xacro/const.xacro",
       "kind": "xacro",
-      "sha256": "fec485669d746b85a4955f21da72abe091f0316d909d047d1a0d9f6f4d4d620d",
+      "sha256": "c4f4a69c8ea1b5a5597beb344569e9a8105da81bea65029b303507d64035b071",
       "traceable": true
     },
     {
       "dest": "xacro/gazebo.xacro",
       "src": "unitree_ros/robots/go2_description/xacro/gazebo.xacro",
       "kind": "xacro",
-      "sha256": "6a5663dc0be1124186fdf76a67d6c949395f23ed72158e8a9e91a81b20f65f86",
+      "sha256": "958454496b235413f6b8189b90ac5794b83b709a6cac2df6478be7d84d98f0d3",
       "traceable": true
     },
     {
       "dest": "xacro/leg.xacro",
       "src": "unitree_ros/robots/go2_description/xacro/leg.xacro",
       "kind": "xacro",
-      "sha256": "5f2e1b5f5da245644a21e071f4f00720d2b31925f10446877a4e95a0ad05169a",
+      "sha256": "c26f92bae9ac673dae37ad23247f426dce68cdc600e3295e5306914946d1775a",
       "traceable": true
     },
     {
       "dest": "xacro/materials.xacro",
       "src": "unitree_ros/robots/go2_description/xacro/materials.xacro",
       "kind": "xacro",
-      "sha256": "5335e8a1c02e81f6d6bd5f3a0748e00b633ed783b80f4089b2da92a7cd363474",
+      "sha256": "eb45dfe0751c08ee1e2cefafc08f0406fe9737036571e4dc1541fa31d7f753e1",
       "traceable": true
     },
     {
       "dest": "xacro/robot.xacro",
       "src": "unitree_ros/robots/go2_description/xacro/robot.xacro",
       "kind": "xacro",
-      "sha256": "82931c266f08d169787682d4278641039dd463e200dfe12b034e17f30ca1823d",
+      "sha256": "8cc8dfb8259ddda8a3ed515a51557ac0c8acebb954057349cee121eb11cfcf27",
       "traceable": true
     },
     {
       "dest": "xacro/transmission.xacro",
       "src": "unitree_ros/robots/go2_description/xacro/transmission.xacro",
       "kind": "xacro",
-      "sha256": "aa297bf9bc3905f4df895207fde87bc22e116044bd31063770f2b340780f95db",
+      "sha256": "f4a0fc2c5df4414e214d4190a003f9da23c903daad454053447ebced8bc9b223",
       "traceable": true
     }
   ],
@@ -264,7 +264,7 @@
       "detail": "入库后 URDF yourdfpy 解析通过：42 links（package:// 重映射到 urdf_meshes/）"
     }
   ],
-  "total_bytes": 56119567,
+  "total_bytes": 55357945,
   "physical_files": 34,
   "non_raw": [
     "images/preview-screenshot.png"

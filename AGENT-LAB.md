@@ -2,6 +2,14 @@
 
 > 纪律（R1-④ 立规）：每次失败记四要素——现象 / 根因 / 自救动作 / 是否升级 codex 会诊。R2 起审核台查账。
 
+## 2026-10-11 · L8 · autocrlf 第二幕：源头检出失真入库（R10-K1，M0 回溯缺陷）
+
+- **现象**：R10 终裁——上游 blob 全 LF，M0 S1 检出时两克隆 `core.autocrlf=true` 把 62 件检出件转 CRLF，S4 字节复制入库，公开仓库分发 34 件行尾被改文本件（内容级零差异；与本库"不改官方一字节"承诺冲突，非 license 违约）。
+- **根因**：L4（第一幕）只修了**库内传播**（.gitattributes 锁 -text，防 clone 再转换），**检出处未关转换**——失真在 M0 第一次检出时就发生了，之后全部对账（manifest/S4/README）锚在衍生物上，"对账即事实"的锚点本身错了，对账错得整整齐齐。
+- **自救（R10 七步）**：①两克隆 autocrlf=false + 检出区 62 件按 `cat-file` 全量导出（62/62 == blob 复验；期间发现 `checkout -f` 在 autocrlf 状态混乱时**不重写行尾**且 status 报 clean——git 行尾机制不可信，cat-file 直写才是免疫路径；5 件 PNG 报"CRLF"系二进制数据随机字节，verify 脚本逐件判为上游原生）；②models/ 34 件 blob-exact 替换（逐件前后 SHA256 记档 blob_exact.json，35 件终验全 PASS）；③S4 重跑 traceability 33/33、④S2+S3 回归门重跑无 FAIL（S3 的 4 WARN 均既有处置记录）；⑤SOURCE.md §4 与两处 README 同刷（56,119,567→55,357,945 B）；⑥本条 L8 记档；⑦commit+push（R10 授权）。
+- **是否升级**：否。修复全程有 R10 判据与预言（快照哈希 84aac59f/a5d73fc4 逐位命中）背书。
+- **顺带立规**：①**哈希/长串肉眼比对从此禁止**（本会话肉眼对锚点连续得出矛盾结论，check_anchors.py 三源裁决一次定案；R9 抓回执错数同根）——数字和长串，机器说了算；②**自产对账脚本发现"CRLF 残留"先判二进制**（`b"\r\n" in data` 对 PNG 无意义）；③K1 后新增铁律：**M1+ 拉取一律 cat-file/检出即正本**，G1 的 S1 按此法执行。
+
 ## 2026-10-11 · L7 · M1 侦察 Windows 三连坑（python stub / 反斜杠路径 / 内联转义穿墙变形）
 
 - **现象**：①`curl | python -c` 管道整体 exit 49、零输出；②glob 结果按 `'m1_recon/'` 切分报 IndexError；③`python -c` 内联脚本里 `'\\\\'` 经 bash 双引号穿墙后变成 `'\'`，SyntaxError。

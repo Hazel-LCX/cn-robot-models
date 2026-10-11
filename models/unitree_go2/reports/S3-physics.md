@@ -1,4 +1,4 @@
-# S3 物理体检报告 — unitree_go2（2026-10-11 15:23）
+# S3 物理体检报告 — unitree_go2（2026-10-11 17:25）
 
 **质量口径声明（修正 2，置顶）**：官网原文「带电池重量 约15kg」（unitree.com/go2 规格表，浏览器截图存证 evidence/official-go2-spec-page-screenshot.png，R4-E1 已补）；顺带实证：最大关节扭矩约45N·m（↔ URDF calf effort 45.43）、精密关节电机 12 个（↔ 12 revolute）、运动空间 大腿 -200°~90°/小腿 -156°~48°（↔ URDF 限位符号镜像等宽） 官网标称口径=带电池整机（原文实证）；双方模型均无电池 link——严格口径不可比，总量对比仅作 sanity，不作逐 link 真值依据
 

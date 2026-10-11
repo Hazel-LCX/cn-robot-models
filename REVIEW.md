@@ -324,6 +324,37 @@ R5 原三项（README 定稿 / LICENSES-SOURCE 一致 / .gitattributes clone 验
 
 ---
 
+## R10 · 协议②：M1 选型定案 + S0 license 门 + S5 增量裁定（2026-10-11 · 审核台）
+
+**审核台独立实证**（方法照旧：不信报告文本，信 git 对象库与端点实测）：
+- **锚点零漂移**：审核台自有 `ls-remote` 实测 ros master = `5994d4fa…`、mujoco main = `1eb6642e…`，与 M0 所钉锚点逐位一致（独立于送审证据件）；
+- **目录实况**：ros `robots/g1_description/` 39 项、mujoco `unitree_robots/g1/` 10 项，均无 LICENSE/COPYING；配对件 `g1_23dof.urdf` + `g1_23dof.xml`（+ `scene_23dof.xml`）双侧在位；
+- **网格实测**：ros 池 **STL ×173 / 110.4 MB**（`.STL` 大写后缀；全变体共享池，含 Dex1/L_hand 手部件——佐证"闭包拉取面远小于池值"的必要性）、mujoco **STL ×60 / 31.8 MB**，与送审件数字逐位吻合；
+- license 端点 spdx_id 双 BSD-3-Clause；head 证据件 sha/日期与锚点一致（2026-09-30 / 2026-09-07）。
+
+**裁定**：
+
+1. **M1 选型定案 = 宇树 G1，配对 `g1_23dof.urdf` ↔ `g1_23dof.xml`，批准**。四条理由（形态跨越四足→人形 / license 门最干净 / 配对名对齐 / 作品叙事）全部成立；29dof 系留作 M2+ "同机器人多配置"素材的路线一并批准；异厂（智元/加速进化/众擎/云深处）后置 M2+ 的排序合理——"先把不确定性前置"违背"宁慢勿脏"。
+2. **S0 license 门关闭，放行 S1**（前置 = K1，见下）。三条结论（再分发=是 / 修改=是 / 保留声明=是）成立；网格随仓库 BSD-3 的假设沿用 M0 同法记录在案；§4 待办（`g1_description/README.md` 与 `g1_joint_index_dds.md` 正文复查）S1 照做。
+3. **J1（数字修正，S1 报告落实）**：送审件称"URDF/xml 变体 30 个"不实——实测 **33 个模型文件（23 urdf + 10 xml）= 23 个去重配置**（20 个命名变体 + `g1_comp`/`g1_pl`/`g1_dual_arm` 3 个特殊基底；xml 是其中 10 个配置的孪生形态）。S1 报告"存在未收"清单须按此准确计数记档。与 R9 的 12→21 同款规矩：**数字必须能被重放**。
+4. **K1（P0 必修，M0 回溯缺陷——autocrlf 第二幕：字节保真承诺在公开仓库层面失守）**：
+   - **事实链（审核台 git 对象库终裁）**：上游 blob 全 LF（LICENSE 1558/1559 B 零 CR；urdf/xacro/dae/obj/xml 全部文本件）→ 本地 raw 检出被 autocrlf 转 CRLF（53 项 blob 对账：字节一致 5 = 全部 PNG 二进制，不一致 48）→ 入库 = 字节复制检出件（复核 `models/unitree_go2/mjcf/go2.xml` sha256 = `08e3993f…` = S4 manifest——manifest 内部自洽，但锚在转换后的副本上）→ **公开仓库现分发 33 个行尾被改的文本文件，与本库"不改官方一字节"的自我承诺冲突**。内容级零差异（urdf/xml/obj 三样本剥 CR 后与 blob 逐字一致），属行尾级失真——但承诺的标准是字节级。注：BSD-3 不要求字节级原样再分发，故**不构成 license 违约**，是本库自身质量承诺的失守。
+   - **R1/A2 判据修正**：当时裁定"API 端点给规范化阅读副本、raw 检出文件 = 法律原件"，实测方向相反——**上游 blob 本身即 LF**，contents API base64 忠实于 blob，本地 CRLF 检出件才是衍生物。**正本判据自此修正为：git blob（`cat-file` / contents API base64），永不采信工作区检出件**。据此，M1 本次入库的 license 快照（contents base64，1558/1559 LF）经核验与上游 blob **逐字节一致——恰是正本**，比 M0 已入库的那份更正宗。
+   - **修复清单（工作台执行，M1-S1 启动前完成）**：① 拉取方式根治——raw 克隆设 `core.autocrlf=false` 后重检出，或按 `ls-tree` 批量 `cat-file` 导出（blob-exact 免疫）；**G1 的 S1 必须同法**（注意：ASCII STL 同样会被行尾转换，binary STL 因含 NUL 免疫——拉取后逐件核）；② `models/unitree_go2/` 33 个文本文件替换为 blob-exact 版本（`images/Go2.png` 二进制未受影响，33+1=34 对账基数不变）；③ **S4 全量重跑**（manifest 与报告哈希全部更新——"对账即事实"）；④ **S2+S3 重跑**（双回归门；行尾不影响解析语义，预期全绿）；⑤ `models/unitree_go2/SOURCE.md` §4 哈希表更新（替换后应 = `84aac59f…` / `a5d73fc4…`，即与 g1 快照逐字节相同——同仓库同锚同一文件）+ go2 侧其它受影响文档同刷；⑥ AGENT-LAB 记档（编号顺延至 L8——L7 已被 python stub 课占用；主题：autocrlf 两幕——L4 修的是库内传播，源头检出未修；教训 = 检出处即关转换，或干脆 blob-exact 导出）；⑦ commit + push 公开仓库。K1 属管道卫生 + 对账刷新、内容级零变化，**不需新送审**；完成证据随 M1 S1 报告附回。
+5. **S5 STL 支路裁定 = 配置边界内管道增强，工作台直进，不走全量送审**，附五项条件：
+   - ① vendor 官方 STLLoader + 原版 MIT LICENSE（ColladaLoader 同待遇先例）；
+   - ② **Go2 回归门**：STL 支路落地后 Go2 预览零回归，证据记 DEVLOG；
+   - ③ STL 无 UV/颜色是格式天性：预览着色如实处理（MJCF rgba 或统一材质），不伪装纹理、不改官方文件，页面如实标注；
+   - ④ STL 相关坑记 AGENT-LAB，同题三败照走 incident；
+   - ⑤ PIPELINE §3-S5 补一行格式清单事实注记（dae+TGA 自写、stl = vendor STLLoader）、§9 记修订，不升大版本；支路验证证据（G1 预览截图 + Go2 回归确认）随 M1 自然送审点带回。
+   - 理由：S5 步骤契约（离线预览 models/ 内容）未变，属格式覆盖扩展而非管道设计变更；vendor 先例在；风险受回归门与披露条款约束。"加配置不改码"承诺的已知边界在此如实记账，不算违约。
+
+**越界检查**：无——本次送审在 S0 正确停手、S1 未动，协议②触发执行正确；侦察与取证件留 `workspace/m1_recon/`（gitignore 不入库）合规。
+
+**总账**：M1 = G1（23dof）定案、S0 关门；K1 修复为 S1 唯一前置；S5 STL 支路带五条件直进。M0 时代埋得最深的一处坑在 M1 门口被截获——"对账即事实"的锚点本身错了，对账就会错得整整齐齐。这正是审核台独立实证存在的意义。
+
+---
+
 
 
 

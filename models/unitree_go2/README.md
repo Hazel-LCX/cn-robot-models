@@ -12,7 +12,7 @@
 | MJCF 源 | unitreerobotics/unitree_mujoco @ `1eb6642e3f3fdfb7fb13a9794fd6a2dd93ea0e7d`（`unitree_robots/go2/`） |
 | License | **BSD-3-Clause**（版权方 = 杭州宇树科技），原文快照随文件入库：`LICENSE-upstream-unitree_ros.txt` / `LICENSE-upstream-unitree_mujoco.txt` |
 | 官方性验证 | 双证据链：unitree.com 官网链接 org + org 自述互指 + 非 fork（详见 [SOURCE.md](SOURCE.md) 与 `evidence/`） |
-| 入库对账 | **34 文件 / 56.1 MB**（33 个 raw 溯源件逐 SHA256 命中 manifest + 1 个质检截图 = 56,119,567 B；URDF 17 处引用 → 7 个物理 dae）——[S4-package.md](reports/S4-package.md) |
+| 入库对账 | **34 文件 / 55.4 MB**（33 个 raw 溯源件逐 SHA256 命中 manifest + 1 个质检截图 = 55,357,945 B；URDF 17 处引用 → 7 个物理 dae）——[S4-package.md](reports/S4-package.md)。**K1（2026-10-11）**：全部溯源件已替换为上游 git blob 正本（LF），56.1→55.4 MB 差 = CRLF 行尾归正累计 |
 
 ## 使用
 

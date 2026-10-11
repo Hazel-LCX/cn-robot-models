@@ -65,19 +65,21 @@
 
 **二进制文件假设**：dae/stl/obj 网格跟随仓库同一 license。依据 = 仓库无单独 media license 文件、无 NOTICE 排除声明。此假设已记录，审核台如认为不足可打回。
 
-## 4. 快照一致性（A2，S1 复核结论）
+## 4. 快照一致性（A2，S1 复核结论；R10-K1 判据修正后现态）
 
-S0 快照经 GitHub API 取得；S1 已按规则以 **raw 内同一 commit 的 LICENSE 文件**复核。结果（2026-10-11 实跑，明细 `reports/S1-fetch.md`）：
+S0 快照经 GitHub API 取得；S1 以 raw 内同 commit 文件复核；**K1（R10）后以上游 git blob 为正本终裁**。现态（2026-10-11 K1 后）：
 
-| 仓库 | resolved HEAD | 复核状态 | LICENSE SHA256 |
+| 仓库 | resolved HEAD | 复核状态 | LICENSE SHA256（= blob 正本） |
 |---|---|---|---|
-| unitree_ros | `5994d4fa…a259`（= 送审锚点） | **快照 v2 = raw 原件重生成** | `6b1b754f…a7ed8` |
-| unitree_mujoco | `1eb6642e…a0e7d`（= 送审锚点） | **快照 v2 = raw 原件重生成** | `e1960a70…c7b55` |
+| unitree_ros | `5994d4fa…a259`（= 送审锚点） | **快照 v3 = blob-exact**（与 unitree_g1 快照逐字节相同） | `84aac59f…6df2d`（1558 B，0 CR） |
+| unitree_mujoco | `1eb6642e…a0e7d`（= 送审锚点） | **快照 v3 = blob-exact**（与 unitree_g1 快照逐字节相同） | `a5d73fc4…0bf25`（1559 B，0 CR） |
 
-- **A2 抓到的真问题**：S0 快照 v1（走 GitHub `/license` API 端点）与 raw 原件**字节不一致**——已查明原因：端点输出为 LF 行尾，raw 内 LICENSE 实际是 **CRLF**（cmp + file 实证）。API 端点给的是"规范化阅读件"，不是法律原件。快照 v2 已按 A2 规则从 raw 重生成，此后一律以 raw 字节为准。这一单既是质检素材，也证明了 A2 这条规则存在的价值。
+- **A2 抓到的真问题（历史，2026-10-11）**：S0 快照 v1（走 GitHub `/license` API 端点）与 raw 检出件**字节不一致**——已查明原因：**当时解释方向判反了**。真相（R10 终裁）：上游 blob 本身即 LF；raw 检出件被本地 autocrlf 转成 CRLF，**检出件才是衍生物**。快照 v2（从 raw 检出件重生成）因此也是 CRLF 件，随 K1 一并归正为 v3 = blob-exact。
+- **正本判据（R10 修正，永久生效）**：**上游 git blob（`git cat-file` / contents API base64）为唯一正本，永不采信工作区检出件。**
+- **K1 修复七步（2026-10-11，R10 指定，S1 前置已完成）**：①两克隆 autocrlf=false + 检出区 62 件全量 cat-file 导出（62/62 == blob；5 件 PNG 的"CRLF"为二进制数据随机字节，非行尾）；②models/ 34 件替换为 blob-exact（逐件前后 SHA256 记档 workspace/k1_fix/blob_exact.json）；③S4 全量重跑（traceability 33/33，FAIL 0）；④S2+S3 回归门重跑（10/0/0 与 8/4/0/SKIP1，WARN 均既有处置）；⑤本节与两处 README 对账行同刷；⑥AGENT-LAB L8 记档；⑦commit + push（R10 授权，无需新送审）。
 - license 文件与模型文件同 commit（resolved HEAD = 送审锚点，两仓库均成立）✓。
-- 拉取方法：**直连 blobless+sparse 一次成功**（代理/API 兜底未动用）；ros 36 文件 52.4 MB、mujoco 26 文件 29.9 MB，合计 62 文件 82.3 MB；manifest 抽 3 文件哈希复算一致；raw 此后只读。
-- **入库对账（S4，终审 F1 更正后）**：**34 个物理文件**（33 个 raw 溯源件逐文件 SHA256 命中 manifest 同路径行 + 1 个质检截图）/ 约 56 MB 落 `models/unitree_go2/`（reports/S4-package.md）；dae/ 与 meshes/ 判定同内容冗余（**7/0，物理文件口径**——URDF 17 处 visual 引用共享 7 个物理 dae，引用行 ≠ 文件数），meshes/ 不随库分发；两源网格哈希交集 0 → 分目录，MJCF 网格落 `mjcf/assets/`（保持官方 meshdir 相对引用）；入库路径 MJCF 编译 + yourdfpy 双复验通过。
+- 拉取方法（M0 原始记录保留）：**直连 blobless+sparse 一次成功**（代理/API 兜底未动用）；ros 36 文件、mujoco 26 文件，合计 62 文件。M0 报告的 82.3 MB 为当时 CRLF 检出件现态字节；**K1 后检出区全正本口径 = 77.7 MB**——差 4.6 MB 为 dae/obj 逐行几何数据约 500 万个行尾的累计（非文件增删，62 件数前后一致）。
+- **入库对账（S4，K1 后现态）**：**34 个物理文件**（33 个 raw 溯源件逐文件 SHA256 命中 manifest 同路径行 + 1 个质检截图）/ **55,357,945 B（55.4 MB）** 落 `models/unitree_go2/`（reports/S4-package.md）；dae/ 与 meshes/ 判定同内容冗余（**7/0，物理文件口径**——URDF 17 处 visual 引用共享 7 个物理 dae，引用行 ≠ 文件数），meshes/ 不随库分发；两源网格哈希交集 0 → 分目录，MJCF 网格落 `mjcf/assets/`（保持官方 meshdir 相对引用）；入库路径 MJCF 编译 + yourdfpy 双复验通过。
 
 ## 5. 对本库的义务（已落 LICENSES.md）
 

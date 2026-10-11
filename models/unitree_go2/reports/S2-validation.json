@@ -1,7 +1,7 @@
 {
   "summary": {
     "model": "unitree_go2",
-    "date": "2026-10-11 13:11",
+    "date": "2026-10-11 17:25",
     "pass": 10,
     "warn": 0,
     "fail": 0,
@@ -17,7 +17,7 @@
     {
       "check": "urdf:xml-wellformed",
       "status": "PASS",
-      "detail": "lxml 解析成功（28201 字节）"
+      "detail": "lxml 解析成功（27441 字节）"
     },
     {
       "check": "urdf:names-unique",
@@ -52,12 +52,12 @@
     {
       "check": "mjcf:xml-wellformed",
       "status": "PASS",
-      "detail": "lxml 解析成功（15169 字节）"
+      "detail": "lxml 解析成功（14881 字节）"
     },
     {
       "check": "mjcf:compile-model",
       "status": "PASS",
-      "detail": "nbody=18 njnt=13 ngeom=56 nmesh=16 nu=12 nq=19 timestep=0.0020（161 ms）"
+      "detail": "nbody=18 njnt=13 ngeom=56 nmesh=16 nu=12 nq=19 timestep=0.0020（164 ms）"
     },
     {
       "check": "mjcf:compile-scene",
