@@ -92,16 +92,6 @@ for (const link of linkEls) {
 }
 await Promise.all(jobs);
 
-// 落地对齐：URDF base 原点在髋部、足端在 z≈-0.32，Z-up 转换后足端 y<0 会沉到网格下——
-// 按包围盒把整机抬到足端贴网格面，相机目标对准几何中心
-const bbox = new THREE.Box3().setFromObject(model);
-const lift = -bbox.min.y;
-model.position.y += lift;
-bbox.min.y += lift;
-bbox.max.y += lift;
-const center = bbox.getCenter(new THREE.Vector3());
-controls.target.set(0, center.y, 0);
-
 // ---- 关节滑条（质检元素：滑条范围比 URDF 限位宽 0.4rad，越限变红） ----
 const sliderBox = document.getElementById('sliders');
 const revolute = jointEls.filter(j => j.getAttribute('type') === 'revolute');
@@ -132,6 +122,19 @@ for (const j of revolute) {
   sliderBox.appendChild(row);
 }
 
+// 落地对齐 v3：放在滑条初始化之后（初始蹲姿才算数），且测量前强制刷新世界矩阵——
+// 初次渲染前父级 matrixWorld 是陈旧值，bbox 会算错（L5 真根因）；只按可见网格，排除灯/空节点
+model.updateMatrixWorld(true);
+const bbox = new THREE.Box3();
+model.traverse(o => { if (o.isMesh) bbox.expandByObject(o); });
+const lift = -bbox.min.y;
+model.position.y += lift;
+bbox.min.y += lift;
+bbox.max.y += lift;
+const center = bbox.getCenter(new THREE.Vector3());
+controls.target.set(0, center.y, 0);
+window.__go2 = { model, scene, camera, bbox }; // 调试钩子
+
 // ---- 断网自检（质检动作本身上屏） ----
 setTimeout(() => {
   const res = performance.getEntriesByType('resource');
@@ -143,7 +146,9 @@ setTimeout(() => {
 
 meta.innerHTML =
   `links ${linkEls.length} · joints ${jointEls.length}（revolute ${revolute.length}）· visual 网格 ${meshCount}<br>` +
-  `根 link：<b>${rootName}</b> · 源：${URDF_URL}`;
+  `根 link：<b>${rootName}</b> · 源：${URDF_URL}<br>` +
+  `<span class="ok">载入版本 v3</span> · 落地抬升 ${lift.toFixed(3)} m · ` +
+  `包围盒 y [${bbox.min.y.toFixed(3)}, ${bbox.max.y.toFixed(3)}]`;
 status.textContent = '拖动旋转 / 滚轮缩放 / 滑条动关节（越 URDF 限位标红）';
 
 addEventListener('resize', () => {
