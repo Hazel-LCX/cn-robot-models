@@ -31,5 +31,18 @@
       "model_rel": "unitree_robots/go2/go2.xml",
       "scene_rel": "unitree_robots/go2/scene.xml"
     }
+  },
+  "s3": {
+    "official": {
+      "mass_kg": 15.0,
+      "tolerance": 0.10,
+      "evidence": "官网 unitree.com/go2 为 JS 渲染，静态页无重量数字（片段已存 evidence/official-go2-spec-page.html.txt）；数值取官方公开规格表约 15kg，建议人工补规格页截图入 evidence/",
+      "caliber": "官网标称口径（是否含电池）未证实；双方模型均无电池 link——总量对比仅作 sanity，不作为逐 link 真值依据"
+    },
+    "sanity": {
+      "ratio_range": [0.005, 0.5],
+      "axis_tolerance": 1e-6,
+      "mass_diff_warn": 0.02
+    }
   }
 }
