@@ -2,6 +2,13 @@
 
 > 纪律：每次会话结束追加一条，新的在上。
 
+## 2026-10-11（会话 9：S7 收尾完成 → 终审送审）
+
+- **E1 全清**：①官网规格页截图入 evidence/（浏览器实测）——顺带挖出**口径定案**（官网原文"带电池重量 约15kg"）+ 三个旁证（扭矩 45N·m ↔ calf effort 45.43、电机 12 个 ↔ 12 revolute、运动空间 thigh/calf 与 URDF 符号镜像等宽）+ **一个新分歧：hip 限位 URDF ±60° vs 官网 ±48°**（披露不修，已入模型页）；②calf 披露块全文进模型页（两源数值/−87.4g×4/归因/RL 下游影响提示）。S3 口径证据升级后重跑，数字不变（8/4/0/SKIP1）。
+- **S7 产物**：顶层 README（**以"仿真模型质检管道"为主体**，库是副产品；两套叙事；质检汇总表；B3 商标声明）；模型页 README 全文（provenance/使用/质检结论/披露块/口径/文件清单）；本库 MIT LICENSE（含第三方声明三层：上游 BSD-3/three.js MIT/商标）。
+- **干净环境实测（近似新 clone）**：首跑抓两个真问题——①模型页引用截图忘了 commit；②**autocrlf 把 three.module.js 转 CRLF 破坏哈希承诺** → `.gitattributes` 锁资产字节稳定 + renormalize → 复测 **6/6 哈希一致 + clone 内 MJCF 加载 OK**。记 AGENT-LAB L4。
+- 状态：**S0–S7 全部完成，M0 闭环** → 终审送审（REVIEW-REQUEST.md：E1 查验/数字溯源/干净环境见证/门面叙事/M0 收官五决策点），停手等审核台。收官后 push 公开仓库需按协议⑤另行触发。
+
 ## 2026-10-11（会话 8：S5 预览 + S6 基准收官）
 
 - **S5 预览**：B6 退路决策记 AGENT-LAB L2（URDFLoader 版本轮盘不值得赌 + jsDelivr npm 路径证实超时）——**自写 URDF→three 加载器 ~180 行**，vendor three 0.160.0 三件（ColladaLoader/TGALoader/OrbitControls）+ **原版 MIT LICENSE**（修正 3 验收项），npmmirror files API 单文件拉取。**浏览器实测验收（工作台自验 + 截图存档）**：断网自检 13 资源全本机、外网请求 0；42 links / 41 joints / 12 关节滑条（滑条范围比 URDF 限位宽 0.4rad，越限标红=质检元素）/ 17 visual 网格；站姿正确；读取的就是 models/ 入库件（../../models/ 相对路径）。三连 bug 修复记 L3：滑条初值（calf 限位不含 0 → 初值取限位中点）、Z-up/Y-up 坐标转换、rpy 分量序。

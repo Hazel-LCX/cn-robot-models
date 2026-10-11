@@ -2,6 +2,14 @@
 
 > 纪律（R1-④ 立规）：每次失败记四要素——现象 / 根因 / 自救动作 / 是否升级 codex 会诊。R2 起审核台查账。
 
+## 2026-10-11 · L4 · 干净环境实测抓到 autocrlf 破坏哈希承诺（S7，本项目最有价值的一次自查）
+
+- **现象**：git clone 后 six 项哈希抽查 5/6——`three.module.js` 与工作区不一致；它是唯一以 LF 行尾入库的资产，git autocrlf 在 checkout 时把它转成了 CRLF。
+- **根因**：Git for Windows 的 autocrlf 对文本文件做行尾转换；上游模型件全为 CRLF，入库起就从未暴露此雷。
+- **自救**：`.gitattributes` 对 `models/**`、`pipeline/s5_preview/libs/**`、`workspace/**` 锁 `-text`（凡哈希被报告引用的资产，字节级稳定）+ `git add --renormalize` + 重 clone 复测 **6/6 ✓** 且 clone 内 MJCF 加载 OK。
+- **是否升级**：否。**教训**：对承诺"逐哈希溯源"的项目，`.gitattributes` 是第一天就该有的配置——是 S7 干净环境实测（近似新 clone 体验）逼出来的，不是想出来的。
+- **顺带**：首跑还抓到"模型页引用的截图忘了 commit"——干净环境实测的价值一晚兑现两次。
+
 ## 2026-10-11 · L2 · S5 实现路径决策（R1-④ 必记档）
 
 - **决策点**：vendor 现成 URDFLoader vs B6 退路自写。
