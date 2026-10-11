@@ -1,0 +1,62 @@
+{
+  "model": "unitree_g1",
+  "format_source": "official",
+  "sources": [
+    {
+      "name": "unitree_ros",
+      "repo": "unitreerobotics/unitree_ros",
+      "pin": "5994d4faef0a9cadd3287f8de0199a67eeb2a259",
+      "subdir": "robots/g1_description",
+      "license_path": "LICENSE",
+      "note": "URDF 源；包内 33 个模型文件（23 urdf + 10 xml，J1 实测口径）= 23 个去重配置，本库只收 g1_23dof 配对（M2+ 考虑 29dof 系'同机器人多配置'深水区）；网格池 meshes/ 173 件 STL 全变体共享（110.4 MB），入库按 23dof 引用闭包"
+    },
+    {
+      "name": "unitree_mujoco",
+      "repo": "unitreerobotics/unitree_mujoco",
+      "pin": "1eb6642e3f3fdfb7fb13a9794fd6a2dd93ea0e7d",
+      "subdir": "unitree_robots/g1",
+      "license_path": "LICENSE",
+      "note": "MJCF 源；官方两版 g1_23dof.xml / g1_29dof.xml，本库收 23dof 配对；meshes/ 60 件 STL 为 23dof/29dof 共享池（31.8 MB）"
+    }
+  ],
+  "s2": {
+    "urdf": {
+      "source": "unitree_ros",
+      "rel": "robots/g1_description/g1_23dof.urdf",
+      "package": "g1_description",
+      "package_root": "robots/g1_description"
+    },
+    "mjcf": {
+      "source": "unitree_mujoco",
+      "model_rel": "unitree_robots/g1/g1_23dof.xml",
+      "scene_rel": "unitree_robots/g1/scene_23dof.xml"
+    },
+    "notes": {
+      "stl_case": "ros 侧网格文件后缀实测大写 .STL（API 目录清单）——URDF 引用串大小写与磁盘文件名一致性在 S2 程序化核验（Windows 不敏感/Linux 敏感，入库必须逐字节对）"
+    }
+  },
+  "s3": {
+    "official": {
+      "status": "pending——S3 前官网侦察补证（零编造原则：无规格页截图不落数值；s3_physics 读到本块无 mass_kg 应显式报错拒跑，而非静默）"
+    },
+    "sanity": {
+      "ratio_range": [
+        0.005,
+        0.5
+      ],
+      "axis_tolerance": 1e-06,
+      "mass_diff_warn": 0.02
+    }
+  },
+  "s4": {
+    "status": "drafted_after_s2——入库清单/网格闭包/排除桶在 S2 解析 23dof 引用面后写实（含 32 个未收变体的逐件 excluded、mujoco meshes/ 共享池的整拷或闭包决策、配图选择）；写实时删除本 status 键",
+    "urdf": [],
+    "mjcf": []
+  },
+  "s6": {
+    "warmup_steps": 100,
+    "bench_steps": 10000,
+    "repeats": 5,
+    "scenario": "固定 qpos0、纯重力、无控制器（人形初始姿态站立，测引擎步进吞吐，不掺控制变量）"
+  }
+}

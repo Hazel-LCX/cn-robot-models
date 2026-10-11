@@ -7,7 +7,8 @@
 - 会话开始仪式：读 REVIEW.md → **R10 已回写**：①M1 选型定案 = 宇树 G1（g1_23dof 配对）**批准**；②S0 license 门关闭放行 S1（前置 = K1）；③**J1**：M1 送审件"30 变体"计数不实，实测 33 文件（23 urdf + 10 xml）= 23 去重配置，S1 报告按准确计数记档（"数字必须能被重放"）；④**K1 P0**：autocrlf 第二幕——上游 blob 全 LF，M0 检出件被转 CRLF 入库，公开仓库 34 件文本件行尾失真（内容级零差异）；正本判据修正 = **git blob（cat-file/contents base64），永不采信工作区检出件**；⑤S5 STL 支路 = 配置边界内管道增强，带五条件直进。
 - **K1 七步全部完成**：①两克隆 autocrlf=false + **检出区 62 件 cat-file 全量导出**（`checkout -f` 不可信——autocrlf 混乱时 status 报 clean 且不重写行尾；cat-file 直写免疫；5 件 PNG 的"CRLF"系二进制随机字节，逐件判明上游原生）；②models/ 34 件 blob-exact 替换（35 件终验全 PASS，含 license 快照 2 件）；③S4 重跑 **traceability 33/33、FAIL 0**（manifest 重生成 62 件/77.7 MB）；④S2（10/0/0）+S3（8/4/0/SKIP1，WARN 均既有处置）回归门重跑；⑤SOURCE.md §4（快照 v3 = blob-exact，R10 预言哈希 84aac59f/a5d73fc4 逐位命中三重验证）+ 模型页/顶层 README 同刷（56,119,567→**55,357,945 B**，差 = ~500 万行尾归正）；⑥**L8 记档**（autocrlf 两幕 + 三条新立规：哈希肉眼比对禁止/CRLF 判二进制/拉取一律正本检出）；⑦commit+push 见下。
 - 疑点排除记：M0 报告 82.3 MB vs 现测 77.7 MB——分仓实测定位 = dae/obj 逐行几何 ~500 万行尾累计，件数 62 前后一致，非文件增删；S1-fetch.md 历史正文不刷，末尾加 K1 附注保审计链。
-- 状态：**K1 闭环，S1（G1 拉取）开工在即**——S1 一律正本检出（L8 铁律），J1 计数随 S1 报告落档。
+- **S1（G1 拉取）同会话完成**：s1_fetch.py 参数化（model 名入参，"脚本模型无关"设计承诺的实现补课，非设计改动）+ clone 命令 `-c core.autocrlf=false`（L8 铁律落码）；configs/unitree_g1.json 落盘（pin 从 evidence 原件程序化注入，杜绝手打；s3/s4 段骨架待 S2/S3 实证回填）。拉取直连一次成功：ros 223 件/120.7 MB + mujoco 76 件/37.1 MB，manifest 299 件/157.8 MB。**license 快照 A2 MATCH 一次过**（检出件=blob 正本，对比 M0 同步骤抓到 CRLF 失真——K1 根治的对照实证）；**J1 计数 raw 重放通过**（23 urdf+10 xml=33 文件=23 配置）；A2 三个上游 md 许可关键词全零（待办闭环）。**新发现两枚**：①URDF 引用协议差异——g1_23dof.urdf 网格引用 50/50 相对路径（Go2 走 package://），S2/S4 按 ref_style 分支（改码点，S4 前报备）；②MJCF 池 60 件中 23dof.xml 仅引 29 件（31 件为 29dof/手部网格）→ S4 闭包拷贝 29 件，整拷否决。S1 报告人读段落 reports/S1-fetch.md。
+- 状态：**K1 闭环 + S1 完成**，commit 本地（push 留下一个协议窗口）；下一步 S2（校验，含 ref_style 分支实现与 STL 大小写核验）。
 
 ## 2026-10-11（会话 14：M1 启动——选型侦察 + S0 license 核对 → 协议②送审）
 

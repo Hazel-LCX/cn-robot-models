@@ -1,7 +1,7 @@
 # SOURCE — unitree_g1 来源与 License 核对记录（S0 产物）
 
-> **状态：待审核台确认（协议②送审中，2026-10-11）——S0 license 门未关闭，S1 未启动。**
-> 核对：写码工作台 · 2026-10-11 · 取证方式 = GitHub API 实测（raw.githubusercontent 不通，未使用）；M1 选型背景与对比见 REVIEW-REQUEST.md（本次送审件）。
+> **状态：已确认（R10 · 2026-10-11）——S0 license 门关闭，S1 拉取完成（正本检出 / A2 MATCH / J1 计数重放通过），S2 未启动。**
+> 核对：写码工作台 · 2026-10-11 · 取证方式 = GitHub API 实测（raw.githubusercontent 不通，未使用）；M1 选型背景与候选对比见 git 历史的 REVIEW-REQUEST.md（协议②送审件，R10 批准）。
 
 ## 1. 数据源（两仓库，均官方 org，与 M0 同源）
 
@@ -14,10 +14,13 @@
 | 配对选定（待审） | `g1_23dof.urdf`（28.8 KB） | `g1_23dof.xml`（31.7 KB）+ `scene_23dof.xml` |
 | 网格格式（API 实测 2026-10-11） | `meshes/` = **stl ×173 / 110.4 MB**（全变体共享池，非逐变体独立） | `meshes/` = **stl ×60 / 31.8 MB** |
 
-**M1 新事实（与 Go2 的差异，选型即知）**：
-1. **网格格式从 dae（Go2-URDF 侧）变为 stl**——M1 的 S2/S4/S5 都要面对新格式；S5 预览加载器需**新增 STL 支路**（M0 自写加载器只覆盖 dae+TGA）。这是"加配置不改码"承诺的已知边界：S1–S4、S6 预期纯配置，**S5 有增量**，已在送审件中如实披露，待审核台确认。
-2. **URDF 变体 30 个**（23dof/29dof/with_hand/rev_1_0/mode_10–18…），29dof 系带腰部自由度。**本库只收 23dof 配对**（变体池不入库，S1 拉取按 `g1_23dof.urdf` 网格引用闭包定清单——23dof 只引用 173 个 stl 中的一部分，拉取面远小于 110 MB 池值）；其余变体在 S1 报告记录"存在未收"，不拉取。
-3. `inspire_hand/` 子目录（灵巧手模型）不入 M1 范围。
+**M1 新事实（与 Go2 的差异，选型即知；S1 后补实测）**：
+1. **网格格式从 dae（Go2-URDF 侧）变为 stl**——S2/S4/S5 面对新格式；S5 预览加载器需**新增 STL 支路**（R10 已裁定：配置边界内管道增强，五条件直进）。
+2. **URDF 网格引用协议差异（S1 实测新发现）**：g1_23dof.urdf 引用 **50/50 全为相对路径 `meshes/xxx.STL`**（Go2 走 `package://` 协议）——S2 校验与 S4 闭包按"引用协议"分支处理（config 拟加 `ref_style` 字段），S2/S4 实现时报备。
+3. **URDF 变体 33 个模型文件（23 urdf + 10 xml）= 23 去重配置**（J1 口径，S1 raw 重放与 R10 逐位一致）。本库只收 g1_23dof 配对；其余 32 文件 S4 excluded 逐件记录。
+4. `inspire_hand/` 子目录（灵巧手模型）不入 M1 范围。
+
+**S1 拉取现态（2026-10-11）**：blobless+sparse+**autocrlf=false（L8 铁律）**直连一次成功；raw = ros 223 件/120.7 MB + mujoco 76 件/37.1 MB，manifest 299 件/157.8 MB（真身 gitignored，副本进 reports/S1-fetch.md）；**license 快照 A2 MATCH**（raw 检出件与 S0 blob-exact 快照逐字节一致——正本检出铁律生效实证）；MJCF 侧 23dof.xml 引用池 60 件中 **29 件**（其余 31 件为 29dof/手部网格）→ S4 闭包拷贝 29 件（整拷否决）。明细 reports/S1-fetch.md。
 
 **拉取方法**：沿用 M0 路线——blobless 部分克隆 + sparse-checkout（锚点上表 SHA），API 逐文件兜底，代理 socks5h://127.0.0.1:12450 备用。STL 为二进制，API 兜底路径走 base64（1.37× 膨胀）优先级低于克隆。
 
@@ -55,7 +58,7 @@
 - `robots/g1_description/`：39 项，**无 LICENSE 文件**（有 README.md、motor_info.md、merge notebook 与变体 urdf/xml）；
 - `unitree_robots/g1/`：10 项，**无 LICENSE 文件**（有 g1_joint_index_dds.md、scene xml、meshes/、images/）。
 
-**待 S1 复核项**：`g1_description/README.md`（6.8 KB）与 `g1_joint_index_dds.md` 快照落库后复查正文是否含许可/署名声明，有则补快照进 SOURCE.md（M0 对 go2 README 同法办理）。
+**S1 复核结论（2026-10-11，A2 待办闭环）**：`g1_description/README.md`、`g1_description/motor_info.md`、`unitree_robots/g1/g1_joint_index_dds.md` 三个上游文档正文**许可关键词全无**（license/BSD/Apache/MIT/copyright/版权 程序化扫描）——无需补快照许可声明，按上游文档件 excluded 归档（明细 reports/S1-fetch.md 人读段）。
 
 ## 5. 对本库的义务（入库时落 LICENSES.md）
 

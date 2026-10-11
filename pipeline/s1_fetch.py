@@ -1,10 +1,16 @@
 #!/usr/bin/env python
-"""s1_fetch.py — S1 拉取：按送审锚点把上游原始件取进 workspace/raw/unitree_go2/。
+"""s1_fetch.py — S1 拉取：按送审锚点把上游原始件取进 workspace/raw/<model>/。
+
+用法：python pipeline/s1_fetch.py [model_name]（缺省 unitree_go2，config =
+pipeline/configs/<model_name>.json）。
 
 主路径（修正 5）：blobless 部分克隆 + sparse-checkout，monorepo 只拉目标子目录；
-兜底：GitHub API 逐文件（git 协议不通时）；代理 socks5h://127.0.0.1:12450 重试一次。
+**检出即正本（AGENT-LAB L8 铁律，K1 根治）**：克隆命令全程 -c core.autocrlf=false，
+工作区字节 == 上游 blob；
+兜底：GitHub API 逐文件 git/blobs base64（字节直写，天然免疫行尾转换）；
+代理 socks5h://127.0.0.1:12450 重试一次。
 产出：raw 快照、manifest.sha256（同步副本进 models/…/reports/）、
-体积/文件数记录（reports/S1-fetch.md）、license 快照同 commit 复核（A2：以 raw 内 LICENSE 为准）。
+体积/文件数记录（reports/S1-fetch.md）、license 快照同 commit 复核（A2）。
 raw 只读原则：目录已存在则拒绝执行，要重拉先手删。
 """
 
@@ -19,10 +25,11 @@ import time
 import urllib.request
 from pathlib import Path
 
+MODEL = sys.argv[1] if len(sys.argv) > 1 else "unitree_go2"
 ROOT = Path(__file__).resolve().parents[1]
-CONFIG_PATH = ROOT / "pipeline" / "configs" / "unitree_go2.json"
-RAW = ROOT / "workspace" / "raw" / "unitree_go2"
-MODEL_DIR = ROOT / "models" / "unitree_go2"
+CONFIG_PATH = ROOT / "pipeline" / "configs" / f"{MODEL}.json"
+RAW = ROOT / "workspace" / "raw" / MODEL
+MODEL_DIR = ROOT / "models" / MODEL
 REPORTS = MODEL_DIR / "reports"
 PROXY = "socks5h://127.0.0.1:12450"
 API = "https://api.github.com"
@@ -59,8 +66,9 @@ def clone_sparse(name, cfg):
     repo_dir = RAW / name
     url = f"https://github.com/{cfg['repo']}.git"
     attempts = [
-        ("直连", []),
-        ("代理", ["-c", f"http.proxy={PROXY}", "-c", f"https.proxy={PROXY}"]),
+        ("直连", ["-c", "core.autocrlf=false"]),
+        ("代理", ["-c", "core.autocrlf=false",
+                  "-c", f"http.proxy={PROXY}", "-c", f"https.proxy={PROXY}"]),
     ]
     last_err = ""
     for label, git_cfg in attempts:
