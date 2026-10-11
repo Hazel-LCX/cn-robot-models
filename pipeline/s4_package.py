@@ -210,15 +210,17 @@ def main():
                 and not p.name.startswith("LICENSE-upstream"))
     physical = len(rows) + len(non_raw)
     pins = {s["name"]: s["pin"] for s in config["sources"]}
-    (MODEL / "README.md").write_text(
-        f"# unitree_go2 — 模型页（S4 入库骨架，S7 补全）\n\n"
-        f"> **provenance**：unitreerobotics/unitree_ros@`{pins['unitree_ros']}` + "
-        f"unitreerobotics/unitree_mujoco@`{pins['unitree_mujoco']}`；license BSD-3-Clause"
-        f"（SOURCE.md / LICENSE-upstream-*）；模型资产+质检截图 {physical} 文件 / {total / 1e6:.1f} MB"
-        f"（不含 reports/evidence/文档）。\n"
-        f"> **质检**：S2 全绿（reports/S2-validation.md）· S3 体检 8P/4W/0F（reports/S3-physics.md，"
-        f"calf 分歧披露待 S7/E1）· 入库对账 reports/S4-package.md（逐文件哈希溯源）。\n",
-        encoding="utf-8")
+    model_readme = MODEL / "README.md"
+    if not model_readme.exists():  # S4 只补骨架；S7 全文模型页不被重跑覆盖
+        model_readme.write_text(
+            f"# unitree_go2 — 模型页（S4 入库骨架，S7 补全）\n\n"
+            f"> **provenance**：unitreerobotics/unitree_ros@`{pins['unitree_ros']}` + "
+            f"unitreerobotics/unitree_mujoco@`{pins['unitree_mujoco']}`；license BSD-3-Clause"
+            f"（SOURCE.md / LICENSE-upstream-*）；模型资产+质检截图 {physical} 文件 / {total / 1e6:.1f} MB"
+            f"（不含 reports/evidence/文档）。\n"
+            f"> **质检**：S2 全绿（reports/S2-validation.md）· S3 体检 8P/4W/0F（reports/S3-physics.md，"
+            f"calf 分歧披露待 S7/E1）· 入库对账 reports/S4-package.md（逐文件哈希溯源）。\n",
+            encoding="utf-8")
 
     n_fail = sum(r["status"] == "FAIL" for r in results)
     n_warn = sum(r["status"] == "WARN" for r in results)

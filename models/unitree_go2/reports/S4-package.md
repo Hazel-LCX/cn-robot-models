@@ -1,10 +1,10 @@
-# S4 入库对账报告 — unitree_go2（2026-10-11 15:26）
+# S4 入库对账报告 — unitree_go2（2026-10-11 15:27）
 
-**物理文件口径（终审 F1 修正）**：入库物理文件 33 = raw 溯源件 33（URDF 引用 17 处 → 网格物理文件 7，引用行 ≠ 文件数） + 质检自产件 0[]；总 55.8 MB（不含 reports/evidence/文档）。字节级复制，raw 未动。
+**物理文件口径（终审 F1 修正）**：入库物理文件 34 = raw 溯源件 33（URDF 引用 17 处 → 网格物理文件 7，引用行 ≠ 文件数） + 质检自产件 1['images/preview-screenshot.png']；总 56.1 MB（不含 reports/evidence/文档）。字节级复制，raw 未动。
 
 ## 分类汇总
 
-asset 16 · image 1 · mesh 7 · mjcf 2 · urdf 1 · xacro 6
+asset 16 · image 1 · mesh 7 · mjcf 2 · urdf 1 · xacro 6 · 质检自产 1
 
 ## 检查矩阵
 

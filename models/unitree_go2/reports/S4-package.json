@@ -264,7 +264,9 @@
       "detail": "入库后 URDF yourdfpy 解析通过：42 links（package:// 重映射到 urdf_meshes/）"
     }
   ],
-  "total_bytes": 55807233,
-  "physical_files": 33,
-  "non_raw": []
+  "total_bytes": 56124726,
+  "physical_files": 34,
+  "non_raw": [
+    "images/preview-screenshot.png"
+  ]
 }
