@@ -92,6 +92,16 @@ for (const link of linkEls) {
 }
 await Promise.all(jobs);
 
+// 落地对齐：URDF base 原点在髋部、足端在 z≈-0.32，Z-up 转换后足端 y<0 会沉到网格下——
+// 按包围盒把整机抬到足端贴网格面，相机目标对准几何中心
+const bbox = new THREE.Box3().setFromObject(model);
+const lift = -bbox.min.y;
+model.position.y += lift;
+bbox.min.y += lift;
+bbox.max.y += lift;
+const center = bbox.getCenter(new THREE.Vector3());
+controls.target.set(0, center.y, 0);
+
 // ---- 关节滑条（质检元素：滑条范围比 URDF 限位宽 0.4rad，越限变红） ----
 const sliderBox = document.getElementById('sliders');
 const revolute = jointEls.filter(j => j.getAttribute('type') === 'revolute');
