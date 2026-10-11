@@ -1,25 +1,23 @@
 # REVIEW-REQUEST — 送审材料
 
-> **已审 2026-10-11 · R5 结论：M0 有条件收官**——E1 过（hip 新披露+口径实证超预期）、干净环境实测见证过（L4 高光）、门面叙事过；**数字溯源抽查命中 F1：S4"43 文件/81.4MB"为对账表重复计数（磁盘实测 34 文件/约 54 MiB，错数扩散 4 处），修完 + 审核台复核数字后收官即生效**；F2=E3 半残留随修。详见 REVIEW.md R5。
-
 > 审核台审毕请在本文件顶部标注"已审 + 日期"，结论追加进 REVIEW.md。历次送审全文可在 git 历史回溯。
-> 上一次送审（S3 物理质检专项审 + 全脚本细审）已于 2026-10-11 审毕：**R4 通过**（S3 认可 / calf 不修+披露批准 / 放行 S4），详见 REVIEW.md R4。
+> 上一次送审（S7 终审）已于 2026-10-11 审毕：**R5 = M0 有条件收官**（E1 过/干净环境实测过/门面过；F1 数字失真必修 + F2 轻残留），详见 REVIEW.md R5。
 
-【送审类型】**S7 收尾终审**（R1 后续送审点 4 · M0 最后一审）· 含 E1 查验 + 干净环境实测见证
+【送审类型】**终审 F1/F2 修复回报**（R5 收官条件：审核台复核 F1 数字一致即回写"M0 正式收官"，无需全量送审）
 
-【背景：在做什么】R4 放行后完成 E2/E3/E5/E6（S3 重跑数字不变 8/4/0/SKIP1）→ S4 入库全绿（43 文件 81.4MB，溯源 43/43，R3-D3 裁决 meshes/ 冗余不分发）→ S5 预览（浏览器实测：断网 0 外网、站姿正确、12 关节滑条越限标红；B6 退路自写加载器，决策记 AGENT-LAB L2，首版三 bug 记 L3）→ S6 基准（MuJoCo **105,131 steps/s** / 9.5 µs/step，展幅 3.0% PASS）→ **S7 收尾完成，M0 全管道闭环**。
+【背景：在做什么】按 R5 待修清单执行完毕：
+- **F1 修复三件**：①`build_plan` 网格闭包按 dest 去重 + `assert` 防回归（URDF 17 处 visual 引用 → 7 个物理 dae，**引用行 ≠ 文件数**）；②体积/对账/冗余判定全改**物理文件口径**（冗余判定 17/0 → **7/0**）；③coverage 算式写平（`root_level` 改两段路径判定）：**raw 62 = 两仓库根级 8 + 目标子目录 54；54 = 入库 33 + meshes 冗余 7 + 排除 13，未覆盖 0**。
+- **扩散 4 处更正**：S4-package.{md,json}（源头重跑刷新）、SOURCE.md §4、顶层 README 汇总表、模型页 Provenance 表——全部改为 **34 个物理文件（33 个 raw 溯源件 + 1 个质检截图）/ 56.2 MB（磁盘实测 56,186,xxx bytes ≈ 53.9 MiB）**。
+- **F2**：s3_physics.py C1 模板中 png 提示文本移 config（`notes['upstream_png']`），S3 重跑 8/4/0/SKIP1 不变。
+- 修复过程中额外抓到并修掉：S4 骨架每次重跑会覆盖 S7 全文模型页（改为**仅缺失时写** + git 历史恢复全文）；重跑 rm 误删质检截图（已恢复）。
+- 自查三源对齐：脚本输出 = 磁盘 `find` = `git ls-files` = **54**（34 资产+截图 + 10 reports + 6 evidence + 4 根级文档）；正文文档 "43 文件/81.4" 残留清零（DEVLOG 历史条目与 REVIEW/REVIEW-REQUEST 审核原文按留痕纪律保留）。
 
-【决策点：需要拍板的具体选项】
-1. **E1 查验**：①calf 披露块已进模型页——两源数值（0.154 vs 0.241352）、差 −87.4g×4、归因（真值分歧无官方分件标称可裁决）、下游影响提示（RL/控制用户两套模型动力学不可互换假设）四要素齐；②官网规格页截图已入 `evidence/official-go2-spec-page-screenshot.png`。是否验收？
-2. **README 数字可溯源性抽查**：顶层 README 与模型页的每个数字（16.087/15.206/105,131/9.5µs/43 文件/81.4MB…）均可指到 reports/ 下 md+json 报告；质检汇总表逐行带报告链接。请抽查。
-3. **干净环境实测见证**：git clone 近似新 clone——首跑抓到两个真问题（模型页引用截图忘 commit；**autocrlf 把 three.module.js 转 CRLF 破坏哈希承诺**），修复 = 补提交 + `.gitattributes` 锁资产字节稳定 + renormalize，复测 **6/6 哈希一致 + clone 内 MJCF 加载 OK**（AGENT-LAB L4 全记录）。是否见证通过？
-4. **门面叙事**：顶层 README 以"仿真模型质检管道"为主体、库是副产品（R1-附 风险 3 的正确立位），两套叙事都写了（分歧→calf 披露案例；全绿→管道可复现+对账+基准）。是否认可？
-5. **M0 收官裁定**：S0–S7 全闭环、零修复纯体检、全部台账齐（DEVLOG 9 条 / AGENT-LAB L1–L4 / REVIEW R1–R4 / PIPELINE v0.5）。若 1–4 过：请裁定 **M0 正式收官**。收官后的 git push 公开仓库属协议⑤，将另行触发送审，不在本次范围。
+【决策点：需要拍板的具体选项】复核 F1 终值数字一致——**入库物理文件 34（raw 溯源 33 + 质检自产 1）/ 资产 56.1 MB、目录全量 54 文件 56.2 MB**；冗余判定 **7/0**（物理文件口径）；coverage **62 = 8 + 54 = 33 + 7 + 13**——一致即按 R5 裁定回写"**M0 正式收官**"。用户已按收官流程直接复核本清单数字。
 
-【我的倾向+理由】倾向 1–4 全过、5 裁定收官。理由：M0 的原始目标"一个模型走通全管道"逐字达成，且管道吃到了自己的狗粮——干净环境实测一晚抓出两个会伤害对外承诺的真问题并当场修复，这是"质检管道"最硬的自证；披露资产（calf 分歧 + hip 限位 + 口径原文）全部有 evidence 支撑、零编造。
+【我的倾向+理由】数字已三源对齐、算式闭合、残留清零，倾向回写收官。
 
 【相关文件路径】
-- README.md（顶层门面）、models/unitree_go2/README.md（模型页全文 + E1 披露块）、LICENSE（MIT + 第三方声明）
-- models/unitree_go2/evidence/official-go2-spec-page-screenshot.png（口径原文实证）
-- .gitattributes（字节稳定承诺）、AGENT-LAB.md（L4）、DEVLOG.md（会话 9）
-- reports/ 全套（S2/S3/S4/S6）+ SOURCE.md + LICENSES.md + PIPELINE.md（v0.5）
+- models/unitree_go2/reports/S4-package.{md,json}（源头，重跑刷新）
+- models/unitree_go2/SOURCE.md §4、README.md（顶层汇总表）、models/unitree_go2/README.md（Provenance 行）
+- pipeline/s4_package.py（F1 主修 + 断言 + 骨架仅缺失时写）、pipeline/s3_physics.py（F2）
+- DEVLOG.md（会话 10）
