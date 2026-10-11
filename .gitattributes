@@ -1,0 +1,9 @@
+# 质检承诺：凡哈希被报告引用的资产，字节级稳定——禁止 git 行尾转换（S7 干净环境实测发现）
+models/** -text
+pipeline/s5_preview/libs/** -text
+workspace/** -text
+
+# 文档类保持常规文本处理
+*.md text
+*.json text
+*.py text
