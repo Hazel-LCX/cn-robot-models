@@ -1,0 +1,68 @@
+{
+  "summary": {
+    "model": "unitree_g1",
+    "date": "2026-10-11 17:44",
+    "pass": 10,
+    "warn": 0,
+    "fail": 0,
+    "versions": {
+      "yourdfpy": "0.0.60",
+      "trimesh": "5.1.1",
+      "mujoco": "3.15.0",
+      "python": "3.14.6"
+    },
+    "verdict": "全部通过，可进 S3"
+  },
+  "checks": [
+    {
+      "check": "urdf:xml-wellformed",
+      "status": "PASS",
+      "detail": "lxml 解析成功（28832 字节）"
+    },
+    {
+      "check": "urdf:names-unique",
+      "status": "PASS",
+      "detail": "33 links / 32 joints，无重名"
+    },
+    {
+      "check": "urdf:tree",
+      "status": "PASS",
+      "detail": "根=pelvis，全树可达，无环无菱形"
+    },
+    {
+      "check": "urdf:mesh-refs",
+      "status": "PASS",
+      "detail": "50 处引用（ref_style=relative）→ 解析出 29 个文件，缺失 0，越界/外包 0，大小写失配 0；visual 引 29 个文件、collision 引 21 个，集合不同（素材归 S3-A1 清点）"
+    },
+    {
+      "check": "urdf:mesh-loadable",
+      "status": "PASS",
+      "detail": "29 个网格 trimesh 全部读通，最小顶点数 4266"
+    },
+    {
+      "check": "urdf:joint-limits",
+      "status": "PASS",
+      "detail": "关节类型 {'fixed': 9, 'revolute': 23}；活动关节全带 <limit>（effort/velocity 数值硬校验留 S3）"
+    },
+    {
+      "check": "urdf:yourdfpy-parse",
+      "status": "PASS",
+      "detail": "yourdfpy 0.0.60 解析成功：33 links / 32 joints"
+    },
+    {
+      "check": "mjcf:xml-wellformed",
+      "status": "PASS",
+      "detail": "lxml 解析成功（32214 字节）"
+    },
+    {
+      "check": "mjcf:compile-model",
+      "status": "PASS",
+      "detail": "nbody=31 njnt=30 ngeom=62 nmesh=29 nu=29 nq=36 timestep=0.0020（174 ms）"
+    },
+    {
+      "check": "mjcf:compile-scene",
+      "status": "PASS",
+      "detail": "场景包装（scene_23dof.xml）编译成功"
+    }
+  ]
+}

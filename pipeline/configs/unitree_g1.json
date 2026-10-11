@@ -24,7 +24,9 @@
       "source": "unitree_ros",
       "rel": "robots/g1_description/g1_23dof.urdf",
       "package": "g1_description",
-      "package_root": "robots/g1_description"
+      "package_root": "robots/g1_description",
+      "ref_style": "relative",
+      "note": "S1 实测：网格引用 50/50 为相对路径 meshes/xxx.STL（相对 URDF 自身解析）——Go2 的 package:// 协议不适用"
     },
     "mjcf": {
       "source": "unitree_mujoco",

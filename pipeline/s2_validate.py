@@ -1,9 +1,14 @@
 #!/usr/bin/env python
 """s2_validate.py — S2 格式校验：证明"文件合法、完整、能加载"。
 
+用法：python pipeline/s2_validate.py [model_name]（缺省 unitree_go2）。
+
 URDF 侧：XML 合法 → link/joint 名唯一 → 关节树单根无环 → 网格引用 100% 解析
-        （package:// 按包名重映射到本地目录——S2 第一坑）→ 网格非零字节且
-        trimesh 读得动（顶点数 > 0）→ yourdfpy 结构化解析交叉确认。
+        （按 config s2.urdf.ref_style 分支：package:// 按包名重映射；relative 相对
+        URDF 解析且禁止逃逸包根——G1 实测 M1 新协议）→ 网格非零字节且 trimesh
+        读得动 → **引用名与磁盘真名大小写逐字节核验**（Windows 文件系统不区分
+        大小写，exists() 会放行——入库后 GitHub/Linux 即 404，必须真名比对）
+        → yourdfpy 结构化解析交叉确认。
 MJCF 侧：XML 合法 → MuJoCo 真编译（最强校验：模型本体 + 场景包装各编一遍）。
 产出：reports/S2-validation.md + S2-validation.json。
 退出码：0 = 无 FAIL（可进 S3）；1 = 有 FAIL（fail 不静默，全部落报告，修复留 S3）。
@@ -21,10 +26,11 @@ from lxml import etree
 
 import yourdfpy
 
+MODEL = sys.argv[1] if len(sys.argv) > 1 else "unitree_go2"
 ROOT = Path(__file__).resolve().parents[1]
-CONFIG_PATH = ROOT / "pipeline" / "configs" / "unitree_go2.json"
-RAW = ROOT / "workspace" / "raw" / "unitree_go2"
-REPORTS = ROOT / "models" / "unitree_go2" / "reports"
+CONFIG_PATH = ROOT / "pipeline" / "configs" / f"{MODEL}.json"
+RAW = ROOT / "workspace" / "raw" / MODEL
+REPORTS = ROOT / "models" / MODEL / "reports"
 
 # 四态语义（R3 风格基线）：PASS / WARN（有兜底、不阻塞）/ FAIL（阻塞）/ SKIP（不适用）。
 
@@ -34,15 +40,34 @@ def add(results, name, status, detail):
     print(f"  [{status}] {name:<30} {detail}")
 
 
-def resolve_pkg(uri, package, package_root):
-    """package://<pkg>/rest → package_root/rest；非本包 URI 返回 None（调用方计失败）。"""
-    prefix = f"package://{package}/"
-    if uri.startswith(prefix):
-        return package_root / uri[len(prefix):]
-    return None
+def disk_names(directory: Path) -> dict:
+    """目录真名映射：引用名（字节）→ 磁盘真名。大小写核验的地基。"""
+    if not directory.exists():
+        return {}
+    return {p.name: p.name for p in directory.iterdir()}
 
 
-def check_urdf_structural(path, package, package_root):
+def resolve_ref(uri, style, urdf_dir, package, package_root):
+    """按 ref_style 解析网格引用 → (Path|None, 说明)。
+
+    package：package://<pkg>/rest → package_root/rest；非本包 URI = (None, foreign)。
+    relative：相对 URDF 所在目录解析；解析后必须仍在包根内（逃逸即失败）。
+    返回值第二个元素为 None（成功）或字符串标注（foreign/escape）。
+    """
+    if style == "package":
+        prefix = f"package://{package}/"
+        if uri.startswith(prefix):
+            return package_root / uri[len(prefix):], None
+        return None, "foreign"
+    rel = (urdf_dir / uri).resolve()
+    try:
+        rel.relative_to(package_root.resolve())
+    except ValueError:
+        return None, "escape"
+    return rel, None
+
+
+def check_urdf_structural(path, package, package_root, ref_style="package"):
     """lxml 自查：合法、名唯一、单根无环、网格引用、网格可读。返回 (results, root)。"""
     results = []
     try:
@@ -92,22 +117,30 @@ def check_urdf_structural(path, package, package_root):
                 uri = mesh.get("filename")
                 if uri:
                     mesh_refs.append((uri, usage, link.get("name")))
-    resolved, missing, foreign = {}, [], []
+    resolved, missing, foreign, case_bad = {}, [], [], []
     for uri, usage, link_name in mesh_refs:
-        target = resolve_pkg(uri, package, package_root)
+        target, note = resolve_ref(uri, ref_style, path.parent, package, package_root)
         if target is None:
-            foreign.append(f"{uri} @ {link_name}")
+            foreign.append(f"{uri} @ {link_name}（{note}）")
         elif target.exists():
-            resolved.setdefault(target, []).append(usage)
+            # 大小写逐字节核验：Windows exists() 对大小写不敏感，
+            # 引用名 ≠ 磁盘真名时 GitHub/Linux 加载即 404——必须按目录真名比对。
+            real = {p.name for p in target.parent.iterdir()}
+            if target.name not in real:
+                case_bad.append(f"{uri} @ {link_name}（磁盘真名含 {target.name.lower()} 形态）")
+            else:
+                resolved.setdefault(target, []).append(usage)
         else:
             missing.append(f"{uri} @ {link_name}")
     visual_uris = {u for u, usage, _ in mesh_refs if usage == "visual"}
     collision_uris = {u for u, usage, _ in mesh_refs if usage == "collision"}
-    add(results, "urdf:mesh-refs", "PASS" if not missing and not foreign else "FAIL",
-        f"{len(mesh_refs)} 处引用 → 解析出 {len(resolved)} 个文件，缺失 {len(missing)}，非本包 {len(foreign)}；"
+    bad_all = missing + foreign + case_bad
+    add(results, "urdf:mesh-refs", "PASS" if not bad_all else "FAIL",
+        f"{len(mesh_refs)} 处引用（ref_style={ref_style}）→ 解析出 {len(resolved)} 个文件，"
+        f"缺失 {len(missing)}，越界/外包 {len(foreign)}，大小写失配 {len(case_bad)}；"
         f"visual 引 {len(visual_uris)} 个文件、collision 引 {len(collision_uris)} 个"
         + ("，集合不同（素材归 S3-A1 清点）" if visual_uris != collision_uris else "，集合相同")
-        + (f"；失败明细：{missing[:4] + foreign[:4]}" if missing or foreign else ""))
+        + (f"；失败明细：{bad_all[:4]}" if bad_all else ""))
 
     bad, v_min = [], None
     for p in sorted(resolved):
@@ -174,7 +207,8 @@ def check_mjcf(path_model, path_scene):
         add(results, "mjcf:compile-model", "FAIL", f"MuJoCo 编译失败——{type(exc).__name__}: {exc}")
     try:
         mujoco.MjModel.from_xml_path(str(path_scene))
-        add(results, "mjcf:compile-scene", "PASS", "scene.xml（模型 + 地形 + 光照）编译成功")
+        add(results, "mjcf:compile-scene", "PASS",
+            f"场景包装（{path_scene.name}）编译成功")
     except Exception as exc:
         add(results, "mjcf:compile-scene", "FAIL", f"场景编译失败——{type(exc).__name__}: {exc}")
     return results
@@ -219,9 +253,10 @@ def main():
     u = s2["urdf"]
     urdf_path = RAW / u["source"] / u["rel"]
     pkg_root = RAW / u["source"] / u["package_root"]
+    ref_style = u.get("ref_style", "package")
     if not urdf_path.exists():
         sys.exit(f"[阻塞] URDF 不存在：{urdf_path}")
-    results, _ = check_urdf_structural(urdf_path, u["package"], pkg_root)
+    results, _ = check_urdf_structural(urdf_path, u["package"], pkg_root, ref_style=ref_style)
     results += check_urdf_yourdfpy(urdf_path, pkg_root)
 
     print("== MJCF 侧 ==")

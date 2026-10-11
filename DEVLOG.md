@@ -127,3 +127,5 @@
 - 会话开始仪式首跑：读 REVIEW.md → **R1 有条件通过**（A1–A4 必修、B1–B6 吸收、四问答复、R1-附方向放行 + 三条导航风险）。
 - 按待修清单升 v0.2：A1 S3 补碰撞体三件（只标记不自动补）；A2 license 快照同 commit + 子目录声明检查；A3 回归门改 S2+S3 双跑；A4 官方 org 证据链落字；B1 惯量数量级 sanity；B2 基准预热 ≥100 步 + ≥10⁴ 步；B3 商标声明；B4 MJCF 查看命令；B5 独立环境口径；B6 自写加载器边界；四问落档 §7（MIT / 不加 PyBullet / 网格默认分目录 / format_source 钩子）；完成度铁律 + 门面立位入 §0。
 - **协议①触发**（管道设计改动）：REVIEW-REQUEST.md 已写，送 v0.2 轻复审，停手等放行。
+- **S2（G1 格式校验）同会话完成**：s2_validate.py 模型参数化 + **ref_style 分支实现**（package:// 重映射 ∥ relative 相对解析+包根逃逸检查——G1 的 50/50 相对路径引用协议）+ **网格引用名 vs 磁盘真名大小写逐字节核验**（Windows exists() 不分大小写会放行，入库 GitHub/Linux 即 404——G1 实测 50 处 .STL 引用失配 0，R10 提醒的坑安全通过）；MJCF 场景文案中性化。**全矩阵 10 PASS / 0 WARN / 0 FAIL**：URDF 33 links/32 joints（23 revolute ↔ 官方 23dof 命名自洽）、50 引用 → 29 物理件、trimesh 29/29 读通（最小 4,266 顶点）、yourdfpy 交叉确认、MJCF 真编译 nbody=31/njnt=30/nq=36/nmesh=29——**URDF 网格 29 件 == MJCF nmesh 29**，两侧素材数对上（S3 交叉对账好兆头）；visual 29/collision 21 集合不同（素材清点归 S3-A1，M0 C1 同类）。报告 reports/S2-validation.{md,json}。
+- 状态：**S2 闭环**；下一步 S3（官网侦察补 official 口径——config 骨架 pending 占位拒跑生效，零编造）→ 物理体检。S1/S2 两 commit 本地累计 ahead 1，push 留协议窗口。
