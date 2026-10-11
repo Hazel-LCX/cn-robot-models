@@ -1,0 +1,295 @@
+{
+  "rows": [
+    {
+      "dest": "urdf/go2_description.urdf",
+      "src": "unitree_ros/robots/go2_description/urdf/go2_description.urdf",
+      "sha256": "252809b6d3ca5c3b66a0be01173441966e837f8f375e76e4f5b35d28f4fa31d6",
+      "traceable": true
+    },
+    {
+      "dest": "urdf_meshes/dae/base.dae",
+      "src": "unitree_ros/robots/go2_description/dae/base.dae",
+      "sha256": "f777940215d5072dfb047726282455dff00c58655675148c21c79b3e606bfd7a",
+      "traceable": true
+    },
+    {
+      "dest": "urdf_meshes/dae/hip.dae",
+      "src": "unitree_ros/robots/go2_description/dae/hip.dae",
+      "sha256": "1f1a020683056677d73682c6783907bb13c8a9c14b2736c7cce2a630523e0597",
+      "traceable": true
+    },
+    {
+      "dest": "urdf_meshes/dae/thigh.dae",
+      "src": "unitree_ros/robots/go2_description/dae/thigh.dae",
+      "sha256": "167a6c6545f792f9e7ea53abe7e66dae4d72b53e0ef532ae9903a1f7907b384f",
+      "traceable": true
+    },
+    {
+      "dest": "urdf_meshes/dae/calf.dae",
+      "src": "unitree_ros/robots/go2_description/dae/calf.dae",
+      "sha256": "a875e0e2bb2433d8433faadafc9bfae4f3b0c6a5d64ba8eb75821239c091f3dc",
+      "traceable": true
+    },
+    {
+      "dest": "urdf_meshes/dae/foot.dae",
+      "src": "unitree_ros/robots/go2_description/dae/foot.dae",
+      "sha256": "f37a2d16dd2e6975297c5ec26b4d1f2ce2052c4d64715e25e7ea8f8476268e86",
+      "traceable": true
+    },
+    {
+      "dest": "urdf_meshes/dae/hip.dae",
+      "src": "unitree_ros/robots/go2_description/dae/hip.dae",
+      "sha256": "1f1a020683056677d73682c6783907bb13c8a9c14b2736c7cce2a630523e0597",
+      "traceable": true
+    },
+    {
+      "dest": "urdf_meshes/dae/thigh_mirror.dae",
+      "src": "unitree_ros/robots/go2_description/dae/thigh_mirror.dae",
+      "sha256": "ab1d3b0ef1184735e79bd53c011c4f668a731a23b532d37e07ef74e65201bce2",
+      "traceable": true
+    },
+    {
+      "dest": "urdf_meshes/dae/calf_mirror.dae",
+      "src": "unitree_ros/robots/go2_description/dae/calf_mirror.dae",
+      "sha256": "c65ac56ddfca59b6edfcb68654d2863855707098aa188d338f9b80b1ac11cd54",
+      "traceable": true
+    },
+    {
+      "dest": "urdf_meshes/dae/foot.dae",
+      "src": "unitree_ros/robots/go2_description/dae/foot.dae",
+      "sha256": "f37a2d16dd2e6975297c5ec26b4d1f2ce2052c4d64715e25e7ea8f8476268e86",
+      "traceable": true
+    },
+    {
+      "dest": "urdf_meshes/dae/hip.dae",
+      "src": "unitree_ros/robots/go2_description/dae/hip.dae",
+      "sha256": "1f1a020683056677d73682c6783907bb13c8a9c14b2736c7cce2a630523e0597",
+      "traceable": true
+    },
+    {
+      "dest": "urdf_meshes/dae/thigh.dae",
+      "src": "unitree_ros/robots/go2_description/dae/thigh.dae",
+      "sha256": "167a6c6545f792f9e7ea53abe7e66dae4d72b53e0ef532ae9903a1f7907b384f",
+      "traceable": true
+    },
+    {
+      "dest": "urdf_meshes/dae/calf.dae",
+      "src": "unitree_ros/robots/go2_description/dae/calf.dae",
+      "sha256": "a875e0e2bb2433d8433faadafc9bfae4f3b0c6a5d64ba8eb75821239c091f3dc",
+      "traceable": true
+    },
+    {
+      "dest": "urdf_meshes/dae/foot.dae",
+      "src": "unitree_ros/robots/go2_description/dae/foot.dae",
+      "sha256": "f37a2d16dd2e6975297c5ec26b4d1f2ce2052c4d64715e25e7ea8f8476268e86",
+      "traceable": true
+    },
+    {
+      "dest": "urdf_meshes/dae/hip.dae",
+      "src": "unitree_ros/robots/go2_description/dae/hip.dae",
+      "sha256": "1f1a020683056677d73682c6783907bb13c8a9c14b2736c7cce2a630523e0597",
+      "traceable": true
+    },
+    {
+      "dest": "urdf_meshes/dae/thigh_mirror.dae",
+      "src": "unitree_ros/robots/go2_description/dae/thigh_mirror.dae",
+      "sha256": "ab1d3b0ef1184735e79bd53c011c4f668a731a23b532d37e07ef74e65201bce2",
+      "traceable": true
+    },
+    {
+      "dest": "urdf_meshes/dae/calf_mirror.dae",
+      "src": "unitree_ros/robots/go2_description/dae/calf_mirror.dae",
+      "sha256": "c65ac56ddfca59b6edfcb68654d2863855707098aa188d338f9b80b1ac11cd54",
+      "traceable": true
+    },
+    {
+      "dest": "urdf_meshes/dae/foot.dae",
+      "src": "unitree_ros/robots/go2_description/dae/foot.dae",
+      "sha256": "f37a2d16dd2e6975297c5ec26b4d1f2ce2052c4d64715e25e7ea8f8476268e86",
+      "traceable": true
+    },
+    {
+      "dest": "xacro/const.xacro",
+      "src": "unitree_ros/robots/go2_description/xacro/const.xacro",
+      "sha256": "fec485669d746b85a4955f21da72abe091f0316d909d047d1a0d9f6f4d4d620d",
+      "traceable": true
+    },
+    {
+      "dest": "xacro/gazebo.xacro",
+      "src": "unitree_ros/robots/go2_description/xacro/gazebo.xacro",
+      "sha256": "6a5663dc0be1124186fdf76a67d6c949395f23ed72158e8a9e91a81b20f65f86",
+      "traceable": true
+    },
+    {
+      "dest": "xacro/leg.xacro",
+      "src": "unitree_ros/robots/go2_description/xacro/leg.xacro",
+      "sha256": "5f2e1b5f5da245644a21e071f4f00720d2b31925f10446877a4e95a0ad05169a",
+      "traceable": true
+    },
+    {
+      "dest": "xacro/materials.xacro",
+      "src": "unitree_ros/robots/go2_description/xacro/materials.xacro",
+      "sha256": "5335e8a1c02e81f6d6bd5f3a0748e00b633ed783b80f4089b2da92a7cd363474",
+      "traceable": true
+    },
+    {
+      "dest": "xacro/robot.xacro",
+      "src": "unitree_ros/robots/go2_description/xacro/robot.xacro",
+      "sha256": "82931c266f08d169787682d4278641039dd463e200dfe12b034e17f30ca1823d",
+      "traceable": true
+    },
+    {
+      "dest": "xacro/transmission.xacro",
+      "src": "unitree_ros/robots/go2_description/xacro/transmission.xacro",
+      "sha256": "aa297bf9bc3905f4df895207fde87bc22e116044bd31063770f2b340780f95db",
+      "traceable": true
+    },
+    {
+      "dest": "mjcf/go2.xml",
+      "src": "unitree_mujoco/unitree_robots/go2/go2.xml",
+      "sha256": "08e3993fb2584b1a256d362fa260efe29c3782ca001b7c19a6aa5b80ff51bed4",
+      "traceable": true
+    },
+    {
+      "dest": "mjcf/scene.xml",
+      "src": "unitree_mujoco/unitree_robots/go2/scene.xml",
+      "sha256": "e23eadbbb09108287fddd396ec35696989a008f184b0132b3c849ffb41b39a35",
+      "traceable": true
+    },
+    {
+      "dest": "mjcf/assets/base_0.obj",
+      "src": "unitree_mujoco/unitree_robots/go2/assets/base_0.obj",
+      "sha256": "25134a5dc51ae6ad50a4c452c219cff5c10add573dae56b2098c4b0eaee4cc61",
+      "traceable": true
+    },
+    {
+      "dest": "mjcf/assets/base_1.obj",
+      "src": "unitree_mujoco/unitree_robots/go2/assets/base_1.obj",
+      "sha256": "119384942f6fe896473da8442fa1f0b91bcdbe3ef18754cc85217b481fb1b670",
+      "traceable": true
+    },
+    {
+      "dest": "mjcf/assets/base_2.obj",
+      "src": "unitree_mujoco/unitree_robots/go2/assets/base_2.obj",
+      "sha256": "08c84b27583be4589be8e83c3fb38ebc654154a4118a879661c25ac37a6f4a04",
+      "traceable": true
+    },
+    {
+      "dest": "mjcf/assets/base_3.obj",
+      "src": "unitree_mujoco/unitree_robots/go2/assets/base_3.obj",
+      "sha256": "c485dee967b8d37f422ce51b35886b504c2754f8794b2b1c2c5828a80e6a88b9",
+      "traceable": true
+    },
+    {
+      "dest": "mjcf/assets/base_4.obj",
+      "src": "unitree_mujoco/unitree_robots/go2/assets/base_4.obj",
+      "sha256": "7930e5f6614097cdccc36734f62f8f861642a37b844b8474976bdc2940a2d842",
+      "traceable": true
+    },
+    {
+      "dest": "mjcf/assets/calf_0.obj",
+      "src": "unitree_mujoco/unitree_robots/go2/assets/calf_0.obj",
+      "sha256": "cf31a09f97204d62e9a448ef0ce45e150ae8294989351989fb968b4ff3560b0b",
+      "traceable": true
+    },
+    {
+      "dest": "mjcf/assets/calf_1.obj",
+      "src": "unitree_mujoco/unitree_robots/go2/assets/calf_1.obj",
+      "sha256": "8c586d68205926f5b4e7e121ef37e47b663a45cfcf6e2869873cff2a99e80f2d",
+      "traceable": true
+    },
+    {
+      "dest": "mjcf/assets/calf_mirror_0.obj",
+      "src": "unitree_mujoco/unitree_robots/go2/assets/calf_mirror_0.obj",
+      "sha256": "5ed525542abd3b1897b3f1f55feac97e8b49ff8f9284e0f8afddeb085450403b",
+      "traceable": true
+    },
+    {
+      "dest": "mjcf/assets/calf_mirror_1.obj",
+      "src": "unitree_mujoco/unitree_robots/go2/assets/calf_mirror_1.obj",
+      "sha256": "28bbdc6311f06e5efce183a78ebb2b422e18b35f02356006266b5b97a1b45aee",
+      "traceable": true
+    },
+    {
+      "dest": "mjcf/assets/foot.obj",
+      "src": "unitree_mujoco/unitree_robots/go2/assets/foot.obj",
+      "sha256": "228f80ff74ca93033976ca05d908513e1dba6b2372c6cc72f8c5de944481ef46",
+      "traceable": true
+    },
+    {
+      "dest": "mjcf/assets/hip_0.obj",
+      "src": "unitree_mujoco/unitree_robots/go2/assets/hip_0.obj",
+      "sha256": "2df3b24a0012826021356d8861f2bb354f2f2feef2f4f0b4539d33dd6540ed54",
+      "traceable": true
+    },
+    {
+      "dest": "mjcf/assets/hip_1.obj",
+      "src": "unitree_mujoco/unitree_robots/go2/assets/hip_1.obj",
+      "sha256": "c456392ad509f3c78d8a7084296be10a306576b8aad014dfd9be28f738578584",
+      "traceable": true
+    },
+    {
+      "dest": "mjcf/assets/thigh_0.obj",
+      "src": "unitree_mujoco/unitree_robots/go2/assets/thigh_0.obj",
+      "sha256": "201b41523863d8d8e9e8bfdc936ee2d1c5ee794467a41d959bc4cc4493a6551b",
+      "traceable": true
+    },
+    {
+      "dest": "mjcf/assets/thigh_1.obj",
+      "src": "unitree_mujoco/unitree_robots/go2/assets/thigh_1.obj",
+      "sha256": "a363dd76e33e73ca8593c606c4d581f5d493080f41b92038bb21a001b95ef60e",
+      "traceable": true
+    },
+    {
+      "dest": "mjcf/assets/thigh_mirror_0.obj",
+      "src": "unitree_mujoco/unitree_robots/go2/assets/thigh_mirror_0.obj",
+      "sha256": "80b96e40faf2ebc769fc180225ef26278dfef73e14408eb95b3e76936b58ce23",
+      "traceable": true
+    },
+    {
+      "dest": "mjcf/assets/thigh_mirror_1.obj",
+      "src": "unitree_mujoco/unitree_robots/go2/assets/thigh_mirror_1.obj",
+      "sha256": "3d2cf7d14ee1ebe100ccf57a5a6152b67d85dff7e8abaecbe71f1abe066ccc88",
+      "traceable": true
+    },
+    {
+      "dest": "images/Go2.png",
+      "src": "unitree_mujoco/unitree_robots/go2/Go2.png",
+      "sha256": "78d864b8064817b3468aaefebb29c3138eeb0887667040c7e260ce86dca1b945",
+      "traceable": true
+    }
+  ],
+  "checks": [
+    {
+      "check": "s4:traceability",
+      "status": "PASS",
+      "detail": "43 个入库文件 SHA256 全部命中 raw manifest 同路径行（逐文件可溯源）"
+    },
+    {
+      "check": "s4:mesh-split-decision",
+      "status": "PASS",
+      "detail": "URDF 侧 7 个网格（dae）vs MJCF 侧 16 个（obj），哈希交集 0 → 决策：分目录；MJCF 网格落位 mjcf/assets/（保持官方 meshdir 相对引用，不改官方一字节——§4 树中 mjcf_meshes/ 的实际形态，记录在案）"
+    },
+    {
+      "check": "s4:dae-dir-parity",
+      "status": "PASS",
+      "detail": "dae/ 与 meshes/ 同名对比（R3-D3 判定）：同内容 17，不同 0[]，单侧 0——meshes/ 为同内容冗余目录，不随库分发"
+    },
+    {
+      "check": "s4:coverage",
+      "status": "PASS",
+      "detail": "raw 目标子目录内 62 文件（不含 .git），入库 43 + 排除 20（含 meshes/ 冗余 17）；未覆盖：无"
+    },
+    {
+      "check": "s4:recheck-mjcf",
+      "status": "PASS",
+      "detail": "入库后 mjcf/go2.xml 编译通过：nbody=18 ngeom=56（meshdir=assets 相对结构保持）"
+    },
+    {
+      "check": "s4:recheck-urdf",
+      "status": "PASS",
+      "detail": "入库后 URDF yourdfpy 解析通过：42 links（package:// 重映射到 urdf_meshes/）"
+    }
+  ],
+  "total_bytes": 81360312
+}

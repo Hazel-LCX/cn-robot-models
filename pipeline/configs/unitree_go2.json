@@ -43,6 +43,38 @@
       "ratio_range": [0.005, 0.5],
       "axis_tolerance": 1e-6,
       "mass_diff_warn": 0.02
+    },
+    "cross_alias": { "base": "base_link" },
+    "notes": {
+      "joint_range": "注：RL/RR_thigh 行程与 FL/FR 不同（[-0.5236,4.5379] vs [-1.5708,3.4907]，后腿反装镜像，如实记录）（R4-E3 已 config 化）",
+      "upstream_png": "上游对照素材：urdf/ 目录自带 Amended_collision_model.png / Normal_collision_model.png（R4-E3 已 config 化）"
     }
+  },
+  "s4": {
+    "urdf": [
+      { "src_rel": "robots/go2_description/urdf/go2_description.urdf", "dest": "urdf/go2_description.urdf" }
+    ],
+    "urdf_meshes": { "package": "go2_description", "dest_root": "urdf_meshes" },
+    "xacro_dir": { "src_rel": "robots/go2_description/xacro", "dest": "xacro" },
+    "mjcf": [
+      { "src_rel": "unitree_robots/go2/go2.xml", "dest": "mjcf/go2.xml" },
+      { "src_rel": "unitree_robots/go2/scene.xml", "dest": "mjcf/scene.xml" }
+    ],
+    "mjcf_assets": { "src_rel": "unitree_robots/go2/assets", "dest": "mjcf/assets" },
+    "images": [
+      { "src_rel": "unitree_robots/go2/Go2.png", "dest": "images/Go2.png" }
+    ],
+    "excluded": [
+      { "src": "unitree_mujoco/unitree_robots/go2/scene_terrain.xml", "why": "地形演示件，非模型必需" },
+      { "src": "unitree_mujoco/unitree_robots/go2/height_field.png", "why": "scene_terrain 专用地形图" },
+      { "src": "unitree_mujoco/unitree_robots/go2/unitree_hfield.png", "why": "scene_terrain 专用地形图" },
+      { "src": "unitree_ros/robots/go2_description/launch", "why": "ROS 运行件，与模型无关（目录）" },
+      { "src": "unitree_ros/robots/go2_description/config", "why": "ROS 运行件，与模型无关（目录）" },
+      { "src": "unitree_ros/robots/go2_description/CMakeLists.txt", "why": "ROS 构建件" },
+      { "src": "unitree_ros/robots/go2_description/package.xml", "why": "ROS 包清单（license 结论已在 SOURCE.md）" },
+      { "src": "unitree_ros/robots/go2_description/README.md", "why": "上游包文档，不随库分发" },
+      { "src": "unitree_ros/robots/go2_description/urdf/Amended_collision_model.png", "why": "上游碰撞示意图，S3 报告引用名即可" },
+      { "src": "unitree_ros/robots/go2_description/urdf/Normal_collision_model.png", "why": "同上" }
+    ]
   }
 }

@@ -1,10 +1,11 @@
 {
   "summary": {
     "model": "unitree_go2",
-    "date": "2026-10-11 13:23",
+    "date": "2026-10-11 14:44",
     "pass": 8,
     "warn": 4,
     "fail": 0,
+    "skip": 1,
     "verdict": "无 FAIL；WARN 全部有处置记录（M0 只体检不修复），可送专项审",
     "versions": {
       "numpy": "2.5.3",
@@ -43,12 +44,17 @@
     {
       "check": "urdf:collision-inventory",
       "status": "WARN",
-      "detail": "27/42 link 有 <collision>（{'box': 5, 'cylinder': 17, 'sphere': 5}）；无 collision：['FL_hip_rotor', 'FL_thigh_rotor', 'FL_calf_rotor', 'FR_hip_rotor', 'FR_thigh_rotor', 'FR_calf_rotor', 'RL_hip_rotor', 'RL_thigh_rotor', 'RL_calf_rotor', 'RR_hip_rotor', 'RR_thigh_rotor', 'RR_calf_rotor', 'imu', 'radar', 'front_camera']（标记不自动补，A1；上游对照 urdf/Amended·Normal_collision_model.png）"
+      "detail": "27/42 link 有 <collision>（{'box': 5, 'cylinder': 17, 'sphere': 5}）；无 collision：['FL_hip_rotor', 'FL_thigh_rotor', 'FL_calf_rotor', 'FR_hip_rotor', 'FR_thigh_rotor', 'FR_calf_rotor', 'RL_hip_rotor', 'RL_thigh_rotor', 'RL_calf_rotor', 'RR_hip_rotor', 'RR_thigh_rotor', 'RR_calf_rotor', 'imu', 'radar', 'front_camera']（标记不自动补，A1；上游对照素材：urdf/ 目录自带 Amended_collision_model.png / Normal_collision_model.png（R4-E3 已 config 化））"
+    },
+    {
+      "check": "urdf:collision-mesh-loadable",
+      "status": "SKIP",
+      "detail": "collision 引用 0 个网格文件（全基元）——A1-2 网格可加载检查不适用，显式跳过（fail 不静默的精神同样适用于不适用，R4-E6）"
     },
     {
       "check": "urdf:joint-limits",
       "status": "PASS",
-      "detail": "12 个 revolute 全部 lower<upper 且 effort/velocity>0；注：RL/RR_thigh 行程与 FL/FR 不同（[-0.5236,4.5379] vs [-1.5708,3.4907]，后腿反装镜像，如实记录）"
+      "detail": "12 个 revolute 全部 lower<upper 且 effort/velocity>0；注：RL/RR_thigh 行程与 FL/FR 不同（[-0.5236,4.5379] vs [-1.5708,3.4907]，后腿反装镜像，如实记录）（R4-E3 已 config 化）"
     },
     {
       "check": "mjcf:mass-total",
@@ -58,7 +64,7 @@
     {
       "check": "mjcf:body-geom",
       "status": "WARN",
-      "detail": "17 个 body 共 56 geom；无 geom 的 body：['FL_foot', 'FR_foot', 'RL_foot', 'RR_foot']（MJCF foot 为零质量纯 site 架——建模约定，标记不自动补）"
+      "detail": "17 个 body 共 56 geom；无 geom 的 body：['FL_foot', 'FR_foot', 'RL_foot', 'RR_foot']（实测为自闭合空 body：零质量/零 geom/零 site，foot 触地几何挂于 calf 的 foot class geom——建模约定，标记不自动补；R4-E2 措辞更正）"
     },
     {
       "check": "cross:joint-names",
