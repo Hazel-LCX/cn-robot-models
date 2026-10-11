@@ -2,6 +2,16 @@
 
 > 纪律：每次会话结束追加一条，新的在上。
 
+## 2026-10-11（会话 6：S3 物理体检 · 零修复纯体检 → 专项审送审）
+
+- s3_physics.py 上线（质量口径声明置顶 + 体检矩阵 + C1 双清点表 + URDF↔MJCF 交叉对账）。结果 **PASS 8 / WARN 4 / FAIL 0**，零修复纯体检。
+- **质量分歧 forensics 闭环**：URDF 16.087 vs MJCF 15.206，差 0.881kg 逐项解释 = rotors 12×0.089（URDF 独立 rotor link，约定差异）− calf 4×0.0874（真值分歧）+ foot 4×0.04（MJCF 零质量纯 site 架，约定差异）+ head 0.002；hip/thigh/base 逐项完全一致；**12 对同名关节轴逐分量差 0.00e+00**（运动学同源实锤）。
+- **修正 1（逐轴垂距法）实战首战**：17 link×3 轴全部落 [0.005, 0.5]——旧全长法会误报 4 条 calf 长轴，审核台预判命中。
+- 官网标称存证：unitree.com/go2 JS 渲染、静态页无重量数字，片段已存 evidence/；15kg 取公开规格表 + 口径栏如实注明"是否含电池未证实"；送审决策点 3 提出收尾前补截图。
+- 体检器自查修正两处：joints 字典缺 child 键（跑前自查修复）；foot 从"真值分歧"重归类为"约定差异"（MJCF 零质量纯架）后重跑。
+- AGENT-LAB.md 建档（L1：enumerate 切片 TypeError + ugrep 复杂正则两次踩坑，四要素已记，未升级）。
+- 协议检查：零修复 → 协议③未触发；S3 报告产出 → 按 R1 送审点 3 送**专项审**（REVIEW-REQUEST.md 已写，含 pipeline/ 全脚本细审请求），停手等审核台；放行后进 S4 入库打包。
+
 ## 2026-10-11（会话 5：S2 格式校验全绿）
 
 - s2_validate.py 上线（lxml 自查为权威 + yourdfpy 交叉确认 + MuJoCo 真编译为最强校验），config 增 s2 段；yourdfpy 探针确认 0.0.60 的 filename_handler 机制（默认剥 package://+包名再拼 mesh_dir，正好覆盖重映射）。
