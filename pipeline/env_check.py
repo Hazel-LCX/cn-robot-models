@@ -21,6 +21,10 @@ import sys
 import urllib.request
 
 ALIYUN_INDEX = "https://mirrors.aliyun.com/pypi/simple/"
+TSINGHUA_INDEX = "https://pypi.tuna.tsinghua.edu.cn/simple/"
+
+# pypi 镜像按序兜底：单镜像故障不应被放大成"pip 不可用"（修正 7）。
+PYPI_MIRRORS = [("阿里", ALIYUN_INDEX), ("清华", TSINGHUA_INDEX)]
 
 # (import 名, 用途, 缺失是否阻塞)。阻塞=FAIL（必须有），否则 WARN（装上才算齐）。
 REQUIRED_IMPORTS = [
@@ -32,12 +36,25 @@ REQUIRED_IMPORTS = [
     ("mujoco",   "MJCF 编译校验与 S6 基准",       True),
 ]
 
-# (名称, URL, 不通时的定级)。网络三项都为 S1 拉取选路服务。
+# (名称, URL, 不通时的定级)。pypi 镜像不在此列——它有专门的兜底探测 check_pypi_mirrors()。
 NET_PROBES = [
-    ("pypi-阿里镜像", ALIYUN_INDEX,                        "FAIL"),
     ("github-api",    "https://api.github.com",            "WARN"),
     ("github-raw",    "https://raw.githubusercontent.com", "WARN"),
 ]
+
+
+def check_pypi_mirrors():
+    """pypi 镜像探测：任一可达 = pip 可用（PASS 并注明谁活着、谁备用）；全挂才 FAIL。"""
+    last = ""
+    for label, url in PYPI_MIRRORS:
+        req = urllib.request.Request(url, headers={"User-Agent": "cn-robot-models/env_check"})
+        try:
+            with urllib.request.urlopen(req, timeout=8) as resp:
+                backup = "、".join(l for l, _ in PYPI_MIRRORS if l != label)
+                return ("net:pypi", "PASS", f"{label}镜像可达（HTTP {resp.status}）；备用：{backup}")
+        except Exception as exc:
+            last = f"{label} 不通（{type(exc).__name__}）"
+    return ("net:pypi", "FAIL", f"{last}；镜像全部不可用——pip 依赖装不了")
 
 
 def check_python():
@@ -73,19 +90,21 @@ def check_mujoco_wheel():
     if importlib.util.find_spec("mujoco") is not None:
         import mujoco
         return ("mujoco-wheel", "SKIP", f"已安装 {mujoco.__version__}，无需探测")
-    cmd = [
-        sys.executable, "-m", "pip", "install", "--dry-run", "--ignore-installed",
-        "--quiet", "mujoco", "-i", ALIYUN_INDEX, "--timeout", "20",
-    ]
-    try:
-        proc = subprocess.run(cmd, capture_output=True, text=True, timeout=180)
-    except subprocess.TimeoutExpired:
-        return ("mujoco-wheel", "FAIL", "pip --dry-run 超时（180s），镜像或网络异常")
-    if proc.returncode == 0:
-        return ("mujoco-wheel", "PASS", "当前解释器可解析 mujoco wheel → 走 venv")
-    err_tail = (proc.stderr or "").strip().splitlines()
+    err_tail = []
+    for _, index_url in PYPI_MIRRORS:
+        cmd = [
+            sys.executable, "-m", "pip", "install", "--dry-run", "--ignore-installed",
+            "--quiet", "mujoco", "-i", index_url, "--timeout", "20",
+        ]
+        try:
+            proc = subprocess.run(cmd, capture_output=True, text=True, timeout=180)
+        except subprocess.TimeoutExpired:
+            continue
+        if proc.returncode == 0:
+            return ("mujoco-wheel", "PASS", "当前解释器可解析 mujoco wheel → 走 venv")
+        err_tail = (proc.stderr or "").strip().splitlines()
     tail = err_tail[-1] if err_tail else "（无 stderr）"
-    return ("mujoco-wheel", "FAIL", f"解析不到 wheel → 走 conda py3.12；pip 尾行：{tail}")
+    return ("mujoco-wheel", "FAIL", f"两家镜像都解析不到 wheel → 走 conda py3.12；pip 尾行：{tail}")
 
 
 def check_net(name, url, level):
@@ -117,6 +136,7 @@ def main():
     checks = [check_python(), check_git()]
     checks += check_imports()
     checks.append(check_mujoco_wheel())
+    checks.append(check_pypi_mirrors())
     checks += [check_net(name, url, level) for name, url, level in NET_PROBES]
 
     route = suggest_route(checks)

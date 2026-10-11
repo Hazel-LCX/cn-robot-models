@@ -1,0 +1,22 @@
+{
+  "model": "unitree_go2",
+  "format_source": "official",
+  "sources": [
+    {
+      "name": "unitree_ros",
+      "repo": "unitreerobotics/unitree_ros",
+      "pin": "5994d4faef0a9cadd3287f8de0199a67eeb2a259",
+      "subdir": "robots/go2_description",
+      "license_path": "LICENSE",
+      "note": "URDF 源；urdf/ 生成物为入库权威，xacro/ 源存档溯源（修正 8）"
+    },
+    {
+      "name": "unitree_mujoco",
+      "repo": "unitreerobotics/unitree_mujoco",
+      "pin": "1eb6642e3f3fdfb7fb13a9794fd6a2dd93ea0e7d",
+      "subdir": "unitree_robots/go2",
+      "license_path": "LICENSE",
+      "note": "MJCF 源；go2.xml 模型本体 + scene.xml 场景包装 + assets/ obj 网格"
+    }
+  ]
+}

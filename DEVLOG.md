@@ -2,6 +2,13 @@
 
 > 纪律：每次会话结束追加一条，新的在上。
 
+## 2026-10-11（会话 4：审核台修正 1–8 落实 + S1 拉取完成）
+
+- 修正 1–8 经用户转达落实（REVIEW.md 尚无 R3 回写，待审核台补记，工作台不代写）：①惯量 sanity 改逐轴垂距取法 [0.005, 0.5]（修"细杆长轴必误报"的方法错）；②S3 总质量对比口径先钉死（官网含电池 vs URDF 不含电池）；③S5 验收增 vendor 库随附原版 LICENSE；④A4 证据原件入 evidence/（org/仓库 API JSON 全文 + 官网首页 HTML 原文片段，实测命中 1 处导航链接）；⑤S1 主路径改 blobless+sparse；⑥URDF↔MJCF 对账增分歧处置（分歧≠错误，不对齐不修）；⑦env_check pypi 双镜像兜底（**实测**：模拟阿里挂→清华接管 PASS，全挂才 FAIL）；⑧xacro/urdf 权威关系记档（urdf 为准、xacro 溯源）。PIPELINE.md 升 **v0.4**。
+- S1 拉取（pipeline/s1_fetch.py + configs/unitree_go2.json）：**直连** blobless+sparse 一次成功——ros @ `5994d4fa`（36 文件 52.4 MB）+ mujoco @ `1eb6642e`（26 文件 29.9 MB）；manifest 62 文件 82.3 MB、抽 3 复算一致；raw 只读生效。
+- **A2 复核抓到真问题**：S0 快照 v1（`/license` API 端点）与 raw 字节不一致，实证原因 = 端点规范化行尾（LF）≠ 仓库原件（CRLF）；快照 v2 已按规则从 raw 重生成。质检素材 +1。
+- 状态：S1 完成 → 下一步 S2 校验器（s2_validate.py，package:// 重映射是第一坑）。下一送审点 = S3 专项审。
+
 ## 2026-10-11（会话 3：S0 license 门 · 协议②触发）
 
 - **模式修订**（用户指示）：免复述确认，直接推进+讲解；审核点协议硬门不变。

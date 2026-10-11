@@ -14,11 +14,36 @@
 
 注意：unitree_ros 默认分支是 **master** 不是 main，S1 命令按此执行。
 
-## 2. 官方 org 验证（A4 证据链，两条路径均成立）
+**收录与权威关系（修正 8）**：go2_description 内 `urdf/`（生成物）与 `xacro/`（源）两份都收——**入库与质检以官方 `urdf/` 为准**，`xacro/` 存档供溯源；若发现"xacro 已改、urdf 未重生成"的漂移，记录为质检素材，不代上游重新生成。
+**拉取方法（修正 5）**：blobless 部分克隆 + sparse-checkout（monorepo 只拉 go2 子目录），锚点为上表 SHA；API 逐文件兜底，代理 socks5h://127.0.0.1:12450 备用。
 
-- **路径①官网链接（强证据）**：unitree.com 官网首页 HTML 含 `github.com/unitreerobotics` 链接（HTTP 200 实测于 2026-10-11）。
-- **路径②org 自述 + 非 fork**：GitHub org `unitreerobotics` 自述 "High performance civilian robot manufacturer"，`blog` 字段 = https://www.unitree.com（官网与 org 互指）；两仓库 API 返回 `"fork": false, "archived": false`（2026-10-11 实测）。
-- 备注：PIPELINE 验收原文写"URL 与截图日期"；本记录以实测输出为证据原件，如审核台要求补截图再补。
+## 2. 官方 org 验证（A4 证据链——证据原件存档，修正 4）
+
+结论不变（两条路径均成立），可追溯性升级：**复核看原件，不看转述**。原件存 `evidence/`（均 2026-10-11 实测抓取）：
+
+| 原件文件 | 内容 | 支撑 |
+|---|---|---|
+| `evidence/unitree-homepage-link.html.txt` | unitree.com 首页 HTML 中指向 `github.com/unitreerobotics` 的原文片段（含前后 200 字节上下文，文件头注明抓取 URL 与日期） | 路径① |
+| `evidence/github-org-unitreerobotics.json` | GitHub org API 原始返回全文（description / blog / type 字段在案） | 路径② |
+| `evidence/github-repo-unitree_ros.json`、`evidence/github-repo-unitree_mujoco.json` | 两仓库 API 原始返回全文（fork / archived / default_branch 字段在案） | 路径② |
+
+关键摘录（原文引用，非转述）：
+
+```text
+官网首页导航链接原文片段（完整上下文见 evidence 文件）：
+<a href="https://github.com/unitreerobotics" rel="noopener noreferrer" target="_blank"
+```
+
+```text
+"description": "High performance civilian robot manufacturer. Please everyone be sure to use the robot in a Friendly and Safe manner.",
+"blog": "https://www.unitree.com",
+"type": "Organization"
+```
+
+```text
+"fork": false,        ← unitree_ros 与 unitree_mujoco 两仓库 JSON 原件均含此字段
+"archived": false,
+```
 
 ## 3. License 核对结论
 
@@ -40,9 +65,18 @@
 
 **二进制文件假设**：dae/stl/obj 网格跟随仓库同一 license。依据 = 仓库无单独 media license 文件、无 NOTICE 排除声明。此假设已记录，审核台如认为不足可打回。
 
-## 4. 快照一致性（A2，S1 复核项）
+## 4. 快照一致性（A2，S1 复核结论）
 
-S0 快照经 GitHub API 在上表锚点取到。**S1 拉取后必须以 raw 内同一 commit 的 LICENSE 文件复核重生成快照**，并在本文件补记"license 文件 commit hash = 模型文件 commit hash"复核结论。
+S0 快照经 GitHub API 取得；S1 已按规则以 **raw 内同一 commit 的 LICENSE 文件**复核。结果（2026-10-11 实跑，明细 `reports/S1-fetch.md`）：
+
+| 仓库 | resolved HEAD | 复核状态 | LICENSE SHA256 |
+|---|---|---|---|
+| unitree_ros | `5994d4fa…a259`（= 送审锚点） | **快照 v2 = raw 原件重生成** | `6b1b754f…a7ed8` |
+| unitree_mujoco | `1eb6642e…a0e7d`（= 送审锚点） | **快照 v2 = raw 原件重生成** | `e1960a70…c7b55` |
+
+- **A2 抓到的真问题**：S0 快照 v1（走 GitHub `/license` API 端点）与 raw 原件**字节不一致**——已查明原因：端点输出为 LF 行尾，raw 内 LICENSE 实际是 **CRLF**（cmp + file 实证）。API 端点给的是"规范化阅读件"，不是法律原件。快照 v2 已按 A2 规则从 raw 重生成，此后一律以 raw 字节为准。这一单既是质检素材，也证明了 A2 这条规则存在的价值。
+- license 文件与模型文件同 commit（resolved HEAD = 送审锚点，两仓库均成立）✓。
+- 拉取方法：**直连 blobless+sparse 一次成功**（代理/API 兜底未动用）；ros 36 文件 52.4 MB、mujoco 26 文件 29.9 MB，合计 62 文件 82.3 MB；manifest 抽 3 文件哈希复算一致；raw 此后只读。
 
 ## 5. 对本库的义务（已落 LICENSES.md）
 
