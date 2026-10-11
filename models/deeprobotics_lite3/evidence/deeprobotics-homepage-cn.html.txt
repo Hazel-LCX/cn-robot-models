@@ -1,0 +1,4 @@
+# 证据原件：https://www.deeprobotics.cn/ 全文抓取 2026-10-11（36355 B）
+# github 变体命中：{'deeprobotics.cn': 12}
+
+(无 github 字样)
