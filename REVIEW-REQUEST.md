@@ -1,24 +1,23 @@
 # REVIEW-REQUEST — 送审材料
 
-> **已审 2026-10-11 · R2 结论：通过，放行动手**（详见 REVIEW.md R2；含 C1–C3 执行提示）
+> 审核台审毕请在本文件顶部标注"已审 + 日期"，结论追加进 REVIEW.md。本文件由工作台写入，审毕留痕（历次送审全文可在 git 历史回溯）。
+> 上一次送审（PIPELINE.md v0.2 轻复审）已于 2026-10-11 审毕：**R2 通过放行**，详见 REVIEW.md R2。
 
-> 审核台审毕请在本文件顶部标注"已审 + 日期"，结论追加进 REVIEW.md。本文件由工作台写入，审毕留痕不删。
+【送审类型】批量送审（C2 精神）：① **代码首审**（env_check.py，R1 ⑤ 后续送审点 2）＋ ② **协议② license 核对结论**（S0 门，R2-C3）
 
-【送审类型】PIPELINE.md v0.2 轻复审（REVIEW.md R1 后续送审点 1）· 附审核点协议落档备案
-
-【背景：在做什么】设计会话中段，用户补充"审核点协议"（5 类硬触发 + 固定动作 + 会话开始仪式），原文已照抄进 PIPELINE.md §8。随即执行会话开始仪式读 REVIEW.md，得 R1 有条件通过：A1–A4 必修、B1–B6 吸收、四问有答复。本会话保持零代码，按待修清单把 PIPELINE.md v0.1 → v0.2。
+【背景：在做什么】用户修订工作模式（2026-10-11）：免复述确认、直接推进+讲解，审核点协议硬门不变。R2 放行后会话 A 完成：git init（main）+ .gitignore + requirements.txt + env_check.py + .venv 体检全绿（exit=0，mujoco 3.15.0 cp314 wheel 实测可装，py3.12 兜底作废），PIPELINE.md 已按 C1 升 v0.3 并打首个 commit。随即执行 S0 license 门：两仓库取证完毕，按 C3 触发协议②停手送审。
 
 【决策点：需要拍板的具体选项】
-1. A1–A4 四项必修是否全部落字到位——A1 S3 补碰撞体检查三件（§3-S3，只标记不自动补）；A2 license 快照与拉取件同 commit + 子目录独立声明检查（§3-S0/S1）；A3 回归门改为 S2+S3 双跑（§2 总览 + §3-S3 验收）；A4 官方 org 证据链两条路径落字（§3-S0）。
-2. B1–B6 吸收方式有无偏差——B1 惯量数量级 sanity（m·L² 比值区间）；B2 基准预热 ≥100 步丢弃 + 计时 ≥10⁴ 步；B3 商标声明进 S7 验收；B4 MJCF 查看命令进 S7 输出与验收；B5 会话 A 改"独立环境"口径（venv 或 conda py3.12 由 env_check 定）；B6 自写加载器边界 = 只写 URDF XML 解析 + 坐标变换，DAE/STL 解析 vendor 现成 loader。
-3. 四问答复落档是否正确（§7）——本库 MIT + B3 商标声明 + LICENSES.md 双层结构；M0 不加 PyBullet；网格 SHA256 实测定、默认分目录；URDF→MJCF 转换仅 config 层留 `format_source` 钩子，M0 零转换代码。
-4. R1-附三条导航风险是否已正确固化为设计原则——§0-6 两套叙事、§0-9 完成度铁律、§0-10 门面立位。
-5. 若上述确认：放行动手，下会话进入会话 A（git init + 独立环境 + env_check.py，完成后送代码首审）。
+1. **代码首审（立风格基线）**：env_check.py 的命名（snake_case 函数 + 元组表驱动）、注释密度（中文用途注释 + docstring 定位）、输出格式（人读表 + --json 机读）、退出码契约（0=无阻塞 / 1=有 FAIL）、四态语义（PASS/WARN/FAIL/SKIP，WARN=有兜底）是否作为本库基线。
+2. **license 结论**：两仓库均 BSD-3-Clause（版权方 = 宇树本体 HangZhou YuShu Technology）；三条结论 允许再分发/允许修改/须保留声明 = 是/是/是；子目录独立声明检查完毕（go2_description/package.xml `<license>BSD</license>` 与仓库级一致；unitree_robots/go2/ 无独立声明随仓库级）；"二进制网格随仓库 license"假设是否放行。
+3. **A4 官方性证据链**：路径① unitree.com 首页 HTML 含 github.com/unitreerobotics 链接；路径② org 自述 + blog=unitree.com + 两仓库 fork=false。双路径互证、API/HTML 实测留痕（2026-10-11），是否认可（验收原文写"截图"，本记录以实测输出为证据原件，截图可补）。
+4. **放行 S1 拉取**：按固定锚点 unitree_ros@master `5994d4fa…a259`、unitree_mujoco@main `1eb6642e…ea0e7d` 拉取，raw 内同 commit 复核 license 快照（A2 闭环）。
 
-【我的倾向+理由】倾向 1–4 确认、5 放行。理由：A1–A4 逐条对应落字且验收清单同步更新，无仅改正文不改验收的敷衍项；B 系全吸收未走样；协议原文入 §8，且本会话触发协议①（管道设计改动）走完"停手→写 REVIEW-REQUEST→固定话术"全流程，协议与 R1 送审接口首次合演，链路可用。
+【我的倾向+理由】倾向 1–3 确认、4 放行。理由：env_check.py 两轮实测闭环（base 探路定 venv → venv 全绿验证），退出码/三态语义有明确契约；license 三条结论逐条对应 BSD-3 原文条款且原文快照已入库；证据链双路径互证且均留痕；S1 锚点为实测 HEAD SHA，拉取后按 A2 复核闭环。
 
 【相关文件路径】
-- PIPELINE.md（v0.2；本次改动点：§0 / §2 / §3-S0·S1·S3·S5·S6·S7 / §4 文件树 / §5 / §6 / §7 / §8 新增 / §9 版本记录）
-- REVIEW.md（R1、R1-附；待追加轻复审结论条目）
-- DEVLOG.md（会话 1，含协议落档与 R1 执行记录）
-- 本文件（REVIEW-REQUEST.md）
+- pipeline/env_check.py（代码首审对象；两轮体检输出见 DEVLOG 会话 2/3）
+- models/unitree_go2/SOURCE.md（S0 全记录：来源/证据链/三条结论/子目录检查）
+- models/unitree_go2/LICENSE-upstream-unitree_ros.txt、LICENSE-upstream-unitree_mujoco.txt（license 原文快照）
+- LICENSES.md（双层索引首版）
+- PIPELINE.md（v0.3）、DEVLOG.md（会话 3）、本文件

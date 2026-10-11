@@ -2,6 +2,13 @@
 
 > 纪律：每次会话结束追加一条，新的在上。
 
+## 2026-10-11（会话 3：S0 license 门 · 协议②触发）
+
+- **模式修订**（用户指示）：免复述确认，直接推进+讲解；审核点协议硬门不变。
+- 会话 A 收尾：**首个 commit**（设计文档 v0.3 + 骨架，git 身份现成）。
+- S0 取证（GitHub API + 官网 HTML，raw 未用）：两仓库 LICENSE 原文快照入库，均 **BSD-3-Clause**、版权方=宇树本体；A4 双证据链成立（官网首页含 org 链接 HTTP 200 + org 自述 blog=unitree.com + 两仓库 fork=false）；go2_description/package.xml `<license>BSD</license>` 与仓库级一致（maintainer=TODO 占位，记为质检素材）；unitree_robots/go2/ 无独立声明随仓库级；HEAD 锚点固定 ros@**master**=5994d4fa…a259、mujoco@main=1eb6642e…ea0e7d。
+- **协议②触发**（license 核对结论）：REVIEW-REQUEST.md 批量送审（代码首审 + S0 结论，C2 精神），停手等审核台；放行后进 S1 拉取。
+
 ## 2026-10-11（会话 2：会话 A · 环境就位）
 
 - 仪式：读 REVIEW.md → **R2 通过，放行动手**（A1–A4/B1–B6/四问逐项核验 ✓；越界监察零条目；执行提示 C1–C3）。现场恢复 = v0.2 已送审待放行。
