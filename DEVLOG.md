@@ -2,6 +2,12 @@
 
 > 纪律：每次会话结束追加一条，新的在上。
 
+## 2026-10-11（会话 8：S5 预览 + S6 基准收官）
+
+- **S5 预览**：B6 退路决策记 AGENT-LAB L2（URDFLoader 版本轮盘不值得赌 + jsDelivr npm 路径证实超时）——**自写 URDF→three 加载器 ~180 行**，vendor three 0.160.0 三件（ColladaLoader/TGALoader/OrbitControls）+ **原版 MIT LICENSE**（修正 3 验收项），npmmirror files API 单文件拉取。**浏览器实测验收（工作台自验 + 截图存档）**：断网自检 13 资源全本机、外网请求 0；42 links / 41 joints / 12 关节滑条（滑条范围比 URDF 限位宽 0.4rad，越限标红=质检元素）/ 17 visual 网格；站姿正确；读取的就是 models/ 入库件（../../models/ 相对路径）。三连 bug 修复记 L3：滑条初值（calf 限位不含 0 → 初值取限位中点）、Z-up/Y-up 坐标转换、rpy 分量序。
+- **S6 基准（入库件）**：**MuJoCo 步进 105,131 steps/s（9.5 µs/step）**、加载 56.0 ms、URDF 解析 4.7 ms；预热 100 步丢弃 + 10⁴ 步 × 5 次取中位数（B2 落实）；稳定性展幅 3.0%（<20% PASS）；机器/版本全记录。
+- 状态：S5+S6 过（无送审点）→ **S7 收尾**：顶层 README（"仿真模型质检管道"主体 + 两套叙事）+ 模型页（E1 calf 披露块 + 官网规格页截图）+ 本库 MIT LICENSE 文件 + LICENSES.md 定稿 + 干净环境实测 → 终审。预览页本地常驻：http://127.0.0.1:8130/pipeline/s5_preview/index.html（用户可直接玩）。
+
 ## 2026-10-11（会话 7：R4 消化 + S4 入库全绿）
 
 - R4 回写读取：**S3 认可（审核台独立复核 raw 数字，forensics 数学自洽）/ calf 不修+披露批准 / 四脚本细审通过 / AGENT-LAB 首查账通过 / 零越界 / 放行 S4**；E1–E6 领取（E1 留 S7 查验）。
