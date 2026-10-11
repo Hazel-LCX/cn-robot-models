@@ -26,7 +26,7 @@ CONFIG_PATH = ROOT / "pipeline" / "configs" / "unitree_go2.json"
 RAW = ROOT / "workspace" / "raw" / "unitree_go2"
 REPORTS = ROOT / "models" / "unitree_go2" / "reports"
 
-STATUS_OK = {"PASS", "INFO"}
+# 四态语义（R3 风格基线）：PASS / WARN（有兜底、不阻塞）/ FAIL（阻塞）/ SKIP（不适用）。
 
 
 def add(results, name, status, detail):
@@ -101,15 +101,13 @@ def check_urdf_structural(path, package, package_root):
             resolved.setdefault(target, []).append(usage)
         else:
             missing.append(f"{uri} @ {link_name}")
-    add(results, "urdf:mesh-refs", "PASS" if not missing and not foreign else "FAIL",
-        f"{len(mesh_refs)} 处引用 → 解析出 {len(resolved)} 个文件，缺失 {len(missing)}，非本包 {len(foreign)}"
-        + (f"；明细：{missing[:4] + foreign[:4]}" if missing or foreign else ""))
-
     visual_uris = {u for u, usage, _ in mesh_refs if usage == "visual"}
     collision_uris = {u for u, usage, _ in mesh_refs if usage == "collision"}
-    add(results, "urdf:visual-vs-collision", "INFO",
-        f"visual 引 {len(visual_uris)} 个文件、collision 引 {len(collision_uris)} 个，"
-        f"集合{'相同' if visual_uris == collision_uris else '不同（低模/高模差异，A1 素材）'}")
+    add(results, "urdf:mesh-refs", "PASS" if not missing and not foreign else "FAIL",
+        f"{len(mesh_refs)} 处引用 → 解析出 {len(resolved)} 个文件，缺失 {len(missing)}，非本包 {len(foreign)}；"
+        f"visual 引 {len(visual_uris)} 个文件、collision 引 {len(collision_uris)} 个"
+        + ("，集合不同（素材归 S3-A1 清点）" if visual_uris != collision_uris else "，集合相同")
+        + (f"；失败明细：{missing[:4] + foreign[:4]}" if missing or foreign else ""))
 
     bad, v_min = [], None
     for p in sorted(resolved):
@@ -129,11 +127,12 @@ def check_urdf_structural(path, package, package_root):
         else f"网格读取失败 {len(bad)} 个：{bad[:5]}")
 
     jtypes = Counter(j.get("type") for j in joints)
-    actuated = [j.get("name") for j in joints
+    no_limit = [j.get("name") for j in joints
                 if j.get("type") in ("revolute", "prismatic") and j.find("limit") is None]
-    add(results, "urdf:joint-info", "INFO" if not actuated else "WARN",
+    add(results, "urdf:joint-limits", "PASS" if not no_limit else "FAIL",
         f"关节类型 {dict(jtypes)}"
-        + (f"；活动关节缺 <limit>：{actuated}" if actuated else "；revolute 全带 <limit>（硬校验留 S3）"))
+        + (f"；活动关节缺 <limit>：{no_limit}" if no_limit else
+           "；活动关节全带 <limit>（effort/velocity 数值硬校验留 S3）"))
     return results, tree_root
 
 
@@ -192,7 +191,6 @@ def write_report(model, results):
         "model": model,
         "date": time.strftime("%Y-%m-%d %H:%M"),
         "pass": sum(r["status"] == "PASS" for r in results),
-        "info": sum(r["status"] == "INFO" for r in results),
         "warn": sum(r["status"] == "WARN" for r in results),
         "fail": sum(r["status"] == "FAIL" for r in results),
         "versions": versions,
@@ -204,7 +202,7 @@ def write_report(model, results):
           f"环境：yourdfpy {versions['yourdfpy']} · trimesh {versions['trimesh']} · "
           f"mujoco {versions['mujoco']} · Python {versions['python']}\n\n"
           f"## 校验矩阵\n\n| 检查项 | 结果 | 明细 |\n|---|---|---|\n{rows}\n\n"
-          f"## 汇总\n\nPASS {summary['pass']} / INFO {summary['info']} / "
+          f"## 汇总\n\nPASS {summary['pass']} / "
           f"WARN {summary['warn']} / FAIL {summary['fail']}\n\n**结论：{summary['verdict']}**\n")
     REPORTS.mkdir(parents=True, exist_ok=True)
     (REPORTS / "S2-validation.md").write_text(md, encoding="utf-8")
@@ -231,7 +229,7 @@ def main():
     results += check_mjcf(RAW / m["source"] / m["model_rel"], RAW / m["source"] / m["scene_rel"])
 
     summary = write_report(config["model"], results)
-    print(f"\n汇总：PASS {summary['pass']} / INFO {summary['info']} / "
+    print(f"\n汇总：PASS {summary['pass']} / "
           f"WARN {summary['warn']} / FAIL {summary['fail']}")
     print(f"结论：{summary['verdict']}")
     sys.exit(1 if summary["fail"] else 0)

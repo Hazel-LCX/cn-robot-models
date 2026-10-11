@@ -1,7 +1,7 @@
 # SOURCE — unitree_go2 来源与 License 核对记录（S0 产物）
 
-> **状态：待审核台确认（协议②触发，REVIEW-REQUEST.md 已送审）。确认前不拉取、不处理任何模型文件。**
-> 核对：写码工作台 · 2026-10-11 · 取证方式 = GitHub API / 官网 HTML 实测（raw.githubusercontent 不通，未使用）
+> **状态：已确认（R3 · 2026-10-11）——S0 license 门正式关闭。**
+> 核对：写码工作台 · 2026-10-11 · 取证方式 = GitHub API / 官网 HTML 实测（raw.githubusercontent 不通，未使用）；R3 复核结论见 REVIEW.md
 
 ## 1. 数据源（两仓库，均官方 org）
 
@@ -10,7 +10,7 @@
 | 仓库 | https://github.com/unitreerobotics/unitree_ros | https://github.com/unitreerobotics/unitree_mujoco |
 | 拉取锚点 | 分支 `master` @ `5994d4faef0a9cadd3287f8de0199a67eeb2a259` | 分支 `main` @ `1eb6642e3f3fdfb7fb13a9794fd6a2dd93ea0e7d` |
 | 目标子目录 | `robots/go2_description/` | `unitree_robots/go2/` |
-| 模型内容 | `urdf/go2_description.urdf` + `dae/` + `meshes/`（stl）+ `xacro/` | `go2.xml` + `scene.xml` + `assets/`（obj 网格） |
+| 模型内容 | `urdf/go2_description.urdf` + `dae/` + `meshes/`（**实测均 .dae，无 stl**——R3-D3 更正）+ `xacro/` | `go2.xml` + `scene.xml` + `assets/`（obj 网格） |
 
 注意：unitree_ros 默认分支是 **master** 不是 main，S1 命令按此执行。
 

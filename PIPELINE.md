@@ -1,6 +1,6 @@
 # PIPELINE — 国产机器人仿真模型库 · 质检管道设计
 
-> **版本** v0.2（2026-10-11）— 落实 R1 必修 A1–A4、吸收建议 B1–B6、四问答复落档、增补审核点协议
+> **版本** v0.5（2026-10-11 · 版本史见 §9；本次 = D1–D3 清账 + 网格格式记录对齐实测 + S2 四态收敛）
 > **状态** R1 有条件通过 → v0.2 已送轻复审（REVIEW-REQUEST.md）→ 放行后才动手
 > **M0 范围** 宇树 Go2 一个模型走通全管道。含金量在质检工程，不在收集数量。
 > **红线** 只收录官方开源发布的模型文件；每个模型先核对并记录 license，再动手。
@@ -37,7 +37,7 @@
 **Go2 官方源（已证实存在，均为官方 org + BSD-3-Clause）**：
 - URDF：`unitreerobotics/unitree_ros` → `robots/go2_description/`（`urdf/go2_description.urdf` + `dae/` + `meshes/` + `xacro/`）
 - MJCF：`unitreerobotics/unitree_mujoco` → `unitree_robots/go2/`（MJCF xml + **.obj 网格**）
-- 注意：两源网格格式不同（dae/stl vs obj），必然不是同一套文件 → 入库时分目录，S4 以 SHA256 实测确认。
+- 网格格式（S1 实测更正，R3-D3）：URDF 源网格全为 **dae**（dae/ 与 meshes/ 两目录均 .dae，无 stl），MJCF 源为 **obj**——两源必非同一套 → 入库分目录；两目录 dae 是否同内容留 S4 SHA256 实测定。
 
 ## 2. 管道总览
 
@@ -120,7 +120,7 @@ S0 license核对(门) → S1 拉取 → S2 格式校验 → S3 物理体检/修�
 - **定位**：把过检文件按最终结构入库，每个文件可溯源。
 - **输入**：raw（官方原件）+ S3 修复稿（若有，替换对应文件）；config `format_source: official`（M0 两源皆官方件）
 - **输出**：`models/unitree_go2/{urdf/, mjcf/, urdf_meshes/, mjcf_meshes/}`；provenance 写入模型 README；SOURCE.md 补齐文件对账
-- **网格策略**：两源网格逐文件 SHA256 对比，完全相同才合并共享；预期不同（dae/stl vs obj）则分目录，决策与仓库总体积记录在案
+- **网格策略**：两源网格逐文件 SHA256 对比，完全相同才合并共享；实测格式不同（dae vs obj）必分目录，决策与仓库总体积记录在案
 - **验收**：
   - [ ] 两格式各自能再被加载器读取（复跑 S2 最小版）
   - [ ] 目录与 manifest 对账：无多文件、无缺文件
@@ -202,7 +202,7 @@ cn-robot-models/
 │       ├── LICENSE-upstream   # 上游 license 原文快照（以 raw 同 commit 文件为准）
 │       ├── urdf/              # 入库 URDF
 │       ├── mjcf/              # 入库 MJCF
-│       ├── urdf_meshes/       # 预期分目录（dae/stl）
+│       ├── urdf_meshes/       # 分目录（dae，实测无 stl——R3-D3）
 │       ├── mjcf_meshes/       # （obj）
 │       ├── reports/           # S2/S3/S6 报告
 │       └── README.md          # S7 产出：模型页
@@ -266,4 +266,4 @@ cn-robot-models/
 - **v0.1**（2026-10-11）：设计稿，零代码，环境侦察 + S0–S7 全设计。
 - **v0.2**（2026-10-11）：R1 有条件通过后修订——A1 S3 补碰撞体检查三件；A2 license 快照同 commit + 子目录声明检查；A3 回归门改 S2+S3 双跑；A4 官方 org 证据链落字；B1 惯量数量级 sanity；B2 基准预热 + ≥10⁴ 步；B3 商标声明；B4 MJCF 查看命令；B5 会话 A 独立环境口径；B6 自写加载器边界；四问答复落档 §7；§0 增完成度铁律与门面立位；§8 增审核点协议（原文）。
 - **v0.3**（2026-10-11）：R2 通过放行后吸收执行提示 C1——S3 验收增"碰撞体清点表入报告"勾选项；C2（修复项批量送审）、C3（S0 结论天然触发协议②）为流程行为，不改文档。
-- **v0.4**（2026-10-11）：吸收审核台修正 1–8（经用户转达；R3 待审核台回写 REVIEW.md）——①惯量 sanity 改逐轴垂距取法 [0.005, 0.5]（修"细杆长轴必误报"的方法错）；②S3 总质量口径先钉死（含电池 vs 不含电池）；③S5 验收增 vendor 库随附原版 LICENSE；④A4 证据原件入 evidence/；⑤S1 主路径改 blobless+sparse 部分克隆并记实测体积；⑥URDF↔MJCF 对账增分歧处置（分歧≠错误，不对齐不修）；⑦env_check pypi 双镜像兜底；⑧xacro/urdf 权威关系记档。
+- **v0.5**（2026-10-11）：R3 正式回写后清账——D1 SOURCE.md 状态行改"已确认（R3）"，S0 门关闭；D2 头部版本号补齐（原停在 v0.2 与 §9 矛盾）；D3 网格格式记录对齐 S1/S2 实测（URDF 源 dae/ 与 meshes/ 均为 .dae、无 stl）；s2_validate.py 自查收敛回风格基线四态（两条 INFO 观察并入检查明细），重跑仍全绿。附带记档：上游 urdf/ 自带 Amended/Normal_collision_model.png 两张碰撞示意图，S3 清点时作上游对照素材。

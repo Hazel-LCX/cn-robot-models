@@ -2,6 +2,16 @@
 
 > 纪律：每次会话结束追加一条，新的在上。
 
+## 2026-10-11（会话 5：S2 格式校验全绿）
+
+- s2_validate.py 上线（lxml 自查为权威 + yourdfpy 交叉确认 + MuJoCo 真编译为最强校验），config 增 s2 段；yourdfpy 探针确认 0.0.60 的 filename_handler 机制（默认剥 package://+包名再拼 mesh_dir，正好覆盖重映射）。
+- 结果 **PASS 9 / INFO 2 / WARN 0 / FAIL 0**：URDF 42 links / 41 joints（29 fixed + 12 revolute），根=base，单根无环无菱形；17 处网格引用 → 7 个文件全解析、trimesh 全读通（最小 7703 顶点）；MJCF 真编译通过——nbody=18 njnt=13 ngeom=56 nmesh=16 nu=12 nq=19 timestep=0.002，scene.xml 场景包装也编过。
+- **质检素材两条**：①URDF collision 不引用任何网格文件（17 处引用全为 visual 的 dae）——碰撞几何全是基元，S3 的 A1 清点要按"基元存在性"查而非网格；②URDF 12 revolute ↔ MJCF nu=12 电机数对上，S3 对账的现成钩子。
+- 报告：reports/S2-validation.{md,json}。状态：S2 过 → 下一步 S3 物理体检（垂距法惯量首战 + 质量口径钉死 + 碰撞体清点）。
+- **R3 回写对齐**（审核台正式落 REVIEW.md）：代码首审过（五件套基线立定）、S0 门关闭（A4 认可"可复现实测输出"为证据原件形式，截图不再必要）、修正 1–8 核验 8/8、S1 放行 S2；附带发现：上游 urdf/ 自带 Amended/Normal_collision_model.png 两张碰撞示意图 → S3 清点作上游对照素材。
+- **D1–D3 清账（v0.5）**：SOURCE.md 状态行改"已确认（R3）"；PIPELINE.md 头部版本号补齐（原停 v0.2 与 §9 矛盾）；网格格式记录全改实测（URDF 源 dae/ 与 meshes/ 均 .dae、无 stl）。
+- **自查收敛**：s2_validate.py 原引入 INFO 第五态，违反刚立的四态基线——观察并入检查明细（mesh-refs / joint-limits），重跑 PASS 10 / FAIL 0，四态纯。S3 专项审送审时主动声明此收敛。
+
 ## 2026-10-11（会话 4：审核台修正 1–8 落实 + S1 拉取完成）
 
 - 修正 1–8 经用户转达落实（REVIEW.md 尚无 R3 回写，待审核台补记，工作台不代写）：①惯量 sanity 改逐轴垂距取法 [0.005, 0.5]（修"细杆长轴必误报"的方法错）；②S3 总质量对比口径先钉死（官网含电池 vs URDF 不含电池）；③S5 验收增 vendor 库随附原版 LICENSE；④A4 证据原件入 evidence/（org/仓库 API JSON 全文 + 官网首页 HTML 原文片段，实测命中 1 处导航链接）；⑤S1 主路径改 blobless+sparse；⑥URDF↔MJCF 对账增分歧处置（分歧≠错误，不对齐不修）；⑦env_check pypi 双镜像兜底（**实测**：模拟阿里挂→清华接管 PASS，全挂才 FAIL）；⑧xacro/urdf 权威关系记档（urdf 为准、xacro 溯源）。PIPELINE.md 升 **v0.4**。
