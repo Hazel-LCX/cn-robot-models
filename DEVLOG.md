@@ -156,3 +156,6 @@
 - **S1（Lite3 拉取）完成——blob-parity 门自动化首战告捷**：首拉门拦截 `Lite3/mjcf/Lite3.xml` CRLF 失真（L9 根因复现：sparse set 独立进程读全局 autocrlf）→ **根治落码补全**：clone 后显式写 local config（一处写处处生效）→ 重拉 **15/15 失配 0**；license 快照 MATCH 一次过（`6bc5967b…` blob 正本）。**引用协议第三变体**：`./meshes/x.STL` 显式相对前缀（go2 package://、g1 无前缀、Lite3 带./），MJCF 无 meshdir file 相对 xml 目录——build_plan 相对路径规范化（防 dest 污染）。**两侧网格 4/4 全同哈希**。
 - **S2（Lite3）全绿 10/0/0**：URDF 17 links/16 joints（**12 revolute ↔ Go2 同为 12 关节四足**，同形态对照成立）、大小写失配 0、MJCF 编译 nbody=18/njnt=13/nmesh=13。**closure 去重补丁**（F1 同哲学）：MJCF asset 段 13 个 mesh 元素引 4 物理件（重复定义 MuJoCo 不报错，nmesh 虚胖——入库 xml 原样保留，披露素材）；collision 全缺（visual 4/collision 0，S3 清点素材）。
 - 状态：S1/S2 commit 待批；下一步官网侦察（Lite3 规格口径）→ S3 → S4 → S5 回归 → S6/S7。
+- **S4（Lite3 入库）完成——三锚异厂首战全过**：10 件/7.0MB（urdf 1 + urdf/meshes 4 + mjcf 1 + mjcf/meshes 4），excluded 5（usd/），coverage 19=4+15=10+5 平；**K1/K2 教训自动化红利兑现**（blob-parity 门 15/15 + 三锚 10/10 零人工干预）；mesh-split 口径修正（按 kind 过滤——前缀匹配曾把 mjcf 主件 xml 混入网格集合 5=4+1 虚胖）；s4_package 最后两处 go2 硬编码清零（provenance 通用化）。
+- **S5（Lite3 预览）完成——M2 零改码承诺兑现**：v4 config 驱动直接吃 deeprobotics_lite3.json，首跑即完整四足渲染（13 处引用全挂、抬升 0.225/包围盒 [0.000, 0.298]、断网 0、12 滑条）；STL 计数口径修正（唯一 URL=4 物理件，引用 13 处）；**缓存三连课**（module 缓存键需 index.html 引用参数化 ?v=5、html 自身缓存需 URL 参数击穿——L10 同族）。
+- 状态：**S1–S5 五步闭环**（本地 commit）；下一步 S6 基准 → S7 收尾 → 协议⑤送审。

@@ -172,10 +172,9 @@ def main():
         + (f"；未命中：{n_bad}" if n_bad else ""))
 
     # 两源网格哈希交集 → 分/合决策
-    mesh_urdf_prefix = s4["urdf_meshes"]["dest_root"] + ("/meshes/" if s4["urdf_meshes"].get("ref_relative", True) and s4["urdf_meshes"]["dest_root"] == "urdf" else "/")
-    mesh_mjcf_prefix = s4["mjcf_assets"]["dest"] + "/"
-    urdf_hashes = {r["sha256"] for r in rows if r["dest"].startswith(mesh_urdf_prefix)}
-    mjcf_hashes = {r["sha256"] for r in rows if r["dest"].startswith(mesh_mjcf_prefix)}
+    # 按 kind 过滤（前缀匹配会把 mjcf 主件 xml 混进网格集合——Lite3 实测 5=4+1 口径虚胖）
+    urdf_hashes = {r["sha256"] for r in rows if r["kind"] == "mesh"}
+    mjcf_hashes = {r["sha256"] for r in rows if r["kind"] == "asset"}
     overlap = urdf_hashes & mjcf_hashes
     verdict = ("两侧同哈希（同源同内容，STL 同格式）——分目录落位以保持各自引用协议结构"
                if len(overlap) and overlap == urdf_hashes == mjcf_hashes
@@ -282,8 +281,7 @@ def main():
     if not model_readme.exists():  # S4 只补骨架；S7 全文模型页不被重跑覆盖
         model_readme.write_text(
             f"# {MODEL_NAME} — 模型页（S4 入库骨架，S7 补全）\n\n"
-            f"> **provenance**：unitreerobotics/unitree_ros@`{pins['unitree_ros']}` + "
-            f"unitreerobotics/unitree_mujoco@`{pins['unitree_mujoco']}`；license BSD-3-Clause"
+            f"> **provenance**：{' + '.join(f'{n}@`{s}`' for n, s in pins.items())}；license BSD-3-Clause"
             f"（SOURCE.md / LICENSE-upstream-*）；模型资产+质检截图 {physical} 文件 / {total / 1e6:.1f} MB"
             f"（不含 reports/evidence/文档）。\n"
             f"> **质检**：S2/S3/S4/S6 报告见 reports/（各步数字以报告为准，S7 全文时回填模型页）。\n",

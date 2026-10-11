@@ -90,7 +90,7 @@ const STL_MATERIAL = new THREE.MeshStandardMaterial({
 });
 const jobs = [];
 let meshCount = 0;
-let stlCount = 0;
+const stlUrls = new Set();  // 唯一 URL 计数（引用 13 处可能是 4 物理件复用——Lite3 实测）
 let loadFail = 0;
 for (const link of linkEls) {
   const g = groups.get(link.getAttribute('name'));
@@ -121,8 +121,8 @@ for (const link of linkEls) {
       };
       const fail = () => { status.textContent += `网格加载失败：${url}\n`; loadFail += 1; res(); };
       if (ext === 'stl') {
+        stlUrls.add(url);
         stlLoader.load(url, geom => {
-          stlCount += 1;
           done(new THREE.Mesh(geom, STL_MATERIAL));
         }, undefined, fail);
       } else {
@@ -185,8 +185,8 @@ setTimeout(() => {
     : `<span class="bad">断网自检：发现 ${ext} 个外网请求！</span>`;
 }, 800);
 
-const stlNote = stlCount > 0
-  ? ` · <span class="ok">STL ${stlCount} 件统一中性着色（无 UV/材质为格式天性，非上游外观）</span>`
+const stlNote = stlUrls.size > 0
+  ? ` · <span class="ok">STL ${stlUrls.size} 件（物理文件）统一中性着色——无 UV/材质为格式天性，非上游外观</span>`
   : '';
 meta.innerHTML =
   `<b>${config.model}</b> · links ${linkEls.length} · joints ${jointEls.length}（revolute ${revolute.length}）· visual 网格 ${meshCount}${stlNote}<br>` +

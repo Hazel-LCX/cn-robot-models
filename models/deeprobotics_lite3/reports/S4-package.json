@@ -1,0 +1,119 @@
+{
+  "rows": [
+    {
+      "dest": "mjcf/Lite3.xml",
+      "src": "deep_robotics_model/Lite3/mjcf/Lite3.xml",
+      "kind": "mjcf",
+      "sha256": "512a93c353e111c4bf595eba429344599c4b0b617bb917c281d1e7cd648b2aed",
+      "traceable": true,
+      "blob_parity": true
+    },
+    {
+      "dest": "mjcf/meshes/hip.STL",
+      "src": "deep_robotics_model/Lite3/mjcf/meshes/hip.STL",
+      "kind": "asset",
+      "sha256": "3386fa94992dbfc4d3e06c6d9fb110e2c4abd87f94c3ac766fdcce85c43341f3",
+      "traceable": true,
+      "blob_parity": true
+    },
+    {
+      "dest": "mjcf/meshes/shank.STL",
+      "src": "deep_robotics_model/Lite3/mjcf/meshes/shank.STL",
+      "kind": "asset",
+      "sha256": "5410bae3b9b1e9fbc30343041450a80fc609806c2a83418bd2288b0720aec098",
+      "traceable": true,
+      "blob_parity": true
+    },
+    {
+      "dest": "mjcf/meshes/thigh.STL",
+      "src": "deep_robotics_model/Lite3/mjcf/meshes/thigh.STL",
+      "kind": "asset",
+      "sha256": "f29ea97407a9a30cb4549206d080848350d8b455bf4b9a63441241cdacab1719",
+      "traceable": true,
+      "blob_parity": true
+    },
+    {
+      "dest": "mjcf/meshes/torso.STL",
+      "src": "deep_robotics_model/Lite3/mjcf/meshes/torso.STL",
+      "kind": "asset",
+      "sha256": "6f3f5fc4b9985db56d741ac1b6b93e11d9fb283eb128f8800ad9603772bbcda2",
+      "traceable": true,
+      "blob_parity": true
+    },
+    {
+      "dest": "urdf/Lite3.urdf",
+      "src": "deep_robotics_model/Lite3/urdf/Lite3.urdf",
+      "kind": "urdf",
+      "sha256": "ff71ca27f756fb465f8d17e463c71b03b16dc3bb50e981f587a6d61b85c06fca",
+      "traceable": true,
+      "blob_parity": true
+    },
+    {
+      "dest": "urdf/meshes/hip.STL",
+      "src": "deep_robotics_model/Lite3/urdf/meshes/hip.STL",
+      "kind": "mesh",
+      "sha256": "3386fa94992dbfc4d3e06c6d9fb110e2c4abd87f94c3ac766fdcce85c43341f3",
+      "traceable": true,
+      "blob_parity": true
+    },
+    {
+      "dest": "urdf/meshes/shank.STL",
+      "src": "deep_robotics_model/Lite3/urdf/meshes/shank.STL",
+      "kind": "mesh",
+      "sha256": "5410bae3b9b1e9fbc30343041450a80fc609806c2a83418bd2288b0720aec098",
+      "traceable": true,
+      "blob_parity": true
+    },
+    {
+      "dest": "urdf/meshes/thigh.STL",
+      "src": "deep_robotics_model/Lite3/urdf/meshes/thigh.STL",
+      "kind": "mesh",
+      "sha256": "f29ea97407a9a30cb4549206d080848350d8b455bf4b9a63441241cdacab1719",
+      "traceable": true,
+      "blob_parity": true
+    },
+    {
+      "dest": "urdf/meshes/torso.STL",
+      "src": "deep_robotics_model/Lite3/urdf/meshes/torso.STL",
+      "kind": "mesh",
+      "sha256": "6f3f5fc4b9985db56d741ac1b6b93e11d9fb283eb128f8800ad9603772bbcda2",
+      "traceable": true,
+      "blob_parity": true
+    }
+  ],
+  "checks": [
+    {
+      "check": "s4:traceability",
+      "status": "PASS",
+      "detail": "10 个 raw 源入库件三锚全过（SHA256 命中 manifest 同路径行 + hash-object 命中上游 ls-tree@pin blob id）"
+    },
+    {
+      "check": "s4:mesh-split-decision",
+      "status": "PASS",
+      "detail": "URDF 侧 13 处引用 → 4 个物理网格 vs MJCF 侧 4 个，两侧同哈希（同源同内容，STL 同格式）——分目录落位以保持各自引用协议结构（不改官方一字节，保持官方 meshdir/相对引用结构，记录在案）"
+    },
+    {
+      "check": "s4:dae-dir-parity",
+      "status": "SKIP",
+      "detail": "本模型 urdf 无 dae/ 与 meshes/ 双目录结构（G1 为 meshes/ 单池），R3-D3 判定不适用"
+    },
+    {
+      "check": "s4:coverage",
+      "status": "PASS",
+      "detail": "raw 全量 19（除 .git/manifest）= 根级及中间层 4 + 目标子目录 15；子目录 15 全覆盖 = 入库 10 + 排除 5（其中 meshes/ 冗余 0）（未覆盖：无）——算式每行必须平（F1 教训）"
+    },
+    {
+      "check": "s4:recheck-mjcf",
+      "status": "PASS",
+      "detail": "入库后 mjcf/Lite3.xml 编译通过：nbody=18 ngeom=35 nmesh=13（官方相对引用结构保持）"
+    },
+    {
+      "check": "s4:recheck-urdf",
+      "status": "PASS",
+      "detail": "入库后 URDF yourdfpy 解析通过：17 links（relative（./ 前缀）——meshes/ 与 urdf 同目录）"
+    }
+  ],
+  "total_bytes": 7021712,
+  "physical_files": 10,
+  "non_raw": []
+}
