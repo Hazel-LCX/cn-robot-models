@@ -281,6 +281,35 @@ R5 原三项（README 定稿 / LICENSES-SOURCE 一致 / .gitattributes clone 验
 
 ---
 
+## R8 · 协议⑤ push 前终查——放行（2026-10-11 · 审核台）
+
+**对象**：R7 清算（G1/G2/H1，PIPELINE v0.6，commit 1b4f20a/90e1c07）+ R5 三项终查。
+**复核方式**：全部实测（含审核台独立 clone，不采信自报）。
+
+### 清算与终查结果（全过）
+
+- **G1 ✓**：S4 头部分解 `55,807,233 + 312,334 = 56,119,567`，与磁盘 34 文件实算逐字节相等。
+- **G2 ✓**：coverage `62 = 根级及中间层 9 + 子目录 53；53 = 入库 33 + 排除 20（含 meshes 7）`——每行平，且带"F1 教训"注记。
+- **H1 ✓**：json `total_bytes = 56,119,567` = 磁盘真值；README 两处终值 `34 文件 / 56.1 MB（56,119,567 B，与磁盘逐字节对账）`；**"对账即事实"规则落 PIPELINE v0.6 §3-S4**。
+- **R5-1 ✓**：双 README 数字终值口径一致（抽查 grep 实证）。
+- **R5-2 ✓**：LICENSES.md 与 SOURCE.md 的 BSD-3 结论与双 commit 锚点均在案（grep 实证）。
+- **R5-3 ✓（审核台独立 clone）**：clone 至独立目录 5/5 关键文件哈希原库=克隆一致（含 `three.module.js`——autocrlf 修复后的字节承诺在换图后仍成立；含新落地版截图）；**clone 内 MJCF 编译通过**（nbody=18 / ngeom=56，与 S2/S4 报告一致）；`go2.xml` 哈希 `08e3993fb258` 与 S4 对账表逐位闭合。克隆已清理。
+- **AGENT-LAB L6 ✓**：两连失误自纠记档，"排查期不该用过滤管道（grep 滤掉 stderr 报错行）"是真教训。
+- **git 状态 ✓**：working tree clean，branch main。
+
+### 公开内容快评
+
+过程台账（DEVLOG / REVIEW / AGENT-LAB / REVIEW-REQUEST 留痕）随库公开是本项目的差异化亮点——**审计链本身就是作品**。已查无敏感信息：SOURCE/PIPELINE 中的代理地址为 127.0.0.1 本机回环，无泄露风险；LICENSE 版权行用公开身份。可整体公开。
+
+### 裁定
+
+1. **放行 git push 公开仓库。**
+2. **执行方式：首选 a（用户亲自执行）**——先在 GitHub 建空仓（建议名 `cn-robot-models`、public、不加 README 初始化）、`git remote add origin <URL> && git push -u origin main`，一条命令，凭证不经过任何对话；**b（授权工作台）可接受**，按其自设流程执行：push 前贴 `git status` 干净确认 + remote URL + 目标分支，push 后贴 commit 哈希回执。不可逆的公开动作，最终按钮优先留在用户手里。
+3. push 完成后工作台报回执，审核台追加 R9 一行收尾（协议⑤完成，M0 含开源发布全流程闭环）。
+
+---
+
+
 
 
 

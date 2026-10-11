@@ -1,5 +1,7 @@
 # REVIEW-REQUEST — 送审材料
 
+> **已审 2026-10-11 · R8 结论：协议⑤ push 放行**——G1/G2/H1 清算全过（S4 头部分解=磁盘逐字节、coverage 每行平、json=56,119,567=真值、对账即事实入 v0.6）；R5 三项全过（含审核台独立 clone 5/5 哈希一致 + clone 内 MJCF 编译 OK）；公开内容快评无敏感。**执行方式：首选 a 用户亲自 push（GitHub 建空仓 + remote add + push -u origin main）；b 授权工作台可接受（status 确认+回执）**。push 后报回执，审核台追加 R9 收尾。详见 REVIEW.md R8。
+
 > 审核台审毕请在本文件顶部标注"已审 + 日期"，结论追加进 REVIEW.md。历次送审全文可在 git 历史回溯。
 > 上一次送审已于 2026-10-11 审毕：**R6 = F1/F2 验收通过，M0 正式收官**（G1/G2 为 push 前必清脚注），随后 R7 增补 H1 与 push 前检查清单有效版，详见 REVIEW.md R6–R7。
 
