@@ -16,7 +16,7 @@
   [Go2 · calf 质量/hip 限位](models/unitree_go2/README.md#-已知分歧披露质检的一部分) ·
   [G1 · 官方文件名与自由度不符（g1_23dof.xml 实为 29 关节，两格式动作空间不可互换）/ torso−1.28kg 网格证据链](models/unitree_g1/README.md#-已知分歧披露质检的一部分) ·
   [Lite3 · 四足端零惯量占位（本库首个 FAIL 级发现）/ MJCF mesh 重复定义](models/deeprobotics_lite3/README.md#-已知分歧披露质检的一部分) ·
-  [X2 · 跨格式 visual 缩放分歧（品牌徽标件 URDF 1:1 vs MJCF scale 0.03——URDF 侧 4 m 幽灵徽标撑爆包围盒）](models/agibot_x2/README.md#-已知分歧披露质检的一部分)。
+  [X2 · 徽标件 scale 陷阱（native 3.96 m 大件，上游两格式一致缩放为 12 cm——忽略 scale 的查看器得幽灵几何，本库预览器曾踩坑已修，L12）](models/agibot_x2/README.md#1--agibotstl-徽标件与-scale-陷阱上游两格式一致本库预览器曾踩坑已修)。
 - 如果体检全绿：价值落在"管道可复现 + 双格式对账 + 基准数字"——同样的成立。
 
 ## 管道
@@ -77,7 +77,7 @@ S0 license核对(门) → S1 拉取 → S2 格式校验 → S3 物理体检(门:
 | S2 格式校验 | **10 PASS / 0 FAIL**：URDF 39 link/38 joint（根=pelvis）、72 处引用（`./meshes/` 第四形态确认）全解析 + 大小写失配 0、MJCF 编译 nq=38/nu=31 与 URDF 31 revolute 逐数自洽 | [S2-validation.md](models/agibot_x2/reports/S2-validation.md) |
 | S3 物理体检 | **8 PASS / 4 WARN / 0 FAIL**：两侧质量逐 body 32/32 全一致（44.801 kg 同值，vs 官网 39kg +14.9% 口径披露）、31 关节轴逐分量差 0、effort 基准=官网 120 N·m | [S3-physics.md](models/agibot_x2/reports/S3-physics.md) |
 | S4 双格式入库 | **83 溯源件 / 158.0 MB 三锚全过** + 2 质检截图；唯一源 43（40 网格双侧落位保持官方 meshdir 结构，MJCF `meshdir`+裸文件名首例零改码兼容）+ excluded 35 逐件带 why | [S4-package.md](models/agibot_x2/reports/S4-package.md) |
-| S5 3D 预览 | 31 关节滑条（含头部双关节）；**质检发现：品牌徽标件 agibot.stl URDF 1:1 vs MJCF scale 0.03 跨格式分歧**——URDF 侧 4 m 幽灵 logo 撑爆包围盒，剔除后机身 1.319 m ↔ 官网 1.31 m 吻合（披露 + 双截图，零修复） | [pipeline/s5_preview/](pipeline/s5_preview/) |
+| S5 3D 预览 | 31 关节滑条（含头部双关节）；**发现并修复本库预览器 scale 缺陷（AGENT-LAB L12，R18 审核台抓出）**——徽标件 native 3.96 m 曾被按原生渲染成幽灵（URDF/MJCF 实为同 scale 12 cm 徽标，上游无分歧）；修复后含徽标包围盒 **1.319 m ↔ 官网 1.31 m 吻合**，go2/g1/lite3 基线逐位不变 | [pipeline/s5_preview/](pipeline/s5_preview/) |
 | S6 基准 | **MuJoCo 39,086 steps/s（25.6 µs/step）**，加载 454.5 ms，展幅 4.5%（四模型序列第四点，跨模型不可比再实证） | [S6-benchmark.md](models/agibot_x2/reports/S6-benchmark.md) |
 
 ## 快速开始

@@ -100,6 +100,9 @@ for (const link of linkEls) {
     const meshEl = vis.querySelector('geometry > mesh');
     if (!meshEl) continue;
     const uri = meshEl.getAttribute('filename') ?? '';
+    // URDF <mesh scale="sx sy sz">（R18-L12）：忽略此属性会把缩放网格按原生尺寸渲染——
+    // X2 徽标件 native 3.96 m，上游两格式同 scale 收为 12 cm；解析器沉默 ≠ 文件事实
+    const scaleAttr = meshEl.getAttribute('scale');
     let url;
     if (refStyle === 'relative') {
       // G1 协议：uri 相对 URDF 自身目录（入库保持 meshes/ 与 urdf 同目录）
@@ -117,6 +120,7 @@ for (const link of linkEls) {
       const done = obj => {
         obj.position.copy(vOrigin.pos);
         obj.quaternion.copy(vOrigin.quat);
+        if (scaleAttr) obj.scale.set(...num3(scaleAttr));
         g.add(obj);
         meshCount += 1;
         res();

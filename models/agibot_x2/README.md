@@ -1,10 +1,11 @@
 # agibot_x2 — 智元灵犀 X2（M3 · 国产开源许可证首例）
 
-![X2-Ultra 预览截图](images/preview-agibot_x2-v5-body.png)
+![X2-Ultra 预览截图](images/preview-agibot_x2-v6.png)
 
-> **管道预览页**渲染截图（`?model=agibot_x2`，隐去上游异常件后的机身视图——见下方披露）——
-> 模型文件即本页所述入库件，零外网依赖；第三家厂商收录、**首个非 BSD/MIT/Apache 系许可证（木兰宽松许可证第 2 版）**、
+> **管道预览页**渲染截图（`?model=agibot_x2`）——模型文件即本页所述入库件，零外网依赖；
+> 第三家厂商收录、**首个非 BSD/MIT/Apache 系许可证（木兰宽松许可证第 2 版）**、
 > 引用协议第四形态确认（`./meshes/` 显式前缀，与 Lite3 同款）+ MJCF `meshdir` 裸文件名首例。
+> 包围盒 1.319 m ↔ 官网"身高约 1.31 m"逐位吻合（含 12 cm 躯干徽标件）。
 
 ## Provenance（来源与授权）
 
@@ -13,7 +14,7 @@
 | 单仓双源 | AgibotTech/agibot_x2_urdf @ `575cc6b988f976c23550e0db85aa1e5475d3652d`（`X2_URDF-v1.4.0/`——双版本目录仓，v1.3.0 旧版整套不入库） |
 | License | **MulanPSL-2.0**（木兰宽松许可证，第 2 版）——GitHub 端点 NOASSERTION 为检测器盲区，本库按原文定性（**R17 人工定性三件套先例：blob 正本 `adf05533` + SPDX 官方名录 `isOsiApproved=true` + 义务清单**）。版权方 = 智元机器人（AgibotTech）；**上游 LICENSE 为许可模板、未含逐字版权主体行（R17 检查点：如实注记，不虚构）**，官方声明见 evidence（README_CN："本项目采用木兰宽松许可证，第2版（Mulan PSL v2）开源"）。原文快照随文件入库：`LICENSE-upstream-agibot_x2_urdf.txt`（6752 B）——分发附副本即 §4 义务履行 |
 | 官方性验证 | 路径②成立（org 官方字段自指 agibot.com + 23 仓生态互证 + README 官方声明 + 官网页脚生态仓直链）；路径①阴性如实记录（四站探测无 AgibotTech 直链）——强度与 M1 相当，详见 [SOURCE.md](SOURCE.md) |
-| 入库对账 | **83 溯源件 / 158.0 MB，三锚全过**（models↔manifest↔上游 blob id）+ 2 质检截图（S5 自产，不入三锚）；唯一源 43（40 网格双侧各落位一份保持官方引用结构）+ excluded 35 逐件带 why——[S4-package.md](reports/S4-package.md) |
+| 入库对账 | **83 溯源件 / 158.0 MB，三锚全过**（models↔manifest↔上游 blob id）+ 1 质检截图（S5 自产，不入三锚）；唯一源 43（40 网格双侧各落位一份保持官方引用结构）+ excluded 35 逐件带 why——[S4-package.md](reports/S4-package.md) |
 | 配对 | `X2-Ultra.urdf`（39 link / 38 joint）↔ `X2-Ultra.xml`（旗舰焕新版：官方 README"upgraded motors, reinforced structure"）；EDU/手部变体/简化碰撞/scene.xml 不入库只记录 |
 | 引用协议 | URDF **relative（`./meshes/` 显式前缀，72 引 → 40 物理件，大小写失配 0）**；MJCF **`meshdir="meshes/"` + 裸文件名**（unitree/Lite3 之外的第四种组合首例，build_plan closure 以 src_rel 指 meshes/、dest 配 mjcf/meshes 零改码兼容） |
 
@@ -37,7 +38,6 @@ mujoco.mj_step(model, data)
 **在线预览**：仓库根目录跑 `python -m http.server 8130`，打开
 `http://127.0.0.1:8130/pipeline/s5_preview/index.html?model=agibot_x2`——31 个关节滑条可交互
 （含头部俯仰/偏航双关节）；STL 40 件（物理文件，72 处引用复用）统一中性着色；断网可用。
-⚠️ 默认视图含上游异常件（见披露 1）——包围盒因此失真，属如实渲染。
 
 ## 质检结论
 
@@ -52,19 +52,19 @@ mujoco.mj_step(model, data)
 
 **本模型未做任何参数修改（零修复纯体检）**。以下如实披露：
 
-### 1 · 跨格式 visual 缩放分歧：`agibot.stl` URDF 1:1 vs MJCF scale 0.03（本库首个跨格式 visual 分歧）
+### 1 · `agibot.stl` 徽标件与 scale 陷阱（上游两格式一致；本库预览器曾踩坑已修）
 
-- torso_link 的第 2 个 visual 网格 `./meshes/agibot.stl`（**品牌飘带 logo，"agibot" 字母轮廓可辨**）：
-  **URDF 侧 1:1 引用（无 scale）**，网格原生尺寸 **3.959 × 0.809 × 0.389 m**（trimesh 实测，9768 三角）——
-  rpy(90°,0,90°) 旋转后横贯场景 ±2 m，把整机包围盒从真实值撑到 **1.519 m 高 / 3.959 m 深**；
-  **MJCF 侧同网格 `scale="0.03 0.05 0.11"`（该 xml 全场唯一带 scale 的 mesh）+ rgba(0,0,0,0.5) 半透明**——
-  收为 ~12 cm 躯干徽标。上游两格式对同一装饰件的口径不一致，URDF 侧疑似漏乘缩放。
-- **交叉验证**：剔除该件后机身包围盒 **1.319 m ↔ 官网"身高约 1.31 m"逐位吻合**、宽 0.309 m
-  （含该件 0.453 m ↔ 官网 460 mm）——机身本身是准的，异常全部来自徽标件。
-- **零修复**（不改官方一字节）；预览默认视图如实渲染（[截图](images/preview-agibot_x2-v5.png)：
-  4 m 幽灵徽标横贯画面）+ 机身视图（本页头图，质检对比用途）。
-- **下游影响提示**：直接用此 URDF 做 RL/可视化/包围盒计算的同学注意——视觉包围盒会被该件撑大 ~3 倍，
-  建议加载时剔除该 visual 或按 MJCF 口径缩放（**属派生版本范畴**，另行讨论）；MJCF 侧无此问题。
+- torso_link 的第 2 个 visual 网格 `./meshes/agibot.stl`（品牌飘带 logo，"agibot" 字母造型）是
+  **native 尺寸 3.959 × 0.809 × 0.389 m 的大件**，上游在**两种格式里都**用缩放把它收为 ~12 cm 躯干徽标：
+  URDF `scale="0.03 0.05 0.11"` + `rgba="0 0 0 0.5"` 半透明黑（X2-Ultra.urdf L478），MJCF 同 scale 同半透明——
+  **两格式对徽标件完全一致，上游无分歧**（R18 审核台 L478 逐字实证）。
+- **本库预览器曾踩坑（已修，AGENT-LAB L12）**：preview.js 早期版本不读 `<mesh scale>` 属性，
+  徽标按 native 3.96 m 渲染成横贯场景的幽灵飘带，把包围盒撑到 1.519 m / 3.959 m——
+  **忽略 scale 的查看器会得到同样的幽灵几何**。修复后（scale 属性已应用）含徽标包围盒
+  **1.319 m ↔ 官网"身高约 1.31 m"逐位吻合**（宽 0.309 m / 深 0.681 m）。
+- **下游影响提示**：自行解析此 URDF 的同学务必读 `<mesh scale>` 属性——trimesh/自写加载器
+  按 native 尺寸渲染即得 4 m 幽灵；对包围盒、碰撞可视化、RL 观测渲染都是失真源。
+  native STL 尺寸与最终视觉尺寸差 30 倍以上，是 scale 属性最该被检查的信号。
 
 ### 2 · 总质量 44.801 kg vs 官网"约 39 kg"（+14.9%，超 ±10% 容差——WARN）
 
