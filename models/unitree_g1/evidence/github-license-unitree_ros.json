@@ -1,0 +1,25 @@
+{
+  "name": "LICENSE",
+  "path": "LICENSE",
+  "sha": "6dfdadaa90baa4f7bea7400d3c4e8b9c784ae37f",
+  "size": 1558,
+  "url": "https://api.github.com/repos/unitreerobotics/unitree_ros/contents/LICENSE?ref=master",
+  "html_url": "https://github.com/unitreerobotics/unitree_ros/blob/master/LICENSE",
+  "git_url": "https://api.github.com/repos/unitreerobotics/unitree_ros/git/blobs/6dfdadaa90baa4f7bea7400d3c4e8b9c784ae37f",
+  "download_url": "https://raw.githubusercontent.com/unitreerobotics/unitree_ros/master/LICENSE",
+  "type": "file",
+  "content": "QlNEIDMtQ2xhdXNlIExpY2Vuc2UKCkNvcHlyaWdodCAoYykgMjAxNi0yMDIy\nIEhhbmdaaG91IFl1U2h1IFRFQ0hOT0xPR1kgQ08uLExURC4gKCJVbml0cmVl\nIFJvYm90aWNzIikKQWxsIHJpZ2h0cyByZXNlcnZlZC4KClJlZGlzdHJpYnV0\naW9uIGFuZCB1c2UgaW4gc291cmNlIGFuZCBiaW5hcnkgZm9ybXMsIHdpdGgg\nb3Igd2l0aG91dAptb2RpZmljYXRpb24sIGFyZSBwZXJtaXR0ZWQgcHJvdmlk\nZWQgdGhhdCB0aGUgZm9sbG93aW5nIGNvbmRpdGlvbnMgYXJlIG1ldDoKCiog\nUmVkaXN0cmlidXRpb25zIG9mIHNvdXJjZSBjb2RlIG11c3QgcmV0YWluIHRo\nZSBhYm92ZSBjb3B5cmlnaHQgbm90aWNlLCB0aGlzCiAgbGlzdCBvZiBjb25k\naXRpb25zIGFuZCB0aGUgZm9sbG93aW5nIGRpc2NsYWltZXIuCgoqIFJlZGlz\ndHJpYnV0aW9ucyBpbiBiaW5hcnkgZm9ybSBtdXN0IHJlcHJvZHVjZSB0aGUg\nYWJvdmUgY29weXJpZ2h0IG5vdGljZSwKICB0aGlzIGxpc3Qgb2YgY29uZGl0\naW9ucyBhbmQgdGhlIGZvbGxvd2luZyBkaXNjbGFpbWVyIGluIHRoZSBkb2N1\nbWVudGF0aW9uCiAgYW5kL29yIG90aGVyIG1hdGVyaWFscyBwcm92aWRlZCB3\naXRoIHRoZSBkaXN0cmlidXRpb24uCgoqIE5laXRoZXIgdGhlIG5hbWUgb2Yg\ndGhlIGNvcHlyaWdodCBob2xkZXIgbm9yIHRoZSBuYW1lcyBvZiBpdHMKICBj\nb250cmlidXRvcnMgbWF5IGJlIHVzZWQgdG8gZW5kb3JzZSBvciBwcm9tb3Rl\nIHByb2R1Y3RzIGRlcml2ZWQgZnJvbQogIHRoaXMgc29mdHdhcmUgd2l0aG91\ndCBzcGVjaWZpYyBwcmlvciB3cml0dGVuIHBlcm1pc3Npb24uCgpUSElTIFNP\nRlRXQVJFIElTIFBST1ZJREVEIEJZIFRIRSBDT1BZUklHSFQgSE9MREVSUyBB\nTkQgQ09OVFJJQlVUT1JTICJBUyBJUyIKQU5EIEFOWSBFWFBSRVNTIE9SIElN\nUExJRUQgV0FSUkFOVElFUywgSU5DTFVESU5HLCBCVVQgTk9UIExJTUlURUQg\nVE8sIFRIRQpJTVBMSUVEIFdBUlJBTlRJRVMgT0YgTUVSQ0hBTlRBQklMSVRZ\nIEFORCBGSVRORVNTIEZPUiBBIFBBUlRJQ1VMQVIgUFVSUE9TRSBBUkUKRElT\nQ0xBSU1FRC4gSU4gTk8gRVZFTlQgU0hBTEwgVEhFIENPUFlSSUdIVCBIT0xE\nRVIgT1IgQ09OVFJJQlVUT1JTIEJFIExJQUJMRQpGT1IgQU5ZIERJUkVDVCwg\nSU5ESVJFQ1QsIElOQ0lERU5UQUwsIFNQRUNJQUwsIEVYRU1QTEFSWSwgT1Ig\nQ09OU0VRVUVOVElBTApEQU1BR0VTIChJTkNMVURJTkcsIEJVVCBOT1QgTElN\nSVRFRCBUTywgUFJPQ1VSRU1FTlQgT0YgU1VCU1RJVFVURSBHT09EUyBPUgpT\nRVJWSUNFUzsgTE9TUyBPRiBVU0UsIERBVEEsIE9SIFBST0ZJVFM7IE9SIEJV\nU0lORVNTIElOVEVSUlVQVElPTikgSE9XRVZFUgpDQVVTRUQgQU5EIE9OIEFO\nWSBUSEVPUlkgT0YgTElBQklMSVRZLCBXSEVUSEVSIElOIENPTlRSQUNULCBT\nVFJJQ1QgTElBQklMSVRZLApPUiBUT1JUIChJTkNMVURJTkcgTkVHTElHRU5D\nRSBPUiBPVEhFUldJU0UpIEFSSVNJTkcgSU4gQU5ZIFdBWSBPVVQgT0YgVEhF\nIFVTRQpPRiBUSElTIFNPRlRXQVJFLCBFVkVOIElGIEFEVklTRUQgT0YgVEhF\nIFBPU1NJQklMSVRZIE9GIFNVQ0ggREFNQUdFLg==\n",
+  "encoding": "base64",
+  "_links": {
+    "self": "https://api.github.com/repos/unitreerobotics/unitree_ros/contents/LICENSE?ref=master",
+    "git": "https://api.github.com/repos/unitreerobotics/unitree_ros/git/blobs/6dfdadaa90baa4f7bea7400d3c4e8b9c784ae37f",
+    "html": "https://github.com/unitreerobotics/unitree_ros/blob/master/LICENSE"
+  },
+  "license": {
+    "key": "bsd-3-clause",
+    "name": "BSD 3-Clause \"New\" or \"Revised\" License",
+    "spdx_id": "BSD-3-Clause",
+    "url": "https://api.github.com/licenses/bsd-3-clause",
+    "node_id": "MDc6TGljZW5zZTU="
+  }
+}

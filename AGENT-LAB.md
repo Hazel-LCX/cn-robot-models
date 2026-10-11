@@ -2,6 +2,14 @@
 
 > 纪律（R1-④ 立规）：每次失败记四要素——现象 / 根因 / 自救动作 / 是否升级 codex 会诊。R2 起审核台查账。
 
+## 2026-10-11 · L7 · M1 侦察 Windows 三连坑（python stub / 反斜杠路径 / 内联转义穿墙变形）
+
+- **现象**：①`curl | python -c` 管道整体 exit 49、零输出；②glob 结果按 `'m1_recon/'` 切分报 IndexError；③`python -c` 内联脚本里 `'\\\\'` 经 bash 双引号穿墙后变成 `'\'`，SyntaxError。
+- **根因**：①裸 `python` 命中 WindowsApps 商店占位 stub（真解释器在项目 `.venv`，stub 退出码 49）；②Windows 下 glob 返回反斜杠分隔路径，按正斜杠切分失配；③重演 L6 教训——复杂逻辑内联必死于转义层。
+- **自救**：①改用 `.venv/Scripts/python.exe` 显式路径；②路径先归一化反斜杠再切分；③落脚本文件（scan_assets.py / check_anchors.py）不再内联。
+- **是否升级**：否。三个均为环境层，无逻辑风险。
+- **顺带立规**：**哈希/长串比对自本条起一律程序化**——本会话肉眼比对锚点哈希连续几遍"结果"互相矛盾，改 check_anchors.py 三源裁决（M0 config pin ↔ evidence head 原件 ↔ SOURCE.md 手写值）一次定案全部一致；R9 抓回执错数与本次肉眼错觉同根：数字和长串，机器说了算。
+
 ## 2026-10-11 · L6 · R7 清算中的两连小失误（均当场自纠）
 
 - **现象**：①coverage 段重构用了 `s2`/`s4` 短变量——它们只存在于 `build_plan` 作用域，`main` 里 NameError 崩在 coverage，报告停留上轮版本；而排查命令 `2>&1 | grep 关键词` 把 NameError 的 stderr 滤掉了，一度误判"报告没刷新"。②用 sed 修顶层 README 时替换串写错，正文留下 `<?SQL?` 占位符。
