@@ -3,7 +3,7 @@
 > **这不是模型收集站。** 这是一条可复现的开源仿真模型**质检管道**：
 > license 核对 → 拉取 → 格式校验 → 物理体检 → 双格式入库 → 在线预览 → 基准 → 质检报告。
 > 模型库是管道的副产品，**每一步的检查报告本身就是产品**。
-> 已收录：宇树 Go2（M0 质检样板）· 宇树 G1（M1 · 人形）——官方双源 URDF/MJCF，BSD-3-Clause。
+> 已收录：宇树 Go2（M0 质检样板）· 宇树 G1（M1 · 人形）· 云深处 Lite3（M2 · 异厂首录）——官方双源 URDF/MJCF，BSD-3-Clause。
 
 ## 为什么是"质检管道"而不是"模型库"
 
@@ -14,7 +14,8 @@
 
 - 如果体检发现分歧（M0 发现 calf 质量分歧，M1 发现更多——见各自模型页披露章节）：
   [Go2 · calf 质量/hip 限位](models/unitree_go2/README.md#-已知分歧披露质检的一部分) ·
-  [G1 · 官方文件名与自由度不符（g1_23dof.xml 实为 29 关节，两格式动作空间不可互换）/ torso−1.28kg 网格证据链](models/unitree_g1/README.md#-已知分歧披露质检的一部分)。
+  [G1 · 官方文件名与自由度不符（g1_23dof.xml 实为 29 关节，两格式动作空间不可互换）/ torso−1.28kg 网格证据链](models/unitree_g1/README.md#-已知分歧披露质检的一部分) ·
+  [Lite3 · 四足端零惯量占位（本库首个 FAIL 级发现）/ MJCF mesh 重复定义](models/deeprobotics_lite3/README.md#-已知分歧披露质检的一部分)。
 - 如果体检全绿：价值落在"管道可复现 + 双格式对账 + 基准数字"——同样的成立。
 
 ## 管道
@@ -42,6 +43,18 @@ S0 license核对(门) → S1 拉取 → S2 格式校验 → S3 物理体检(门:
 | S5 3D 预览 | 断网可开（外网请求 0），12 关节交互滑条（越限标红） | [pipeline/s5_preview/](pipeline/s5_preview/) |
 | S6 基准 | **MuJoCo 105,131 steps/s（9.5 µs/step）**，加载 56 ms，URDF 解析 4.7 ms | [S6-benchmark.md](models/unitree_go2/reports/S6-benchmark.md) |
 
+### M2 · 云深处 绝影 Lite3（四足 · 异厂首录 · 2026-10-11）
+
+| 步骤 | 结果 | 报告 |
+|---|---|---|
+| S0 license 门 | BSD-3-Clause（版权方按快照逐字），**双路径全中**（官网支持页直链 + org 互证，R14 复核升级） | [SOURCE.md](models/deeprobotics_lite3/SOURCE.md) |
+| S1 拉取 | 19 文件锚点锁定（`75824b51`），**blob-parity 门首战拦截 CRLF 失真** → clone 后写 local config 根治，15/15 正本 | SOURCE.md / S1-fetch.md |
+| S2 格式校验 | **10 PASS / 0 FAIL**：URDF 17 link/16 joint、13 处引用（`./meshes/` 第三种协议变体）全解析、MJCF 编译（mesh 元素重复定义如实披露） | [S2-validation.md](models/deeprobotics_lite3/reports/S2-validation.md) |
+| S3 物理体检 | **10 PASS / 1 WARN / 1 FAIL / 1 SKIP**：首个 FAIL = 四足端零惯量占位（零修复披露）；两侧质量 17/17 全一致、vs 官网 12kg 仅 −0.5% | [S3-physics.md](models/deeprobotics_lite3/reports/S3-physics.md) |
+| S4 双格式入库 | 10 文件 / 7.0 MB **三锚全过**（异厂首战零人工干预），excluded 5 件（usd/） | [S4-package.md](models/deeprobotics_lite3/reports/S4-package.md) |
+| S5 3D 预览 | **零改码首跑**（v4 config 驱动直接吃新 config）；STL 4 物理件/13 引用统一着色 | [pipeline/s5_preview/](pipeline/s5_preview/) |
+| S6 基准 | **MuJoCo 47,966 steps/s（20.8 µs/step）**，加载 59.2 ms，展幅 4.9%（同 DOF 异厂商差 2.2× 的 geom 复杂度注记） | [S6-benchmark.md](models/deeprobotics_lite3/reports/S6-benchmark.md) |
+
 ### M1 · 宇树 G1（人形 · 2026-10-11）
 
 | 步骤 | 结果 | 报告 |
@@ -61,7 +74,8 @@ S0 license核对(门) → S1 拉取 → S2 格式校验 → S3 物理体检(门:
 ```bash
 python -m http.server 8130
 # 浏览器打开 http://127.0.0.1:8130/pipeline/s5_preview/index.html                 # Go2
-# 或            http://127.0.0.1:8130/pipeline/s5_preview/index.html?model=unitree_g1  # G1（人形）
+# 或            http://127.0.0.1:8130/pipeline/s5_preview/index.html?model=unitree_g1           # G1（人形）
+# 或            http://127.0.0.1:8130/pipeline/s5_preview/index.html?model=deeprobotics_lite3  # Lite3（云深处四足）
 ```
 
 **MuJoCo 查看 / 加载**
@@ -98,7 +112,7 @@ python pipeline/s6_bench.py unitree_g1      # 基准
   （[models/unitree_go2/LICENSE-upstream-*.txt](models/unitree_go2/)），索引见 [LICENSES.md](LICENSES.md)。
 - `pipeline/s5_preview/libs/` 内 vendor 的 three.js（MIT）随附其原版 LICENSE。
 
-**商标声明**：Unitree / Go2 / G1 为宇树科技（杭州宇树科技）商标；本项目非官方、无关联、无背书。
+**商标声明**：Unitree / Go2 / G1 为宇树科技（杭州宇树科技）商标，Deep Robotics / 绝影 / Lite3 为云深处科技商标；本项目非官方、无关联、无背书。
 
 ## 目录结构
 

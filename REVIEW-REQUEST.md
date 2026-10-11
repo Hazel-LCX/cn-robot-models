@@ -1,34 +1,23 @@
 # REVIEW-REQUEST — 送审材料
 
 > 审核台审毕请在本文件顶部标注"已审 + 日期"，结论追加进 REVIEW.md。历次送审全文可在 git 历史回溯。
-> **已审 2026-10-11 · R14 结论：M2 = 云深处 Lite3 定案 + S0 license 关门放行 S1；A4 证据升级=审核台一手复核发现官网支持页"DeepRoboticsLab(点击跳转GitHub)"直链——路径①实际命中（"未命中"系首页范围欠抽样），**双路径全中按 M0 同强度关闭，弱证据先例无需开**；行动项（S1 前顺手）：抓支持页原文落 evidence/ + note 件留痕更正 + SOURCE.md §2 更新；N1=版权方按快照逐字引用 "Copyright (c) 2024, DeepRoboticsLab"（非公司全名）。详见 REVIEW.md R14。**
-> 上一次送审已于 2026-10-11 审毕：**R13 = 协议⑤完成，M1 含开源更新全流程闭环**（收尾 push `03444af` 已上线，审计链补全至 R13）。
+> 上一次送审已于 2026-10-11 审毕：**R14 = M2 选型定案（Lite3）+ S0 license 关门 + A4 双路径全中升级**。
 
-【送审类型】**协议②（M2 选型定案 + S0 license 核对结论确认）**——M2 首个送审件，触发即停手，S1 未动。
+【送审类型】**协议⑤（M2 全量 push 公开仓库）**——S1–S6 + S7 共 5 个本地 commit 一并上线申请 + S7 验收。
 
-【背景：在做什么】M1 闭环后启动 **M2**。按 R13 裁定，M2 的真正考题 = **异厂 license/结构泛化**（blob-parity 门与三锚对账迎自动化首战）。四家异厂候选已深查（GitHub trees API + license 端点 + 两官网域抓取，原件在 `workspace/m2_recon/` 与 `models/deeprobotics_lite3/evidence/`）：
+【背景：在做什么】M2（云深处 Lite3，异厂首录）全管道完成：S1 拉取（**blob-parity 门自动化首战拦截 CRLF 失真 → clone 后写 local config 根治**，15/15 正本）、S2 校验（10/0/0，第三种引用协议变体 `./meshes/` 兼容）、S3 体检（**10/1/1/1——本库首个 FAIL 级发现**：4×FOOT 零惯量占位，零修复披露 + 下游提示；两侧质量 17/17 全一致、vs 官网 12kg 仅 −0.5% 三模型最贴）、S4 入库（10 件/7.0MB 三锚全过，**异厂首战零人工干预**——K1/K2 教训自动化红利兑现）、S5 预览（**零改码首跑**：v4 config 驱动直接吃新 config，完整四足渲染）、S6 基准（47,966 steps/s，展幅 4.9%；同 DOF 异厂商差 2.2× 的 geom 复杂度注记）。S7 三件完成：`models/deeprobotics_lite3/README.md` 全文（披露链：①FAIL 四足端零惯量占位；②MJCF mesh 元素重复定义 13 引 4；③碰撞全基元厂商风格）、`LICENSES.md` 增 Lite3 行（N1 版权逐字）+ 商标补云深处、顶层 README 收录表/叙事/复现命令。
 
-| 厂商/仓库 | 双格式 | license | 裁定 |
-|---|---|---|---|
-| **云深处 DeepRoboticsLab/deep_robotics_model** | **单仓 URDF×9 + MJCF×8**（DR02/Lite3/M20/M20S/M20_Piper 多机型）、STL×286 | **BSD-3-Clause**（端点+原文双证） | **推荐** |
-| 加速进化 BoosterRobotics/booster_assets | URDF×10（K1/T1/T2 人形）、STL×440，**本仓无 MJCF**（跨仓 booster_gym 需再核） | BSD-3-Clause | 备选（双格式需跨仓配对，多一跳） |
-| 众擎 engineai-robotics/engineai_robotics_description | URDF×5、STL/DAE 各 164 | **无 LICENSE 文件（端点 404）** | **出局**——license 不明不收录（红线） |
-| 智元 AgibotTech/genie_sim | 平台仓（内嵌 URDF 为**宇树 G1** 非自家机型） | **NOASSERTION**（自定义 license 需人工定性） | **出局**——license 非标准 + 收平台副本无增量 |
-
-**推荐定案候选：云深处 Lite3（四足）**，配对 `Lite3/urdf/Lite3.urdf` + `Lite3/mjcf/Lite3.xml`（各带 4 件同名 STL，两侧独立目录非共享池）。理由三条：①**单仓双格式是新形态**——unitree 是 ros/mujoco 分仓，本仓同仓双子目录，S1/S4 双源逻辑按"同仓两子目录"适配，正是结构泛化的考题本体；②**一次只引入一个新变量**——M1 已验人形拓扑（G1），M2 选同形态四足（对照 M0 Go2），使"厂商"成为唯一新变量，归因干净；③体量小而干净（Lite3 全目录 21 项，usd/ 超范围 excluded）。DR02/M20 等多机型留 M3+。
-
-**S0 已产出**：`models/deeprobotics_lite3/SOURCE.md`（状态行=待审）+ license 原文快照（1502 B，contents base64 = blob 正本，sha256 `6bc5967b1cfb…`）+ evidence 6 件（org/repo/head API 原件 + 两官网域抓取件 + 首轮探测件）。
+**数字速览（全部可重放）**：URDF 17 links/16 joints/12 revolute（↔ Go2 同 12 关节四足对照）；两侧网格 4/4 全同哈希；总量 11.938 kg vs 官网 12kg（−0.5%）；MJCF nbody=18 nmesh=13（重复定义虚胖如实披露）；包围盒 y [0.000, 0.298]；官网无关节级参数（限位对账无基准，如实记录）。
 
 【决策点：需要拍板的具体选项】
+1. **push 放行**：`main` 本地领先远端 5 commit（9223c68 S1/S2 → 1787a47 S3 → 8486f0a S4/S5 → 9f235e6 S6 → 本件 S7 commit）。执行照旧：首选 a（用户亲自 push）；b（授权工作台）可接受（push 前贴 status + 后贴哈希回执）。push 后回执 → R15 一行收尾（M2 含发布闭环）。
+2. **S7 验收**：Lite3 模型页披露链（首个 FAIL 级发现的处置是否达 M0 E1/M1 同等标准）、LICENSES/顶层 README 一致性。
+3. **S3 FAIL 处置确认**：四足端零惯量占位按"零修复披露 + 下游提示"处置（改官方文件违反本库立场），S3 门按"有处置记录"放行——请裁定此处置是否成立，或需升级专项送审。
 
-1. **M2 选型定案 = 云深处 Lite3**（`deeprobotics_lite3`，单仓双格式配对，usd/ excluded）。
-2. **S0 license 三条结论确认**（BSD-3-Clause：再分发=是/修改=是/保留声明=是，网格二进制随仓库 license）→ S0 门关闭放行 S1。
-3. **A4 证据强度裁定**：**路径①未命中**（deeprobotics.cn/.us 两官网域全文均无 github 字样，原件在案）、**路径②成立**（org name/blog=deeprobotics.us/twitter/email 四字段品牌互指 + fork:false + org 下 28 仓与官网产品线生态互证）——比 M0 unitree 双路径全中弱一层。请裁定路径②单证是否足以关闭官方性结论，或需补强（如公众号/文档站/邮件确认等线下证据）。
-
-【我的倾向+理由】三项均按上述定案。选 Lite3 的核心理由：M2 的含金量不在"又一个模型"，而在**管道对非 unitree 生态的一览无余的适配性检验**——同仓双格式、BSD-3 文本差异（1502 B vs unitree 1558/1559 B，版权行与措辞必然不同）、STL 网格（非 dae/obj）、无 xacro/、独立 meshes 目录——每一步都会遇到"config 里没有的字段怎么填"。A4 路径②单证如实分层呈现：org 四字段互指 + 28 仓生态佐证在开源机器人厂商里属常见形态（unitree 官网直链反而是少数派），倾向按"路径②成立"关门；若审核台认为需补强，建议补"云深处官方文档站/公众号对 GitHub 的指引"类线上证据再议。
+【我的倾向+理由】三项均按上述定案。理由：①M2 的工程目标（异厂泛化）全部达成且**管道零改码**（s1–s6 全参数化吃新 config、预览 v4 直接工作、blob-parity 门与三锚自动化首战零人工干预）——"加配置即加模型"从承诺变事实；②FAIL 级发现（零惯量占位）是质检价值的直接体现：正是"不静默、不修复、如实披露"立场的第一次实战检验；③同 DOF 步速差 2.2× 的 geom 复杂度发现进一步夯实"跨模型数字不可比"的叙事纪律。
 
 【相关文件路径】
-- `models/deeprobotics_lite3/SOURCE.md`（S0 产物，状态行=待审核台确认）
-- `models/deeprobotics_lite3/LICENSE-upstream-deep_robotics_model.txt`（1502 B 原文快照）
-- `models/deeprobotics_lite3/evidence/` ×6（org/repo/head API 原件 + 两官网域抓取件）
-- 侦察原始数据：`workspace/m2_recon/`（m2_{booster,engineai,deeprobotics,agibot}_tree.json + m2_summary.json + 脚本，gitignored 可本地复查）
+- 模型页：`models/deeprobotics_lite3/README.md`（S7 全文）· 顶层 `README.md`（M2 收录表）· `LICENSES.md`（Lite3 行）
+- 报告：`models/deeprobotics_lite3/reports/`（S1-fetch / S2 / S3 含 forensics / S4 / S6 含对照注记）
+- 预览：截图 `models/deeprobotics_lite3/images/preview-lite3-v4.png`；官网口径证据 `evidence/official-lite3-spec-page-screenshot-{1..4}.png`
+- R14 行动项：`evidence/deeprobotics-support-page.html.txt`（A4 双路径）+ note 件留痕更正
