@@ -18,5 +18,18 @@
       "license_path": "LICENSE",
       "note": "MJCF 源；go2.xml 模型本体 + scene.xml 场景包装 + assets/ obj 网格"
     }
-  ]
+  ],
+  "s2": {
+    "urdf": {
+      "source": "unitree_ros",
+      "rel": "robots/go2_description/urdf/go2_description.urdf",
+      "package": "go2_description",
+      "package_root": "robots/go2_description"
+    },
+    "mjcf": {
+      "source": "unitree_mujoco",
+      "model_rel": "unitree_robots/go2/go2.xml",
+      "scene_rel": "unitree_robots/go2/scene.xml"
+    }
+  }
 }

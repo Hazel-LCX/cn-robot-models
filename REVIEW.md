@@ -113,4 +113,34 @@ S0–S7 切分与两道硬门（S0 license / S3 回归）设计正确；config �
 
 ---
 
+## R3 · 代码首审 + S0 license 门确认 + 修正 1–8 落实核验（2026-10-11 · 审核台）
+
+**补记说明**：本条的实际审核意见（修正 1–8、S0/S1 放行）已于当日经用户转达工作台并落实（PIPELINE.md v0.4、S1 拉取完成）；DEVLOG 会话 4 如实记录"REVIEW.md 尚无 R3 回写、工作台不代写"。本条为审核台正式回写，对齐档案。
+
+**结论一 · 代码首审通过，风格基线确立（R1 ⑤）**
+五件套基线就此立定，s1–s6 与 run_all 一律沿用：①snake_case + 元组表驱动；②docstring 定位 + 中文用途注释（讲约束不讲代码）；③人读表 + `--json` 机读双输出；④退出码契约 0=无阻塞 / 1=有 FAIL；⑤四态语义 PASS/WARN/FAIL/SKIP（WARN=有兜底，不阻塞）。
+方法说明：s1_fetch.py 不逐行审——已实跑且产物背书（62 文件 manifest、锚点锁定、A2 复核记录），运行正确性有实证；pipeline/ 全部脚本的代码细审合并至 S3 专项审一次过。
+
+**结论二 · S0 license 门通过（协议②闭环，红线 ✓）**
+- 三条结论与 BSD-3 条款逐条对应正确；版权方 = 宇树本体（HangZhou YuShu Technology）。
+- **A4 双路径成立**，且**认可"可复现实测输出"为证据原件形式**（送审决策点 3 批复）：evidence/ 内 org/repo API JSON 可重放验证，强于不可验证的截图；文件头已注明抓取方法（GET + HTTP 200 + 日期 + 上下文规则），达标。截图不再是必要件。
+- 子目录声明检查完成：package.xml `<license>BSD</license>` 与仓库级一致；unitree_robots/go2/ 无独立声明随仓库级。maintainer=TODO 占位符记为上游工程卫生素材 ✓。
+- 二进制网格随仓库 license 假设：**放行**（依据 = 无单独 media license 文件、无 NOTICE 排除声明）。
+- **A2 闭环且抓到真问题**：S1 以 raw 同 commit 复核，快照 v2 重生成；`/license` API 端点输出 LF 行尾 ≠ raw 原件 CRLF——"API 给的是规范化阅读件，不是法律原件"。此单既是质检素材，也是 A2 规则自身价值的实证。
+- raw HEAD 与送审锚点逐字节一致（两仓库 SHA 实测复核）✓。
+
+**结论三 · 修正 1–8 落实核验：8/8 通过**（v0.4 §9 有版本记录；逐项对照：S3 惯量逐轴垂距法含方法学推导 / 总质量口径钉死 / S5 vendor LICENSE / evidence/ 原件化 / blobless+sparse / 对账分歧处置 / pypi 双镜像 / xacro-urdf 权威关系）。
+
+**结论四 · S1 产物核验通过，放行 S2**
+manifest 副本入 reports ✓；.gitmodules 唯一 submodule = unitree_ros_to_real，与 go2_description 无关，无漏拉风险（记录在案）。附带发现：上游 urdf/ 自带 Amended/Normal_collision_model.png 两张碰撞示意图，S3 碰撞体清点时作上游对照素材。
+
+**待修清单（D 系，v0.5 一并处理，不阻塞 S2 开工）**
+- [ ] **D1 · SOURCE.md 状态行过时**：顶部仍写"待审核台确认、确认前不拉取"，与 §4 已含 S1 复核的实态矛盾。本条即为确认——改为"已确认（R3 · 2026-10-11）"，S0 门正式关闭。
+- [ ] **D2 · PIPELINE.md 头部版本号停在 v0.2**，与 §9（已至 v0.4）矛盾。头部随版本更新是版本纪律。
+- [ ] **D3 · 网格格式记录与实测不符（本次审核新抓）**：raw 实测 URDF 源 `dae/` 与 `meshes/` **全为 .dae，无 stl**；SOURCE.md §1 "meshes/（stl）"与 PIPELINE.md §1/§3-S4/§4 "dae/stl"均为 v0.1 侦察预设的延续，未随 S1 实测更正。**记录必须对齐实测**：SOURCE.md 更正表格，PIPELINE.md v0.5 统一改为"dae（两目录）/ obj"；两目录 dae 是否同内容留 S4 SHA256 实测定——这本来就是 S4 的活，但文字预设先改对。
+
+**S2 开工提示**：package:// 重映射按设计执行，验收不变；D 系不阻塞 S2，但 **D3 必须在 S4 网格分目录决策前完成**。
+
+---
+
 
