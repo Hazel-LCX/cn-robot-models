@@ -1,48 +1,27 @@
-# S4 入库对账报告 — unitree_go2（2026-10-11 14:45）
+# S4 入库对账报告 — unitree_go2（2026-10-11 15:26）
 
-入库 43 文件 / 81.4 MB（字节级复制，raw 未动）。
+**物理文件口径（终审 F1 修正）**：入库物理文件 33 = raw 溯源件 33（URDF 引用 17 处 → 网格物理文件 7，引用行 ≠ 文件数） + 质检自产件 0[]；总 55.8 MB（不含 reports/evidence/文档）。字节级复制，raw 未动。
+
+## 分类汇总
+
+asset 16 · image 1 · mesh 7 · mjcf 2 · urdf 1 · xacro 6
 
 ## 检查矩阵
 
 | 检查项 | 结果 | 明细 |
 |---|---|---|
-| `s4:traceability` | PASS | 43 个入库文件 SHA256 全部命中 raw manifest 同路径行（逐文件可溯源） |
-| `s4:mesh-split-decision` | PASS | URDF 侧 7 个网格（dae）vs MJCF 侧 16 个（obj），哈希交集 0 → 决策：分目录；MJCF 网格落位 mjcf/assets/（保持官方 meshdir 相对引用，不改官方一字节——§4 树中 mjcf_meshes/ 的实际形态，记录在案） |
-| `s4:dae-dir-parity` | PASS | dae/ 与 meshes/ 同名对比（R3-D3 判定）：同内容 17，不同 0[]，单侧 0——meshes/ 为同内容冗余目录，不随库分发 |
-| `s4:coverage` | PASS | raw 目标子目录内 62 文件（不含 .git），入库 43 + 排除 20（含 meshes/ 冗余 17）；未覆盖：无 |
+| `s4:traceability` | PASS | 33 个 raw 源入库文件 SHA256 全部命中 raw manifest 同路径行（逐文件可溯源） |
+| `s4:mesh-split-decision` | PASS | URDF 侧 17 处引用 → 7 个物理网格（dae）vs MJCF 侧 16 个（obj），哈希交集 0 → 决策：分目录；MJCF 网格落位 mjcf/assets/（保持官方 meshdir 相对引用，不改官方一字节——§4 树中 mjcf_meshes/ 的实际形态，记录在案） |
+| `s4:dae-dir-parity` | PASS | dae/ 与 meshes/ 同名对比（R3-D3 判定，物理文件口径）：同内容 7，不同 0[]，单侧 0——meshes/ 为同内容冗余目录，不随库分发 |
+| `s4:coverage` | PASS | raw 全量 62（除 .git/manifest）= 两仓库根级 8 + 目标子目录 54；子目录 54 全覆盖 = 入库 33 + meshes 冗余 7 + 排除 13（未覆盖：无） |
 | `s4:recheck-mjcf` | PASS | 入库后 mjcf/go2.xml 编译通过：nbody=18 ngeom=56（meshdir=assets 相对结构保持） |
 | `s4:recheck-urdf` | PASS | 入库后 URDF yourdfpy 解析通过：42 links（package:// 重映射到 urdf_meshes/） |
 
-## 逐文件对账
+## 逐文件对账（raw 溯源件 33）
 
 | 入库位置 | 上游路径（raw 相对） | SHA256 | manifest 溯源 |
 |---|---|---|---|
-| urdf/go2_description.urdf | unitree_ros/robots/go2_description/urdf/go2_description.urdf | `252809b6d3ca…` | ✓ |
-| urdf_meshes/dae/base.dae | unitree_ros/robots/go2_description/dae/base.dae | `f777940215d5…` | ✓ |
-| urdf_meshes/dae/hip.dae | unitree_ros/robots/go2_description/dae/hip.dae | `1f1a02068305…` | ✓ |
-| urdf_meshes/dae/thigh.dae | unitree_ros/robots/go2_description/dae/thigh.dae | `167a6c6545f7…` | ✓ |
-| urdf_meshes/dae/calf.dae | unitree_ros/robots/go2_description/dae/calf.dae | `a875e0e2bb24…` | ✓ |
-| urdf_meshes/dae/foot.dae | unitree_ros/robots/go2_description/dae/foot.dae | `f37a2d16dd2e…` | ✓ |
-| urdf_meshes/dae/hip.dae | unitree_ros/robots/go2_description/dae/hip.dae | `1f1a02068305…` | ✓ |
-| urdf_meshes/dae/thigh_mirror.dae | unitree_ros/robots/go2_description/dae/thigh_mirror.dae | `ab1d3b0ef118…` | ✓ |
-| urdf_meshes/dae/calf_mirror.dae | unitree_ros/robots/go2_description/dae/calf_mirror.dae | `c65ac56ddfca…` | ✓ |
-| urdf_meshes/dae/foot.dae | unitree_ros/robots/go2_description/dae/foot.dae | `f37a2d16dd2e…` | ✓ |
-| urdf_meshes/dae/hip.dae | unitree_ros/robots/go2_description/dae/hip.dae | `1f1a02068305…` | ✓ |
-| urdf_meshes/dae/thigh.dae | unitree_ros/robots/go2_description/dae/thigh.dae | `167a6c6545f7…` | ✓ |
-| urdf_meshes/dae/calf.dae | unitree_ros/robots/go2_description/dae/calf.dae | `a875e0e2bb24…` | ✓ |
-| urdf_meshes/dae/foot.dae | unitree_ros/robots/go2_description/dae/foot.dae | `f37a2d16dd2e…` | ✓ |
-| urdf_meshes/dae/hip.dae | unitree_ros/robots/go2_description/dae/hip.dae | `1f1a02068305…` | ✓ |
-| urdf_meshes/dae/thigh_mirror.dae | unitree_ros/robots/go2_description/dae/thigh_mirror.dae | `ab1d3b0ef118…` | ✓ |
-| urdf_meshes/dae/calf_mirror.dae | unitree_ros/robots/go2_description/dae/calf_mirror.dae | `c65ac56ddfca…` | ✓ |
-| urdf_meshes/dae/foot.dae | unitree_ros/robots/go2_description/dae/foot.dae | `f37a2d16dd2e…` | ✓ |
-| xacro/const.xacro | unitree_ros/robots/go2_description/xacro/const.xacro | `fec485669d74…` | ✓ |
-| xacro/gazebo.xacro | unitree_ros/robots/go2_description/xacro/gazebo.xacro | `6a5663dc0be1…` | ✓ |
-| xacro/leg.xacro | unitree_ros/robots/go2_description/xacro/leg.xacro | `5f2e1b5f5da2…` | ✓ |
-| xacro/materials.xacro | unitree_ros/robots/go2_description/xacro/materials.xacro | `5335e8a1c02e…` | ✓ |
-| xacro/robot.xacro | unitree_ros/robots/go2_description/xacro/robot.xacro | `82931c266f08…` | ✓ |
-| xacro/transmission.xacro | unitree_ros/robots/go2_description/xacro/transmission.xacro | `aa297bf9bc39…` | ✓ |
-| mjcf/go2.xml | unitree_mujoco/unitree_robots/go2/go2.xml | `08e3993fb258…` | ✓ |
-| mjcf/scene.xml | unitree_mujoco/unitree_robots/go2/scene.xml | `e23eadbbb091…` | ✓ |
+| images/Go2.png | unitree_mujoco/unitree_robots/go2/Go2.png | `78d864b80648…` | ✓ |
 | mjcf/assets/base_0.obj | unitree_mujoco/unitree_robots/go2/assets/base_0.obj | `25134a5dc51a…` | ✓ |
 | mjcf/assets/base_1.obj | unitree_mujoco/unitree_robots/go2/assets/base_1.obj | `119384942f6f…` | ✓ |
 | mjcf/assets/base_2.obj | unitree_mujoco/unitree_robots/go2/assets/base_2.obj | `08c84b27583b…` | ✓ |
@@ -59,7 +38,22 @@
 | mjcf/assets/thigh_1.obj | unitree_mujoco/unitree_robots/go2/assets/thigh_1.obj | `a363dd76e33e…` | ✓ |
 | mjcf/assets/thigh_mirror_0.obj | unitree_mujoco/unitree_robots/go2/assets/thigh_mirror_0.obj | `80b96e40faf2…` | ✓ |
 | mjcf/assets/thigh_mirror_1.obj | unitree_mujoco/unitree_robots/go2/assets/thigh_mirror_1.obj | `3d2cf7d14ee1…` | ✓ |
-| images/Go2.png | unitree_mujoco/unitree_robots/go2/Go2.png | `78d864b80648…` | ✓ |
+| mjcf/go2.xml | unitree_mujoco/unitree_robots/go2/go2.xml | `08e3993fb258…` | ✓ |
+| mjcf/scene.xml | unitree_mujoco/unitree_robots/go2/scene.xml | `e23eadbbb091…` | ✓ |
+| urdf/go2_description.urdf | unitree_ros/robots/go2_description/urdf/go2_description.urdf | `252809b6d3ca…` | ✓ |
+| urdf_meshes/dae/base.dae | unitree_ros/robots/go2_description/dae/base.dae | `f777940215d5…` | ✓ |
+| urdf_meshes/dae/calf.dae | unitree_ros/robots/go2_description/dae/calf.dae | `a875e0e2bb24…` | ✓ |
+| urdf_meshes/dae/calf_mirror.dae | unitree_ros/robots/go2_description/dae/calf_mirror.dae | `c65ac56ddfca…` | ✓ |
+| urdf_meshes/dae/foot.dae | unitree_ros/robots/go2_description/dae/foot.dae | `f37a2d16dd2e…` | ✓ |
+| urdf_meshes/dae/hip.dae | unitree_ros/robots/go2_description/dae/hip.dae | `1f1a02068305…` | ✓ |
+| urdf_meshes/dae/thigh.dae | unitree_ros/robots/go2_description/dae/thigh.dae | `167a6c6545f7…` | ✓ |
+| urdf_meshes/dae/thigh_mirror.dae | unitree_ros/robots/go2_description/dae/thigh_mirror.dae | `ab1d3b0ef118…` | ✓ |
+| xacro/const.xacro | unitree_ros/robots/go2_description/xacro/const.xacro | `fec485669d74…` | ✓ |
+| xacro/gazebo.xacro | unitree_ros/robots/go2_description/xacro/gazebo.xacro | `6a5663dc0be1…` | ✓ |
+| xacro/leg.xacro | unitree_ros/robots/go2_description/xacro/leg.xacro | `5f2e1b5f5da2…` | ✓ |
+| xacro/materials.xacro | unitree_ros/robots/go2_description/xacro/materials.xacro | `5335e8a1c02e…` | ✓ |
+| xacro/robot.xacro | unitree_ros/robots/go2_description/xacro/robot.xacro | `82931c266f08…` | ✓ |
+| xacro/transmission.xacro | unitree_ros/robots/go2_description/xacro/transmission.xacro | `aa297bf9bc39…` | ✓ |
 
 ## 排除清单（config s4.excluded）
 

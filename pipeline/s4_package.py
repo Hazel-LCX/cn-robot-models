@@ -16,6 +16,7 @@ import json
 import shutil
 import sys
 import time
+from collections import Counter
 from pathlib import Path
 
 import mujoco
@@ -43,37 +44,46 @@ def sha256_file(p):
 
 
 def build_plan(config):
-    """[(src_abs, dest_rel)]，全部为字节级复制；网格闭包从 raw URDF 解析。"""
+    """[(src_abs, dest_rel, kind)]，字节级复制；网格闭包按 dest 去重
+    （URDF 17 处 visual 引用共享 7 个物理 dae——终审 F1 修正：引用行 ≠ 文件数）。"""
     s4, s2 = config["s4"], config["s2"]
     ros_dir = RAW / s2["urdf"]["source"]
     mjm_dir = RAW / s2["mjcf"]["source"]
     plan = []
     for item in s4["urdf"]:
-        plan.append((ros_dir / item["src_rel"], item["dest"]))
+        plan.append((ros_dir / item["src_rel"], item["dest"], "urdf"))
     pkg = s4["urdf_meshes"]["package"]
     pkg_root = ros_dir / s2["urdf"]["package_root"]
     tree = etree.parse(str(ros_dir / s2["urdf"]["rel"]))
+    mesh_refs, seen = 0, set()
     for mesh in tree.getroot().iter("mesh"):
         uri = mesh.get("filename") or ""
         prefix = f"package://{pkg}/"
         if uri.startswith(prefix):
+            mesh_refs += 1
             rel = uri[len(prefix):]
-            plan.append((pkg_root / rel, f"{s4['urdf_meshes']['dest_root']}/{rel}"))
+            if rel in seen:
+                continue
+            seen.add(rel)
+            plan.append((pkg_root / rel, f"{s4['urdf_meshes']['dest_root']}/{rel}", "mesh"))
     xd = s4["xacro_dir"]
     base = ros_dir / xd["src_rel"]
     for p in sorted(base.rglob("*")):
         if p.is_file():
-            plan.append((p, f"{xd['dest']}/{p.relative_to(base).as_posix()}"))
+            plan.append((p, f"{xd['dest']}/{p.relative_to(base).as_posix()}", "xacro"))
     for item in s4["mjcf"]:
-        plan.append((mjm_dir / item["src_rel"], item["dest"]))
+        plan.append((mjm_dir / item["src_rel"], item["dest"], "mjcf"))
     ad = s4["mjcf_assets"]
     abase = mjm_dir / ad["src_rel"]
     for p in sorted(abase.rglob("*")):
         if p.is_file():
-            plan.append((p, f"{ad['dest']}/{p.relative_to(abase).as_posix()}"))
+            plan.append((p, f"{ad['dest']}/{p.relative_to(abase).as_posix()}", "asset"))
     for item in s4["images"]:
-        plan.append((mjm_dir / item["src_rel"], item["dest"]))
-    return plan
+        plan.append((mjm_dir / item["src_rel"], item["dest"], "image"))
+    dests = [d for _, d, _ in plan]
+    assert len(dests) == len(set(dests)), "入库计划出现重复 dest——F1 回归，立即停"
+    plan.sort(key=lambda t: t[1])
+    return plan, mesh_refs
 
 
 def main():
@@ -81,15 +91,16 @@ def main():
     s4 = config["s4"]
     if (MODEL / "urdf").exists():
         sys.exit(f"[拒绝] {MODEL / 'urdf'} 已存在——防覆盖保护，重入库先手删已落位目录")
-    plan = build_plan(config)
-    print(f"入库计划：{len(plan)} 个文件（URDF 1 + 网格闭包 + xacro + MJCF 2 + assets + 产品图）")
+    plan, mesh_refs = build_plan(config)
+    print(f"入库计划：{len(plan)} 个物理文件"
+          f"（URDF 引用 {mesh_refs} 处 → 网格物理文件 {sum(1 for _, _, k in plan if k == 'mesh')}——引用行 ≠ 文件数，F1 修正）")
 
     results, rows = [], []
-    for src, dest_rel in plan:
+    for src, dest_rel, kind in plan:
         dest = MODEL / dest_rel
         dest.parent.mkdir(parents=True, exist_ok=True)
         shutil.copy2(src, dest)
-        rows.append({"dest": dest_rel, "src": src.relative_to(RAW).as_posix()})
+        rows.append({"dest": dest_rel, "src": src.relative_to(RAW).as_posix(), "kind": kind})
 
     # 可溯源对账：每文件 SHA256 必须命中 raw manifest 的同路径行
     manifest = {}
@@ -104,7 +115,7 @@ def main():
         r["traceable"] = manifest.get(r["sha256"]) == r["src"]
     n_bad = [r["dest"] for r in rows if not r["traceable"]]
     add(results, "s4:traceability", "PASS" if not n_bad else "FAIL",
-        f"{len(rows)} 个入库文件 SHA256 全部命中 raw manifest 同路径行（逐文件可溯源）"
+        f"{len(rows)} 个 raw 源入库文件 SHA256 全部命中 raw manifest 同路径行（逐文件可溯源）"
         + (f"；未命中：{n_bad}" if n_bad else ""))
 
     # 两源网格哈希交集 → 分/合决策
@@ -112,7 +123,7 @@ def main():
     mjcf_hashes = {r["sha256"] for r in rows if r["dest"].startswith("mjcf/assets/")}
     overlap = urdf_hashes & mjcf_hashes
     add(results, "s4:mesh-split-decision", "PASS",
-        f"URDF 侧 {len(urdf_hashes)} 个网格（dae）vs MJCF 侧 {len(mjcf_hashes)} 个（obj），"
+        f"URDF 侧 {mesh_refs} 处引用 → {len(urdf_hashes)} 个物理网格（dae）vs MJCF 侧 {len(mjcf_hashes)} 个（obj），"
         f"哈希交集 {len(overlap)} → 决策：分目录；MJCF 网格落位 mjcf/assets/"
         "（保持官方 meshdir 相对引用，不改官方一字节——§4 树中 mjcf_meshes/ 的实际形态，记录在案）")
 
@@ -132,7 +143,7 @@ def main():
                 single += 1
     redundant_ok = same > 0 and not diff
     add(results, "s4:dae-dir-parity", "PASS" if redundant_ok else "WARN",
-        f"dae/ 与 meshes/ 同名对比（R3-D3 判定）：同内容 {same}，不同 {len(diff)}{diff[:4]}，单侧 {single}"
+        f"dae/ 与 meshes/ 同名对比（R3-D3 判定，物理文件口径）：同内容 {same}，不同 {len(diff)}{diff[:4]}，单侧 {single}"
         + ("——meshes/ 为同内容冗余目录，不随库分发" if redundant_ok else "——两目录存在差异，需送审处置"))
 
     # 覆盖率对账：raw 两个目标子目录 vs 入库 + 排除清单
@@ -156,11 +167,16 @@ def main():
         if p.is_file() and ".git" not in p.parts and "manifest" not in p.name
         and any(p.relative_to(RAW).as_posix().startswith(s) for s in scope)
         and p.relative_to(RAW).as_posix() not in covered)
-    raw_count = sum(1 for p in RAW.rglob("*")
+    raw_total = sum(1 for p in RAW.rglob("*")
                     if p.is_file() and ".git" not in p.parts and "manifest" not in p.name)
+    root_level = sum(1 for p in RAW.rglob("*")
+                     if p.is_file() and ".git" not in p.parts and "manifest" not in p.name
+                     and len(p.relative_to(RAW).as_posix().split("/")) == 2)  # 仓库根级 = repo/文件 两段
+    scope_files = raw_total - root_level
     add(results, "s4:coverage", "PASS" if not uncovered else "WARN",
-        f"raw 目标子目录内 {raw_count} 文件（不含 .git），"
-        f"入库 {len(rows)} + 排除 {len(excluded)}（含 meshes/ 冗余 {same}）；未覆盖：{uncovered or '无'}")
+        f"raw 全量 {raw_total}（除 .git/manifest）= 两仓库根级 {root_level} + 目标子目录 {scope_files}；"
+        f"子目录 {scope_files} 全覆盖 = 入库 {len(rows)} + meshes 冗余 {same} + 排除 {len(excluded) - (same if redundant_ok else 0)}"
+        f"（未覆盖：{uncovered or '无'}）")
 
     # 最小复验：均指向入库新路径
     try:
@@ -177,13 +193,29 @@ def main():
     except Exception as exc:
         add(results, "s4:recheck-urdf", "FAIL", f"{type(exc).__name__}: {exc}")
 
-    total = sum((MODEL / r["dest"]).stat().st_size for r in rows)
+    # 非 raw 源的入库件（质检截图等）——F1：物理文件口径 = raw 溯源件 + 质检自产件
+    raw_srcs = {r["dest"] for r in rows}
+    known_docs = {"README.md", "SOURCE.md"}
+    non_raw = sorted(
+        p.relative_to(MODEL).as_posix() for p in MODEL.rglob("*")
+        if p.is_file()
+        and p.relative_to(MODEL).as_posix() not in raw_srcs
+        and not p.relative_to(MODEL).as_posix().startswith(("reports/", "evidence/"))
+        and p.relative_to(MODEL).as_posix() not in known_docs
+        and not p.name.startswith("LICENSE-upstream"))
+    total = sum(p.stat().st_size for p in MODEL.rglob("*")
+                if p.is_file()
+                and not p.relative_to(MODEL).as_posix().startswith(("reports/", "evidence/"))
+                and p.relative_to(MODEL).as_posix() not in known_docs
+                and not p.name.startswith("LICENSE-upstream"))
+    physical = len(rows) + len(non_raw)
     pins = {s["name"]: s["pin"] for s in config["sources"]}
     (MODEL / "README.md").write_text(
         f"# unitree_go2 — 模型页（S4 入库骨架，S7 补全）\n\n"
         f"> **provenance**：unitreerobotics/unitree_ros@`{pins['unitree_ros']}` + "
         f"unitreerobotics/unitree_mujoco@`{pins['unitree_mujoco']}`；license BSD-3-Clause"
-        f"（SOURCE.md / LICENSE-upstream-*）；总体积 {total / 1e6:.1f} MB / {len(rows)} 文件。\n"
+        f"（SOURCE.md / LICENSE-upstream-*）；模型资产+质检截图 {physical} 文件 / {total / 1e6:.1f} MB"
+        f"（不含 reports/evidence/文档）。\n"
         f"> **质检**：S2 全绿（reports/S2-validation.md）· S3 体检 8P/4W/0F（reports/S3-physics.md，"
         f"calf 分歧披露待 S7/E1）· 入库对账 reports/S4-package.md（逐文件哈希溯源）。\n",
         encoding="utf-8")
@@ -193,10 +225,16 @@ def main():
     table = "\n".join(f"| {r['dest']} | {r['src']} | `{r['sha256'][:12]}…` | {'✓' if r['traceable'] else '✗'} |"
                       for r in rows)
     checks = "\n".join(f"| `{r['check']}` | {r['status']} | {r['detail']} |" for r in results)
+    kind_count = Counter(r["kind"] for r in rows)
     md = (f"# S4 入库对账报告 — {config['model']}（{time.strftime('%Y-%m-%d %H:%M')}）\n\n"
-          f"入库 {len(rows)} 文件 / {total / 1e6:.1f} MB（字节级复制，raw 未动）。\n\n"
+          f"**物理文件口径（终审 F1 修正）**：入库物理文件 {physical} = raw 溯源件 {len(rows)}"
+          f"（URDF 引用 {mesh_refs} 处 → 网格物理文件 {kind_count.get('mesh', 0)}，引用行 ≠ 文件数）"
+          f" + 质检自产件 {len(non_raw)}{non_raw}；总 {total / 1e6:.1f} MB（不含 reports/evidence/文档）。"
+          f"字节级复制，raw 未动。\n\n"
+          f"## 分类汇总\n\n" + " · ".join(f"{k} {v}" for k, v in sorted(kind_count.items()))
+          + (f" · 质检自产 {len(non_raw)}" if non_raw else "") + "\n\n"
           f"## 检查矩阵\n\n| 检查项 | 结果 | 明细 |\n|---|---|---|\n{checks}\n\n"
-          f"## 逐文件对账\n\n| 入库位置 | 上游路径（raw 相对） | SHA256 | manifest 溯源 |\n|---|---|---|---|\n{table}\n\n"
+          f"## 逐文件对账（raw 溯源件 {len(rows)}）\n\n| 入库位置 | 上游路径（raw 相对） | SHA256 | manifest 溯源 |\n|---|---|---|---|\n{table}\n\n"
           f"## 排除清单（config s4.excluded）\n\n"
           + "\n".join(f"- `{e['src']}` — {e['why']}" for e in s4["excluded"])
           + f"\n\n**结论**：{'入库完成，可进 S5/S6' if n_fail == 0 else '存在 FAIL，停手处置'}"
@@ -204,9 +242,11 @@ def main():
     REPORTS.mkdir(parents=True, exist_ok=True)
     (REPORTS / "S4-package.md").write_text(md, encoding="utf-8")
     (REPORTS / "S4-package.json").write_text(
-        json.dumps({"rows": rows, "checks": results, "total_bytes": total},
+        json.dumps({"rows": rows, "checks": results, "total_bytes": total,
+                    "physical_files": physical, "non_raw": non_raw},
                    ensure_ascii=False, indent=2), encoding="utf-8")
-    print(f"\n入库完成：{len(rows)} 文件 / {total / 1e6:.1f} MB；FAIL {n_fail} / WARN {n_warn}")
+    print(f"\n入库完成：物理文件 {physical}（raw 溯源 {len(rows)} + 质检自产 {len(non_raw)}）"
+          f" / {total / 1e6:.1f} MB；FAIL {n_fail} / WARN {n_warn}")
     sys.exit(1 if n_fail else 0)
 
 

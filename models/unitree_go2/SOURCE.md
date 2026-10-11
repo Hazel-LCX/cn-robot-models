@@ -77,7 +77,7 @@ S0 快照经 GitHub API 取得；S1 已按规则以 **raw 内同一 commit 的 L
 - **A2 抓到的真问题**：S0 快照 v1（走 GitHub `/license` API 端点）与 raw 原件**字节不一致**——已查明原因：端点输出为 LF 行尾，raw 内 LICENSE 实际是 **CRLF**（cmp + file 实证）。API 端点给的是"规范化阅读件"，不是法律原件。快照 v2 已按 A2 规则从 raw 重生成，此后一律以 raw 字节为准。这一单既是质检素材，也证明了 A2 这条规则存在的价值。
 - license 文件与模型文件同 commit（resolved HEAD = 送审锚点，两仓库均成立）✓。
 - 拉取方法：**直连 blobless+sparse 一次成功**（代理/API 兜底未动用）；ros 36 文件 52.4 MB、mujoco 26 文件 29.9 MB，合计 62 文件 82.3 MB；manifest 抽 3 文件哈希复算一致；raw 此后只读。
-- **入库对账（S4）**：43 文件字节级落 `models/unitree_go2/`，逐文件 SHA256 命中 manifest 同路径行（reports/S4-package.md）；dae/ 与 meshes/ 判定同内容冗余（17/0），meshes/ 不随库分发；两源网格哈希交集 0 → 分目录，MJCF 网格落 `mjcf/assets/`（保持官方 meshdir 相对引用）；入库路径 MJCF 编译 + yourdfpy 双复验通过。
+- **入库对账（S4，终审 F1 更正后）**：**34 个物理文件**（33 个 raw 溯源件逐文件 SHA256 命中 manifest 同路径行 + 1 个质检截图）/ 约 56 MB 落 `models/unitree_go2/`（reports/S4-package.md）；dae/ 与 meshes/ 判定同内容冗余（**7/0，物理文件口径**——URDF 17 处 visual 引用共享 7 个物理 dae，引用行 ≠ 文件数），meshes/ 不随库分发；两源网格哈希交集 0 → 分目录，MJCF 网格落 `mjcf/assets/`（保持官方 meshdir 相对引用）；入库路径 MJCF 编译 + yourdfpy 双复验通过。
 
 ## 5. 对本库的义务（已落 LICENSES.md）
 

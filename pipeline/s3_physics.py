@@ -252,7 +252,7 @@ def check_cross(results, links, joints, model, tol, mass_warn, alias):
         + (f"；真值分歧 {true_diff}——MJCF 更贴官方总量，分歧≠错误，M0 不修（修正 6），送审拍板" if true_diff else ""))
 
 
-def write_report(model, results, extra):
+def write_report(model, results, extra, notes=None):
     versions = {"numpy": np.__version__, "trimesh": trimesh.__version__}
     summary = {
         "model": model, "date": time.strftime("%Y-%m-%d %H:%M"),
@@ -270,7 +270,7 @@ def write_report(model, results, extra):
           f"## 体检矩阵\n\n| 检查项 | 结果 | 明细 |\n|---|---|---|\n{rows}\n\n"
           f"## C1 碰撞体清点表\n\n- URDF 侧：见 `urdf:collision-inventory` 行（逐 link 有无 + 几何类型）\n"
           f"- MJCF 侧：见 `mjcf:body-geom` 行（逐 body geom 数，无 geom body 列表化）\n"
-          f"- 上游对照素材：urdf/ 目录自带 Amended_collision_model.png / Normal_collision_model.png\n\n"
+          f"- {notes['upstream_png']}\n\n"
           f"## 汇总\n\nPASS {summary['pass']} / WARN {summary['warn']} / FAIL {summary['fail']}"
           f" / SKIP {summary['skip']}\n\n"
           f"**方法论披露（R4-E5）**：URDF 侧惯量正定/三角不等式为本管道的独立数学检查；"
@@ -317,7 +317,7 @@ def main():
 
     extra = {"caliber": official["evidence"] + " " + official["caliber"],
              "urdf_total_kg": urdf_total, "mjcf_total_kg": float(model.body_mass[1:].sum())}
-    summary = write_report(config["model"], results, extra)
+    summary = write_report(config["model"], results, extra, s3["notes"])
     print(f"\n汇总：PASS {summary['pass']} / WARN {summary['warn']} / FAIL {summary['fail']}"
           f" / SKIP {summary['skip']}")
     print(f"结论：{summary['verdict']}")
