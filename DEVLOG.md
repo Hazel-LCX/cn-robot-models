@@ -166,3 +166,4 @@
 - **S7 三件完成**：①Lite3 模型页全文（披露链：FAIL 四足端零惯量占位【本库首个 FAIL 级】/ MJCF mesh 重复定义 13 引 4 / 碰撞全基元厂商风格）；②LICENSES.md 增 Lite3 行（N1 版权逐字）+ 商标补云深处；③顶层 README M2 收录表（7 行）+ 分歧链接三模型 + 复现命令 + 商标。
 - **协议⑤送审**（REVIEW-REQUEST.md）：push 放行（ahead 5）+ S7 验收 + **S3 FAIL 处置确认**（零修复披露制 vs 升级专项送审）三决策点，停手等审核台。
 - 状态：**M2 全管道（S1–S7）完成，协议⑤触发停手**——审完 push 即 M2 含发布闭环。
+- **R15 读毕 → N2 改码备案（立规首执行）**：M2 全程 `pipeline/` 通用改动 4 处，逐处备案——①s1_fetch +4 行（K2 根治落码补全：clone 后写 local core.autocrlf=false，blob-parity 门首战拦截 Lite3.xml 后修）——**非模型特异**；②s4_package `./` 路径规范化 +1 行（Lite3 第三种引用协议变体）——**非模型特异**（通用相对路径卫生）；③s4_package mesh 元素去重 +3 行（Lite3 asset 段 13 引 4 实测触发，F1 同哲学）——**非模型特异**；④s4_package kind 过滤修口径虚胖 + preview.js STL 唯一 URL 计数 + index.html 缓存版本号——**非模型特异**。**口径修正**："管道零改码"准确表述 = **"零模型特异改码"**（4 处均为通用健壮性落码，M0/M1 模型跑回归不受影响——S3/S2 回归全绿旁证）。N2 立规自本条起执行：凡 pipeline/ diff>0 当日备案。
