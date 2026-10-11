@@ -2,6 +2,17 @@
 
 > 纪律：每次会话结束追加一条，新的在上。
 
+## 2026-10-11（会话 19：M3 启动——三路线选型侦察 + 智元 X2 S0 落档 → 协议②送审）
+
+- 会话开始仪式：读 REVIEW.md → **R16 已回写：协议⑤完成，M2 含发布全流程闭环**（R15 节随队上线实证 + N2 立规首执行在案）。按 R16 尾注启动 M3，三路线候选（同仓多机型 / 加速进化跨仓配对 / 智元 license 定性）选型侦察。
+- **侦察三波全程序化**（`workspace/m3_recon/`，gitignore 不入库）：①`scan_m3.py` org/账户扫描——**BoosterRobotics 实为个人账户非 org**（M1 期 `/orgs/` 404 真因，记 L11）；②`scan_trees.py` 四仓树扫——**booster_gym 内 resources/T1/ 已有 URDF↔MJCF 同仓配对**（"跨仓配对"非必需）、`genie_sim_robot_model`（Apache-2.0 新仓）**仅 xacro 源 0 成品 URDF**（收源生成=派生，撞红线精神）、`agibot_x2_urdf` URDF↔MJCF 同目录直接配对（v1.4.0）；③`fetch_licenses.py` license 原文三份落档——booster_gym NOASSERTION 真身=Apache-2.0（方括号版权行骗过检测器）、**agibot_x2_urdf NOASSERTION 真身=木兰宽松许可证第 2 版（MulanPSL-2.0）**。
+- **MulanPSL-2.0 程序化定性**：SPDX 官方名录 740 项命中——`MulanPSL-2.0`，`isOsiApproved: True`、未弃用（MulanPSL-1.0 无 OSI 标记）；义务=分发附许可证副本+保留版权/商标/专利及免责声明（§4）、无商标许可（§3）、中英同效中文优先（§6）——未修改分发官方件+保留副本即义务满足，与本库 MIT+第三方声明层兼容。
+- **S0 落档**（`gen_x2_s0.py`）：`models/agibot_x2/` = SOURCE.md（状态=待审）+ `LICENSE-upstream-mulanpsl2.txt`（blob `adf05533…`，`git hash-object --no-filters` 比对 MATCH，L8 立规执行）+ evidence ×6（org/repo/license 端点/HEAD/SPDX/README 官方声明）。锚点 v1.4.0 X2-Ultra 配对（72 mesh 引实测 `./meshes/` 显式前缀，Lite3 同款风格）；不入库清单按 M1 先例（v1.3.0 整套/EDU/手部变体/simple_collision/scene.xml/x2_fist）。
+- **A4 强度如实分层**：路径②成立（org 官方字段自指 agibot.com + 23 仓生态互证 + README_CN 官方声明 + 官网页脚生态仓直链含 Agibot-World 品牌互指）；**路径①阴性**——官网→AgibotTech 直链四站探测未命中（agibot.com.cn / open.agibot.com / openloong.org.cn / agibot.com，原件存 m3_recon），强度与 M1 相当低于 M2，S0 收尾补强方向=官网新闻/公告页。
+- **推荐定案：M3 = 智元灵犀 X2**（正面接审核台预设 license 考题 = 质检含金量最硬一集；管道预判零结构改动）。跨仓配对建议 M4 专项（双仓双 license 三锚是 S1/S4 结构扩展）；同仓多机型建议 M4+/维护态填充件。
+- 本会话 `pipeline/` 零 diff（侦察+S0 纯取证，无改码——N2 备案行不适用，如实声明）。
+- 状态：**协议②已触发**（M3 选型定案 + MulanPSL-2.0 定性确认 + 锚点与不入库清单 + A4 分层四决策点），停手等审核台；本地 commit 未 push（push 属协议⑤）。
+
 ## 2026-10-11（会话 15：R10 读毕 → K1 七步修复完成 + 准备 S1）
 
 - 会话开始仪式：读 REVIEW.md → **R10 已回写**：①M1 选型定案 = 宇树 G1（g1_23dof 配对）**批准**；②S0 license 门关闭放行 S1（前置 = K1）；③**J1**：M1 送审件"30 变体"计数不实，实测 33 文件（23 urdf + 10 xml）= 23 去重配置，S1 报告按准确计数记档（"数字必须能被重放"）；④**K1 P0**：autocrlf 第二幕——上游 blob 全 LF，M0 检出件被转 CRLF 入库，公开仓库 34 件文本件行尾失真（内容级零差异）；正本判据修正 = **git blob（cat-file/contents base64），永不采信工作区检出件**；⑤S5 STL 支路 = 配置边界内管道增强，带五条件直进。
