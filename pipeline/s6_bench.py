@@ -19,18 +19,20 @@ from pathlib import Path
 import mujoco
 import yourdfpy
 
+MODEL_NAME = sys.argv[1] if len(sys.argv) > 1 else "unitree_go2"
 ROOT = Path(__file__).resolve().parents[1]
-CONFIG_PATH = ROOT / "pipeline" / "configs" / "unitree_go2.json"
-MODEL = ROOT / "models" / "unitree_go2"
+CONFIG_PATH = ROOT / "pipeline" / "configs" / f"{MODEL_NAME}.json"
+MODEL = ROOT / "models" / MODEL_NAME
 REPORTS = MODEL / "reports"
 
 
 def main():
     config = json.loads(CONFIG_PATH.read_text(encoding="utf-8"))
     s2, s6 = config["s2"], config["s6"]
-    mjcf = MODEL / "mjcf" / "go2.xml"      # 基准测入库件
-    urdf = MODEL / "urdf" / "go2_description.urdf"
-    mesh_dir = MODEL / "urdf_meshes"
+    rc = config["s4"]["recheck"]           # 基准测入库件（路径按 S4 对账表，K2 落的键）
+    mjcf = MODEL / rc["mjcf"]
+    urdf = MODEL / rc["urdf"]
+    mesh_dir = MODEL / rc["urdf_mesh_dir"]
     results = []
 
     def add(name, value, detail):
