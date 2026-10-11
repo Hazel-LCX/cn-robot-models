@@ -281,8 +281,7 @@ def main():
             f"unitreerobotics/unitree_mujoco@`{pins['unitree_mujoco']}`；license BSD-3-Clause"
             f"（SOURCE.md / LICENSE-upstream-*）；模型资产+质检截图 {physical} 文件 / {total / 1e6:.1f} MB"
             f"（不含 reports/evidence/文档）。\n"
-            f"> **质检**：S2 全绿（reports/S2-validation.md）· S3 体检 8P/4W/0F（reports/S3-physics.md，"
-            f"calf 分歧披露待 S7/E1）· 入库对账 reports/S4-package.md（逐文件哈希溯源）。\n",
+            f"> **质检**：S2/S3/S4/S6 报告见 reports/（各步数字以报告为准，S7 全文时回填模型页）。\n",
             encoding="utf-8")
 
     n_fail = sum(r["status"] == "FAIL" for r in results)

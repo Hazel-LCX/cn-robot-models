@@ -139,3 +139,9 @@
 - 状态：**S1–S5 五步闭环**（本地 commit，push 留协议⑤窗口）；下一步 S6 基准（G1）→ S7 收尾（LICENSES.md 增行/模型页 README 含 29-hinge + head/torso 披露链/两套叙事）。
 - **S6（G1 基准）同会话完成**：s6_bench.py 参数化 + 路径改读 config s4.recheck 键（K2 落的键直接复用）；qpos0 用模型默认（G1 零位=直腿站立，纯重力倾倒是预期口径，与 Go2 同法）。**结果**：MuJoCo 步进 **50,809 steps/s（19.7 µs/step）**、加载 102.8 ms（G1 nmesh 29 件 STL 比 Go2 重，合理）、稳定性展幅 2.3% 稳过、URDF 解析 4.7 ms。**跨模型解读**：步速恰为 Go2（105,131 steps/s）一半——23 关节+nbody 31 对 12 关节+nbody 18，物理量翻倍步速减半，数字自洽；S7 叙事将注明"跨模型数字不可比，本机同口径内自洽"。
 - 状态：**S1–S6 六步闭环**（本地 commit，push 留协议⑤窗口）；下一步 **S7 收尾**（LICENSES.md 增 G1 行/模型页 README 全文含 29-hinge 动作空间不可互换 + head/torso 分歧链披露/顶层 README 汇总与两套叙事）→ **协议⑤送审 push**（含 S1–S6+K2 七 commit 一并）。
+
+## 2026-10-11（会话 16：S7 收尾 → 协议⑤送审）
+
+- **S7 三件完成**：①`models/unitree_g1/README.md` 全文——披露链核心 = **官方 `g1_23dof.xml` 实为 29 hinge（文件名与自由度不符，两格式动作空间 23/29 维不可互换）** + torso −1.28kg 与 head_link.STL 网格差异同根闭环（逐克 + 逐字节双证据）+ 官网 35kg/23 自由度口径（evidence 5 件）；②`LICENSES.md` 增 G1 两行（同锚点零漂移注明）+ 商标补 G1 + go2 过期状态行更正；③顶层 README 增"M1 · 宇树 G1"质检结果表（7 行）+ 分歧叙事链接双模型 + 商标/复现命令更新。顺手修 s4_package.py 骨架模板 go2 硬编码残留（S3 数字/calf 文案中性化，M2+ 复用防线）。
+- **协议⑤送审**（REVIEW-REQUEST.md）：push 放行（ahead 8：S1–S6 + K2 + S7）+ S7 验收 + K2 六步确认三决策点，停手等审核台。
+- 状态：**M1 全管道（S1–S7）完成，协议⑤触发停手**——审完 push 即 M1 含开源更新全流程闭环。
