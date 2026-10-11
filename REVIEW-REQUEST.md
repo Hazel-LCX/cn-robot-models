@@ -1,25 +1,27 @@
 # REVIEW-REQUEST — 送审材料
 
-> **已审 2026-10-11 · R6 结论：F1/F2 验收通过，M0 正式收官**（数字三口径自洽/扩散清零/防回归 assert；G1 体积口径注明 + G2 coverage 补 robots/README.md 桶——push 前必清，不阻塞）。下一事项=协议⑤ git push 另触发送审。详见 REVIEW.md R6。
-
 > 审核台审毕请在本文件顶部标注"已审 + 日期"，结论追加进 REVIEW.md。历次送审全文可在 git 历史回溯。
-> 上一次送审（S7 终审）已于 2026-10-11 审毕：**R5 = M0 有条件收官**（E1 过/干净环境实测过/门面过；F1 数字失真必修 + F2 轻残留），详见 REVIEW.md R5。
+> 上一次送审已于 2026-10-11 审毕：**R6 = F1/F2 验收通过，M0 正式收官**（G1/G2 为 push 前必清脚注），随后 R7 增补 H1 与 push 前检查清单有效版，详见 REVIEW.md R6–R7。
 
-【送审类型】**终审 F1/F2 修复回报**（R5 收官条件：审核台复核 F1 数字一致即回写"M0 正式收官"，无需全量送审）
+【送审类型】**协议⑤：git push 公开仓库**——push 前检查清单（R7 版：R5 三项 + G1 + G2 + H1）已全部执行，请终查后放行
 
-【背景：在做什么】按 R5 待修清单执行完毕：
-- **F1 修复三件**：①`build_plan` 网格闭包按 dest 去重 + `assert` 防回归（URDF 17 处 visual 引用 → 7 个物理 dae，**引用行 ≠ 文件数**）；②体积/对账/冗余判定全改**物理文件口径**（冗余判定 17/0 → **7/0**）；③coverage 算式写平（`root_level` 改两段路径判定）：**raw 62 = 两仓库根级 8 + 目标子目录 54；54 = 入库 33 + meshes 冗余 7 + 排除 13，未覆盖 0**。
-- **扩散 4 处更正**：S4-package.{md,json}（源头重跑刷新）、SOURCE.md §4、顶层 README 汇总表、模型页 Provenance 表——全部改为 **34 个物理文件（33 个 raw 溯源件 + 1 个质检截图）/ 56.2 MB（磁盘实测 56,186,xxx bytes ≈ 53.9 MiB）**。
-- **F2**：s3_physics.py C1 模板中 png 提示文本移 config（`notes['upstream_png']`），S3 重跑 8/4/0/SKIP1 不变。
-- 修复过程中额外抓到并修掉：S4 骨架每次重跑会覆盖 S7 全文模型页（改为**仅缺失时写** + git 历史恢复全文）；重跑 rm 误删质检截图（已恢复）。
-- 自查三源对齐：脚本输出 = 磁盘 `find` = `git ls-files` = **54**（34 资产+截图 + 10 reports + 6 evidence + 4 根级文档）；正文文档 "43 文件/81.4" 残留清零（DEVLOG 历史条目与 REVIEW/REVIEW-REQUEST 审核原文按留痕纪律保留）。
+【背景：在做什么】R7 清单三项随一次 s4_package.py 重跑全清：
+- **G1**：S4 报告头部体积口径注明分解——`总 56.1 MB（raw 溯源件 56,002,074 B + 质检自产件 117,493 B，G1 口径注明）`。
+- **G2**：coverage 补桶写平——`robots/README.md` 归"根级及中间层"，目标子目录口径改完整前缀：**raw 62 = 根级及中间层 9 + 目标子目录 53；53 = 入库 33 + 排除 20（其中 meshes/ 冗余 7），未覆盖 0**。
+- **H1**：重跑 S4 刷新对账——**total_bytes = 56,119,567 与磁盘 34 资产件之和逐字节一致（终验 True）**；README 两处（顶层汇总表 / 模型页 Provenance）同步 56.1 MB 口径；**"对账即事实"规则落 PIPELINE v0.6**（§3-S4：凡变更 models/ 下任何文件，必重跑 S4）。
+- 过程失误两连（coverage 段短变量 NameError 被 grep 滤错线索、sed 写出占位符）已自纠并记 AGENT-LAB L6。
 
-【决策点：需要拍板的具体选项】复核 F1 终值数字一致——**入库物理文件 34（raw 溯源 33 + 质检自产 1）/ 资产 56.1 MB、目录全量 54 文件 56.2 MB**；冗余判定 **7/0**（物理文件口径）；coverage **62 = 8 + 54 = 33 + 7 + 13**——一致即按 R5 裁定回写"**M0 正式收官**"。用户已按收官流程直接复核本清单数字。
+【决策点：需要拍板的具体选项】
+1. **R5 三项终查**：①README 定稿状态——顶层与模型页数字均为终值口径（34 / 56.1 MB / 7-0 / 62=9+53）；②LICENSES/SOURCE 一致性——BSD-3 与双 commit 锚点（5994d4fa / 1eb6642e）在两文件均在案（grep 实证）；③.gitattributes 生效——换图后重 clone 抽查 5/5 + clone 内 MJCF 加载 OK。
+2. **G1/G2/H1 清算确认**（证据在 S4-package.md 头部与 coverage 行、json total_bytes）。
+3. **放行 git push 公开仓库**。**执行方式请一并裁定**：a) 用户自行执行 push（工作台不动 git remote）；b) 授权工作台执行（需提供 remote URL 与分支名，push 前我会再列一次 `git status` 干净确认 + push 后贴 commit 哈希回执）。
+4. push 后收尾：回写 R8"协议⑤完成"，M0 全流程（含开源发布）闭环。
 
-【我的倾向+理由】数字已三源对齐、算式闭合、残留清零，倾向回写收官。
+【我的倾向+理由】倾向 1–2 确认、3 放行（执行方式 b 优先）。理由：R7 三项全部落在 S4 一个报告内且算式逐行可验；数字三源对齐（脚本/磁盘/git ls-files）；预览页可交互演示（本地 8130 常驻），push 后任何评审者 clone 即得全套断网可用产物。
 
 【相关文件路径】
-- models/unitree_go2/reports/S4-package.{md,json}（源头，重跑刷新）
-- models/unitree_go2/SOURCE.md §4、README.md（顶层汇总表）、models/unitree_go2/README.md（Provenance 行）
-- pipeline/s4_package.py（F1 主修 + 断言 + 骨架仅缺失时写）、pipeline/s3_physics.py（F2）
-- DEVLOG.md（会话 10）
+- models/unitree_go2/reports/S4-package.{md,json}（G1 头部口径 / G2 coverage 行 / H1 total_bytes）
+- README.md、models/unitree_go2/README.md（56.1 MB 终值口径）
+- PIPELINE.md（v0.6，§3-S4 "对账即事实"规则）
+- LICENSES.md、models/unitree_go2/SOURCE.md（一致性自查对象）
+- AGENT-LAB.md（L6）、DEVLOG.md（会话 11）、本文件
