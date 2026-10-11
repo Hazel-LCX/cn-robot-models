@@ -169,14 +169,19 @@ def main():
         and p.relative_to(RAW).as_posix() not in covered)
     raw_total = sum(1 for p in RAW.rglob("*")
                     if p.is_file() and ".git" not in p.parts and "manifest" not in p.name)
-    root_level = sum(1 for p in RAW.rglob("*")
-                     if p.is_file() and ".git" not in p.parts and "manifest" not in p.name
-                     and len(p.relative_to(RAW).as_posix().split("/")) == 2)  # 仓库根级 = repo/文件 两段
-    scope_files = raw_total - root_level
+    # G2：目标子目录 = 完整子目录前缀（robots/go2_description 与 unitree_robots/go2），
+    # robots/README.md 这类中间层文件归入"根级及中间层"桶，算式才平
+    scope_prefixes = (f"{config['s2']['urdf']['source']}/{config['s2']['urdf']['package_root']}/",
+                      f"{config['s2']['mjcf']['source']}/{config['s4']['mjcf'][0]['src_rel'].rsplit('/', 1)[0]}/")
+    scope_files = sum(1 for p in RAW.rglob("*")
+                      if p.is_file() and ".git" not in p.parts and "manifest" not in p.name
+                      and p.relative_to(RAW).as_posix().startswith(scope_prefixes))
+    root_and_mid = raw_total - scope_files  # 两仓库根级 8 + robots 中间层 1（G2 补桶）
+    excluded_scope = {e for e in excluded if e.startswith(scope_prefixes)}  # 排除项按桶归位
     add(results, "s4:coverage", "PASS" if not uncovered else "WARN",
-        f"raw 全量 {raw_total}（除 .git/manifest）= 两仓库根级 {root_level} + 目标子目录 {scope_files}；"
-        f"子目录 {scope_files} 全覆盖 = 入库 {len(rows)} + meshes 冗余 {same} + 排除 {len(excluded) - (same if redundant_ok else 0)}"
-        f"（未覆盖：{uncovered or '无'}）")
+        f"raw 全量 {raw_total}（除 .git/manifest）= 根级及中间层 {root_and_mid} + 目标子目录 {scope_files}；"
+        f"子目录 {scope_files} 全覆盖 = 入库 {len(rows)} + 排除 {len(excluded_scope)}（其中 meshes/ 冗余 {same}）"
+        f"（未覆盖：{uncovered or '无'}）——算式每行必须平（F1 教训）")
 
     # 最小复验：均指向入库新路径
     try:
@@ -228,11 +233,17 @@ def main():
                       for r in rows)
     checks = "\n".join(f"| `{r['check']}` | {r['status']} | {r['detail']} |" for r in results)
     kind_count = Counter(r["kind"] for r in rows)
+    rows_bytes = sum((MODEL / r["dest"]).stat().st_size for r in rows)
+    non_raw_bytes = total - rows_bytes
     md = (f"# S4 入库对账报告 — {config['model']}（{time.strftime('%Y-%m-%d %H:%M')}）\n\n"
           f"**物理文件口径（终审 F1 修正）**：入库物理文件 {physical} = raw 溯源件 {len(rows)}"
           f"（URDF 引用 {mesh_refs} 处 → 网格物理文件 {kind_count.get('mesh', 0)}，引用行 ≠ 文件数）"
-          f" + 质检自产件 {len(non_raw)}{non_raw}；总 {total / 1e6:.1f} MB（不含 reports/evidence/文档）。"
+          f" + 质检自产件 {len(non_raw)}{non_raw}；"
+          f"**总 {total / 1e6:.1f} MB（raw 溯源件 {rows_bytes:,} B + 质检自产件 {non_raw_bytes:,} B，G1 口径注明）**"
+          f"（不含 reports/evidence/文档）。"
           f"字节级复制，raw 未动。\n\n"
+          f"**对账即事实（R7-H1 规则）**：凡变更 `models/` 下任何文件（含质检自产件），必重跑本脚本刷新对账——"
+          f"本报告必须始终等于当前磁盘事实。\n\n"
           f"## 分类汇总\n\n" + " · ".join(f"{k} {v}" for k, v in sorted(kind_count.items()))
           + (f" · 质检自产 {len(non_raw)}" if non_raw else "") + "\n\n"
           f"## 检查矩阵\n\n| 检查项 | 结果 | 明细 |\n|---|---|---|\n{checks}\n\n"

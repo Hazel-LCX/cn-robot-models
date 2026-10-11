@@ -251,7 +251,7 @@
     {
       "check": "s4:coverage",
       "status": "PASS",
-      "detail": "raw 全量 62（除 .git/manifest）= 两仓库根级 8 + 目标子目录 54；子目录 54 全覆盖 = 入库 33 + meshes 冗余 7 + 排除 13（未覆盖：无）"
+      "detail": "raw 全量 62（除 .git/manifest）= 根级及中间层 9 + 目标子目录 53；子目录 53 全覆盖 = 入库 33 + 排除 20（其中 meshes/ 冗余 7）（未覆盖：无）——算式每行必须平（F1 教训）"
     },
     {
       "check": "s4:recheck-mjcf",
@@ -264,7 +264,7 @@
       "detail": "入库后 URDF yourdfpy 解析通过：42 links（package:// 重映射到 urdf_meshes/）"
     }
   ],
-  "total_bytes": 56124726,
+  "total_bytes": 56119567,
   "physical_files": 34,
   "non_raw": [
     "images/preview-screenshot.png"

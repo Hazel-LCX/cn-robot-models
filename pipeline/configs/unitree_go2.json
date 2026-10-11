@@ -65,6 +65,7 @@
       { "src_rel": "unitree_robots/go2/Go2.png", "dest": "images/Go2.png" }
     ],
     "excluded": [
+      { "src": "unitree_ros/robots/README.md", "why": "robots 中间层上游文档，非模型件（G2 补桶）" },
       { "src": "unitree_mujoco/unitree_robots/go2/scene_terrain.xml", "why": "地形演示件，非模型必需" },
       { "src": "unitree_mujoco/unitree_robots/go2/height_field.png", "why": "scene_terrain 专用地形图" },
       { "src": "unitree_mujoco/unitree_robots/go2/unitree_hfield.png", "why": "scene_terrain 专用地形图" },

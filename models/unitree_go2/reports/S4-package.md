@@ -1,6 +1,8 @@
-# S4 入库对账报告 — unitree_go2（2026-10-11 15:27）
+# S4 入库对账报告 — unitree_go2（2026-10-11 15:56）
 
-**物理文件口径（终审 F1 修正）**：入库物理文件 34 = raw 溯源件 33（URDF 引用 17 处 → 网格物理文件 7，引用行 ≠ 文件数） + 质检自产件 1['images/preview-screenshot.png']；总 56.1 MB（不含 reports/evidence/文档）。字节级复制，raw 未动。
+**物理文件口径（终审 F1 修正）**：入库物理文件 34 = raw 溯源件 33（URDF 引用 17 处 → 网格物理文件 7，引用行 ≠ 文件数） + 质检自产件 1['images/preview-screenshot.png']；**总 56.1 MB（raw 溯源件 55,807,233 B + 质检自产件 312,334 B，G1 口径注明）**（不含 reports/evidence/文档）。字节级复制，raw 未动。
+
+**对账即事实（R7-H1 规则）**：凡变更 `models/` 下任何文件（含质检自产件），必重跑本脚本刷新对账——本报告必须始终等于当前磁盘事实。
 
 ## 分类汇总
 
@@ -13,7 +15,7 @@ asset 16 · image 1 · mesh 7 · mjcf 2 · urdf 1 · xacro 6 · 质检自产 1
 | `s4:traceability` | PASS | 33 个 raw 源入库文件 SHA256 全部命中 raw manifest 同路径行（逐文件可溯源） |
 | `s4:mesh-split-decision` | PASS | URDF 侧 17 处引用 → 7 个物理网格（dae）vs MJCF 侧 16 个（obj），哈希交集 0 → 决策：分目录；MJCF 网格落位 mjcf/assets/（保持官方 meshdir 相对引用，不改官方一字节——§4 树中 mjcf_meshes/ 的实际形态，记录在案） |
 | `s4:dae-dir-parity` | PASS | dae/ 与 meshes/ 同名对比（R3-D3 判定，物理文件口径）：同内容 7，不同 0[]，单侧 0——meshes/ 为同内容冗余目录，不随库分发 |
-| `s4:coverage` | PASS | raw 全量 62（除 .git/manifest）= 两仓库根级 8 + 目标子目录 54；子目录 54 全覆盖 = 入库 33 + meshes 冗余 7 + 排除 13（未覆盖：无） |
+| `s4:coverage` | PASS | raw 全量 62（除 .git/manifest）= 根级及中间层 9 + 目标子目录 53；子目录 53 全覆盖 = 入库 33 + 排除 20（其中 meshes/ 冗余 7）（未覆盖：无）——算式每行必须平（F1 教训） |
 | `s4:recheck-mjcf` | PASS | 入库后 mjcf/go2.xml 编译通过：nbody=18 ngeom=56（meshdir=assets 相对结构保持） |
 | `s4:recheck-urdf` | PASS | 入库后 URDF yourdfpy 解析通过：42 links（package:// 重映射到 urdf_meshes/） |
 
@@ -57,6 +59,7 @@ asset 16 · image 1 · mesh 7 · mjcf 2 · urdf 1 · xacro 6 · 质检自产 1
 
 ## 排除清单（config s4.excluded）
 
+- `unitree_ros/robots/README.md` — robots 中间层上游文档，非模型件（G2 补桶）
 - `unitree_mujoco/unitree_robots/go2/scene_terrain.xml` — 地形演示件，非模型必需
 - `unitree_mujoco/unitree_robots/go2/height_field.png` — scene_terrain 专用地形图
 - `unitree_mujoco/unitree_robots/go2/unitree_hfield.png` — scene_terrain 专用地形图

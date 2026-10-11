@@ -35,7 +35,7 @@ S0 license核对(门) → S1 拉取 → S2 格式校验 → S3 物理体检(门:
 | S1 拉取 | 62 文件锚点锁定（ros@`5994d4fa` + mujoco@`1eb6642e`），逐文件 SHA256 | SOURCE.md §4 |
 | S2 格式校验 | **9 PASS / 0 FAIL**：URDF 42 link/41 joint、网格引用 100%、MJCF 真编译 | [S2-validation.md](models/unitree_go2/reports/S2-validation.md) |
 | S3 物理体检 | **8 PASS / 4 WARN / 0 FAIL**，零修复纯体检；质量分歧 forensics 闭环到每一克 | [S3-physics.md](models/unitree_go2/reports/S3-physics.md) |
-| S4 双格式入库 | 34 文件 / 56.2 MB（33 个 raw 溯源件 + 1 个质检截图），dae/meshes 冗余裁决 7/0 | [S4-package.md](models/unitree_go2/reports/S4-package.md) |
+| S4 双格式入库 | 34 文件 / 56.1 MB（33 溯源件 + 1 质检截图 = 56,119,567 B，与磁盘逐字节对账），dae/meshes 冗余裁决 7/0 | [S4-package.md](models/unitree_go2/reports/S4-package.md) |
 | S5 3D 预览 | 断网可开（外网请求 0），12 关节交互滑条（越限标红） | [pipeline/s5_preview/](pipeline/s5_preview/) |
 | S6 基准 | **MuJoCo 105,131 steps/s（9.5 µs/step）**，加载 56 ms，URDF 解析 4.7 ms | [S6-benchmark.md](models/unitree_go2/reports/S6-benchmark.md) |
 
