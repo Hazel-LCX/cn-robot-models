@@ -6,7 +6,7 @@
 
 | 项 | 值 |
 |---|---|
-| License | MIT（LICENSE 文件与版权行在 S7 收尾落位） |
+| License | MIT（LICENSE 已落位，含第三方声明：上游 BSD-3 随模型、three.js MIT 随 libs/） |
 | 商标声明 | Unitree / Go2 为宇树科技商标，本项目非官方、无关联、无背书（S7 必写，B3） |
 
 ## 逐模型上游
