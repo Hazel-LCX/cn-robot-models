@@ -1,0 +1,246 @@
+{
+  "model": "agibot_x2",
+  "format_source": "official",
+  "sources": [
+    {
+      "name": "agibot_x2_urdf",
+      "repo": "AgibotTech/agibot_x2_urdf",
+      "pin": "575cc6b988f976c23550e0db85aa1e5475d3652d",
+      "subdir": "X2_URDF-v1.4.0",
+      "license_path": "LICENSE",
+      "note": "M3：智元灵犀 X2 双足人形；单仓单 license（MulanPSL-2.0，R17 人工定性=可收录并立三件套先例：blob 正本+SPDX 名录+义务清单）；双版本目录仓（v1.3.0 旧版整套不入库）；R17 检查点=上游 LICENSE 为模板无逐字版权行，S7 LICENSES.md 如实写'上游未含版权主体行'并引 README 声明，不得虚构"
+    }
+  ],
+  "s2": {
+    "urdf": {
+      "source": "agibot_x2_urdf",
+      "rel": "X2_URDF-v1.4.0/X2-Ultra.urdf",
+      "package": "X2_URDF-v1.4.0",
+      "package_root": "X2_URDF-v1.4.0",
+      "ref_style": "relative",
+      "note": "S0 实测：72 处引用 './meshes/x.stl' 显式相对前缀（Lite3 同款第四变体确认，relative 分支 Path 规范化兼容）；MJCF meshdir='meshes/' 相对引用"
+    },
+    "mjcf": {
+      "source": "agibot_x2_urdf",
+      "model_rel": "X2_URDF-v1.4.0/X2-Ultra.xml",
+      "scene_rel": "X2_URDF-v1.4.0/X2-Ultra.xml"
+    },
+    "notes": {}
+  },
+  "s3": {
+    "official": {
+      "mass_kg": 39.0,
+      "tolerance": 0.1,
+      "evidence": "官网原文「重量 约35kg（X2青春版）/约39kg（X2旗舰版）」（www.agibot.com.cn/products/X2 产品参数表，2026-10-11 抓取——该页静态 HTML 内嵌参数表全文可提取，evidence/official-x2-spec-page.html 原件；与 Lite3 SPA 页不同，curl 直得无需浏览器截图）；锚定口径=旗舰版（X2-Ultra v1.4.0=焕新旗舰，官方 README「upgraded motors, reinforced structure」）。顺带实证：身高约 1.31m、主动自由度 25（青春）/30（旗舰）、关节峰值扭矩 120N·m（双版本同——S3 effort 上限基准）、电池约 500Wh 支持换电、负载最大 3kg（特定姿态）",
+      "caliber": "官网参数表「重量 约39kg」未注明含电池；包装清单中电池单独列示（换电设计）——整机重量口径可能不含电池，严格口径不可比，总量对比仅作 sanity（M0/M1/M2 同法）；URDF/MJCF 均无电池 link"
+    },
+    "sanity": {
+      "ratio_range": [
+        0.005,
+        0.5
+      ],
+      "axis_tolerance": 1e-06,
+      "mass_diff_warn": 0.02
+    },
+    "cross_alias": {
+      "base": "pelvis"
+    },
+    "notes": {
+      "joint_range": "注：官网未公布逐关节限位——限位对账无官网基准，纯体检+披露（Lite3 同口径）。对账点披露：官网主动自由度 30（颈 1+双臂 7×2+腰 3+双腿 6×2）vs URDF 31 revolute = 30 + head_pitch（URDF 头部 2 自由度：pitch+yaw，官网表「颈部自由度 1」）——多 1 头部俯仰自由度，披露不修；MJCF nu=31 含头双关节全执行",
+      "upstream_png": "v1.4.0 目录无图片资产（README 无渲染图）——S3 C1 模板 png 提示不适用",
+      "effort_benchmark": "官网「关节峰值扭矩 120N·m」作 URDF effort 上限 sanity 基准（关节级扭矩官网未公布，只验上限合理性不逐值对账）"
+    }
+  },
+  "s4": {
+    "urdf": [
+      {
+        "src_rel": "X2_URDF-v1.4.0/X2-Ultra.urdf",
+        "dest": "urdf/X2-Ultra.urdf"
+      }
+    ],
+    "urdf_meshes": {
+      "package": "X2_URDF-v1.4.0",
+      "dest_root": "urdf",
+      "note": "relative（./ 前缀变体，G1/Lite3 同构）：meshes/ 与 urdf 同目录；65 源件按引用闭包 40（25 件为未收变体共用网格，G1 共享池先例）"
+    },
+    "mjcf": [
+      {
+        "src_rel": "X2_URDF-v1.4.0/X2-Ultra.xml",
+        "dest": "mjcf/X2-Ultra.xml"
+      }
+    ],
+    "mjcf_assets": {
+      "src_rel": "X2_URDF-v1.4.0/meshes",
+      "dest": "mjcf/meshes",
+      "mode": "closure",
+      "note": "X2 MJCF 用 meshdir='meshes/'+裸文件名（Lite3 是 file 全路径无 meshdir）——closure 的 src 解析与 dest 拼接都以 {dest}/{file} 落位，src_rel 指到 meshes/、dest 配 mjcf/meshes 即与官方 meshdir 结构逐字节兼容，XML 零改动"
+    },
+    "images": [
+      {
+        "source": "agibot_x2_urdf",
+        "src_rel": "X2_URDF-v1.4.0/visual/x2_ultra_new_version.png",
+        "dest": "images/x2_ultra_new_version.png",
+        "why": "官方渲染图（1689×1063 RGBA）= 本库锚定配置 X2-Ultra 焕新版官方图，模型页配图"
+      }
+    ],
+    "recheck": {
+      "mjcf": "mjcf/X2-Ultra.xml",
+      "urdf": "urdf/X2-Ultra.urdf",
+      "urdf_mesh_dir": "urdf",
+      "note": "relative（./ 前缀）——meshes/ 与 urdf 同目录"
+    },
+    "excluded": [
+      {
+        "src": "agibot_x2_urdf/X2_URDF-v1.4.0/X2-EDU.urdf",
+        "why": "EDU 教育版配对成员——R17 锚点=X2-Ultra，不入库只记录"
+      },
+      {
+        "src": "agibot_x2_urdf/X2_URDF-v1.4.0/X2-EDU.xml",
+        "why": "EDU 教育版配对成员——R17 锚点=X2-Ultra，不入库只记录"
+      },
+      {
+        "src": "agibot_x2_urdf/X2_URDF-v1.4.0/X2-EDU_simple_collision.urdf",
+        "why": "简化碰撞变体，不入库只记录"
+      },
+      {
+        "src": "agibot_x2_urdf/X2_URDF-v1.4.0/X2-Ultra_omnihand.urdf",
+        "why": "灵巧手变体 URDF-only 无 MJCF 配对，不入库只记录"
+      },
+      {
+        "src": "agibot_x2_urdf/X2_URDF-v1.4.0/X2-Ultra_omnipicker.urdf",
+        "why": "夹爪变体 URDF-only 无 MJCF 配对，不入库只记录"
+      },
+      {
+        "src": "agibot_x2_urdf/X2_URDF-v1.4.0/X2-Ultra_simple_collision.urdf",
+        "why": "简化碰撞变体，不入库只记录"
+      },
+      {
+        "src": "agibot_x2_urdf/X2_URDF-v1.4.0/scene.xml",
+        "why": "场景件非机器人模型，不入库只记录"
+      },
+      {
+        "src": "agibot_x2_urdf/X2_URDF-v1.4.0/README.md",
+        "why": "子目录内说明文档（非模型资产；根级 README/官方声明已走 evidence 流程）"
+      },
+      {
+        "src": "agibot_x2_urdf/X2_URDF-v1.4.0/README_CN.md",
+        "why": "子目录内说明文档（非模型资产）"
+      },
+      {
+        "src": "agibot_x2_urdf/X2_URDF-v1.4.0/meshes/meshes",
+        "why": "上游杂件：内容为单字节 '.'（0x2e，xxd 实证）——上游打包事故残留非模型资产；系正经上游 blob（blob-parity 在册），不入库只留痕"
+      },
+      {
+        "src": "agibot_x2_urdf/X2_URDF-v1.4.0/meshes/base_link.stl",
+        "why": "变体网格池：仅被未收录变体（X2-EDU/omnihand/omnipicker/simple_collision 的手/腕/腿变体）引用，X2-Ultra 配对不引用——G1 共享池同构，闭包外不入库"
+      },
+      {
+        "src": "agibot_x2_urdf/X2_URDF-v1.4.0/meshes/finger_abad.stl",
+        "why": "变体网格池：仅被未收录变体（X2-EDU/omnihand/omnipicker/simple_collision 的手/腕/腿变体）引用，X2-Ultra 配对不引用——G1 共享池同构，闭包外不入库"
+      },
+      {
+        "src": "agibot_x2_urdf/X2_URDF-v1.4.0/meshes/finger_dip.stl",
+        "why": "变体网格池：仅被未收录变体（X2-EDU/omnihand/omnipicker/simple_collision 的手/腕/腿变体）引用，X2-Ultra 配对不引用——G1 共享池同构，闭包外不入库"
+      },
+      {
+        "src": "agibot_x2_urdf/X2_URDF-v1.4.0/meshes/finger_pip.stl",
+        "why": "变体网格池：仅被未收录变体（X2-EDU/omnihand/omnipicker/simple_collision 的手/腕/腿变体）引用，X2-Ultra 配对不引用——G1 共享池同构，闭包外不入库"
+      },
+      {
+        "src": "agibot_x2_urdf/X2_URDF-v1.4.0/meshes/l_palm.stl",
+        "why": "变体网格池：仅被未收录变体（X2-EDU/omnihand/omnipicker/simple_collision 的手/腕/腿变体）引用，X2-Ultra 配对不引用——G1 共享池同构，闭包外不入库"
+      },
+      {
+        "src": "agibot_x2_urdf/X2_URDF-v1.4.0/meshes/l_thumb_roll.stl",
+        "why": "变体网格池：仅被未收录变体（X2-EDU/omnihand/omnipicker/simple_collision 的手/腕/腿变体）引用，X2-Ultra 配对不引用——G1 共享池同构，闭包外不入库"
+      },
+      {
+        "src": "agibot_x2_urdf/X2_URDF-v1.4.0/meshes/left_wrist_roll_extend_link.stl",
+        "why": "变体网格池：仅被未收录变体（X2-EDU/omnihand/omnipicker/simple_collision 的手/腕/腿变体）引用，X2-Ultra 配对不引用——G1 共享池同构，闭包外不入库"
+      },
+      {
+        "src": "agibot_x2_urdf/X2_URDF-v1.4.0/meshes/left_wrist_roll_link10.stl",
+        "why": "变体网格池：仅被未收录变体（X2-EDU/omnihand/omnipicker/simple_collision 的手/腕/腿变体）引用，X2-Ultra 配对不引用——G1 共享池同构，闭包外不入库"
+      },
+      {
+        "src": "agibot_x2_urdf/X2_URDF-v1.4.0/meshes/narrow1_Link.stl",
+        "why": "变体网格池：仅被未收录变体（X2-EDU/omnihand/omnipicker/simple_collision 的手/腕/腿变体）引用，X2-Ultra 配对不引用——G1 共享池同构，闭包外不入库"
+      },
+      {
+        "src": "agibot_x2_urdf/X2_URDF-v1.4.0/meshes/narrow2_Link.stl",
+        "why": "变体网格池：仅被未收录变体（X2-EDU/omnihand/omnipicker/simple_collision 的手/腕/腿变体）引用，X2-Ultra 配对不引用——G1 共享池同构，闭包外不入库"
+      },
+      {
+        "src": "agibot_x2_urdf/X2_URDF-v1.4.0/meshes/narrow3_Link.stl",
+        "why": "变体网格池：仅被未收录变体（X2-EDU/omnihand/omnipicker/simple_collision 的手/腕/腿变体）引用，X2-Ultra 配对不引用——G1 共享池同构，闭包外不入库"
+      },
+      {
+        "src": "agibot_x2_urdf/X2_URDF-v1.4.0/meshes/narrow_loop_Link.stl",
+        "why": "变体网格池：仅被未收录变体（X2-EDU/omnihand/omnipicker/simple_collision 的手/腕/腿变体）引用，X2-Ultra 配对不引用——G1 共享池同构，闭包外不入库"
+      },
+      {
+        "src": "agibot_x2_urdf/X2_URDF-v1.4.0/meshes/r_palm.stl",
+        "why": "变体网格池：仅被未收录变体（X2-EDU/omnihand/omnipicker/simple_collision 的手/腕/腿变体）引用，X2-Ultra 配对不引用——G1 共享池同构，闭包外不入库"
+      },
+      {
+        "src": "agibot_x2_urdf/X2_URDF-v1.4.0/meshes/r_thumb_roll.stl",
+        "why": "变体网格池：仅被未收录变体（X2-EDU/omnihand/omnipicker/simple_collision 的手/腕/腿变体）引用，X2-Ultra 配对不引用——G1 共享池同构，闭包外不入库"
+      },
+      {
+        "src": "agibot_x2_urdf/X2_URDF-v1.4.0/meshes/right_wrist_roll_extend_link.stl",
+        "why": "变体网格池：仅被未收录变体（X2-EDU/omnihand/omnipicker/simple_collision 的手/腕/腿变体）引用，X2-Ultra 配对不引用——G1 共享池同构，闭包外不入库"
+      },
+      {
+        "src": "agibot_x2_urdf/X2_URDF-v1.4.0/meshes/right_wrist_roll_link2.stl",
+        "why": "变体网格池：仅被未收录变体（X2-EDU/omnihand/omnipicker/simple_collision 的手/腕/腿变体）引用，X2-Ultra 配对不引用——G1 共享池同构，闭包外不入库"
+      },
+      {
+        "src": "agibot_x2_urdf/X2_URDF-v1.4.0/meshes/thumb_abad.stl",
+        "why": "变体网格池：仅被未收录变体（X2-EDU/omnihand/omnipicker/simple_collision 的手/腕/腿变体）引用，X2-Ultra 配对不引用——G1 共享池同构，闭包外不入库"
+      },
+      {
+        "src": "agibot_x2_urdf/X2_URDF-v1.4.0/meshes/thumb_dip.stl",
+        "why": "变体网格池：仅被未收录变体（X2-EDU/omnihand/omnipicker/simple_collision 的手/腕/腿变体）引用，X2-Ultra 配对不引用——G1 共享池同构，闭包外不入库"
+      },
+      {
+        "src": "agibot_x2_urdf/X2_URDF-v1.4.0/meshes/thumb_mcp.stl",
+        "why": "变体网格池：仅被未收录变体（X2-EDU/omnihand/omnipicker/simple_collision 的手/腕/腿变体）引用，X2-Ultra 配对不引用——G1 共享池同构，闭包外不入库"
+      },
+      {
+        "src": "agibot_x2_urdf/X2_URDF-v1.4.0/meshes/thumb_pip.stl",
+        "why": "变体网格池：仅被未收录变体（X2-EDU/omnihand/omnipicker/simple_collision 的手/腕/腿变体）引用，X2-Ultra 配对不引用——G1 共享池同构，闭包外不入库"
+      },
+      {
+        "src": "agibot_x2_urdf/X2_URDF-v1.4.0/meshes/torso_lite_link.stl",
+        "why": "变体网格池：仅被未收录变体（X2-EDU/omnihand/omnipicker/simple_collision 的手/腕/腿变体）引用，X2-Ultra 配对不引用——G1 共享池同构，闭包外不入库"
+      },
+      {
+        "src": "agibot_x2_urdf/X2_URDF-v1.4.0/meshes/wide1_Link.stl",
+        "why": "变体网格池：仅被未收录变体（X2-EDU/omnihand/omnipicker/simple_collision 的手/腕/腿变体）引用，X2-Ultra 配对不引用——G1 共享池同构，闭包外不入库"
+      },
+      {
+        "src": "agibot_x2_urdf/X2_URDF-v1.4.0/meshes/wide2_Link.stl",
+        "why": "变体网格池：仅被未收录变体（X2-EDU/omnihand/omnipicker/simple_collision 的手/腕/腿变体）引用，X2-Ultra 配对不引用——G1 共享池同构，闭包外不入库"
+      },
+      {
+        "src": "agibot_x2_urdf/X2_URDF-v1.4.0/meshes/wide3_Link.stl",
+        "why": "变体网格池：仅被未收录变体（X2-EDU/omnihand/omnipicker/simple_collision 的手/腕/腿变体）引用，X2-Ultra 配对不引用——G1 共享池同构，闭包外不入库"
+      },
+      {
+        "src": "agibot_x2_urdf/X2_URDF-v1.4.0/meshes/wide_loop_Link.stl",
+        "why": "变体网格池：仅被未收录变体（X2-EDU/omnihand/omnipicker/simple_collision 的手/腕/腿变体）引用，X2-Ultra 配对不引用——G1 共享池同构，闭包外不入库"
+      }
+    ],
+    "note": "v1.3.0 整套不入库由 s1 sparse-checkout 天然隔离（subdir 只含 v1.4.0）；R17 口径小瑕备案：x2_fist 仅存在于 v1.3.0，S0 不入库清单单列冗余（无害），S1 报告按此理解"
+  },
+  "s5": {
+    "viewport": "humanoid",
+    "note": "预览视口体型档位（v5 config 驱动键）：双足人形 1.31m 用人形机位；G1 为 v4 硬编码先例保持回退兼容"
+  },
+  "s6": {
+    "warmup_steps": 100,
+    "bench_steps": 10000,
+    "repeats": 5,
+    "scenario": "固定 qpos0、纯重力、无控制器（人形站立初始姿态，测引擎步进吞吐，不掺控制变量——细节 S6 前按双足拓扑校准）"
+  }
+}

@@ -1,27 +1,27 @@
 # REVIEW-REQUEST — 送审材料
 
 > 审核台审毕请在本文件顶部标注"已审 + 日期"，结论追加进 REVIEW.md。历次送审全文可在 git 历史回溯。
-> **已审 2026-10-11 · R16 结论：协议⑤完成，M2 含发布全流程闭环（三源 `8a13023`、总数 45=基数 36+9、上线链 9 条 ✓、R13 专项检查过=R15 节确随队、N2 备案首执行在案）。R16 本条+回执 commit `0529d1d` 一并 push 收尾（R13 先例，无需新送审），push 后回维护态。详见 REVIEW.md R16。**
-> 上一次送审已于 2026-10-11 审毕：**R15 = 协议⑤ M2 push 放行**（S7 验收通过 + S3 FAIL 处置立先例 + N2 立规）。
+> **已审 2026-10-11 · R17 结论：协议② M3 选型批准——智元灵犀 X2（v1.4.0 X2-Ultra 配对）+ MulanPSL-2.0 定性=可收录。人工定性先例成立：blob 三方逐位一致（`adf05533`）+ SPDX 活源 `isOsiApproved=true` + 义务清单核对无误；NOASSERTION=检测器盲区坐实。锚点+不入库清单确认（x2_fist 单列冗余=无害口径小瑕）；A4 路径②接受、路径①阴性审核台亲手复核成立；pipeline 零 diff 实测。S1 即刻解禁；S7 新检查点=无逐字版权行可引、不得虚构。详见 REVIEW.md R17。**
+> 上一次送审已于 2026-10-11 审毕：**R16 = 协议⑤完成，M2 含发布全流程闭环**（R16 台账+回执 `0529d1d` 已 push，远端 `9b20289`）。
 
-【送审类型】**协议②（M3 选型定案 + S0 license 定性结论确认）**——MulanPSL-2.0 定性即 R16 预设的前置考题，本件正面接题；触发即停手，S1 未动。
+【送审类型】**协议⑤（M3 全量 push 公开仓库）**——S1–S7 + R17 台账一并上线申请 + S7 验收 + 新发现处置确认。
 
-【背景：在做什么】M2 收官后用户令"继续"，启动 **M3（第四个模型）**。选型侦察按 M1/M2 先例做全：三路线候选实测（GitHub API + 官方域四站 + SPDX 官方名录，原始数据在 `workspace/m3_recon/`，gitignore 不入库）。
+【背景：在做什么】R17 解禁后 M3 全链一气呵成（S1→S7），每步数字可重放：
 
-**三路线侦察事实（全程序化取证）**：
-
-- **路线 A 云深处同仓多机型**（DR02/M20/S10/X30）：同仓 BSD-3 已在 M2 定性（S0 最省）；URDF 均为 SolidWorks 导出 + 内嵌 mujoco compiler 块，MJCF 兄弟件同在（6 个 URDF∩MJCF 新配对）；但同仓同风格同格式，管道新覆盖少。
-- **路线 B 加速进化跨仓配对**：`BoosterRobotics` 实为**个人账户非 org**（9 仓）——M1 期 org 扫描失败真因即此（记 AGENT-LAB L11）；**关键新事实：`booster_gym`（Apache-2.0，方括号版权行骗过检测器显 NOASSERTION）内 resources/T1/ 已有 URDF↔MJCF 同仓配对**——"跨仓配对"非必需；若坚持跨仓（assets URDF 正本 + gym MJCF）则是 S1/S4 双仓双 license 三锚结构性扩展。T2/K1 等其余 10 URDF 无 MJCF。
-- **路线 C 智元**：`genie_sim`（NOASSERTION，平台仓非模型库）与 `genie_sim_robot_model`（Apache-2.0，**仅 xacro 源 0 成品 URDF**——收源生成为派生，撞"只收官方发布件"红线精神）均否决；**`agibot_x2_urdf` 可行**：NOASSERTION 真身 = **木兰宽松许可证第 2 版（MulanPSL-2.0）**，URDF↔MJCF 同目录直接配对（v1.4.0），STL 网格。
-- **MulanPSL-2.0 定性核心证据**：SPDX 官方名录 740 项程序化命中——`MulanPSL-2.0`，`isOsiApproved: True`（OSI 认证）、未弃用；官方 README 明文声明采用；原文快照 blob `adf05533…` hash-object 比对 MATCH。
+- **S1**：直连命中锚点 `575cc6b9`，raw 82 件/125.0 MB，**blob-parity 门 78 件失配 0**；license 快照改名对齐管道惯例后 A2 MATCH（`d5777bea…`）；**审核台实测数（72 引/40 唯一/39 link/38 joint/65 stl）独立复现逐项全中**，引用↔磁盘双向对账零缺失零大小写失配。
+- **S2**：10/0/0——39 link/38 joint（根=pelvis）、40 网格 trimesh 全读通；MJCF 编译 nbody=33/nq=38/**nu=31** 与 URDF 31 revolute 逐数自洽。
+- **S3**：8/4/0 无 FAIL——两侧质量逐 body **32/32 完全一致**（44.801 kg 同值）、31 关节轴逐分量差 0；官网参数表静态 HTML 直得（39kg 旗舰版口径/1.31m/120 N·m effort 基准）；WARN×4 全有处置（总量 +14.9% 口径披露/传感器座无惯量/碰撞覆盖/MJCF 同值）。
+- **S4**：FAIL 0 / WARN 0——**83 溯源件/158.0 MB 三锚全过**；唯一源 43（40 网格双侧落位保持官方 meshdir 结构，MJCF `meshdir`+裸文件名首例**零改码兼容**）+ excluded 35 逐件带 why（含上游杂件 `meshes/meshes`＝1 字节 "."，xxd 实证留痕）；算式按源件口径平账（78=43+35）。
+- **S5**：X2 走 `s5.viewport="humanoid"` 新键；40 STL/31 滑条/断网自检 0；go2/lite3 数字+画面回归全过（go2 包围盒 0.334=L10 完整基线逐位一致）。**质检发现＝跨格式 visual 缩放分歧**（详见决策点 3）。
+- **S6**：39,086 steps/s（25.6 µs/step，展幅 4.5%）——四模型序列第四点，跨模型不可比再实证。
+- **S7**：模型页全文（披露 5 节）+ LICENSES.md MulanPSL-2.0 行（**R17 检查点执行：版权主体行缺失如实注记、引 README 官方声明、零虚构**；双 license 并存口径一致）+ 顶层 README 四处同步 + 本库 LICENSE 第三方声明层全厂商化（**顺手修 M0 时代欠账：该层此前只提宇树，M2 云深处商标未同步**）。
 
 【决策点】
 
-1. **M3 选型定案 = 智元灵犀 X2（AgibotTech/agibot_x2_urdf）**——确认或改选路线 A/B；
-2. **MulanPSL-2.0 定性结论 = 可收录**——确认或推翻（红线："license 不明=不收录"的正确执行是拿原文定性，非跟随 GitHub 检测器空白）；
-3. **锚点 = v1.4.0 X2-Ultra 配对** + 不入库清单（v1.3.0 整套 / X2-EDU 配对 / omnihand+omnipicker 手部变体 / simple_collision / scene.xml / x2_fist）——确认或改锚 EDU；
-4. **A4 强度如实分层**：路径②成立（org 官方字段自指 agibot.com + 23 仓生态互证 + README_CN 官方声明 + 官网页脚生态仓直链含 Agibot-World 品牌互指），**路径①阴性**（官网→AgibotTech org 直链四站探测未命中：agibot.com.cn / open.agibot.com / openloong.org.cn / agibot.com）——强度低于 M2、与 M1 相当，S0 收尾补强方向 = 官网新闻/公告页深挖。
+1. **协议⑤ push 放行**：本地领先 **2 commit**（`23c165d` 协议②/S0 + `105b8f7` S1–S7+R17 台账+本件；rev-list origin/main..HEAD 实测，回执时照例三源复核）。执行照旧：首选 a（用户亲自 push），b 可接受需回执。
+2. **S7 验收**：披露链是否达 M0 E1 / M1 / M2 同等标准——本模型新增强制项＝R17 版权行检查点（如实注记）执行情况。
+3. **新发现处置确认（本库首个跨格式 visual 分歧）**：品牌徽标件 `agibot.stl`（"agibot" 字母飘带，native 3.959×0.809×0.389 m）**URDF 侧 1:1 无 scale**（rpy 90° 旋转后横贯 ±2 m，包围盒撑至 1.519 m/3.959 m）vs **MJCF 侧 `scale="0.03 0.05 0.11"`（全场唯一带 scale mesh）+半透明黑**收为 12 cm 躯干徽标。交叉验证：剔除该件后机身包围盒 **1.319 m ↔ 官网"身高约 1.31 m"逐位吻合**。处置＝**零修复官方件 + 预览如实渲染（默认视图截图存档）+ 机身特写质检对比图 + 下游影响提示（URDF 用户注意包围盒失真，剔除/缩放属派生走协议③）+ 模型页披露居首**——请裁定是否成立（对照 R15 FAIL 处置先例口径）。
 
-【倾向 + 理由】**推荐四项全按上述定案**。理由：①X2 路线正面接审核台预设考题——S0 门要在 GitHub 检测器失效处拿出程序化证据链（原文快照 → SPDX 名录核验 → 义务清单 → 兼容性分析），这是"质检工程含金量"的最硬一集，且智元=第三家厂商+国产开源许可证第一例，与"国产机器人仿真模型库"主题同频；②管道预判零结构改动：单仓、Lite3 同款 `./meshes/` 显式前缀（72 引实测）、MJCF meshdir 相对引用（resolve_ref 已覆盖）、STL 网格——"加 config 即加模型"范围内；③跨仓配对（路线 B）是 S1/S4 结构性专项（双仓双 license 三锚），值得单独里程碑专心做，建议 M4；同仓多机型（路线 A）是随时可做的填充件，建议 M4+/维护态演示"一站式覆盖"叙事用。
+【倾向 + 理由】三项全按上述推进。理由：①S1–S7 数字全链可重放且与审核台 R17 实测互证（72/40/39/38/65 逐项全中），三锚 83/83；②S7 的 MulanPSL 行严格按 R17 检查点执行（"上游 LICENSE 未含版权主体行"如实注记 + README 声明引证，未虚构任何版权行）；③跨格式分歧是"质检价值"的又一直接展示件（上游两格式口径不一，URDF 用户会在不知情下得到 4 m 幽灵几何）——处置沿用 R15 FAIL 先例四件套（定性+披露+下游提示+零修复），且与 Lite3 案不同：本件非 FAIL 级（引擎编译/物理对账全过），定级 WARN 披露。N2 备案：本会话 pipeline/ 3 处通用改动（s4 coverage 源件口径/preview s5.viewport 键/index.html v6）当日 DEVLOG 备案行已记，零模型特异。
 
-【文件路径】送审核心：`models/agibot_x2/SOURCE.md`（状态=待审）+ `LICENSE-upstream-mulanpsl2.txt`（blob 正本快照）+ `evidence/` ×6（org/repo/license 端点/HEAD commit/SPDX 记录/README 官方声明）。侦察原件（不入库）：`workspace/m3_recon/`（scan 脚本 ×3 + 四仓树/license JSON + 四站 HTML）。管道 diff=0（本会话零改码）。
+【文件路径】送审核心：`models/agibot_x2/`（README 模型页 + SOURCE.md + reports/×5 + evidence×7 + LICENSE-upstream 快照 + images/双截图）+ `pipeline/configs/agibot_x2.json` + LICENSES.md / 顶层 README / LICENSE（第三方层）修订 + DEVLOG 会话 20（含 N2 备案行）。侦察件 `workspace/m3_recon/` 不入库。

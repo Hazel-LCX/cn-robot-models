@@ -3,7 +3,7 @@
 > **这不是模型收集站。** 这是一条可复现的开源仿真模型**质检管道**：
 > license 核对 → 拉取 → 格式校验 → 物理体检 → 双格式入库 → 在线预览 → 基准 → 质检报告。
 > 模型库是管道的副产品，**每一步的检查报告本身就是产品**。
-> 已收录：宇树 Go2（M0 质检样板）· 宇树 G1（M1 · 人形）· 云深处 Lite3（M2 · 异厂首录）——官方双源 URDF/MJCF，BSD-3-Clause。
+> 已收录：宇树 Go2（M0 质检样板）· 宇树 G1（M1 · 人形）· 云深处 Lite3（M2 · 异厂首录）· 智元灵犀 X2（M3 · 国产开源许可证首例）——官方双源 URDF/MJCF（BSD-3-Clause / MulanPSL-2.0）。
 
 ## 为什么是"质检管道"而不是"模型库"
 
@@ -15,7 +15,8 @@
 - 如果体检发现分歧（M0 发现 calf 质量分歧，M1 发现更多——见各自模型页披露章节）：
   [Go2 · calf 质量/hip 限位](models/unitree_go2/README.md#-已知分歧披露质检的一部分) ·
   [G1 · 官方文件名与自由度不符（g1_23dof.xml 实为 29 关节，两格式动作空间不可互换）/ torso−1.28kg 网格证据链](models/unitree_g1/README.md#-已知分歧披露质检的一部分) ·
-  [Lite3 · 四足端零惯量占位（本库首个 FAIL 级发现）/ MJCF mesh 重复定义](models/deeprobotics_lite3/README.md#-已知分歧披露质检的一部分)。
+  [Lite3 · 四足端零惯量占位（本库首个 FAIL 级发现）/ MJCF mesh 重复定义](models/deeprobotics_lite3/README.md#-已知分歧披露质检的一部分) ·
+  [X2 · 跨格式 visual 缩放分歧（品牌徽标件 URDF 1:1 vs MJCF scale 0.03——URDF 侧 4 m 幽灵徽标撑爆包围盒）](models/agibot_x2/README.md#-已知分歧披露质检的一部分)。
 - 如果体检全绿：价值落在"管道可复现 + 双格式对账 + 基准数字"——同样的成立。
 
 ## 管道
@@ -67,6 +68,18 @@ S0 license核对(门) → S1 拉取 → S2 格式校验 → S3 物理体检(门:
 | S5 3D 预览 | 29 件 STL 统一中性着色（如实标注），包围盒顶 1.323 m ↔ 官网 1320 mm 吻合；**预览页 v4 config 驱动** | [pipeline/s5_preview/](pipeline/s5_preview/) |
 | S6 基准 | **MuJoCo 50,809 steps/s（19.7 µs/step）**，加载 102.8 ms，展幅 2.3% | [S6-benchmark.md](models/unitree_g1/reports/S6-benchmark.md) |
 
+### M3 · 智元灵犀 X2（双足人形 · 国产开源许可证首例 · 2026-10-11）
+
+| 步骤 | 结果 | 报告 |
+|---|---|---|
+| S0 license 门 | **MulanPSL-2.0 人工定性=可收录（R17）**——GitHub NOASSERTION=检测器盲区，按原文定性三件套（blob `adf05533` + SPDX 名录 OSI 认证 + 义务清单），立为本库先例；版权主体行缺失如实注记不虚构 | [SOURCE.md](models/agibot_x2/SOURCE.md) |
+| S1 拉取 | 82 文件锚点锁定（`575cc6b9`），**blob-parity 门 78 件失配 0**（K2 门第二次实战全绿）；审核台实测数（72 引/40 唯一/39 link/38 joint/65 stl）独立复现逐项全中 | SOURCE.md / S1-fetch.md |
+| S2 格式校验 | **10 PASS / 0 FAIL**：URDF 39 link/38 joint（根=pelvis）、72 处引用（`./meshes/` 第四形态确认）全解析 + 大小写失配 0、MJCF 编译 nq=38/nu=31 与 URDF 31 revolute 逐数自洽 | [S2-validation.md](models/agibot_x2/reports/S2-validation.md) |
+| S3 物理体检 | **8 PASS / 4 WARN / 0 FAIL**：两侧质量逐 body 32/32 全一致（44.801 kg 同值，vs 官网 39kg +14.9% 口径披露）、31 关节轴逐分量差 0、effort 基准=官网 120 N·m | [S3-physics.md](models/agibot_x2/reports/S3-physics.md) |
+| S4 双格式入库 | **83 溯源件 / 158.0 MB 三锚全过** + 2 质检截图；唯一源 43（40 网格双侧落位保持官方 meshdir 结构，MJCF `meshdir`+裸文件名首例零改码兼容）+ excluded 35 逐件带 why | [S4-package.md](models/agibot_x2/reports/S4-package.md) |
+| S5 3D 预览 | 31 关节滑条（含头部双关节）；**质检发现：品牌徽标件 agibot.stl URDF 1:1 vs MJCF scale 0.03 跨格式分歧**——URDF 侧 4 m 幽灵 logo 撑爆包围盒，剔除后机身 1.319 m ↔ 官网 1.31 m 吻合（披露 + 双截图，零修复） | [pipeline/s5_preview/](pipeline/s5_preview/) |
+| S6 基准 | **MuJoCo 39,086 steps/s（25.6 µs/step）**，加载 454.5 ms，展幅 4.5%（四模型序列第四点，跨模型不可比再实证） | [S6-benchmark.md](models/agibot_x2/reports/S6-benchmark.md) |
+
 ## 快速开始
 
 **在线预览（零依赖，断网可用）**
@@ -76,6 +89,7 @@ python -m http.server 8130
 # 浏览器打开 http://127.0.0.1:8130/pipeline/s5_preview/index.html                 # Go2
 # 或            http://127.0.0.1:8130/pipeline/s5_preview/index.html?model=unitree_g1           # G1（人形）
 # 或            http://127.0.0.1:8130/pipeline/s5_preview/index.html?model=deeprobotics_lite3  # Lite3（云深处四足）
+# 或            http://127.0.0.1:8130/pipeline/s5_preview/index.html?model=agibot_x2            # X2（智元人形；默认视图含上游徽标件——见模型页披露）
 ```
 
 **MuJoCo 查看 / 加载**
@@ -108,11 +122,11 @@ python pipeline/s6_bench.py unitree_g1      # 基准
 ## License（双层结构）
 
 - **本库**：MIT（[LICENSE](LICENSE)）。
-- **models/ 内上游文件**：属再分发，BSD-3-Clause 义务随文件走——上游 license 原文随模型入库
-  （[models/unitree_go2/LICENSE-upstream-*.txt](models/unitree_go2/)），索引见 [LICENSES.md](LICENSES.md)。
+- **models/ 内上游文件**：属再分发，上游 license 义务随文件走（BSD-3-Clause / MulanPSL-2.0，逐模型见 [LICENSES.md](LICENSES.md)）
+  ——上游 license 原文随模型入库（[models/unitree_go2/LICENSE-upstream-*.txt](models/unitree_go2/)）。
 - `pipeline/s5_preview/libs/` 内 vendor 的 three.js（MIT）随附其原版 LICENSE。
 
-**商标声明**：Unitree / Go2 / G1 为宇树科技（杭州宇树科技）商标，Deep Robotics / 绝影 / Lite3 为云深处科技商标；本项目非官方、无关联、无背书。
+**商标声明**：Unitree / Go2 / G1 为宇树科技（杭州宇树科技）商标，Deep Robotics / 绝影 / Lite3 为云深处科技商标，AgiBot / 灵犀 X2 为智元机器人商标；本项目非官方、无关联、无背书。
 
 ## 目录结构
 

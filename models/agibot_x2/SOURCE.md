@@ -1,7 +1,7 @@
 # SOURCE — agibot_x2 来源与 License 核对记录（S0 产物）
 
 > **状态：待审核台确认（协议②送审中，2026-10-11）——S0 license 门未关闭，S1 未启动。**
-> 核对：写码工作台 · 2026-10-11 · 取证方式 = GitHub API + 官方域四站实测 + SPDX 官方名录程序化核验；M3 选型背景与三路线对比见 REVIEW-REQUEST.md（本次送审件）。
+> 核对：写码工作台 · 2026-10-11 · 取证方式 = GitHub API + 官方域四站实测 + SPDX 官方名录程序化核验；M3 选型背景与三路线对比见 REVIEW-REQUEST.md（本次送审件）。**S1 起快照改名对齐管道惯例 `LICENSE-upstream-<name>.txt`（s1 A2 复核路径），字节不变。**
 
 ## 1. 数据源（单仓双格式 + 双版本目录）
 
@@ -26,13 +26,13 @@
 
 | 仓库 | License | 版权方 | 原文快照 |
 |---|---|---|---|
-| AgibotTech/agibot_x2_urdf（整仓单 license，子目录无独立 LICENSE——API license 端点 + 树扫描双证） | **MulanPSL-2.0**（木兰宽松许可证，第 2 版） | 智元机器人（AgibotTech org 官方主体；许可模板无逐文件版权行，S7 LICENSES.md 措辞届时一并送审确认） | `LICENSE-upstream-mulanpsl2.txt`（6752 B，blob `adf055335332c2223e5aadc740682b3ba6e4ebab`，hash-object 比对 MATCH） |
+| AgibotTech/agibot_x2_urdf（整仓单 license，子目录无独立 LICENSE——API license 端点 + 树扫描双证） | **MulanPSL-2.0**（木兰宽松许可证，第 2 版） | 智元机器人（AgibotTech org 官方主体；许可模板无逐文件版权行，S7 LICENSES.md 措辞届时一并送审确认） | `LICENSE-upstream-agibot_x2_urdf.txt`（6752 B，blob `adf055335332c2223e5aadc740682b3ba6e4ebab`，hash-object 比对 MATCH） |
 
 **定性论证（本条即协议②送审的 license 定性考题）**：
 
 1. **GitHub 端点显示 NOASSERTION ≠ license 不明**——是 GitHub 检测器对中文头部许可证的识别盲区。本库红线"license 不明=不收录"的正确执行 = 拿原文定性，而非跟随第三方检测器的空白。
 2. **SPDX 官方名录程序化核验**（`evidence/spdx-MulanPSL-2.0.json`，2026-10-11 实抓）：`MulanPSL-2.0 = Mulan Permissive Software License, Version 2`，`isOsiApproved: True`（OSI 认证通过）、未弃用；全名录 740 项中 `MulanPSL-1.0` 无 OSI 标记、2.0 有——**v2 是国际认证的宽松型开源许可证**。
-3. **义务清单**（原文 `LICENSE-upstream-mulanpsl2.txt`）：①宽松授予复制/使用/修改/分发权（§1/§2 含专利许可）；②**分发义务：向接收者提供许可证副本 + 保留版权/商标/专利及免责声明（§4）**；③无商标许可（§3）——本库商标声明体系（B3）覆盖；④中英双版本同效、歧义以中文为准（§6）。未修改分发官方件 + 保留 license 副本 = 义务满足。
+3. **义务清单**（原文 `LICENSE-upstream-agibot_x2_urdf.txt`）：①宽松授予复制/使用/修改/分发权（§1/§2 含专利许可）；②**分发义务：向接收者提供许可证副本 + 保留版权/商标/专利及免责声明（§4）**；③无商标许可（§3）——本库商标声明体系（B3）覆盖；④中英双版本同效、歧义以中文为准（§6）。未修改分发官方件 + 保留 license 副本 = 义务满足。
 4. **与本库兼容性**：本库 MIT 主体 + 第三方声明层（LICENSES.md 逐仓行）结构不变，新增 MulanPSL-2.0 行即可；快照随件分发 = §4 义务的直接履行。
 5. **关联仓排除**（如实记录）：`genie_sim_robot_model`（Apache-2.0）仅 xacro 源无成品 URDF（436 blobs / 0 urdf，树扫描实测）——收源生成为派生，撞"只收官方发布件"红线精神，否决；`genie_sim` 平台仓 license 同为 NOASSERTION 且为仿真平台非模型库，否决。智元路线可行形态 = **agibot_x2_urdf 本仓**。
 

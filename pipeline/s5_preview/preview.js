@@ -52,7 +52,9 @@ document.getElementById('app').appendChild(renderer.domElement);
 const scene = new THREE.Scene();
 scene.background = new THREE.Color(0x101418);
 const camera = new THREE.PerspectiveCamera(50, innerWidth / innerHeight, 0.01, 50);
-const isHumanoid = config.model === 'unitree_g1'; // 视口按体型粗调，仅观感参数
+// 视口按体型粗调（仅观感参数，不影响几何）：v5 起 config s5.viewport 驱动；
+// unitree_g1 为 v4 时代先例，无 s5 段，回退按人形保持兼容（X2 起新模型一律 config 声明）
+const isHumanoid = config.s5?.viewport === 'humanoid' || config.model === 'unitree_g1';
 camera.position.set(...(isHumanoid ? [2.2, 1.4, 2.4] : [1.5, 1.0, 1.6]));
 const controls = new OrbitControls(camera, renderer.domElement);
 controls.target.set(0, isHumanoid ? 0.7 : 0.25, 0);

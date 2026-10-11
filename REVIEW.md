@@ -483,6 +483,36 @@ R5 原三项（README 定稿 / LICENSES-SOURCE 一致 / .gitattributes clone 验
 
 ---
 
+## R17 · 协议②：M3 选型定案 + S0 license 门——MulanPSL-2.0 人工定性立先例（2026-10-11 · 审核台）
+
+**前置核查（R16 尾款）**：预授权 push 已执行——远端 main = `9b20289`（R16 收官 commit，R16 节随队上线），本地 ahead 1 = `23c165d`（本送审件），工作树 clean。尾款两清。
+
+**审核台独立实证**（全部活源/一手，不采信送审文本）：
+- **License 三方逐位一致**：pin `575cc6b9` 树根 LICENSE blob = `adf05533`（6752 B）= license 端点 sha = 本地快照 `git hash-object --no-filters` 实测——blob 正本链闭合；
+- **SPDX 活源核验**：`licenseId=MulanPSL-2.0`、**`isOsiApproved=true`**、`isDeprecatedLicenseId=false`；证据件 `spdx-MulanPSL-2.0.json` 与活源逐字段同；
+- **NOASSERTION=检测器盲区坐实**：活源 repo 端点 `license.spdx_id="NOASSERTION"`，但 README_CN 官方明文"本项目采用木兰宽松许可证，第2版（Mulan PSL v2）开源"（evidence 件在档）+ LICENSE 原文=真版双语全文——三方（文件/声明/名录）互证；
+- **快照原文通读**：中文 6 条+英文对照全在；工作台义务概括逐条核对无误（§1/§2 版权+专利授予、§3 无商标许可→B3 商标声明体系覆盖、§4 分发附副本+保留声明、§6 中英同效中文优先）；
+- **pin 无漂移**：`pushed_at=2026-09-21T11:56:39Z` 与锚点日期自洽（2026-10-11 实测 main 仍=pin）；
+- **树结构**：v1.4.0 X2-Ultra 配对在（X2-Ultra.urdf + X2-Ultra.xml + meshes/ 65 小写 .stl）；不入库清单七项逐一实测存在（v1.3.0 整套/EDU 配对/omnihand/omnipicker 手部变体 URDF-only 无 MJCF/simple_collision×2/scene.xml 两代/x2_fist 假拳件）；**无子目录独立 LICENSE**（整仓单 license 属实）；org 端点 `type=Organization, blog=www.agibot.com, public_repos=23`；
+- **URDF 审核台自数**：**72 mesh 引全部 `./meshes/` 显式前缀（0 例其他形式）、40 唯一 STL、39 link / 38 joint（31 revolute + 7 fixed）**——与 SOURCE 声明逐数吻合；
+- **A4 路径① 审核台亲手复核**：独立探测 open.agibot.com，全页唯一 GitHub 链接 = `github.com/Link-U-OS`（生态仓），**无 AgibotTech org 直链**——工作台"路径①阴性"结论成立；开放平台页脚设 GitHub 社区渠道入口=生态侧证补充；
+- **L11 互证**：活源 `/users/BoosterRobotics` = `type=User`、9 仓——"个人账户非 org"记档属实；
+- **管道零改码实测**：`git diff 9b20289..23c165d -- pipeline/` = **0 行**——本次"零改码"声明为真（N2 备案不适用，DEVLOG 如实声明）。
+
+**裁定**：
+1. **选型批准：M3 = 智元灵犀 X2**（AgibotTech/agibot_x2_urdf，第三家厂商 + 国产开源许可证第一例，与库主题同频；同仓双格式单 license=管道成本最低，正面接 R16 预设考题）。路线 A（DR 同仓多机型）= M4+/维护态填充件；路线 B（加速进化）= M4 专项——其"booster_gym 内已同仓配对"本轮不作定案依据，M4 侦察时复核。
+2. **MulanPSL-2.0 定性：可收录**。NOASSERTION≠license 不明——红线"license 不明=不收录"的正确执行=拿原文定性，非跟随检测器空白。**人工定性三件套（原文 blob 正本 + SPDX 名录核验 + 义务清单）立为本库先例**，M4 booster_gym（Apache-2.0 真身）同款复用。
+3. **锚点确认**：v1.4.0 X2-Ultra 配对 + 不入库清单。口径小瑕（无害）：x2_fist 仅存在于 v1.3.0（整目录已排除），单列冗余，S1 报告按此理解。README 铭牌指引确认 v1.4.0=旗舰焕新版（电机升级/结构加强）。
+4. **A4 接受**：路径②成立（org 字段+23 仓生态+README 声明+官网页脚生态链），路径①阴性成立——强度与 M1 相当（M1 先例：路径②可闭门）；新闻/公告页深挖=S0 收尾可选项，非阻塞。
+5. **S7 新检查点（随协议⑤送审）**：MulanPSL-2.0 应用模板版权行是占位符（上游未填主体）——X2 行无逐字版权行可引（N1 无源），LICENSES.md 措辞=如实写"上游 LICENSE 未含版权主体行"并引 README 声明，**不得虚构版权行**；双 license 并存后 LICENSES.md 表述一致性一并验。
+6. **S1 即刻解禁**（加 config 即启动）；R17 本条随下一协议⑤ push 上线（R13 先例）。
+
+**越界检查**：无——协议②正确停手、S1 未动、侦察件 `workspace/m3_recon/` 不入库（commit stat 实证）、L11 四要素齐、台账完整。
+
+**总账**：连续第三个协议②送审零退回（R10/R14/R17）。license 人工定性是本库第一次在第三方检测器失效处自立证据链，工作台三件套一次到位、零更正——M2 立的"泛化"flag 在 license 维度上第一次兑现。十七审无越界记录。
+
+---
+
 
 
 

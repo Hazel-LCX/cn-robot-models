@@ -23,10 +23,17 @@ SOFTWARE.
 ---
 
 Third-party notices:
-- Models under models/ are redistributed from unitreerobotics/unitree_ros and
-  unitreerobotics/unitree_mujoco under BSD-3-Clause; the upstream license texts
-  ship alongside the model files (models/unitree_go2/LICENSE-upstream-*.txt).
+- Models under models/ are redistributed from their respective official upstream
+  repositories (per-model index: LICENSES.md). BSD-3-Clause upstreams
+  (unitreerobotics, DeepRoboticsLab) ship their license texts alongside the model
+  files (models/*/LICENSE-upstream-*.txt). agibot_x2 is redistributed under the
+  Mulan Permissive Software License, Version 2 (MulanPSL-2.0); its full license
+  text ships alongside the model files, fulfilling the §4 redistribution terms
+  (provide the license copy; retain copyright/trademark/patent notices).
 - pipeline/s5_preview/libs/ vendors three.js (MIT) — its original license text
   is preserved at pipeline/s5_preview/libs/LICENSE.
-- Unitree and Go2 are trademarks of Unitree Robotics (Hangzhou Yushu
-  Technology). This project is not affiliated with or endorsed by Unitree.
+- Trademarks: Unitree, Go2 and G1 are trademarks of Unitree Robotics (Hangzhou
+  Yushu Technology); Deep Robotics, 绝影 (JueYing) and Lite3 are trademarks of
+  Deep Robotics (Hangzhou DeepRobotics); AgiBot and 灵犀 X2 (Lingxi X2) are
+  trademarks of AgiBot (Zhiyuan Robotics). This project is not affiliated with
+  or endorsed by any of them.

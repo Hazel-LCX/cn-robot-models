@@ -239,10 +239,18 @@ def main():
                       and p.relative_to(RAW).as_posix().startswith(scope_prefixes))
     root_and_mid = raw_total - scope_files  # 两仓库根级 8 + robots 中间层 1（G2 补桶）
     excluded_scope = {e for e in excluded if e.startswith(scope_prefixes)}  # 排除项按桶归位
+    # 算式口径=源件（covered 本就按 src 集合去重）：双侧共享池模型（同源网格 urdf/mjcf
+    # 各落位一份，X2 实测 40×2）dest 件数恒大于源件数，按 rows 打印算式永不平——
+    # F1"算式每行必须平"要求按 src 口径打印，物理落位数并列如实注记。
+    src_unique = {r["src"] for r in rows}
+    dup_note = ""
+    if len(src_unique) < len(rows):
+        dup_note = (f"；物理落位 {len(rows)} 件（{len(rows) - len(src_unique)} 件为双侧同源网格"
+                    f"重复落位，同源同内容、两侧引用协议各自独立目录）")
     add(results, "s4:coverage", "PASS" if not uncovered else "WARN",
         f"raw 全量 {raw_total}（除 .git/manifest）= 根级及中间层 {root_and_mid} + 目标子目录 {scope_files}；"
-        f"子目录 {scope_files} 全覆盖 = 入库 {len(rows)} + 排除 {len(excluded_scope)}（其中 meshes/ 冗余 {same}）"
-        f"（未覆盖：{uncovered or '无'}）——算式每行必须平（F1 教训）")
+        f"子目录 {scope_files} 全覆盖 = 入库唯一源 {len(src_unique)}{dup_note} + 排除 {len(excluded_scope)}（其中 meshes/ 冗余 {same}）"
+        f"（未覆盖：{uncovered or '无'}）——算式按源件口径平账（F1 教训）")
 
     # 最小复验：均指向入库新路径
     rc = s4["recheck"]
