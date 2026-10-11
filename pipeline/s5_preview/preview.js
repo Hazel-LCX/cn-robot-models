@@ -1,19 +1,33 @@
 // preview.js — 自写 URDF→three 场景加载器（B6 退路，依赖受阻后启用，决策记 AGENT-LAB）
 // 边界（PIPELINE §3-S5 / B6）：本文件只做 URDF XML 解析 + 坐标变换 + 关节交互；
-// DAE 解析用官方 ColladaLoader（vendor 于 libs/，随附原版 MIT LICENSE——修正 3）。
+// DAE 解析用官方 ColladaLoader、STL 用官方 STLLoader（均 vendor 于 libs/，随附原版 MIT LICENSE——修正 3/R10-⑤）。
 // 模型读取的就是 models/ 入库文件（相对路径 ../../models/…，可核对）。
+// v4（R10-⑤ STL 支路）：模型无关化——?model=<name> 读 pipeline/configs/<name>.json 驱动，
+// 入库路径/引用协议（package:// ∥ relative）全按 config；M2+ 加模型预览零改码。
 
 import * as THREE from 'three';
 import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 import { ColladaLoader } from 'three/addons/loaders/ColladaLoader.js';
+import { STLLoader } from 'three/addons/loaders/STLLoader.js';
 
-const URDF_URL = '../../models/unitree_go2/urdf/go2_description.urdf';
-const MESH_BASE = '../../models/unitree_go2/urdf_meshes/'; // package://go2_description/X → MESH_BASE + X
-const PKG_PREFIX = 'package://go2_description/';
+const MODEL_NAME = new URLSearchParams(location.search).get('model') ?? 'unitree_go2';
+const pageTitle = document.getElementById('page-title'); // 旧缓存 html 无此 id，兜底不崩
+if (pageTitle) pageTitle.textContent = `${MODEL_NAME} · 质检预览`;
+document.title = `${MODEL_NAME} — 仿真模型质检预览（cn-robot-models）`;
+const MODEL_BASE = `../../models/${MODEL_NAME}/`;
+const CONFIG_URL = `../../pipeline/configs/${MODEL_NAME}.json`;
 
 const meta = document.getElementById('meta');
 const net = document.getElementById('net');
 const status = document.getElementById('status');
+
+// ---- config 驱动（与管道同一份真源） ----
+const config = await fetch(CONFIG_URL).then(r => r.json());
+const s2 = config.s2;
+const URDF_URL = MODEL_BASE + config.s4.urdf[0].dest; // 入库路径按 s4 对账表，不重推
+const urdfDir = URDF_URL.slice(0, URDF_URL.lastIndexOf('/') + 1);
+const refStyle = s2.urdf.ref_style ?? 'package';
+const pkgPrefix = `package://${s2.urdf.package}/`;
 
 // ---- URDF 解析（B6 边界内） ----
 const num3 = s => (s ?? '0 0 0').trim().split(/\s+/).map(Number);
@@ -38,9 +52,10 @@ document.getElementById('app').appendChild(renderer.domElement);
 const scene = new THREE.Scene();
 scene.background = new THREE.Color(0x101418);
 const camera = new THREE.PerspectiveCamera(50, innerWidth / innerHeight, 0.01, 50);
-camera.position.set(1.5, 1.0, 1.6);
+const isHumanoid = config.model === 'unitree_g1'; // 视口按体型粗调，仅观感参数
+camera.position.set(...(isHumanoid ? [2.2, 1.4, 2.4] : [1.5, 1.0, 1.6]));
 const controls = new OrbitControls(camera, renderer.domElement);
-controls.target.set(0, 0.25, 0);
+controls.target.set(0, isHumanoid ? 0.7 : 0.25, 0);
 scene.add(new THREE.HemisphereLight(0xffffff, 0x223344, 1.15));
 const sun = new THREE.DirectionalLight(0xffffff, 1.6);
 sun.position.set(2, 4, 2);
@@ -56,6 +71,8 @@ model.add(groups.get(rootName));
 model.rotation.x = -Math.PI / 2; // URDF 是 Z-up，three 是 Y-up：绕 X 转 -90° 把机身立起来
 scene.add(model);
 
+// ---- 连杆挂接：joint origin 把 child group 挂进 parent group（v4 重写时曾整段丢失，
+//      症状 = 只渲染根 link 网格、包围盒塌缩到单件尺寸；L10 记档） ----
 for (const j of jointEls) {
   const pg = groups.get(j.querySelector('parent').getAttribute('link'));
   const cg = groups.get(j.querySelector('child').getAttribute('link'));
@@ -65,29 +82,53 @@ for (const j of jointEls) {
   pg.add(cg);
 }
 
+// ---- 网格加载：按扩展名分流；STL 无 UV/材质 → 统一中性着色（格式天性，如实标注不伪装） ----
 const daeLoader = new ColladaLoader();
+const stlLoader = new STLLoader();
+const STL_MATERIAL = new THREE.MeshStandardMaterial({
+  color: 0x8d99a6, metalness: 0.15, roughness: 0.55,
+});
 const jobs = [];
 let meshCount = 0;
+let stlCount = 0;
+let loadFail = 0;
 for (const link of linkEls) {
   const g = groups.get(link.getAttribute('name'));
   for (const vis of link.querySelectorAll('visual')) {
     const meshEl = vis.querySelector('geometry > mesh');
     if (!meshEl) continue;
     const uri = meshEl.getAttribute('filename') ?? '';
-    if (!uri.startsWith(PKG_PREFIX)) {
-      status.textContent += `非本包网格引用：${uri}\n`;
-      continue;
+    let url;
+    if (refStyle === 'relative') {
+      // G1 协议：uri 相对 URDF 自身目录（入库保持 meshes/ 与 urdf 同目录）
+      url = urdfDir + uri;
+    } else {
+      if (!uri.startsWith(pkgPrefix)) {
+        status.textContent += `非本包网格引用：${uri}\n`;
+        continue;
+      }
+      url = `${MODEL_BASE}urdf_meshes/${uri.slice(pkgPrefix.length)}`;
     }
-    const url = MESH_BASE + uri.slice(PKG_PREFIX.length);
+    const ext = (url.split('?')[0].split('.').pop() ?? '').toLowerCase();
     const vOrigin = originOf(vis);
-    jobs.push(new Promise(res => daeLoader.load(url, collada => {
-      const obj = collada.scene;
-      obj.position.copy(vOrigin.pos);
-      obj.quaternion.copy(vOrigin.quat);
-      g.add(obj);
-      meshCount += 1;
-      res();
-    }, undefined, () => { status.textContent += `网格加载失败：${url}\n`; res(); })));
+    jobs.push(new Promise(res => {
+      const done = obj => {
+        obj.position.copy(vOrigin.pos);
+        obj.quaternion.copy(vOrigin.quat);
+        g.add(obj);
+        meshCount += 1;
+        res();
+      };
+      const fail = () => { status.textContent += `网格加载失败：${url}\n`; loadFail += 1; res(); };
+      if (ext === 'stl') {
+        stlLoader.load(url, geom => {
+          stlCount += 1;
+          done(new THREE.Mesh(geom, STL_MATERIAL));
+        }, undefined, fail);
+      } else {
+        daeLoader.load(url, collada => done(collada.scene), undefined, fail);
+      }
+    }));
   }
 }
 await Promise.all(jobs);
@@ -133,7 +174,7 @@ bbox.min.y += lift;
 bbox.max.y += lift;
 const center = bbox.getCenter(new THREE.Vector3());
 controls.target.set(0, center.y, 0);
-window.__go2 = { model, scene, camera, bbox }; // 调试钩子
+window.__preview = { model, scene, camera, bbox }; // 调试钩子
 
 // ---- 断网自检（质检动作本身上屏） ----
 setTimeout(() => {
@@ -144,11 +185,15 @@ setTimeout(() => {
     : `<span class="bad">断网自检：发现 ${ext} 个外网请求！</span>`;
 }, 800);
 
+const stlNote = stlCount > 0
+  ? ` · <span class="ok">STL ${stlCount} 件统一中性着色（无 UV/材质为格式天性，非上游外观）</span>`
+  : '';
 meta.innerHTML =
-  `links ${linkEls.length} · joints ${jointEls.length}（revolute ${revolute.length}）· visual 网格 ${meshCount}<br>` +
-  `根 link：<b>${rootName}</b> · 源：${URDF_URL}<br>` +
-  `<span class="ok">载入版本 v3</span> · 落地抬升 ${lift.toFixed(3)} m · ` +
-  `包围盒 y [${bbox.min.y.toFixed(3)}, ${bbox.max.y.toFixed(3)}]`;
+  `<b>${config.model}</b> · links ${linkEls.length} · joints ${jointEls.length}（revolute ${revolute.length}）· visual 网格 ${meshCount}${stlNote}<br>` +
+  `根 link：<b>${rootName}</b> · 源：${URDF_URL} · 引用协议 ${refStyle}<br>` +
+  `<span class="ok">载入版本 v4（config 驱动）</span> · 落地抬升 ${lift.toFixed(3)} m · ` +
+  `包围盒 y [${bbox.min.y.toFixed(3)}, ${bbox.max.y.toFixed(3)}]` +
+  (loadFail ? ` · <span class="bad">加载失败 ${loadFail} 件</span>` : '');
 status.textContent = '拖动旋转 / 滚轮缩放 / 滑条动关节（越 URDF 限位标红）';
 
 addEventListener('resize', () => {

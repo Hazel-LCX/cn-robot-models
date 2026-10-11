@@ -128,6 +128,8 @@ S0 license核对(门) → S1 拉取 → S2 格式校验 → S3 物理体检/修�
   - [ ] 网格分/合决策 + 总体积已记录
 
 ### S5 Three.js 在线 3D 预览
+
+> **网格格式清单（R10-⑤ 注记，2026-10-11）**：dae+TGA = 自写加载器 vendor ColladaLoader/TGALoader（M0）；stl = vendor 官方 STLLoader（three 0.160.0 配套版，同受 libs/LICENSE 覆盖）——STL 无 UV/材质为格式天性，预览统一中性着色并页面如实标注，不伪装纹理。preview.js v4 起 config 驱动模型无关（?model= 读 configs/<model>.json），M2+ 预览零改码。
 - **定位**：让"看模型"零门槛——打开浏览器就能转着看。
 - **输入**：入库后的 URDF + 网格；three.js 本地库文件（镜像/代理下载进 `pipeline/s5_preview/libs/` 并随仓库提交，保证离线）
 - **输出**：`pipeline/s5_preview/`（index.html + preview.js + libs/）；`python -m http.server` 起本地服务
@@ -266,5 +268,6 @@ cn-robot-models/
 - **v0.1**（2026-10-11）：设计稿，零代码，环境侦察 + S0–S7 全设计。
 - **v0.2**（2026-10-11）：R1 有条件通过后修订——A1 S3 补碰撞体检查三件；A2 license 快照同 commit + 子目录声明检查；A3 回归门改 S2+S3 双跑；A4 官方 org 证据链落字；B1 惯量数量级 sanity；B2 基准预热 + ≥10⁴ 步；B3 商标声明；B4 MJCF 查看命令；B5 会话 A 独立环境口径；B6 自写加载器边界；四问答复落档 §7；§0 增完成度铁律与门面立位；§8 增审核点协议（原文）。
 - **v0.3**（2026-10-11）：R2 通过放行后吸收执行提示 C1——S3 验收增"碰撞体清点表入报告"勾选项；C2（修复项批量送审）、C3（S0 结论天然触发协议②）为流程行为，不改文档。
+- **v0.6a**（2026-10-11，R10-⑤ 注记不升大版本）：S5 网格格式清单注记（dae+TGA 自写、stl=vendor STLLoader）+ preview.js v4 config 驱动说明。
 - **v0.5**（2026-10-11）：R3 正式回写后清账——D1 SOURCE.md 状态行改"已确认（R3）"，S0 门关闭；D2 头部版本号补齐（原停在 v0.2 与 §9 矛盾）；D3 网格格式记录对齐 S1/S2 实测（URDF 源 dae/ 与 meshes/ 均为 .dae、无 stl）；s2_validate.py 自查收敛回风格基线四态（两条 INFO 观察并入检查明细），重跑仍全绿。附带记档：上游 urdf/ 自带 Amended/Normal_collision_model.png 两张碰撞示意图，S3 清点时作上游对照素材。
 - **v0.6**（2026-10-11）：R7-H1 规则落字——S4 定位句增"对账即事实"（凡变更 models/ 下任何文件必重跑 S4 刷新对账），配合 G1（报告头部体积口径注明分解）/G2（coverage 补 robots/README.md 中间层桶）。
