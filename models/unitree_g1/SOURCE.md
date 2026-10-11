@@ -20,7 +20,7 @@
 3. **URDF 变体 33 个模型文件（23 urdf + 10 xml）= 23 去重配置**（J1 口径，S1 raw 重放与 R10 逐位一致）。本库只收 g1_23dof 配对；其余 32 文件 S4 excluded 逐件记录。
 4. `inspire_hand/` 子目录（灵巧手模型）不入 M1 范围。
 
-**S1 拉取现态（2026-10-11）**：blobless+sparse+**autocrlf=false（L8 铁律）**直连一次成功；raw = ros 223 件/120.7 MB + mujoco 76 件/37.1 MB，manifest 299 件/157.8 MB（真身 gitignored，副本进 reports/S1-fetch.md）；**license 快照 A2 MATCH**（raw 检出件与 S0 blob-exact 快照逐字节一致——正本检出铁律生效实证）；MJCF 侧 23dof.xml 引用池 60 件中 **29 件**（其余 31 件为 29dof/手部网格）→ S4 闭包拷贝 29 件（整拷否决）。明细 reports/S1-fetch.md。
+**S1 拉取现态（2026-10-11）**：blobless+sparse+**autocrlf=false（L8 铁律）**直连一次成功；raw = ros 223 件/120.7 MB + mujoco 76 件/37.1 MB，manifest 299 件（K2 归正后重生成 = 150.5 MB；原报告 157.8 MB 为检出失真态字节；真身 gitignored，副本进 reports/S1-fetch.md）；**license 快照 A2 MATCH**（raw 检出件与 S0 blob-exact 快照逐字节一致——正本检出铁律生效实证）；MJCF 侧 23dof.xml 引用池 60 件中 **29 件**（其余 31 件为 29dof/手部网格）→ S4 闭包拷贝 29 件（整拷否决）。明细 reports/S1-fetch.md。
 
 **拉取方法**：沿用 M0 路线——blobless 部分克隆 + sparse-checkout（锚点上表 SHA），API 逐文件兜底，代理 socks5h://127.0.0.1:12450 备用。STL 为二进制，API 兜底路径走 base64（1.37× 膨胀）优先级低于克隆。
 

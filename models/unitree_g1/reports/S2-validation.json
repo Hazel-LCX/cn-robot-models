@@ -1,7 +1,7 @@
 {
   "summary": {
     "model": "unitree_g1",
-    "date": "2026-10-11 17:44",
+    "date": "2026-10-11 18:28",
     "pass": 10,
     "warn": 0,
     "fail": 0,
@@ -52,12 +52,12 @@
     {
       "check": "mjcf:xml-wellformed",
       "status": "PASS",
-      "detail": "lxml 解析成功（32214 字节）"
+      "detail": "lxml 解析成功（31733 字节）"
     },
     {
       "check": "mjcf:compile-model",
       "status": "PASS",
-      "detail": "nbody=31 njnt=30 ngeom=62 nmesh=29 nu=29 nq=36 timestep=0.0020（174 ms）"
+      "detail": "nbody=31 njnt=30 ngeom=62 nmesh=29 nu=29 nq=36 timestep=0.0020（163 ms）"
     },
     {
       "check": "mjcf:compile-scene",

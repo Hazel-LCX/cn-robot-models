@@ -2,6 +2,15 @@
 
 > 纪律（R1-④ 立规）：每次失败记四要素——现象 / 根因 / 自救动作 / 是否升级 codex 会诊。R2 起审核台查账。
 
+## 2026-10-11 · L9 · K2：blob 正本承诺复发于 M1-S1（审核台首抓）+ 根因实测修正
+
+- **现象**：R11 期中稽查（审核台 95 件独立对账）——go2 33/33 正本 ✓，**g1 入库 62 件中 2 件 CRLF 失真**（mjcf/g1_23dof.xml 32214B/CR×481、scene_23dof.xml 895B/CR×23，上游 blob 31733/872B 全 LF）。K1 刚根治的同类缺陷在 S1 复发。
+- **根因（工作台实测修正审核台推测）**：①`git clone -c core.autocrlf=false` **只在 clone 进程内生效、不写入新仓 local config**（实测两仓 local 均未设置）——S1 时"clone -c 持久化"的假设错误；②后续 `sparse-checkout set` 是**独立进程**，读全局 autocrlf=true → sparse 检出的文本件全部 CRLF（mujoco xml×5+md、ros README/motor_info；binary STL/PNG 免疫）；③**意外反转**：g1_23dof.urdf 的上游 blob **原生 CRLF**（851 CR）——检出件=blob 正本纯靠上游原生行尾侥幸，"正本"承诺的本质是"字节=blob 原样"而非"全库 LF"。
+- **自救（R11-K2 六步）**：①raw 299 件 cat-file 全量归正（复用 K1 export 脚本参数化）；②manifest 重生成（157.8→150.5 MB，差 = 文本件行尾归正）+ models 两 xml 经 S4 重拷；③S2（10/0/0）+S3（7/5/0）回归全绿；④**根治落码**：s1_fetch 增 blob-parity 门（ls-tree@pin blob id ↔ hash-object --no-filters 批量比对，FAIL 即挡）+ S4 traceability 三锚（models 件 hash-object --no-filters ∈ 上游 blob id 集合）；⑤本条；⑥S1 报告 L48 声明更正。
+- **过程新增两课**：①三锚首跑把**已是正本的两 xml 判 FAIL**——manifest 过期（raw 归正后未重生成）与 **hash-object 缺 --no-filters**（主仓 autocrlf 清洗 models 件 id；上游原生 CRLF 件被"合法地"改 id）叠加——**对账工具自身的过滤语义也要对账**；②blob-parity 门首跑自测抓到自家同款缺 --no-filters 假阳性（ros 25 件假失配）——门先测门，再上岗。
+- **是否升级**：否。审核台 R11 已给修复清单，全部执行完毕且门落码验证 290/290。
+- **立规**：凡 git id 对账一律 `--no-filters`；`clone -c` 的生效范围永远实测（本例：进程内）；S1 拉取后 blob-parity 门是硬门（fail 即挡，不再依赖"克隆卫生"自觉）。
+
 ## 2026-10-11 · L8 · autocrlf 第二幕：源头检出失真入库（R10-K1，M0 回溯缺陷）
 
 - **现象**：R10 终裁——上游 blob 全 LF，M0 S1 检出时两克隆 `core.autocrlf=true` 把 62 件检出件转 CRLF，S4 字节复制入库，公开仓库分发 34 件行尾被改文本件（内容级零差异；与本库"不改官方一字节"承诺冲突，非 license 违约）。

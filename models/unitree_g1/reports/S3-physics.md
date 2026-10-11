@@ -1,4 +1,4 @@
-# S3 物理体检报告 — unitree_g1（2026-10-11 17:50）
+# S3 物理体检报告 — unitree_g1（2026-10-11 18:28）
 
 **质量口径声明（修正 2，置顶）**：官网原文「带电池重量 约35kg」（unitree.com/cn/g1 规格表，2026-10-11 浏览器渲染，截图 4 张 evidence/official-g1-spec-page-screenshot-{1..4}.png + 渲染文本 official-g1-spec-page.txt 互证）；顺带实证：总自由度 23 个关节电机（↔ URDF 23 revolute 精确一致）、膝关节最大扭矩 90N.m（脚注[1]：整机口径下最大关节电机的最大扭矩；EDU 版 120N.m，页面宣传区取 120 同口径自洽）、单腿 6+腰 1+单臂 5（6×2+1+5×2=23 数学自洽）、运动空间 腰 Z±155°/膝 0~165°/髋 P±154°、R-30~+170°、Y±158°（↔ S3 限位对账素材） 官网标称口径=带电池整机（原文实证）；URDF/MJCF 均无电池 link——严格口径不可比，总量对比仅作 sanity，不作逐 link 真值依据（M0 同法）
 
@@ -32,23 +32,3 @@ PASS 7 / WARN 5 / FAIL 0 / SKIP 0
 **方法论披露（R4-E5）**：URDF 侧惯量正定/三角不等式为本管道的独立数学检查；MJCF 侧无对应独立检查——依赖 MuJoCo 编译器拒绝非法惯量（编译通过=引擎背书）。两侧方法不对称，如实披露。
 
 **结论：无 FAIL；WARN 全部有处置记录（M0 只体检不修复），可送专项审**
-
-## 分歧 forensics（工作台补段 · 2026-10-11，数字可重放）
-
-### torso_link −1.2800 kg：建模拆分差异，非真值错误
-
-URDF torso 8.5620 vs MJCF torso 9.8420。URDF 独有件逐项合计：head_link 1.036 + waist_yaw_fixed_link 0.244 + logo_link 0.001 + pelvis_contour_link 0.001 + waist_support_link 0.001 = **1.283 kg**——与差值 1.280 差 0.003 kg（= 两模型总质量差 34.137−34.134）。**解释闭环**：URDF 把头壳/腰部固定支架等独立成 link 挂质量，MJCF 合并进 torso——同一物理件两种拆分表达。两侧均无电池 link、同处 −2.5% 口径余量，34.137 与 34.134 的 0.003 kg 只是拆分累计的微小差异，不存在"谁更贴官方"的方向性结论。零修复，如实披露（对齐 M0 calf 案例的"分歧≠错误"处置）。
-
-### cross:joint-names（MJCF 多 6 hinge）：官方命名与自由度不符——M1 最硬披露
-
-`g1_23dof.xml` 实测 **29 hinge** = URDF 23 revolute + 腰 pitch/roll（2）+ 双腕 pitch/yaw（4）。即**官方文件名"23dof"与文件内容 29 关节不符**（MJCF 版骨架实为腰部 3 自由度+双腕 2 自由度形态）。23dof 命名与 URDF 内容一致（23 revolute ↔ 官网"总自由度 23"）。对 RL 下游影响：用 MJCF 跑会多 6 个可动关节（动作空间 29 维），用 URDF 跑是 23 维——**两格式不可互换训练**。零修复（不改官方一字节），模型页 README 披露。
-
-### 五 WARN 处置索引
-
-| WARN | 处置 |
-|---|---|
-| urdf:mass-positive（4 传感器座无 inertial） | fixed 传感器座各引擎普遍合并，约定差异，不修 |
-| urdf:collision-inventory（6 link 无 collision 含 pelvis 本体） | A1 标记不自动补；pelvis 无碰撞体为上游选择，如实记录 |
-| mjcf:body-geom（6 自闭合空 body） | 腰/腕铰链占位 body，R4-E2 措辞更正后归类约定差异 |
-| cross:joint-names（29 vs 23） | 见 forensics 第二段，模型页披露 |
-| cross:mass-per-body（torso −1.28） | 见 forensics 第一段，拆分差异闭环 |

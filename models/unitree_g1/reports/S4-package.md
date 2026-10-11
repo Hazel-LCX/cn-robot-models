@@ -1,6 +1,6 @@
-# S4 入库对账报告 — unitree_g1（2026-10-11 18:05）
+# S4 入库对账报告 — unitree_g1（2026-10-11 18:28）
 
-**物理文件口径（终审 F1 修正）**：入库物理文件 62 = raw 溯源件 62（URDF 引用 50 处 → 网格物理文件 29，引用行 ≠ 文件数） + 质检自产件 0[]；**总 40.5 MB（raw 溯源件 40,516,538 B + 质检自产件 0 B，G1 口径注明）**（不含 reports/evidence/文档）。字节级复制，raw 未动。
+**物理文件口径（终审 F1 修正）**：入库物理文件 62 = raw 溯源件 62（URDF 引用 50 处 → 网格物理文件 29，引用行 ≠ 文件数） + 质检自产件 0[]；**总 40.5 MB（raw 溯源件 40,516,034 B + 质检自产件 0 B，G1 口径注明）**（不含 reports/evidence/文档）。字节级复制，raw 未动。
 
 **对账即事实（R7-H1 规则）**：凡变更 `models/` 下任何文件（含质检自产件），必重跑本脚本刷新对账——本报告必须始终等于当前磁盘事实。
 
@@ -12,7 +12,7 @@ asset 29 · image 1 · mesh 29 · mjcf 2 · urdf 1
 
 | 检查项 | 结果 | 明细 |
 |---|---|---|
-| `s4:traceability` | PASS | 62 个 raw 源入库文件 SHA256 全部命中 raw manifest 同路径行（逐文件可溯源） |
+| `s4:traceability` | PASS | 62 个 raw 源入库件三锚全过（SHA256 命中 manifest 同路径行 + hash-object 命中上游 ls-tree@pin blob id） |
 | `s4:mesh-split-decision` | PASS | URDF 侧 50 处引用 → 29 个物理网格 vs MJCF 侧 29 个，哈希交集 28 → 分目录（不改官方一字节，保持官方 meshdir/相对引用结构，记录在案） |
 | `s4:dae-dir-parity` | SKIP | 本模型 urdf 无 dae/ 与 meshes/ 双目录结构（G1 为 meshes/ 单池），R3-D3 判定不适用 |
 | `s4:coverage` | PASS | raw 全量 299（除 .git/manifest）= 根级及中间层 9 + 目标子目录 290；子目录 290 全覆盖 = 入库 62 + 排除 228（其中 meshes/ 冗余 0）（未覆盖：无）——算式每行必须平（F1 教训） |
@@ -24,7 +24,7 @@ asset 29 · image 1 · mesh 29 · mjcf 2 · urdf 1
 | 入库位置 | 上游路径（raw 相对） | SHA256 | manifest 溯源 |
 |---|---|---|---|
 | images/g1_23dof.png | unitree_ros/robots/g1_description/images/g1_23dof.png | `8cd8db7c7abd…` | ✓ |
-| mjcf/g1_23dof.xml | unitree_mujoco/unitree_robots/g1/g1_23dof.xml | `2876f3331af5…` | ✓ |
+| mjcf/g1_23dof.xml | unitree_mujoco/unitree_robots/g1/g1_23dof.xml | `a57de7920966…` | ✓ |
 | mjcf/meshes/head_link.STL | unitree_mujoco/unitree_robots/g1/meshes/head_link.STL | `d297328b3569…` | ✓ |
 | mjcf/meshes/left_ankle_pitch_link.STL | unitree_mujoco/unitree_robots/g1/meshes/left_ankle_pitch_link.STL | `d49e3abc6f5b…` | ✓ |
 | mjcf/meshes/left_ankle_roll_link.STL | unitree_mujoco/unitree_robots/g1/meshes/left_ankle_roll_link.STL | `c4092af94314…` | ✓ |
@@ -54,7 +54,7 @@ asset 29 · image 1 · mesh 29 · mjcf 2 · urdf 1
 | mjcf/meshes/torso_link.STL | unitree_mujoco/unitree_robots/g1/meshes/torso_link.STL | `e96d023f0368…` | ✓ |
 | mjcf/meshes/waist_support_link.STL | unitree_mujoco/unitree_robots/g1/meshes/waist_support_link.STL | `1fae9e1bb609…` | ✓ |
 | mjcf/meshes/waist_yaw_link.STL | unitree_mujoco/unitree_robots/g1/meshes/waist_yaw_link.STL | `2883f20e03f0…` | ✓ |
-| mjcf/scene_23dof.xml | unitree_mujoco/unitree_robots/g1/scene_23dof.xml | `5582080972f7…` | ✓ |
+| mjcf/scene_23dof.xml | unitree_mujoco/unitree_robots/g1/scene_23dof.xml | `58436a034c25…` | ✓ |
 | urdf/g1_23dof.urdf | unitree_ros/robots/g1_description/g1_23dof.urdf | `5d5a7380ec2f…` | ✓ |
 | urdf/meshes/head_link.STL | unitree_ros/robots/g1_description/meshes/head_link.STL | `005fb67fbd3e…` | ✓ |
 | urdf/meshes/left_ankle_pitch_link.STL | unitree_ros/robots/g1_description/meshes/left_ankle_pitch_link.STL | `d49e3abc6f5b…` | ✓ |
@@ -318,9 +318,3 @@ asset 29 · image 1 · mesh 29 · mjcf 2 · urdf 1
 - `unitree_mujoco/unitree_robots/g1/unitree_hfield.png` — 地形演示专用图
 
 **结论**：入库完成，可进 S5/S6（FAIL 0 / WARN 0）
-
-## 工作台补记（2026-10-11 · 数字可重放）
-
-- **mesh-split 交集 28/29 的一件 = head_link.STL**：URDF 侧 932,784 B vs MJCF 侧 337,584 B（同名不同哈希，其余 28 件两侧同哈希=同源同内容）。**与 S3 forensics 同根闭环**：URDF 把头壳独立建模（head_link，1.036 kg + 精细网格），MJCF 合并进 torso（简化头壳网格）——质量拆分分歧与网格差异是上游同一建模决策的两个侧面，零修复如实披露。
-- **入库名录**：62 件 = URDF 1（urdf/g1_23dof.urdf）+ urdf/meshes 29（relative 引用协议，与 urdf 同目录）+ MJCF 2（g1_23dof.xml + scene_23dof.xml）+ mjcf/meshes 29（meshdir 闭包）+ images 1（g1_23dof.png 官方渲染图）；40.5 MB。excluded 228 件逐件带 why（config s4.excluded，程序化生成）。
-- **traceability 对账口径升级**：manifest 由"哈希→单路径"改"哈希→路径集合"——G1 两侧网格 28 件同哈希（同源同内容），单路径映射会把 ros 侧件全部误判未命中（本会话实测抓到后修复）；对账语义 = 入库件哈希在 manifest 中存在且 src ∈ 该哈希路径集合。

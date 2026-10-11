@@ -14,6 +14,7 @@ xacro/ 存档（修正 8）+ MJCF 双件 + assets/（保持官方 meshdir 相对
 import hashlib
 import json
 import shutil
+import subprocess
 import sys
 import time
 from collections import Counter
@@ -136,12 +137,33 @@ def main():
             if line.strip():
                 h, p = line.split("  ", 1)
                 manifest.setdefault(h, set()).add(p)
+    # 三锚（K2-④）：models 件字节 == manifest 行 == 上游 blob id。前两锚同前，第三锚
+    # 用 git hash-object（纯内容 id）对 ls-tree@pin 的 blob id 直比——同 id 即同字节。
     for r in rows:
         r["sha256"] = sha256_file(MODEL / r["dest"])
         r["traceable"] = r["src"] in manifest.get(r["sha256"], set())
-    n_bad = [r["dest"] for r in rows if not r["traceable"]]
+    blob_ids = set()
+    for cfg in config["sources"]:
+        repo_dir = RAW / cfg["name"]
+        ls = subprocess.run(
+            ["git", "-C", str(repo_dir), "ls-tree", "-r", "HEAD", "--", cfg["subdir"]],
+            capture_output=True, text=True, check=True).stdout
+        for line in ls.splitlines():
+            meta, _ = line.split("	", 1)
+            parts = meta.split()
+            if parts[1] == "blob":
+                blob_ids.add(parts[2])
+    paths = chr(10).join(str(MODEL / r["dest"]) for r in rows) + chr(10)
+    # --no-filters：三锚比的是纯内容 id，任何 clean filter（含主仓 autocrlf 对
+    # 上游原生 CRLF 件的清洗）都不得介入——否则字节相同的件会被误判异哈希
+    ho = subprocess.run(
+        ["git", "hash-object", "--no-filters", "--stdin-paths"], input=paths,
+        capture_output=True, text=True, check=True).stdout.split()
+    for r, oid in zip(rows, ho):
+        r["blob_parity"] = oid in blob_ids
+    n_bad = [r["dest"] for r in rows if not (r["traceable"] and r["blob_parity"])]
     add(results, "s4:traceability", "PASS" if not n_bad else "FAIL",
-        f"{len(rows)} 个 raw 源入库文件 SHA256 全部命中 raw manifest 同路径行（逐文件可溯源）"
+        f"{len(rows)} 个 raw 源入库件三锚全过（SHA256 命中 manifest 同路径行 + hash-object 命中上游 ls-tree@pin blob id）"
         + (f"；未命中：{n_bad}" if n_bad else ""))
 
     # 两源网格哈希交集 → 分/合决策

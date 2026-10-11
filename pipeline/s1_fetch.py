@@ -132,6 +132,41 @@ def write_manifest():
     return len(lines), total
 
 
+def verify_blob_parity(cfg_list):
+    """blob-parity 门（K2-④）：检出件必须与上游 blob 逐字节一致。
+
+    方法：ls-tree -r HEAD 取每仓目标文件的 blob id；`git hash-object --stdin-paths`
+    批量计算检出件的 blob id（纯内容 id，不经行尾过滤）——同 id 即同字节。
+    机制背景（AGENT-LAB L9）：clone -c 只在该进程生效、不写入 repo config，
+    sparse-checkout set 独立进程读全局 autocrlf 会把文本件转 CRLF——
+    本门把正本性从"克隆卫生"升级为"程序化对账"，任何一环失真 FAIL 即挡。
+    """
+    parity = []
+    for cfg in cfg_list:
+        repo_dir = RAW / cfg["name"]
+        ls = sh(["git", "-C", str(repo_dir), "ls-tree", "-r", "HEAD", "--", cfg["subdir"]])
+        blobs = {}
+        for line in ls.splitlines():
+            meta, path = line.split("	", 1)
+            parts = meta.split()
+            if parts[1] == "blob":
+                blobs[path] = parts[2]
+        targets = [str(repo_dir / rel) for rel in sorted(blobs)]
+        # hash-object 一次喂全部路径（--stdin-paths），避免逐件起进程
+        # --no-filters：blob id 是纯内容 id——上游原生 CRLF 件（如 g1 urdf）不带此
+        # 旗会被全局 autocrlf 清洗 id 而假报失配（门测试首跑实测抓到）
+        proc = subprocess.run(
+            ["git", "-C", str(repo_dir), "hash-object", "--no-filters", "--stdin-paths"],
+            input="\n".join(targets) + "\n", capture_output=True, text=True, check=True)
+        ids = proc.stdout.split()
+        bad = [blobs[rel] and rel for rel, oid in zip(sorted(blobs), ids)
+               if blobs[rel] != oid]
+        parity.append({"repo": cfg["name"], "files": len(blobs), "mismatch": bad})
+        print(f"  blob-parity [{cfg['name']}]: {len(blobs)} 件，失配 {len(bad)}"
+              + (f"：{bad[:5]}" if bad else ""))
+    return parity
+
+
 def verify_license(cfg_list):
     """A2：license 快照以 raw 内同 commit 文件为准复核，不一致则重生成并标记。"""
     results = []
@@ -184,6 +219,9 @@ def main():
     ok = all(sha256_file(RAW / p) == h for h, p in (l.split("  ", 1) for l in sample))
     summary["manifest"] = {"files": n_files, "bytes": total, "sample3_ok": ok}
     summary["license"] = verify_license(config["sources"])
+    summary["blob_parity"] = verify_blob_parity(config["sources"])
+    if any(r["mismatch"] for r in summary["blob_parity"]):
+        sys.exit("[阻塞] blob-parity 失配——检出件与上游 blob 不一致，K2 类缺陷进门被挡（重拉或按 cat-file 归正后重跑）")
 
     (REPORTS / "S1-fetch.md").write_text(
         "# S1 拉取记录（" + config["model"] + "）· " + time.strftime("%Y-%m-%d %H:%M") + "\n\n"
