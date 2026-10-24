@@ -70,6 +70,13 @@ STL 4 件（物理文件，13 处引用复用）统一中性着色；断网可�
 URDF 碰撞体全部为 box/cylinder/sphere 基元（无 mesh collision——与 Go2/G1 的 mesh 碰撞风格
 不同）；`usd/` 目录（5 件）超出本库 URDF/MJCF 范围 excluded。
 
+### 4 · 上游 2026-08-21 更新注记转述（R25 裁定③补记，2026-10-24）
+
+上游根 README"Lite3 model update (2026-08-21)"节自述：本机型 URDF 与 MJCF/USD 的
+**thigh centers of mass（大腿质心）存在差异**（OEM 格式特有数据）。本库 M2 对账范围为质量总量
+与逐 body mass（17/17 一致），**COM 不在当期对账范围**——本条为上游自述的如实转述，不动 M2
+质检记录本体；同仓 M20（deeprobotics_m20）自 M5 起管道已增设逐 body COM 对账（R25 裁定②）。
+
 ## 质量口径（官网原文实证）
 
 官网产品页明示 **"重量（带电池）12kg"**、站立尺寸 610×370×406 mm（截图

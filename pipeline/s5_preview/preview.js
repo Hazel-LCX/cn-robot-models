@@ -143,8 +143,10 @@ for (const link of linkEls) {
 await Promise.all(jobs);
 
 // ---- 关节滑条（质检元素：滑条范围比 URDF 限位宽 0.4rad，越限变红） ----
+// continuous 关节纳入（M5/R25 预警①落码，N2 备案）：无限位取 ±3.14 默认域（fallback 既有），
+// 越限变红语义对 continuous = ±π 视觉约定
 const sliderBox = document.getElementById('sliders');
-const revolute = jointEls.filter(j => j.getAttribute('type') === 'revolute');
+const revolute = jointEls.filter(j => ['revolute', 'continuous'].includes(j.getAttribute('type')));
 for (const j of revolute) {
   const name = j.getAttribute('name');
   const axis = new THREE.Vector3(...num3(j.querySelector('axis')?.getAttribute('xyz')));

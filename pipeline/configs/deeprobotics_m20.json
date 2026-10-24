@@ -1,0 +1,117 @@
+{
+  "model": "deeprobotics_m20",
+  "format_source": "official",
+  "sources": [
+    {
+      "name": "deep_robotics_model",
+      "repo": "DeepRoboticsLab/deep_robotics_model",
+      "pin": "530e01a5d2ceb6007f8790f1a7e11ee7389fb981",
+      "subdir": "M20",
+      "license_path": "LICENSE.txt",
+      "note": "M5：云深处 M20 轮足四足（同仓第二机型，Lite3 之后）；单仓单 license（BSD-3，快照与 M2 逐字节同物 cdc6c065 零漂移无新定性，R25 三重同物全验）；**管道首个 continuous 关节拓扑**（12R+4C+4F，4 轮关节）——R25 预警三条=S1 执行：continuous 三覆盖点 S1–S2 定案/活跃仓 head 漂移对账/入库件 scale+闭包常规 grep；活跃仓 pushed 2026-10-23，S1 对账 head"
+    }
+  ],
+  "s2": {
+    "urdf": {
+      "source": "deep_robotics_model",
+      "rel": "M20/urdf/M20.urdf",
+      "package": "M20",
+      "package_root": "M20",
+      "ref_style": "relative",
+      "note": "S1 实测：17 引用 './meshes/X.STL' 显式前缀（Lite3 同款第四形态，relative 分支兼容）；17 引=17 唯一；scale 0（R25 预警③闭合）；continuous 4 关节的 yourdfpy/mujoco 类型映射 S1–S2 定案（R25 预警①）"
+    },
+    "mjcf": {
+      "source": "deep_robotics_model",
+      "model_rel": "M20/mjcf/M20.xml",
+      "scene_rel": "M20/mjcf/M20.xml"
+    },
+    "notes": {}
+  },
+  "s3": {
+    "official": {
+      "mass_kg": 35.0,
+      "tolerance": 0.1,
+      "evidence": "官网原文「整机重量（含电池）约 35 kg」（deeprobotics.cn/products/detail/1.html 山猫 M20 系列参数表，2026-10-24 静态 HTML 提取，原件 evidence/official-m20-spec-page.html；同表 M20 Pro 同 35kg、M20S 36kg——本锚=M20 标准版）",
+      "caliber": "官网标称口径=含电池整机；URDF/MJCF 电池 link 情况 S3 实测——严格口径不可比仅作 sanity（M0/M1/M2 同法）；官网未公布自由度/关节扭矩（页面明示需下载产品单页）——DoF 对账改用 MJCF nu 与 URDF revolute+continuous 互证",
+      "note": "S3 前置侦察完成：官网产品页静态可提取（M2 Lite3 支持页同厂路径），官方质量基准恢复（M4 T1 缺失能力）；R25 裁定②：本模型 S3 增设 URDF↔MJCF 逐 body COM 对账（记录级 WARN）——s3 改码 N2 备案"
+    },
+    "sanity": {
+      "ratio_range": [
+        0.005,
+        0.5
+      ],
+      "axis_tolerance": 1e-06,
+      "mass_diff_warn": 0.02
+    },
+    "cross_alias": {},
+    "notes": {
+      "joint_range": "注：continuous 关节无限位（R25 预警①S1–S2 已定案：URDF continuous↔MJCF unlimited hinge 映射，nq=23=16×1+free7 自洽）——continuous 关节无限位对账不适用，12 revolute 限位纯体检；官网未公布关节级参数（参数表明示需下载单页）",
+      "upstream_png": "M20/ 子目录无图片资产（41 文件 S1 实测：34 STL 分目录+urdf+xml+usd 5 件）——S3 C1 模板 png 提示不适用；官网渲染图属仓级/官网件不入库"
+    }
+  },
+  "s4": {
+    "urdf": [
+      {
+        "src_rel": "M20/urdf/M20.urdf",
+        "dest": "urdf/M20.urdf"
+      }
+    ],
+    "urdf_meshes": {
+      "package": "M20",
+      "dest_root": "urdf",
+      "note": "relative（./ 前缀变体，Lite3 同构）：**M20 网格按格式分目录**（urdf/meshes/ 17 件 + mjcf/meshes/ 17 件，非共享池——S1 实测修正）；urdf 侧 17 引=17 唯一闭包全收"
+    },
+    "mjcf": [
+      {
+        "src_rel": "M20/mjcf/M20.xml",
+        "dest": "mjcf/M20.xml"
+      }
+    ],
+    "mjcf_assets": {
+      "src_rel": "M20/mjcf/meshes",
+      "dest": "mjcf/meshes",
+      "mode": "closure",
+      "note": "MJCF meshdir='./meshes/' 相对 mjcf 目录、自有 meshes/ 17 件（S1 实测：与 urdf 侧同名同集，同物性 S4 哈希对账）；closure 以 {dest}/{file} 落位零改动"
+    },
+    "images": [],
+    "recheck": {
+      "mjcf": "mjcf/M20.xml",
+      "urdf": "urdf/M20.urdf",
+      "urdf_mesh_dir": "urdf",
+      "note": "relative（./ 前缀）——meshes/ 与 urdf 同目录（分目录形态）"
+    },
+    "excluded": [
+      {
+        "src": "deep_robotics_model/M20/usd/M20.usd",
+        "why": "USD 格式件——锚点=URDF/MJCF 双格式，USD 不入库只记录（Lite3 M2 usd/ excluded 先例；上游 README 自述 USD 传感器层无传感器定义等格式差异）"
+      },
+      {
+        "src": "deep_robotics_model/M20/usd/configuration/M20_base.usd",
+        "why": "USD 配套件——同上"
+      },
+      {
+        "src": "deep_robotics_model/M20/usd/configuration/M20_physics.usd",
+        "why": "USD 配套件——同上"
+      },
+      {
+        "src": "deep_robotics_model/M20/usd/configuration/M20_robot.usd",
+        "why": "USD 配套件——同上"
+      },
+      {
+        "src": "deep_robotics_model/M20/usd/configuration/M20_sensor.usd",
+        "why": "USD 配套件——同上"
+      }
+    ],
+    "note": "M20/ 子目录 41 文件=34 STL（urdf/meshes 17+mjcf/meshes 17 分目录）+urdf+xml+usd 5 件（S1 实测）；其余七机型目录与仓级件由 sparse-checkout 天然隔离；images 空=子目录无图片资产"
+  },
+  "s5": {
+    "viewport": "quadruped",
+    "note": "轮足四足——非人形默认机位；continuous 关节滑条语义（无限位）S5 实测，preview.js 需要适配则 N2 备案"
+  },
+  "s6": {
+    "warmup_steps": 100,
+    "bench_steps": 10000,
+    "repeats": 5,
+    "scenario": "固定 qpos0、纯重力、无控制器（轮足站立初始姿态，测引擎步进吞吐，不掺控制变量——continuous 关节 qpos0 语义 S6 前实测校准）"
+  }
+}

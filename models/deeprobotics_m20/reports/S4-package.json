@@ -1,0 +1,327 @@
+{
+  "rows": [
+    {
+      "dest": "mjcf/M20.xml",
+      "src": "deep_robotics_model/M20/mjcf/M20.xml",
+      "kind": "mjcf",
+      "sha256": "25a3a09677d961524b25dc9afa113e260e1d98a3f496ae26a8fc0c7c76ab5413",
+      "traceable": true,
+      "blob_parity": true
+    },
+    {
+      "dest": "mjcf/meshes/base_link.STL",
+      "src": "deep_robotics_model/M20/mjcf/meshes/base_link.STL",
+      "kind": "asset",
+      "sha256": "a7984137d06782f513858fd699111109978301a9dff53ff37abf5413b922247f",
+      "traceable": true,
+      "blob_parity": true
+    },
+    {
+      "dest": "mjcf/meshes/fl_hipx.STL",
+      "src": "deep_robotics_model/M20/mjcf/meshes/fl_hipx.STL",
+      "kind": "asset",
+      "sha256": "179c634929072ae0ccf1dcdab1b005ac49b54e3225e78377afcff65951841aeb",
+      "traceable": true,
+      "blob_parity": true
+    },
+    {
+      "dest": "mjcf/meshes/fl_hipy.STL",
+      "src": "deep_robotics_model/M20/mjcf/meshes/fl_hipy.STL",
+      "kind": "asset",
+      "sha256": "c895052a02ccbb21111815a20676a8dbef82aca62edf4cb0289afc68d54034ef",
+      "traceable": true,
+      "blob_parity": true
+    },
+    {
+      "dest": "mjcf/meshes/fl_knee.STL",
+      "src": "deep_robotics_model/M20/mjcf/meshes/fl_knee.STL",
+      "kind": "asset",
+      "sha256": "c2ac2f2c9664d847646efed234f35f47c30b28f35083abb470193eb0535c3154",
+      "traceable": true,
+      "blob_parity": true
+    },
+    {
+      "dest": "mjcf/meshes/fl_wheel.STL",
+      "src": "deep_robotics_model/M20/mjcf/meshes/fl_wheel.STL",
+      "kind": "asset",
+      "sha256": "bcfca68aeeb8e5f118d4623a384cb040f611c32c1115b8574aed4c546e64685d",
+      "traceable": true,
+      "blob_parity": true
+    },
+    {
+      "dest": "mjcf/meshes/fr_hipx.STL",
+      "src": "deep_robotics_model/M20/mjcf/meshes/fr_hipx.STL",
+      "kind": "asset",
+      "sha256": "350a5bca1df65250de995636583a5415d24625add5a5da447e9a09fb4661540b",
+      "traceable": true,
+      "blob_parity": true
+    },
+    {
+      "dest": "mjcf/meshes/fr_hipy.STL",
+      "src": "deep_robotics_model/M20/mjcf/meshes/fr_hipy.STL",
+      "kind": "asset",
+      "sha256": "6a776a1637c7676a3220aa51df6f2a59ebb7b8a94da10305940653902116e9ee",
+      "traceable": true,
+      "blob_parity": true
+    },
+    {
+      "dest": "mjcf/meshes/fr_knee.STL",
+      "src": "deep_robotics_model/M20/mjcf/meshes/fr_knee.STL",
+      "kind": "asset",
+      "sha256": "e158a0ca5a5ef08862714d546576d23706b096576a3e20e3d7a88184d72e4743",
+      "traceable": true,
+      "blob_parity": true
+    },
+    {
+      "dest": "mjcf/meshes/fr_wheel.STL",
+      "src": "deep_robotics_model/M20/mjcf/meshes/fr_wheel.STL",
+      "kind": "asset",
+      "sha256": "2773ffcac685b1e288b09d13b80991987d722f386a645cd99b88de01eb02706b",
+      "traceable": true,
+      "blob_parity": true
+    },
+    {
+      "dest": "mjcf/meshes/hl_hipx.STL",
+      "src": "deep_robotics_model/M20/mjcf/meshes/hl_hipx.STL",
+      "kind": "asset",
+      "sha256": "3c20e792611b5142b4237f381a300079bb3d5d71e59c0d0a38335ff67988cf3a",
+      "traceable": true,
+      "blob_parity": true
+    },
+    {
+      "dest": "mjcf/meshes/hl_hipy.STL",
+      "src": "deep_robotics_model/M20/mjcf/meshes/hl_hipy.STL",
+      "kind": "asset",
+      "sha256": "d2c9efec9bfc31fef034617879fab4b731ac22d67a8f1d5f89ba4ca6d3a375ac",
+      "traceable": true,
+      "blob_parity": true
+    },
+    {
+      "dest": "mjcf/meshes/hl_knee.STL",
+      "src": "deep_robotics_model/M20/mjcf/meshes/hl_knee.STL",
+      "kind": "asset",
+      "sha256": "f6897fb23e4f1fe0943952f36f756d93ef6de88f48ac1ede294a7ca852ab82a1",
+      "traceable": true,
+      "blob_parity": true
+    },
+    {
+      "dest": "mjcf/meshes/hl_wheel.STL",
+      "src": "deep_robotics_model/M20/mjcf/meshes/hl_wheel.STL",
+      "kind": "asset",
+      "sha256": "d61d98f986e989484d37ac15700f43c409b1205ff649b4ba14f6ac3ee0f7e7c2",
+      "traceable": true,
+      "blob_parity": true
+    },
+    {
+      "dest": "mjcf/meshes/hr_hipx.STL",
+      "src": "deep_robotics_model/M20/mjcf/meshes/hr_hipx.STL",
+      "kind": "asset",
+      "sha256": "b49f8992cc84058e6009b804e4d68137059636175c5ba32816d36611d5b5b98a",
+      "traceable": true,
+      "blob_parity": true
+    },
+    {
+      "dest": "mjcf/meshes/hr_hipy.STL",
+      "src": "deep_robotics_model/M20/mjcf/meshes/hr_hipy.STL",
+      "kind": "asset",
+      "sha256": "70332110c7bc92d4498834cb37260c32de3e2d4b44e821bcf14a71ddf73d3e72",
+      "traceable": true,
+      "blob_parity": true
+    },
+    {
+      "dest": "mjcf/meshes/hr_knee.STL",
+      "src": "deep_robotics_model/M20/mjcf/meshes/hr_knee.STL",
+      "kind": "asset",
+      "sha256": "2fcf688c30596b3640e528defa92b58fe7804586586a681677115ea6d93f60e3",
+      "traceable": true,
+      "blob_parity": true
+    },
+    {
+      "dest": "mjcf/meshes/hr_wheel.STL",
+      "src": "deep_robotics_model/M20/mjcf/meshes/hr_wheel.STL",
+      "kind": "asset",
+      "sha256": "88b2fca83119f36b156520ae4c7a4334baa6a2ad71da90e1a529e10114a16641",
+      "traceable": true,
+      "blob_parity": true
+    },
+    {
+      "dest": "urdf/M20.urdf",
+      "src": "deep_robotics_model/M20/urdf/M20.urdf",
+      "kind": "urdf",
+      "sha256": "1643c65b3992afc2298ce7bfe7c5498cd784243bb791c9b3aa4c74b689efcfa7",
+      "traceable": true,
+      "blob_parity": true
+    },
+    {
+      "dest": "urdf/meshes/base_link.STL",
+      "src": "deep_robotics_model/M20/urdf/meshes/base_link.STL",
+      "kind": "mesh",
+      "sha256": "a7984137d06782f513858fd699111109978301a9dff53ff37abf5413b922247f",
+      "traceable": true,
+      "blob_parity": true
+    },
+    {
+      "dest": "urdf/meshes/fl_hipx.STL",
+      "src": "deep_robotics_model/M20/urdf/meshes/fl_hipx.STL",
+      "kind": "mesh",
+      "sha256": "179c634929072ae0ccf1dcdab1b005ac49b54e3225e78377afcff65951841aeb",
+      "traceable": true,
+      "blob_parity": true
+    },
+    {
+      "dest": "urdf/meshes/fl_hipy.STL",
+      "src": "deep_robotics_model/M20/urdf/meshes/fl_hipy.STL",
+      "kind": "mesh",
+      "sha256": "c895052a02ccbb21111815a20676a8dbef82aca62edf4cb0289afc68d54034ef",
+      "traceable": true,
+      "blob_parity": true
+    },
+    {
+      "dest": "urdf/meshes/fl_knee.STL",
+      "src": "deep_robotics_model/M20/urdf/meshes/fl_knee.STL",
+      "kind": "mesh",
+      "sha256": "c2ac2f2c9664d847646efed234f35f47c30b28f35083abb470193eb0535c3154",
+      "traceable": true,
+      "blob_parity": true
+    },
+    {
+      "dest": "urdf/meshes/fl_wheel.STL",
+      "src": "deep_robotics_model/M20/urdf/meshes/fl_wheel.STL",
+      "kind": "mesh",
+      "sha256": "bcfca68aeeb8e5f118d4623a384cb040f611c32c1115b8574aed4c546e64685d",
+      "traceable": true,
+      "blob_parity": true
+    },
+    {
+      "dest": "urdf/meshes/fr_hipx.STL",
+      "src": "deep_robotics_model/M20/urdf/meshes/fr_hipx.STL",
+      "kind": "mesh",
+      "sha256": "350a5bca1df65250de995636583a5415d24625add5a5da447e9a09fb4661540b",
+      "traceable": true,
+      "blob_parity": true
+    },
+    {
+      "dest": "urdf/meshes/fr_hipy.STL",
+      "src": "deep_robotics_model/M20/urdf/meshes/fr_hipy.STL",
+      "kind": "mesh",
+      "sha256": "6a776a1637c7676a3220aa51df6f2a59ebb7b8a94da10305940653902116e9ee",
+      "traceable": true,
+      "blob_parity": true
+    },
+    {
+      "dest": "urdf/meshes/fr_knee.STL",
+      "src": "deep_robotics_model/M20/urdf/meshes/fr_knee.STL",
+      "kind": "mesh",
+      "sha256": "e158a0ca5a5ef08862714d546576d23706b096576a3e20e3d7a88184d72e4743",
+      "traceable": true,
+      "blob_parity": true
+    },
+    {
+      "dest": "urdf/meshes/fr_wheel.STL",
+      "src": "deep_robotics_model/M20/urdf/meshes/fr_wheel.STL",
+      "kind": "mesh",
+      "sha256": "2773ffcac685b1e288b09d13b80991987d722f386a645cd99b88de01eb02706b",
+      "traceable": true,
+      "blob_parity": true
+    },
+    {
+      "dest": "urdf/meshes/hl_hipx.STL",
+      "src": "deep_robotics_model/M20/urdf/meshes/hl_hipx.STL",
+      "kind": "mesh",
+      "sha256": "3c20e792611b5142b4237f381a300079bb3d5d71e59c0d0a38335ff67988cf3a",
+      "traceable": true,
+      "blob_parity": true
+    },
+    {
+      "dest": "urdf/meshes/hl_hipy.STL",
+      "src": "deep_robotics_model/M20/urdf/meshes/hl_hipy.STL",
+      "kind": "mesh",
+      "sha256": "d2c9efec9bfc31fef034617879fab4b731ac22d67a8f1d5f89ba4ca6d3a375ac",
+      "traceable": true,
+      "blob_parity": true
+    },
+    {
+      "dest": "urdf/meshes/hl_knee.STL",
+      "src": "deep_robotics_model/M20/urdf/meshes/hl_knee.STL",
+      "kind": "mesh",
+      "sha256": "f6897fb23e4f1fe0943952f36f756d93ef6de88f48ac1ede294a7ca852ab82a1",
+      "traceable": true,
+      "blob_parity": true
+    },
+    {
+      "dest": "urdf/meshes/hl_wheel.STL",
+      "src": "deep_robotics_model/M20/urdf/meshes/hl_wheel.STL",
+      "kind": "mesh",
+      "sha256": "d61d98f986e989484d37ac15700f43c409b1205ff649b4ba14f6ac3ee0f7e7c2",
+      "traceable": true,
+      "blob_parity": true
+    },
+    {
+      "dest": "urdf/meshes/hr_hipx.STL",
+      "src": "deep_robotics_model/M20/urdf/meshes/hr_hipx.STL",
+      "kind": "mesh",
+      "sha256": "b49f8992cc84058e6009b804e4d68137059636175c5ba32816d36611d5b5b98a",
+      "traceable": true,
+      "blob_parity": true
+    },
+    {
+      "dest": "urdf/meshes/hr_hipy.STL",
+      "src": "deep_robotics_model/M20/urdf/meshes/hr_hipy.STL",
+      "kind": "mesh",
+      "sha256": "70332110c7bc92d4498834cb37260c32de3e2d4b44e821bcf14a71ddf73d3e72",
+      "traceable": true,
+      "blob_parity": true
+    },
+    {
+      "dest": "urdf/meshes/hr_knee.STL",
+      "src": "deep_robotics_model/M20/urdf/meshes/hr_knee.STL",
+      "kind": "mesh",
+      "sha256": "2fcf688c30596b3640e528defa92b58fe7804586586a681677115ea6d93f60e3",
+      "traceable": true,
+      "blob_parity": true
+    },
+    {
+      "dest": "urdf/meshes/hr_wheel.STL",
+      "src": "deep_robotics_model/M20/urdf/meshes/hr_wheel.STL",
+      "kind": "mesh",
+      "sha256": "88b2fca83119f36b156520ae4c7a4334baa6a2ad71da90e1a529e10114a16641",
+      "traceable": true,
+      "blob_parity": true
+    }
+  ],
+  "checks": [
+    {
+      "check": "s4:traceability",
+      "status": "PASS",
+      "detail": "36 个 raw 源入库件三锚全过（SHA256 命中 manifest 同路径行 + hash-object 命中上游 ls-tree@pin blob id）"
+    },
+    {
+      "check": "s4:mesh-split-decision",
+      "status": "PASS",
+      "detail": "URDF 侧 17 处引用 → 17 个物理网格 vs MJCF 侧 17 个，两侧同哈希（同源同内容，STL 同格式）——分目录落位以保持各自引用协议结构（不改官方一字节，保持官方 meshdir/相对引用结构，记录在案）"
+    },
+    {
+      "check": "s4:dae-dir-parity",
+      "status": "SKIP",
+      "detail": "本模型 urdf 无 dae/ 与 meshes/ 双目录结构（G1 为 meshes/ 单池），R3-D3 判定不适用"
+    },
+    {
+      "check": "s4:coverage",
+      "status": "PASS",
+      "detail": "raw 全量 45（除 .git/manifest）= 根级及中间层 4 + 目标子目录 41；子目录 41 全覆盖 = 入库唯一源 36 + 排除 5（其中 meshes/ 冗余 0）（未覆盖：无）——算式按源件口径平账（F1 教训）"
+    },
+    {
+      "check": "s4:recheck-mjcf",
+      "status": "PASS",
+      "detail": "入库后 mjcf/M20.xml 编译通过：nbody=18 ngeom=45 nmesh=17（官方相对引用结构保持）"
+    },
+    {
+      "check": "s4:recheck-urdf",
+      "status": "PASS",
+      "detail": "入库后 URDF yourdfpy 解析通过：21 links（relative（./ 前缀）——meshes/ 与 urdf 同目录（分目录形态））"
+    }
+  ],
+  "total_bytes": 23908273,
+  "physical_files": 36,
+  "non_raw": []
+}

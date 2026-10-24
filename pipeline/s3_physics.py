@@ -52,14 +52,18 @@ def parse_urdf(path):
              "collision_types": []}
         if ine is not None:
             e["mass"] = float(ine.find("mass").get("value"))
+            e["com"] = np.zeros(3)
             i = ine.find("inertia")
             if i is not None:
                 ixx, iyy, izz = (float(i.get(k, 0)) for k in ("ixx", "iyy", "izz"))
                 ixy, ixz, iyz = (float(i.get(k, 0)) for k in ("ixy", "ixz", "iyz"))
                 e["inertia"] = np.array([[ixx, ixy, ixz], [ixy, iyy, iyz], [ixz, iyz, izz]])
             origin = ine.find("origin")
-            if origin is not None and origin.get("rpy", "0 0 0") != "0 0 0":
-                rpy_nonzero.append(name)
+            if origin is not None:
+                if origin.get("xyz"):
+                    e["com"] = np.array([float(v) for v in origin.get("xyz").split()])
+                if origin.get("rpy", "0 0 0") != "0 0 0":
+                    rpy_nonzero.append(name)
         for vis in l.findall("visual"):
             mesh = vis.find("geometry/mesh")
             if mesh is not None and e["visual_mesh"] is None:
@@ -210,7 +214,9 @@ def check_mjcf_inventory(results, model):
 
 def check_cross(results, links, joints, model, tol, mass_warn, alias):
     import mujoco
-    urdf_rev = {j["name"]: j for j in joints if j["type"] == "revolute"}
+    # R25 预警①落码（N2 备案）：单自由度活动关节含 continuous（管道首个 continuous 模型 M20 实证
+    # 旧集合漏 4 轮关节——URDF continuous ↔ MJCF unlimited hinge 同为单轴活动关节，纳入对账）
+    urdf_rev = {j["name"]: j for j in joints if j["type"] in ("revolute", "continuous")}
     mj_joints = {mujoco.mj_id2name(model, mujoco.mjtObj.mjOBJ_JOINT, i):
                  np.array(model.jnt_axis[i])
                  for i in range(model.njnt)
@@ -218,7 +224,7 @@ def check_cross(results, links, joints, model, tol, mass_warn, alias):
     only_u = sorted(set(urdf_rev) - set(mj_joints))
     only_m = sorted(set(mj_joints) - set(urdf_rev))
     add(results, "cross:joint-names", "PASS" if not only_u and not only_m else "WARN",
-        f"URDF {len(urdf_rev)} revolute ↔ MJCF {len(mj_joints)} hinge"
+        f"URDF {len(urdf_rev)} 单自由度活动关节（revolute+continuous）↔ MJCF {len(mj_joints)} hinge"
         + (f"；仅 URDF：{only_u}；仅 MJCF：{only_m}" if only_u or only_m else "；名称集合一致"))
 
     common = sorted(set(urdf_rev) & set(mj_joints))
@@ -256,6 +262,29 @@ def check_cross(results, links, joints, model, tol, mass_warn, alias):
     add(results, "cross:mass-per-body", "WARN" if true_diff else "PASS",
         f"逐 body 对账：完全一致 {len(exact)} 个（hip/thigh/base 等）；约定差异 {conventions}"
         + (f"；真值分歧 {true_diff}——MJCF 更贴官方总量，分歧≠错误，M0 不修（修正 6），送审拍板" if true_diff else ""))
+
+    # R25 裁定②（N2 备案）：逐 body COM 对账——记录级 WARN 非 FAIL 门（上游 OEM 格式差异先例：
+    # deep_robotics_model README 自述 Lite3 thigh COM URDF/MJCF 有差；差异如实披露不修）
+    rev_alias = {v: k for k, v in alias.items()}
+    com_n, com_max, com_worst, com_diff, com_missing = 0, 0.0, "", [], []
+    for i in range(1, model.nbody):
+        mn = mujoco.mj_id2name(model, mujoco.mjtObj.mjOBJ_BODY, i)
+        if float(model.body_mass[i]) <= 0:
+            continue
+        e = links.get(rev_alias.get(mn, mn))
+        if e is None or e.get("com") is None:
+            com_missing.append(mn)
+            continue
+        d = float(np.abs(np.asarray(model.body_ipos[i]) - e["com"]).max())
+        com_n += 1
+        if d > com_max:
+            com_max, com_worst = d, mn
+        if d > tol:
+            com_diff.append(f"{mn}({d:.4f})")
+    add(results, "cross:com-per-body", "WARN" if com_diff else "PASS",
+        f"逐 body COM 对账（记录级）：对账 {com_n} 个，最大逐分量差 {com_max:.2e}（最差 {com_worst or '—'}，容差 {tol}）"
+        + (f"；超容差 {com_diff}——如实披露不修（上游 OEM 格式差异口径，R25 裁定②）" if com_diff else "；全部一致")
+        + (f"；MJCF 有质量 body 无 URDF 对应/无惯量：{com_missing}" if com_missing else ""))
 
 
 def write_report(model, results, extra, notes=None):

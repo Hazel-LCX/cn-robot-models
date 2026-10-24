@@ -3,7 +3,7 @@
 > **这不是模型收集站。** 这是一条可复现的开源仿真模型**质检管道**：
 > license 核对 → 拉取 → 格式校验 → 物理体检 → 双格式入库 → 在线预览 → 基准 → 质检报告。
 > 模型库是管道的副产品，**每一步的检查报告本身就是产品**。
-> 已收录：宇树 Go2（M0 质检样板）· 宇树 G1（M1 · 人形）· 云深处 Lite3（M2 · 异厂首录）· 智元灵犀 X2（M3 · 国产开源许可证首例）· 加速进化 T1（M4 · 第四厂商）——官方双源 URDF/MJCF（BSD-3-Clause / MulanPSL-2.0）。
+> 已收录：宇树 Go2（M0 质检样板）· 宇树 G1（M1 · 人形）· 云深处 Lite3（M2 · 异厂首录）· 智元灵犀 X2（M3 · 国产开源许可证首例）· 加速进化 T1（M4 · 第四厂商）· 云深处山猫 M20（M5 · 轮足 · 管道首个 continuous 关节拓扑）——官方双源 URDF/MJCF（BSD-3-Clause / MulanPSL-2.0）。
 
 ## 为什么是"质检管道"而不是"模型库"
 
@@ -17,7 +17,8 @@
   [G1 · 官方文件名与自由度不符（g1_23dof.xml 实为 29 关节，两格式动作空间不可互换）/ torso−1.28kg 网格证据链](models/unitree_g1/README.md#-已知分歧披露质检的一部分) ·
   [Lite3 · 四足端零惯量占位（本库首个 FAIL 级发现）/ MJCF mesh 重复定义](models/deeprobotics_lite3/README.md#-已知分歧披露质检的一部分) ·
   [X2 · 徽标件 scale 陷阱（native 3.96 m 大件，上游两格式一致缩放为 12 cm——忽略 scale 的查看器得幽灵几何，本库预览器曾踩坑已修，L12）](models/agibot_x2/README.md#1--agibotstl-徽标件与-scale-陷阱上游两格式一致本库预览器曾踩坑已修) ·
-  [T1 · 官方整机基准缺失（本库首例无官网基准机型，质量对比 WARN 披露不虚构）/ 网格池 63 收 25（38 件未收身份自洽）/ URDF 显式 world+floating joint](models/booster_t1/README.md#1--官方整机基准缺失本库首例无官网基准的机型)。
+  [T1 · 官方整机基准缺失（本库首例无官网基准机型，质量对比 WARN 披露不虚构）/ 网格池 63 收 25（38 件未收身份自洽）/ URDF 显式 world+floating joint](models/booster_t1/README.md#1--官方整机基准缺失本库首例无官网基准的机型) ·
+  [M20 · URDF↔MJCF 腿部质量分布分歧（hipy −0.125/knee +0.115 kg ×四腿，COM 却逐位一致——同仓 Lite3 互补模式）/ continuous 关节拓扑首覆盖](models/deeprobotics_m20/README.md#1--urdfmjcf-腿部质量分布分歧hipy--0125kg--knee--0115kg-四腿本模型核心质检发现)。
 - 如果体检全绿：价值落在"管道可复现 + 双格式对账 + 基准数字"——同样的成立。
 
 ## 管道
@@ -93,6 +94,18 @@ S0 license核对(门) → S1 拉取 → S2 格式校验 → S3 物理体检(门:
 | S5 3D 预览 | **零改码首跑**（v4 config 驱动吃下第五模型，preview.js/index.html 零 diff）；23 滑条、包围盒 y [0.000, 1.180] 与 yourdfpy 同法互证逐位同值（**测量法注明挂账在此执行**：three.js Box3 逐 mesh AABB 并集口径）；go2/g1/lite3/x2 基线逐位不变 | [pipeline/s5_preview/](pipeline/s5_preview/) |
 | S6 基准 | **MuJoCo 36,766 steps/s（27.2 µs/step）**，加载 51.6 ms，展幅 15.9%（五模型序列第五点，跨模型不可比再实证） | [S6-benchmark.md](models/booster_t1/reports/S6-benchmark.md) |
 
+### M5 · 云深处 山猫 M20（轮足 · 同仓第二机型 · 2026-10-24）
+
+| 步骤 | 结果 | 报告 |
+|---|---|---|
+| S0 license 门 | **同仓单 license 零漂移（R25 三重同物全验）**——快照与 M2 Lite3 逐字节同物 `cdc6c065`，无新定性；A4 继承 M2 双路径全中；官网产品页静态可提取 | [SOURCE.md](models/deeprobotics_m20/SOURCE.md) |
+| S1 拉取 | 41 文件锚点锁定（`530e01a5`，活跃仓零漂移），**blob-parity 41 件失配 0**（K2 门四战全绿）；17 引=17 唯一闭包零缺失、scale 0、**网格按格式分目录**（urdf/mjcf 各 17 件） | SOURCE.md / S1-fetch.md |
+| S2 格式校验 | **10 PASS / 0 FAIL**：URDF 21 link/20 joint（12R+**4 continuous**+4F）、MJCF nq=23/**nu=16** 逐数自洽——**continuous↔unlimited hinge 映射定案（R25 预警①）** | [S2-validation.md](models/deeprobotics_m20/reports/S2-validation.md) |
+| S3 物理体检 | **10 PASS / 3 WARN / 0 FAIL / 1 SKIP**：**官方基准恢复**（官网 35 kg，两侧 −1.5%/−1.4% 容差内）；**核心发现=hipy/knee 质量分布两格式分歧（×四腿）而 COM 逐位一致**（R25 裁定②新增 COM 对账 17/17）；16 轴差 0 | [S3-physics.md](models/deeprobotics_m20/reports/S3-physics.md) |
+| S4 双格式入库 | **36 物理件 / 23.9 MB 三锚全过** + 1 质检截图；分目录闭包精确全收零未收、excluded 5（usd/ Lite3 先例）；算式最净（41=36+5） | [S4-package.md](models/deeprobotics_m20/reports/S4-package.md) |
+| S5 3D 预览 | **continuous 滑条落码**（4 轮关节 ±π 语义，16 滑条；N2 备案）；包围盒 y [0.000, 0.675]；**五模型基线逐位回归全命中**（0.334/1.323/0.298/1.319/1.180） | [pipeline/s5_preview/](pipeline/s5_preview/) |
+| S6 基准 | **MuJoCo 43,867 steps/s（22.8 µs/step）**，加载 62.3 ms，展幅 12.0%（六模型序列第四点，跨模型不可比再实证） | [S6-benchmark.md](models/deeprobotics_m20/reports/S6-benchmark.md) |
+
 ## 快速开始
 
 **在线预览（零依赖，断网可用）**
@@ -104,6 +117,7 @@ python -m http.server 8130
 # 或            http://127.0.0.1:8130/pipeline/s5_preview/index.html?model=deeprobotics_lite3  # Lite3（云深处四足）
 # 或            http://127.0.0.1:8130/pipeline/s5_preview/index.html?model=agibot_x2            # X2（智元人形；默认视图含上游徽标件——见模型页披露）
 # 或            http://127.0.0.1:8130/pipeline/s5_preview/index.html?model=booster_t1           # T1（加速进化人形）
+# 或            http://127.0.0.1:8130/pipeline/s5_preview/index.html?model=deeprobotics_m20    # M20（云深处轮足，含 4 轮 continuous 滑条）
 ```
 
 **MuJoCo 查看 / 加载**

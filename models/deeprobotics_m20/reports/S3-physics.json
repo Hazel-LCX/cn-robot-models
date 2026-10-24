@@ -1,0 +1,90 @@
+{
+  "summary": {
+    "model": "deeprobotics_m20",
+    "date": "2026-10-24 16:47",
+    "pass": 10,
+    "warn": 3,
+    "fail": 0,
+    "skip": 1,
+    "verdict": "无 FAIL；WARN 全部有处置记录（M0 只体检不修复），可送专项审",
+    "versions": {
+      "numpy": "2.5.3",
+      "trimesh": "5.1.1"
+    },
+    "caliber": "官网原文「整机重量（含电池）约 35 kg」（deeprobotics.cn/products/detail/1.html 山猫 M20 系列参数表，2026-10-24 静态 HTML 提取，原件 evidence/official-m20-spec-page.html；同表 M20 Pro 同 35kg、M20S 36kg——本锚=M20 标准版） 官网标称口径=含电池整机；URDF/MJCF 电池 link 情况 S3 实测——严格口径不可比仅作 sanity（M0/M1/M2 同法）；官网未公布自由度/关节扭矩（页面明示需下载产品单页）——DoF 对账改用 MJCF nu 与 URDF revolute+continuous 互证",
+    "urdf_total_kg": 34.49143983390633,
+    "mjcf_total_kg": 34.525856
+  },
+  "checks": [
+    {
+      "check": "urdf:mass-positive",
+      "status": "WARN",
+      "detail": "显式质量≤0：[]；无 <inertial>：['front_camera_link', 'rear_camera_link', 'front_lidar_link', 'rear_lidar_link']——以上全为 fixed 传感器/转子座（各引擎普遍合并 fixed link），规则精化：活动关节零质量才 FAIL"
+    },
+    {
+      "check": "urdf:mass-total",
+      "status": "PASS",
+      "detail": "34.491 kg vs 官方 35.0 kg（-1.5%，容差 ±10%）；口径：官网标称口径=含电池整机；URDF/MJCF 电池 link 情况 S3 实测——严格口径不可比仅作 sanity（M0/M1/M2 同法）；官网未公布自由度/关节扭矩（页面明示需下载产品单页）——DoF 对账改用 MJCF nu 与 URDF revolute+continuous 互证"
+    },
+    {
+      "check": "urdf:inertia-pd",
+      "status": "PASS",
+      "detail": "17 个有质量 link 惯量张量全正定"
+    },
+    {
+      "check": "urdf:inertia-triangle",
+      "status": "PASS",
+      "detail": "17 个 link 三角不等式全成立"
+    },
+    {
+      "check": "urdf:inertia-sanity",
+      "status": "PASS",
+      "detail": "逐轴垂距法（修正 1）0 link × 3 轴，比值 I_i/(m·d⊥i²) ∈ [0.005, 0.5]；无网格/零质量跳过 21 个；全部落区间"
+    },
+    {
+      "check": "urdf:collision-inventory",
+      "status": "WARN",
+      "detail": "17/21 link 有 <collision>（{'box': 9, 'cylinder': 18}）；无 collision：['front_camera_link', 'rear_camera_link', 'front_lidar_link', 'rear_lidar_link']（标记不自动补，A1；M20/ 子目录无图片资产（41 文件 S1 实测：34 STL 分目录+urdf+xml+usd 5 件）——S3 C1 模板 png 提示不适用；官网渲染图属仓级/官网件不入库）"
+    },
+    {
+      "check": "urdf:collision-mesh-loadable",
+      "status": "SKIP",
+      "detail": "collision 引用 0 个网格文件（全基元）——A1-2 网格可加载检查不适用，显式跳过（fail 不静默的精神同样适用于不适用，R4-E6）"
+    },
+    {
+      "check": "urdf:joint-limits",
+      "status": "PASS",
+      "detail": "12 个 revolute 全部 lower<upper 且 effort/velocity>0；注：continuous 关节无限位（R25 预警①S1–S2 已定案：URDF continuous↔MJCF unlimited hinge 映射，nq=23=16×1+free7 自洽）——continuous 关节无限位对账不适用，12 revolute 限位纯体检；官网未公布关节级参数（参数表明示需下载单页）"
+    },
+    {
+      "check": "mjcf:mass-total",
+      "status": "PASS",
+      "detail": "34.526 kg vs 官方 35.0 kg（-1.4%，容差 ±10%）；口径：官网标称口径=含电池整机；URDF/MJCF 电池 link 情况 S3 实测——严格口径不可比仅作 sanity（M0/M1/M2 同法）；官网未公布自由度/关节扭矩（页面明示需下载产品单页）——DoF 对账改用 MJCF nu 与 URDF revolute+continuous 互证"
+    },
+    {
+      "check": "mjcf:body-geom",
+      "status": "PASS",
+      "detail": "17 个 body 共 44 geom；无 geom 的 body：[]（实测为自闭合空 body：零质量/零 geom/零 site，foot 触地几何挂于 calf 的 foot class geom——建模约定，标记不自动补；R4-E2 措辞更正）"
+    },
+    {
+      "check": "cross:joint-names",
+      "status": "PASS",
+      "detail": "URDF 16 单自由度活动关节（revolute+continuous）↔ MJCF 16 hinge；名称集合一致"
+    },
+    {
+      "check": "cross:joint-axes",
+      "status": "PASS",
+      "detail": "16 对同名关节轴逐分量最大差 0.00e+00（最差 —，容差 1e-06）；URDF 轴在关节系、MJCF 轴在 body 系——两模型约定一致时可数值直比"
+    },
+    {
+      "check": "cross:mass-per-body",
+      "status": "WARN",
+      "detail": "逐 body 对账：完全一致 5 个（hip/thigh/base 等）；约定差异 ['fl_hipx(+0.0014)', 'fr_hipx(+0.0014)', 'hl_hipx(+0.0014)', 'hr_hipx(+0.0014)']；真值分歧 ['fl_hipy(2.4930 vs 2.6180, -0.1250)', 'fl_knee(1.2600 vs 1.1450, +0.1150)', 'fr_hipy(2.4930 vs 2.6180, -0.1250)', 'fr_knee(1.2600 vs 1.1450, +0.1150)', 'hl_hipy(2.4930 vs 2.6180, -0.1250)', 'hl_knee(1.2600 vs 1.1450, +0.1150)', 'hr_hipy(2.4930 vs 2.6180, -0.1250)', 'hr_knee(1.2600 vs 1.1450, +0.1150)']——MJCF 更贴官方总量，分歧≠错误，M0 不修（修正 6），送审拍板"
+    },
+    {
+      "check": "cross:com-per-body",
+      "status": "PASS",
+      "detail": "逐 body COM 对账（记录级）：对账 17 个，最大逐分量差 4.99e-07（最差 fl_knee，容差 1e-06）；全部一致"
+    }
+  ]
+}
