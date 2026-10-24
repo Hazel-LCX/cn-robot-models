@@ -608,3 +608,24 @@ R5 原三项（README 定稿 / LICENSES-SOURCE 一致 / .gitattributes clone 验
 **总账**：R18 决策点级退回→R19 暂缓→R20 放行，preview.js 一行 scale 属性的连锁教训（L12）三轮闭环：根因修复（scale 应用）→材质配套（DoubleSide）→公开件治理（换图）+口径立规（grep 随断言）。二十审，越界记录累计仍为零（断言类轻度两笔在案）。
 
 ---
+
+## R21 · 协议⑤执行回执终查：全数字四路实测通过——M3 含发布全流程闭环，项目回维护态（2026-10-24 · 审核台）
+
+**送审**：协议⑤执行回执（R20 裁定路径 b：工作台代推 `9b20289..3dc950b`；回执 commit `8bcdd00` 本地待随队）。按铁律"连回执也要验数字"，回执全部数字审核台独立实测，**零出入**。
+
+**审核台独立终查（四路活证）**：
+- **ref 四观测一致**：本地对象库 `3dc950b` == tracking `origin/main` == `ls-remote` == GitHub API 活源 `git/refs/heads/main` = `3dc950b1363efdec0a84d32d61b14d84fb32def4` 逐位；
+- **计数双路 51**：本地 `rev-list --count origin/main`=51 + API commits Link `rel="last" page=51`——R20 预言 47+4 逐位命中；R19 期"50/47+3"口径就此收口；增量恰为放行 4 commit（23c165d/6a5b300/bea1309/3dc950b），无夹带；
+- **R13 专项闭合**：远端 REVIEW.md 含 R19 节（`git show origin/main:REVIEW.md` grep 直证）+ 活源 contents API blob sha `4e3d04c` 与本地 ls-tree 逐位同物=双路等证；远端无 R20 节与计划一致（R20 节已随 `8bcdd00` 本地落库、待下次 push 随队）；
+- **上线抽查（API 活源）**：`models/agibot_x2/` 八件套在线（LICENSE-upstream/README/SOURCE/evidence/images/mjcf/reports/urdf）；`models/deeprobotics_lite3/images/` 仅 `preview-lite3-v8.png`——**v4 缺陷产物在远端已绝迹**（公开件治理完成）；
+- **回执 commit 复核**：`8bcdd00` 恰 3 件纯台账（DEVLOG 会话 23 + REVIEW-REQUEST 回执 + REVIEW.md R20 节），pipeline/ 零 diff——回执"零改码"声明属实。
+
+**裁定**：
+1. **R21 = 协议⑤完成，M3 含发布全流程闭环**——四模型（Go2/G1/Lite3/X2）全量在线 github.com/Hazel-LCX/cn-robot-models，项目回维护态；
+2. 遗留三项常态挂账：①本地领先 1（`8bcdd00` 回执台账）下次 push 随队，纯台账无需新审（先例 M2 0529d1d）；②深度口径差观察项维持（送审 0.681/审核台 0.682 AABB 保守并集 vs FK 0.643 逐点），随下次 S5 报告注明测量法；③M4 候选（booster_gym NOASSERTION 定性/云深处同仓多机型）未启动，**动前先协议②**。
+
+**越界检查**：无——路径 b 属 R20 预授权范围，回执如实、停手正确。
+
+**总账**：M3 全周期五审闭环（R17 选型→R18 决策点退回→R19 暂缓→R20 放行→R21 终查），L12 教训链条（scale 应用→DoubleSide→换图+grep 立规）完整入库并在线生效；"连回执也要验数字"本件全兑现——回执五项声明（三源/计数/上线链/R13/零改码）逐项独立复测无一出入。二十一审，越界记录累计仍为零（断言类轻度两笔在案）。
+
+---
