@@ -3,7 +3,7 @@
 > **这不是模型收集站。** 这是一条可复现的开源仿真模型**质检管道**：
 > license 核对 → 拉取 → 格式校验 → 物理体检 → 双格式入库 → 在线预览 → 基准 → 质检报告。
 > 模型库是管道的副产品，**每一步的检查报告本身就是产品**。
-> 已收录：宇树 Go2（M0 质检样板）· 宇树 G1（M1 · 人形）· 云深处 Lite3（M2 · 异厂首录）· 智元灵犀 X2（M3 · 国产开源许可证首例）——官方双源 URDF/MJCF（BSD-3-Clause / MulanPSL-2.0）。
+> 已收录：宇树 Go2（M0 质检样板）· 宇树 G1（M1 · 人形）· 云深处 Lite3（M2 · 异厂首录）· 智元灵犀 X2（M3 · 国产开源许可证首例）· 加速进化 T1（M4 · 第四厂商）——官方双源 URDF/MJCF（BSD-3-Clause / MulanPSL-2.0）。
 
 ## 为什么是"质检管道"而不是"模型库"
 
@@ -16,7 +16,8 @@
   [Go2 · calf 质量/hip 限位](models/unitree_go2/README.md#-已知分歧披露质检的一部分) ·
   [G1 · 官方文件名与自由度不符（g1_23dof.xml 实为 29 关节，两格式动作空间不可互换）/ torso−1.28kg 网格证据链](models/unitree_g1/README.md#-已知分歧披露质检的一部分) ·
   [Lite3 · 四足端零惯量占位（本库首个 FAIL 级发现）/ MJCF mesh 重复定义](models/deeprobotics_lite3/README.md#-已知分歧披露质检的一部分) ·
-  [X2 · 徽标件 scale 陷阱（native 3.96 m 大件，上游两格式一致缩放为 12 cm——忽略 scale 的查看器得幽灵几何，本库预览器曾踩坑已修，L12）](models/agibot_x2/README.md#1--agibotstl-徽标件与-scale-陷阱上游两格式一致本库预览器曾踩坑已修)。
+  [X2 · 徽标件 scale 陷阱（native 3.96 m 大件，上游两格式一致缩放为 12 cm——忽略 scale 的查看器得幽灵几何，本库预览器曾踩坑已修，L12）](models/agibot_x2/README.md#1--agibotstl-徽标件与-scale-陷阱上游两格式一致本库预览器曾踩坑已修) ·
+  [T1 · 官方整机基准缺失（本库首例无官网基准机型，质量对比 WARN 披露不虚构）/ 网格池 63 收 25（38 件未收身份自洽）/ URDF 显式 world+floating joint](models/booster_t1/README.md#1--官方整机基准缺失本库首例无官网基准的机型)。
 - 如果体检全绿：价值落在"管道可复现 + 双格式对账 + 基准数字"——同样的成立。
 
 ## 管道
@@ -80,6 +81,18 @@ S0 license核对(门) → S1 拉取 → S2 格式校验 → S3 物理体检(门:
 | S5 3D 预览 | 31 关节滑条（含头部双关节）；**发现并修复本库预览器 scale 缺陷（AGENT-LAB L12，R18 审核台抓出）**——徽标件 native 3.96 m 曾被按原生渲染成幽灵（URDF/MJCF 实为同 scale 12 cm 徽标，上游无分歧）；修复后含徽标包围盒 **1.319 m ↔ 官网 1.31 m 吻合**，go2/g1/lite3 基线逐位不变 | [pipeline/s5_preview/](pipeline/s5_preview/) |
 | S6 基准 | **MuJoCo 39,086 steps/s（25.6 µs/step）**，加载 454.5 ms，展幅 4.5%（四模型序列第四点，跨模型不可比再实证） | [S6-benchmark.md](models/agibot_x2/reports/S6-benchmark.md) |
 
+### M4 · 加速进化 T1（双足人形 · 第四厂商 · 2026-10-24）
+
+| 步骤 | 结果 | 报告 |
+|---|---|---|
+| S0 license 门 | **BSD-3-Clause 全文在仓=可收录（R22 活源全验）**——专用资产仓 booster_assets 正本（M3 时代"跨仓配对"预设经侦察修正：train 零资产/gym 短格式 Apache 降旁证/assets 最优）；版权行快照逐字 | [SOURCE.md](models/booster_t1/SOURCE.md) |
+| S1 拉取 | 69 文件锚点锁定（`12a97516`，直连零漂移），**blob-parity 门 69 件失配 0**（K2 门第三次实战全绿）；引用风格 `meshes/` 前缀（G1 同族）、**URDF/MJCF scale 属性 0 处（R22 预警 grep 实测）**、网格闭包 25/25 零缺失 | SOURCE.md / S1-fetch.md |
+| S2 格式校验 | **10 PASS / 0 FAIL**：URDF 25 link/24 joint（根=trunk，yourdfpy 规范化 world+floating 口径在案）、25 引用全解析、MJCF 编译 nq=30/**nu=23** 与 URDF 23 revolute 逐数自洽 | [S2-validation.md](models/booster_t1/reports/S2-validation.md) |
+| S3 物理体检 | **7 PASS / 5 WARN / 0 FAIL / 1 SKIP**：**官方整机基准缺失=本库首例**（官网无 T1 页，三官方仓 README 无质量字段——mass 对比 WARN 跳过不虚构，总量 31.738/31.740 kg 仅记录）；两侧逐 body 23/23 一致、23 轴差 0；URDF 碰撞全基元披露 | [S3-physics.md](models/booster_t1/reports/S3-physics.md) |
+| S4 双格式入库 | **52 物理件 / 17.4 MB 三锚全过** + 1 质检截图；唯一源 27（25 网格双侧落位保持官方结构）+ excluded 4 逐件带 why；38 件未收网格逐件列名身份自洽（踝并联/手部/29dof 配套） | [S4-package.md](models/booster_t1/reports/S4-package.md) |
+| S5 3D 预览 | **零改码首跑**（v4 config 驱动吃下第五模型，preview.js/index.html 零 diff）；23 滑条、包围盒 y [0.000, 1.180] 与 yourdfpy 同法互证逐位同值（**测量法注明挂账在此执行**：three.js Box3 逐 mesh AABB 并集口径）；go2/g1/lite3/x2 基线逐位不变 | [pipeline/s5_preview/](pipeline/s5_preview/) |
+| S6 基准 | **MuJoCo 36,766 steps/s（27.2 µs/step）**，加载 51.6 ms，展幅 15.9%（五模型序列第五点，跨模型不可比再实证） | [S6-benchmark.md](models/booster_t1/reports/S6-benchmark.md) |
+
 ## 快速开始
 
 **在线预览（零依赖，断网可用）**
@@ -90,6 +103,7 @@ python -m http.server 8130
 # 或            http://127.0.0.1:8130/pipeline/s5_preview/index.html?model=unitree_g1           # G1（人形）
 # 或            http://127.0.0.1:8130/pipeline/s5_preview/index.html?model=deeprobotics_lite3  # Lite3（云深处四足）
 # 或            http://127.0.0.1:8130/pipeline/s5_preview/index.html?model=agibot_x2            # X2（智元人形；默认视图含上游徽标件——见模型页披露）
+# 或            http://127.0.0.1:8130/pipeline/s5_preview/index.html?model=booster_t1           # T1（加速进化人形）
 ```
 
 **MuJoCo 查看 / 加载**
@@ -126,7 +140,7 @@ python pipeline/s6_bench.py unitree_g1      # 基准
   ——上游 license 原文随模型入库（[models/unitree_go2/LICENSE-upstream-*.txt](models/unitree_go2/)）。
 - `pipeline/s5_preview/libs/` 内 vendor 的 three.js（MIT）随附其原版 LICENSE。
 
-**商标声明**：Unitree / Go2 / G1 为宇树科技（杭州宇树科技）商标，Deep Robotics / 绝影 / Lite3 为云深处科技商标，AgiBot / 灵犀 X2 为智元机器人商标；本项目非官方、无关联、无背书。
+**商标声明**：Unitree / Go2 / G1 为宇树科技（杭州宇树科技）商标，Deep Robotics / 绝影 / Lite3 为云深处科技商标，AgiBot / 灵犀 X2 为智元机器人商标，Booster / T1 为加速进化（Booster Robotics）商标；本项目非官方、无关联、无背书。
 
 ## 目录结构
 

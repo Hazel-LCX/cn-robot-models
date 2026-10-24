@@ -1,0 +1,85 @@
+{
+  "summary": {
+    "model": "booster_t1",
+    "date": "2026-10-24 15:42",
+    "pass": 7,
+    "warn": 5,
+    "fail": 0,
+    "skip": 1,
+    "verdict": "无 FAIL；WARN 全部有处置记录（M0 只体检不修复），可送专项审",
+    "versions": {
+      "numpy": "2.5.3",
+      "trimesh": "5.1.1"
+    },
+    "caliber": "官方整机基准未取证（mass_kg=null，口径见 config s3.official.note）",
+    "urdf_total_kg": 31.738357,
+    "mjcf_total_kg": 31.739956999999997
+  },
+  "checks": [
+    {
+      "check": "urdf:mass-positive",
+      "status": "WARN",
+      "detail": "显式质量≤0：[]；无 <inertial>：['head_realsense_rgb_link']——以上全为 fixed 传感器/转子座（各引擎普遍合并 fixed link），规则精化：活动关节零质量才 FAIL"
+    },
+    {
+      "check": "urdf:mass-total",
+      "status": "WARN",
+      "detail": "官方整机质量基准未取证（官网无该机型页，config s3.official.note）——总量对比跳过，实测总量 31.738 kg 仅作记录非判据（官方基准缺失不得虚构，R17 检查点同源）"
+    },
+    {
+      "check": "urdf:inertia-pd",
+      "status": "PASS",
+      "detail": "24 个有质量 link 惯量张量全正定"
+    },
+    {
+      "check": "urdf:inertia-triangle",
+      "status": "PASS",
+      "detail": "24 个 link 三角不等式全成立"
+    },
+    {
+      "check": "urdf:inertia-sanity",
+      "status": "PASS",
+      "detail": "逐轴垂距法（修正 1）0 link × 3 轴，比值 I_i/(m·d⊥i²) ∈ [0.005, 0.5]；无网格/零质量跳过 25 个；全部落区间"
+    },
+    {
+      "check": "urdf:collision-inventory",
+      "status": "WARN",
+      "detail": "20/25 link 有 <collision>（{'box': 5, 'cylinder': 14, 'sphere': 1}）；无 collision：['left_shoulder_roll_link', 'right_shoulder_roll_link', 'left_ankle_pitch_link', 'right_ankle_pitch_link', 'head_realsense_rgb_link']（标记不自动补，A1；booster_assets robots/T1/ 无图片资产（6 模型件 + 63 STL 实测）——S3 C1 模板 png 提示不适用）"
+    },
+    {
+      "check": "urdf:collision-mesh-loadable",
+      "status": "SKIP",
+      "detail": "collision 引用 0 个网格文件（全基元）——A1-2 网格可加载检查不适用，显式跳过（fail 不静默的精神同样适用于不适用，R4-E6）"
+    },
+    {
+      "check": "urdf:joint-limits",
+      "status": "PASS",
+      "detail": "23 个 revolute 全部 lower<upper 且 effort/velocity>0；注：官网无 T1 产品页——限位/扭矩对账无官网基准，纯体检+披露（Lite3 同口径）；DoF 对账基准=官方 assets README 配置表 T1 行逐字（head 2 + arms 4×2 + waist 1 + legs 6×2 = 23）vs URDF 23 revolute 逐位一致；MJCF nu=23 同；booster_deploy README 'T1 23-DOF configuration' 旁证第三件"
+    },
+    {
+      "check": "mjcf:mass-total",
+      "status": "WARN",
+      "detail": "官方整机质量基准未取证（官网无该机型页，config s3.official.note）——总量对比跳过，实测总量 31.740 kg 仅作记录非判据（官方基准缺失不得虚构，R17 检查点同源）"
+    },
+    {
+      "check": "mjcf:body-geom",
+      "status": "WARN",
+      "detail": "25 个 body 共 47 geom；无 geom 的 body：['head_realsense_rgb_link']（实测为自闭合空 body：零质量/零 geom/零 site，foot 触地几何挂于 calf 的 foot class geom——建模约定，标记不自动补；R4-E2 措辞更正）"
+    },
+    {
+      "check": "cross:joint-names",
+      "status": "PASS",
+      "detail": "URDF 23 revolute ↔ MJCF 23 hinge；名称集合一致"
+    },
+    {
+      "check": "cross:joint-axes",
+      "status": "PASS",
+      "detail": "23 对同名关节轴逐分量最大差 0.00e+00（最差 —，容差 1e-06）；URDF 轴在关节系、MJCF 轴在 body 系——两模型约定一致时可数值直比"
+    },
+    {
+      "check": "cross:mass-per-body",
+      "status": "PASS",
+      "detail": "逐 body 对账：完全一致 23 个（hip/thigh/base 等）；约定差异 ['trunk(-0.0016)']"
+    }
+  ]
+}

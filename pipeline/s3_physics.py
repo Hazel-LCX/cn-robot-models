@@ -104,6 +104,11 @@ def check_mass_positive(results, links, joints):
 
 
 def check_mass_total(results, tag, total, official):
+    if official.get("mass_kg") is None:
+        add(results, f"{tag}:mass-total", "WARN",
+            f"官方整机质量基准未取证（官网无该机型页，config s3.official.note）——总量对比跳过，"
+            f"实测总量 {total:.3f} kg 仅作记录非判据（官方基准缺失不得虚构，R17 检查点同源）")
+        return
     dev = total / official["mass_kg"] - 1
     status = "PASS" if abs(dev) <= official["tolerance"] else "WARN"
     add(results, f"{tag}:mass-total", status,
@@ -316,7 +321,9 @@ def main():
     print("== 交叉对账 ==")
     check_cross(results, links, joints, model, tol, mass_warn, s3["cross_alias"])
 
-    extra = {"caliber": official["evidence"] + " " + official["caliber"],
+    caliber_txt = " ".join(x for x in (official.get("evidence"), official.get("caliber")) if x) \
+        or "官方整机基准未取证（mass_kg=null，口径见 config s3.official.note）"
+    extra = {"caliber": caliber_txt,
              "urdf_total_kg": urdf_total, "mjcf_total_kg": float(model.body_mass[1:].sum())}
     summary = write_report(config["model"], results, extra, s3["notes"])
     print(f"\n汇总：PASS {summary['pass']} / WARN {summary['warn']} / FAIL {summary['fail']}"

@@ -13,7 +13,7 @@
 | 配对选定（待审） | `T1_23dof.urdf` + `T1_23dof.xml`（官方 README 配置表列名的 23 自由度标准版） |
 | 网格 | `robots/T1/meshes/` 63 件（Mesh 两侧引用闭包关系 S1 实测） |
 | 引用协议 | S1 实测（侦察仅确认文件在位；`T1_23dof.xml` 与 urdf 同目录配对关系由官方 README 配置表背书） |
-| 不入库（记录口径，S1 实测细化） | `T1_29dof.urdf`（29 自由度变体，**无 xml 配对**——树扫描实测 T1 线 xml 仅 23dof/23dof_parallel/locomotion 三件）、`T1_locomotion.urdf`+`T1_locomotion.xml`（头/臂/腰固化的行走裁剪变体）、`T1_23dof_parallel.xml`（并联变体，审核台裁定是否随主配对）、`robots/K1/` `robots/T2/` 整线（M4+ 候选）、`motions/` `src/` `pyproject.toml` `setup.cfg`（仓级非模型件） |
+| 不入库（记录口径，S1 实测细化） | `T1_29dof.urdf`（29 自由度变体，**无 xml 配对**——树扫描实测 T1 线 xml 仅 23dof/23dof_parallel/locomotion 三件）、`T1_locomotion.urdf`+`T1_locomotion.xml`（头/臂/腰固化的行走裁剪变体）、`T1_23dof_parallel.xml`（并联变体，**R22 已裁不入库**——用途特化副本，X2 simple_collision 先例同款）、`robots/K1/` `robots/T2/` 整线（M4+ 候选）、`motions/` `src/` `pyproject.toml` `setup.cfg`（仓级非模型件） |
 
 **机型背景（待审）**：T1 = 加速进化（Booster Robotics）双足人形，官方 README 配置表自述 23 DoF = head 2 + arms 4×2 + waist 1 + legs 6×2（**算术自洽 2+8+1+12=23**，锚点选择有官方文档背书，强于 M3 的推断式选型）。同仓 K1（22 DoF）与 T2（31 DoF + 四种手部/夹爪变体）整线留 M4+ 候选；本库四机型序列将获**第四厂商**（宇树/云深处/智元之后），且首次引入"专用资产仓为正本源"的 Booster 生态位（gym 训练仓降为旁证）。
 

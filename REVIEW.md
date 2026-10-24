@@ -629,3 +629,27 @@ R5 原三项（README 定稿 / LICENSES-SOURCE 一致 / .gitattributes clone 验
 **总账**：M3 全周期五审闭环（R17 选型→R18 决策点退回→R19 暂缓→R20 放行→R21 终查），L12 教训链条（scale 应用→DoubleSide→换图+grep 立规）完整入库并在线生效；"连回执也要验数字"本件全兑现——回执五项声明（三源/计数/上线链/R13/零改码）逐项独立复测无一出入。二十一审，越界记录累计仍为零（断言类轻度两笔在案）。
 
 ---
+
+## R22 · 协议②（M4 选型 + S0 license 门）：加速进化 T1 定案——BSD-3 活源全验通过，四决策点全批，S1 放行（2026-10-24 · 审核台）
+
+**送审**：M4 选型=Booster T1（`BoosterRobotics/booster_assets` `robots/T1/`，第五模型/第四厂商）+ S0 落档（`models/booster_t1/`）+ 源修正确认（`9c3fab9`，本地领先 1）。前情收口：R21 遗留收尾 push 已执行——审核台 ls-remote/fetch 实测远端=`8195c20`、rev-list=**53**，纯台账无需新审口径兑现 ✓。
+
+**审核台独立实证（活源逐项，零出入）**：
+- **license 红线（全链四证）**：本地快照 blob `d7a14af35ecb…`（ls-tree 正本）全文通读=**标准 BSD-3-Clause 三条款完整无篡改**、版权行 `Copyright (c) 2025, BoosterRobotics`；活源 LICENSE blob 逐位同物+1502 B；全树扫描 494 件**仅根级 LICENSE 一件**（整仓单 license 直配）；SPDX `isOsiApproved: true`——**定性=BSD-3-Clause 可收录**，M0/M2 同族三锚先例；
+- **pin 零漂移**：活源 head=`12a97516`（SOURCE.md pin 逐位）；
+- **树事实全复现**：truncated=false/494 件；**10 urdf + 11 xml 逐字成立**（motions 域 7 件全 csv 零 xml——"全树"口径精确）；锚点 `T1_23dof.urdf`↔`T1_23dof.xml` 同目录在位；T1 线 xml 恰三件（23dof/23dof_parallel/locomotion）、`T1_29dof.urdf` 无配对属实；K1_22dof 与 T2 五变体同目录配对属实——**M3 期"T2/K1 等 10 URDF 无 MJCF"历史口径错误经活源复证、本次修正成立**；T1 meshes 63 件；
+- **锚点官方背书（活源 README 直读）**：DoF 表 T1 行逐字"head 2 joints, arms 4 joints ×2, waist 1 joint, legs 6 joints ×2"（算术自洽 2+8+1+12=23）且明列 `T1_23dof.urdf`+`T1_23dof.xml` 配对；locomotion 行"fixed head, arms, waist"=裁剪变体逐字坐实；
+- **源修正三步活源复证**：train 仓 81 件（truncated=false）urdf/xml/T1 全零命中；gym LICENSE 活源 blob `c9e19b34`/916 B 零漂移（Apache-2.0 短格式降旁证不作门槛=正确处置）；assets meta 45.4 MB/pushed 2026-09-26；账户 type=User+blog=官方域（A4 路径②①件活源复核）；
+- **候选 B 抽查**：dr-model pushed 2026-10-23、LICENSE.txt 活源 blob `cdc6c065`==M2 快照零漂移——留 M4+ 事实在档；
+- **evidence 防伪抽查**：本地三件 evidence JSON（license sha/User type/SPDX）关键字段与活源逐一相符；
+- **越界检查：无**——9c3fab9 恰 10 件纯 S0 档案、pipeline 零 diff、S1 未动；gym S0 撤档（archive 不入库、证据链不混两正本）=L12 纪律执行到位。
+
+**裁定**：
+1. **四决策点全批**：M4 选型=T1（四厂商五模型）；锚点=`T1_23dof` 配对+不入库清单（T1_29dof 无配对/locomotion 裁剪变体/K1+T2 整线/motions+src 仓级件）；license 定性=BSD-3-Clause 可收录（gym 定性件降侦察档案）；源修正确认（单仓同目录直配、零结构改动）入 SOURCE.md §4；
+2. **T1_23dof_parallel 处置随批**：同意不入库（用途特化副本，X2 simple_collision 先例同款）——SOURCE.md"待裁"口径可改"已裁"，工作台下个 commit 顺手更正（非载荷）；
+3. **S1 放行**，预警如实执行：assets 版 URDF scale 属性 S1 grep 实测（断言纪律延伸到新模型）、网格闭包/引用协议/物理参数 S1–S3 实测定案、S1 时对账 head 漂移；
+4. 挂账继承：深度口径差测量法注明（下次 S5）、X30 网格异常薄预警（候选 B 档案）。
+
+**总账**：M4 协议②一次过——本件全部"无某属性"类断言（train 零 T1 资产/T1_29dof 无配对/全树仅根级 LICENSE/motions 零 xml）逐条带实测且审核台活源复测零出入，L12 立规从记档变成实践的正面样本；M3 期历史口径错误主动修正如实落档，同 R17"46"先例值得肯定。二十二审，越界记录累计仍为零（断言类轻度两笔在案）。
+
+---

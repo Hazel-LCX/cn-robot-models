@@ -1,0 +1,455 @@
+{
+  "rows": [
+    {
+      "dest": "mjcf/T1_23dof.xml",
+      "src": "booster_assets/robots/T1/T1_23dof.xml",
+      "kind": "mjcf",
+      "sha256": "f00e3410362b1e2267e6db05d25c33d6240bbf2436d62a409f07042bad4f7fb2",
+      "traceable": true,
+      "blob_parity": true
+    },
+    {
+      "dest": "mjcf/meshes/AL1.STL",
+      "src": "booster_assets/robots/T1/meshes/AL1.STL",
+      "kind": "asset",
+      "sha256": "43f5d268152b3c169d34731545ddfa2a510a7e16f209a2a80f8ba9ae0e1a40aa",
+      "traceable": true,
+      "blob_parity": true
+    },
+    {
+      "dest": "mjcf/meshes/AL2.STL",
+      "src": "booster_assets/robots/T1/meshes/AL2.STL",
+      "kind": "asset",
+      "sha256": "4bca60adb29c73f701350abd23e8a8d660dc61e87c5163a80157650dd3ad88c3",
+      "traceable": true,
+      "blob_parity": true
+    },
+    {
+      "dest": "mjcf/meshes/AL3.STL",
+      "src": "booster_assets/robots/T1/meshes/AL3.STL",
+      "kind": "asset",
+      "sha256": "bfdf5611dfe90f8e02b07b037c36a244f4ce7184b45113371ef46e624fb30854",
+      "traceable": true,
+      "blob_parity": true
+    },
+    {
+      "dest": "mjcf/meshes/AR1.STL",
+      "src": "booster_assets/robots/T1/meshes/AR1.STL",
+      "kind": "asset",
+      "sha256": "6dbbd3dab4486600747be9d0e7f8523d67bf00d24d0dc9c23db1766c4d808fcf",
+      "traceable": true,
+      "blob_parity": true
+    },
+    {
+      "dest": "mjcf/meshes/AR2.STL",
+      "src": "booster_assets/robots/T1/meshes/AR2.STL",
+      "kind": "asset",
+      "sha256": "0499136785fe1bc0289d9e503e1e0ea48f5a63420a2e45b0fcd9e6b3bcf8f999",
+      "traceable": true,
+      "blob_parity": true
+    },
+    {
+      "dest": "mjcf/meshes/AR3.STL",
+      "src": "booster_assets/robots/T1/meshes/AR3.STL",
+      "kind": "asset",
+      "sha256": "92330bd8286fe420fb76949ee4c5d5bdec2e6bb30426acdc4d6fae9257464631",
+      "traceable": true,
+      "blob_parity": true
+    },
+    {
+      "dest": "mjcf/meshes/Ankle_Cross_Left.STL",
+      "src": "booster_assets/robots/T1/meshes/Ankle_Cross_Left.STL",
+      "kind": "asset",
+      "sha256": "e6ec38741838475834c147f2ad18196c0254741e602c2b676f888fd12b5d7981",
+      "traceable": true,
+      "blob_parity": true
+    },
+    {
+      "dest": "mjcf/meshes/Ankle_Cross_Right.STL",
+      "src": "booster_assets/robots/T1/meshes/Ankle_Cross_Right.STL",
+      "kind": "asset",
+      "sha256": "b15d91f0f2470fc4d5634db906a3d7efaf1f700302e6671824494da8faf50308",
+      "traceable": true,
+      "blob_parity": true
+    },
+    {
+      "dest": "mjcf/meshes/H1.STL",
+      "src": "booster_assets/robots/T1/meshes/H1.STL",
+      "kind": "asset",
+      "sha256": "527a2e426db4e3d476a195754764b7f9565a950b809a34e47618f177b139c3f2",
+      "traceable": true,
+      "blob_parity": true
+    },
+    {
+      "dest": "mjcf/meshes/H2.STL",
+      "src": "booster_assets/robots/T1/meshes/H2.STL",
+      "kind": "asset",
+      "sha256": "9cbf4fe83a721c809de65b1f0d0a379314f4523f7e2f8af7f0edc27c2ce385aa",
+      "traceable": true,
+      "blob_parity": true
+    },
+    {
+      "dest": "mjcf/meshes/Hip_Pitch_Left.STL",
+      "src": "booster_assets/robots/T1/meshes/Hip_Pitch_Left.STL",
+      "kind": "asset",
+      "sha256": "7bcb8be569aeb5379cb75a0827d682bc1d73a52a7f515d3aeffece43842c33c9",
+      "traceable": true,
+      "blob_parity": true
+    },
+    {
+      "dest": "mjcf/meshes/Hip_Pitch_Right.STL",
+      "src": "booster_assets/robots/T1/meshes/Hip_Pitch_Right.STL",
+      "kind": "asset",
+      "sha256": "054d579c3c6ccc1f97aaf1461d802dec748ce1bf26c6fdd289283a2d0dbb2032",
+      "traceable": true,
+      "blob_parity": true
+    },
+    {
+      "dest": "mjcf/meshes/Hip_Roll_Left.STL",
+      "src": "booster_assets/robots/T1/meshes/Hip_Roll_Left.STL",
+      "kind": "asset",
+      "sha256": "72dbd65bdb4e87444c8e538474f631d63bf8c0960922517456b8cf2be9e1d0f0",
+      "traceable": true,
+      "blob_parity": true
+    },
+    {
+      "dest": "mjcf/meshes/Hip_Roll_Right.STL",
+      "src": "booster_assets/robots/T1/meshes/Hip_Roll_Right.STL",
+      "kind": "asset",
+      "sha256": "d715a7649ea4bf20d7ee17b3a57bae31732e467b9da1053fee2242c90f50980f",
+      "traceable": true,
+      "blob_parity": true
+    },
+    {
+      "dest": "mjcf/meshes/Hip_Yaw_Left.STL",
+      "src": "booster_assets/robots/T1/meshes/Hip_Yaw_Left.STL",
+      "kind": "asset",
+      "sha256": "8d7de83ab4034639db3d1be1e6f43ae16e004dc2f1c2bec170b615686d187918",
+      "traceable": true,
+      "blob_parity": true
+    },
+    {
+      "dest": "mjcf/meshes/Hip_Yaw_Right.STL",
+      "src": "booster_assets/robots/T1/meshes/Hip_Yaw_Right.STL",
+      "kind": "asset",
+      "sha256": "1a7d98e021884e313c55780a3c7c24ef2aa322807d8f9f8b18b2a63c7e2b9bf6",
+      "traceable": true,
+      "blob_parity": true
+    },
+    {
+      "dest": "mjcf/meshes/Logo.STL",
+      "src": "booster_assets/robots/T1/meshes/Logo.STL",
+      "kind": "asset",
+      "sha256": "221b00d090fdc9e684892805db75265c9688b152b3ccf641084f950f220596c8",
+      "traceable": true,
+      "blob_parity": true
+    },
+    {
+      "dest": "mjcf/meshes/Shank_Left.STL",
+      "src": "booster_assets/robots/T1/meshes/Shank_Left.STL",
+      "kind": "asset",
+      "sha256": "6ae8dd7f88cb70a4a3cb3972cad4035a76f1604fd73ea66e285da553b3703c40",
+      "traceable": true,
+      "blob_parity": true
+    },
+    {
+      "dest": "mjcf/meshes/Shank_Right.STL",
+      "src": "booster_assets/robots/T1/meshes/Shank_Right.STL",
+      "kind": "asset",
+      "sha256": "dc66a8a0e2e31e413884a053e427d9b5007bef4508986587916a638a8a448599",
+      "traceable": true,
+      "blob_parity": true
+    },
+    {
+      "dest": "mjcf/meshes/Trunk.STL",
+      "src": "booster_assets/robots/T1/meshes/Trunk.STL",
+      "kind": "asset",
+      "sha256": "39d9610b23ef8ac7ea4343231a499f9c485903bede62df9729a2cd1254fede8f",
+      "traceable": true,
+      "blob_parity": true
+    },
+    {
+      "dest": "mjcf/meshes/Waist.STL",
+      "src": "booster_assets/robots/T1/meshes/Waist.STL",
+      "kind": "asset",
+      "sha256": "2fe0a9ccfc284beca402e554db38e83022592192afa00f02db13cb374ffe9fbc",
+      "traceable": true,
+      "blob_parity": true
+    },
+    {
+      "dest": "mjcf/meshes/left_foot_link.STL",
+      "src": "booster_assets/robots/T1/meshes/left_foot_link.STL",
+      "kind": "asset",
+      "sha256": "2de026f2269fc55f80d4a8abd2e33dfd152adf9eb2c240d7d7e1dc40c13b55aa",
+      "traceable": true,
+      "blob_parity": true
+    },
+    {
+      "dest": "mjcf/meshes/left_hand_link.STL",
+      "src": "booster_assets/robots/T1/meshes/left_hand_link.STL",
+      "kind": "asset",
+      "sha256": "34df992aed438446481cfa20e78327810cd5cc5ecbb4a6f32ba2bf625462f53d",
+      "traceable": true,
+      "blob_parity": true
+    },
+    {
+      "dest": "mjcf/meshes/right_foot_link.STL",
+      "src": "booster_assets/robots/T1/meshes/right_foot_link.STL",
+      "kind": "asset",
+      "sha256": "313a9ff2f95da5727dce2b98c50b60226bf0a3affc72050ee251ea503e4b370a",
+      "traceable": true,
+      "blob_parity": true
+    },
+    {
+      "dest": "mjcf/meshes/right_hand_link.STL",
+      "src": "booster_assets/robots/T1/meshes/right_hand_link.STL",
+      "kind": "asset",
+      "sha256": "c5a73e493e17db7611a81785f80c01167f51018271b4042f72fa8d2351d8b0eb",
+      "traceable": true,
+      "blob_parity": true
+    },
+    {
+      "dest": "urdf/T1_23dof.urdf",
+      "src": "booster_assets/robots/T1/T1_23dof.urdf",
+      "kind": "urdf",
+      "sha256": "757337c2c8f402970088703f929ddc4f153ce2bdfee2372e2edad2271887deae",
+      "traceable": true,
+      "blob_parity": true
+    },
+    {
+      "dest": "urdf/meshes/AL1.STL",
+      "src": "booster_assets/robots/T1/meshes/AL1.STL",
+      "kind": "mesh",
+      "sha256": "43f5d268152b3c169d34731545ddfa2a510a7e16f209a2a80f8ba9ae0e1a40aa",
+      "traceable": true,
+      "blob_parity": true
+    },
+    {
+      "dest": "urdf/meshes/AL2.STL",
+      "src": "booster_assets/robots/T1/meshes/AL2.STL",
+      "kind": "mesh",
+      "sha256": "4bca60adb29c73f701350abd23e8a8d660dc61e87c5163a80157650dd3ad88c3",
+      "traceable": true,
+      "blob_parity": true
+    },
+    {
+      "dest": "urdf/meshes/AL3.STL",
+      "src": "booster_assets/robots/T1/meshes/AL3.STL",
+      "kind": "mesh",
+      "sha256": "bfdf5611dfe90f8e02b07b037c36a244f4ce7184b45113371ef46e624fb30854",
+      "traceable": true,
+      "blob_parity": true
+    },
+    {
+      "dest": "urdf/meshes/AR1.STL",
+      "src": "booster_assets/robots/T1/meshes/AR1.STL",
+      "kind": "mesh",
+      "sha256": "6dbbd3dab4486600747be9d0e7f8523d67bf00d24d0dc9c23db1766c4d808fcf",
+      "traceable": true,
+      "blob_parity": true
+    },
+    {
+      "dest": "urdf/meshes/AR2.STL",
+      "src": "booster_assets/robots/T1/meshes/AR2.STL",
+      "kind": "mesh",
+      "sha256": "0499136785fe1bc0289d9e503e1e0ea48f5a63420a2e45b0fcd9e6b3bcf8f999",
+      "traceable": true,
+      "blob_parity": true
+    },
+    {
+      "dest": "urdf/meshes/AR3.STL",
+      "src": "booster_assets/robots/T1/meshes/AR3.STL",
+      "kind": "mesh",
+      "sha256": "92330bd8286fe420fb76949ee4c5d5bdec2e6bb30426acdc4d6fae9257464631",
+      "traceable": true,
+      "blob_parity": true
+    },
+    {
+      "dest": "urdf/meshes/Ankle_Cross_Left.STL",
+      "src": "booster_assets/robots/T1/meshes/Ankle_Cross_Left.STL",
+      "kind": "mesh",
+      "sha256": "e6ec38741838475834c147f2ad18196c0254741e602c2b676f888fd12b5d7981",
+      "traceable": true,
+      "blob_parity": true
+    },
+    {
+      "dest": "urdf/meshes/Ankle_Cross_Right.STL",
+      "src": "booster_assets/robots/T1/meshes/Ankle_Cross_Right.STL",
+      "kind": "mesh",
+      "sha256": "b15d91f0f2470fc4d5634db906a3d7efaf1f700302e6671824494da8faf50308",
+      "traceable": true,
+      "blob_parity": true
+    },
+    {
+      "dest": "urdf/meshes/H1.STL",
+      "src": "booster_assets/robots/T1/meshes/H1.STL",
+      "kind": "mesh",
+      "sha256": "527a2e426db4e3d476a195754764b7f9565a950b809a34e47618f177b139c3f2",
+      "traceable": true,
+      "blob_parity": true
+    },
+    {
+      "dest": "urdf/meshes/H2.STL",
+      "src": "booster_assets/robots/T1/meshes/H2.STL",
+      "kind": "mesh",
+      "sha256": "9cbf4fe83a721c809de65b1f0d0a379314f4523f7e2f8af7f0edc27c2ce385aa",
+      "traceable": true,
+      "blob_parity": true
+    },
+    {
+      "dest": "urdf/meshes/Hip_Pitch_Left.STL",
+      "src": "booster_assets/robots/T1/meshes/Hip_Pitch_Left.STL",
+      "kind": "mesh",
+      "sha256": "7bcb8be569aeb5379cb75a0827d682bc1d73a52a7f515d3aeffece43842c33c9",
+      "traceable": true,
+      "blob_parity": true
+    },
+    {
+      "dest": "urdf/meshes/Hip_Pitch_Right.STL",
+      "src": "booster_assets/robots/T1/meshes/Hip_Pitch_Right.STL",
+      "kind": "mesh",
+      "sha256": "054d579c3c6ccc1f97aaf1461d802dec748ce1bf26c6fdd289283a2d0dbb2032",
+      "traceable": true,
+      "blob_parity": true
+    },
+    {
+      "dest": "urdf/meshes/Hip_Roll_Left.STL",
+      "src": "booster_assets/robots/T1/meshes/Hip_Roll_Left.STL",
+      "kind": "mesh",
+      "sha256": "72dbd65bdb4e87444c8e538474f631d63bf8c0960922517456b8cf2be9e1d0f0",
+      "traceable": true,
+      "blob_parity": true
+    },
+    {
+      "dest": "urdf/meshes/Hip_Roll_Right.STL",
+      "src": "booster_assets/robots/T1/meshes/Hip_Roll_Right.STL",
+      "kind": "mesh",
+      "sha256": "d715a7649ea4bf20d7ee17b3a57bae31732e467b9da1053fee2242c90f50980f",
+      "traceable": true,
+      "blob_parity": true
+    },
+    {
+      "dest": "urdf/meshes/Hip_Yaw_Left.STL",
+      "src": "booster_assets/robots/T1/meshes/Hip_Yaw_Left.STL",
+      "kind": "mesh",
+      "sha256": "8d7de83ab4034639db3d1be1e6f43ae16e004dc2f1c2bec170b615686d187918",
+      "traceable": true,
+      "blob_parity": true
+    },
+    {
+      "dest": "urdf/meshes/Hip_Yaw_Right.STL",
+      "src": "booster_assets/robots/T1/meshes/Hip_Yaw_Right.STL",
+      "kind": "mesh",
+      "sha256": "1a7d98e021884e313c55780a3c7c24ef2aa322807d8f9f8b18b2a63c7e2b9bf6",
+      "traceable": true,
+      "blob_parity": true
+    },
+    {
+      "dest": "urdf/meshes/Logo.STL",
+      "src": "booster_assets/robots/T1/meshes/Logo.STL",
+      "kind": "mesh",
+      "sha256": "221b00d090fdc9e684892805db75265c9688b152b3ccf641084f950f220596c8",
+      "traceable": true,
+      "blob_parity": true
+    },
+    {
+      "dest": "urdf/meshes/Shank_Left.STL",
+      "src": "booster_assets/robots/T1/meshes/Shank_Left.STL",
+      "kind": "mesh",
+      "sha256": "6ae8dd7f88cb70a4a3cb3972cad4035a76f1604fd73ea66e285da553b3703c40",
+      "traceable": true,
+      "blob_parity": true
+    },
+    {
+      "dest": "urdf/meshes/Shank_Right.STL",
+      "src": "booster_assets/robots/T1/meshes/Shank_Right.STL",
+      "kind": "mesh",
+      "sha256": "dc66a8a0e2e31e413884a053e427d9b5007bef4508986587916a638a8a448599",
+      "traceable": true,
+      "blob_parity": true
+    },
+    {
+      "dest": "urdf/meshes/Trunk.STL",
+      "src": "booster_assets/robots/T1/meshes/Trunk.STL",
+      "kind": "mesh",
+      "sha256": "39d9610b23ef8ac7ea4343231a499f9c485903bede62df9729a2cd1254fede8f",
+      "traceable": true,
+      "blob_parity": true
+    },
+    {
+      "dest": "urdf/meshes/Waist.STL",
+      "src": "booster_assets/robots/T1/meshes/Waist.STL",
+      "kind": "mesh",
+      "sha256": "2fe0a9ccfc284beca402e554db38e83022592192afa00f02db13cb374ffe9fbc",
+      "traceable": true,
+      "blob_parity": true
+    },
+    {
+      "dest": "urdf/meshes/left_foot_link.STL",
+      "src": "booster_assets/robots/T1/meshes/left_foot_link.STL",
+      "kind": "mesh",
+      "sha256": "2de026f2269fc55f80d4a8abd2e33dfd152adf9eb2c240d7d7e1dc40c13b55aa",
+      "traceable": true,
+      "blob_parity": true
+    },
+    {
+      "dest": "urdf/meshes/left_hand_link.STL",
+      "src": "booster_assets/robots/T1/meshes/left_hand_link.STL",
+      "kind": "mesh",
+      "sha256": "34df992aed438446481cfa20e78327810cd5cc5ecbb4a6f32ba2bf625462f53d",
+      "traceable": true,
+      "blob_parity": true
+    },
+    {
+      "dest": "urdf/meshes/right_foot_link.STL",
+      "src": "booster_assets/robots/T1/meshes/right_foot_link.STL",
+      "kind": "mesh",
+      "sha256": "313a9ff2f95da5727dce2b98c50b60226bf0a3affc72050ee251ea503e4b370a",
+      "traceable": true,
+      "blob_parity": true
+    },
+    {
+      "dest": "urdf/meshes/right_hand_link.STL",
+      "src": "booster_assets/robots/T1/meshes/right_hand_link.STL",
+      "kind": "mesh",
+      "sha256": "c5a73e493e17db7611a81785f80c01167f51018271b4042f72fa8d2351d8b0eb",
+      "traceable": true,
+      "blob_parity": true
+    }
+  ],
+  "checks": [
+    {
+      "check": "s4:traceability",
+      "status": "PASS",
+      "detail": "52 个 raw 源入库件三锚全过（SHA256 命中 manifest 同路径行 + hash-object 命中上游 ls-tree@pin blob id）"
+    },
+    {
+      "check": "s4:mesh-split-decision",
+      "status": "PASS",
+      "detail": "URDF 侧 25 处引用 → 25 个物理网格 vs MJCF 侧 25 个，两侧同哈希（同源同内容，STL 同格式）——分目录落位以保持各自引用协议结构（不改官方一字节，保持官方 meshdir/相对引用结构，记录在案）"
+    },
+    {
+      "check": "s4:dae-dir-parity",
+      "status": "SKIP",
+      "detail": "本模型 urdf 无 dae/ 与 meshes/ 双目录结构（G1 为 meshes/ 单池），R3-D3 判定不适用"
+    },
+    {
+      "check": "s4:coverage",
+      "status": "WARN",
+      "detail": "raw 全量 74（除 .git/manifest）= 根级及中间层 5 + 目标子目录 69；子目录 69 全覆盖 = 入库唯一源 27；物理落位 52 件（25 件为双侧同源网格重复落位，同源同内容、两侧引用协议各自独立目录） + 排除 4（其中 meshes/ 冗余 0）（未覆盖：['booster_assets/robots/T1/meshes/AL4.STL', 'booster_assets/robots/T1/meshes/AL5.STL', 'booster_assets/robots/T1/meshes/AL6.STL', 'booster_assets/robots/T1/meshes/AL7.STL', 'booster_assets/robots/T1/meshes/AR4.STL', 'booster_assets/robots/T1/meshes/AR5.STL', 'booster_assets/robots/T1/meshes/AR6.STL', 'booster_assets/robots/T1/meshes/AR7.STL', 'booster_assets/robots/T1/meshes/Crank_Down_Left.STL', 'booster_assets/robots/T1/meshes/Crank_Down_Right.STL', 'booster_assets/robots/T1/meshes/Crank_Up_Left.STL', 'booster_assets/robots/T1/meshes/Crank_Up_Right.STL', 'booster_assets/robots/T1/meshes/Down_Left_XX_Ball.STL', 'booster_assets/robots/T1/meshes/Down_Left_X_Ball.STL', 'booster_assets/robots/T1/meshes/Down_Left_Y_Ball.STL', 'booster_assets/robots/T1/meshes/Down_Right_XX_Ball.STL', 'booster_assets/robots/T1/meshes/Down_Right_X_Ball.STL', 'booster_assets/robots/T1/meshes/Down_Right_Y_Ball.STL', 'booster_assets/robots/T1/meshes/Link_Long_Left.STL', 'booster_assets/robots/T1/meshes/Link_Long_Right.STL', 'booster_assets/robots/T1/meshes/Link_Short_Left.STL', 'booster_assets/robots/T1/meshes/Link_Short_Right.STL', 'booster_assets/robots/T1/meshes/Up_Left_XX_Ball.STL', 'booster_assets/robots/T1/meshes/Up_Left_X_Ball.STL', 'booster_assets/robots/T1/meshes/Up_Left_Y_Ball.STL', 'booster_assets/robots/T1/meshes/Up_Right_XX_Ball.STL', 'booster_assets/robots/T1/meshes/Up_Right_X_Ball.STL', 'booster_assets/robots/T1/meshes/Up_Right_Y_Ball.STL', 'booster_assets/robots/T1/meshes/left_Link1.STL', 'booster_assets/robots/T1/meshes/left_Link11.STL', 'booster_assets/robots/T1/meshes/left_Link2.STL', 'booster_assets/robots/T1/meshes/left_Link22.STL', 'booster_assets/robots/T1/meshes/left_base_link.STL', 'booster_assets/robots/T1/meshes/right_Link1.STL', 'booster_assets/robots/T1/meshes/right_Link11.STL', 'booster_assets/robots/T1/meshes/right_Link2.STL', 'booster_assets/robots/T1/meshes/right_Link22.STL', 'booster_assets/robots/T1/meshes/right_base_link.STL']）——算式按源件口径平账（F1 教训）"
+    },
+    {
+      "check": "s4:recheck-mjcf",
+      "status": "PASS",
+      "detail": "入库后 mjcf/T1_23dof.xml 编译通过：nbody=26 ngeom=48 nmesh=25（官方相对引用结构保持）"
+    },
+    {
+      "check": "s4:recheck-urdf",
+      "status": "PASS",
+      "detail": "入库后 URDF yourdfpy 解析通过：25 links（relative（meshes/ 前缀）——meshes/ 与 urdf 同目录）"
+    }
+  ],
+  "total_bytes": 17359815,
+  "physical_files": 52,
+  "non_raw": []
+}

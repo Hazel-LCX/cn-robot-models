@@ -1,0 +1,110 @@
+{
+  "model": "booster_t1",
+  "format_source": "official",
+  "sources": [
+    {
+      "name": "booster_assets",
+      "repo": "BoosterRobotics/booster_assets",
+      "pin": "12a97516f57469078707afb587a5f84c1cb110d1",
+      "subdir": "robots/T1",
+      "license_path": "LICENSE",
+      "note": "M4：加速进化 T1 双足人形（第四厂商）；单仓单 license（BSD-3-Clause 全文在仓，R22 活源全验=可收录，M0/M2 同族先例）；正本源修正档案：gym 仓 resources/T1（Apache-2.0 短格式 NOASSERTION）降旁证撤 archive_gym_s0（L12 证据链不混两正本）；账户 BoosterRobotics=User 非 org（L11 同款，A4 路径②四件互证）；R22 预警三条=S1 执行：URDF scale 属性 grep 实测/网格闭包 S1–S3 定案/head 漂移对账"
+    }
+  ],
+  "s2": {
+    "urdf": {
+      "source": "booster_assets",
+      "rel": "robots/T1/T1_23dof.urdf",
+      "package": "T1",
+      "package_root": "robots/T1",
+      "ref_style": "relative",
+      "note": "S1 实测：25 处引用 'meshes/X.STL' 前缀相对路径（与 g1 无前缀同族第五变体，relative 分支 Path 规范化兼容）；MJCF meshdir='meshes/' 相对引用；R22 预警①闭合：URDF/MJCF scale 属性各 0 处（grep 实测）"
+    },
+    "mjcf": {
+      "source": "booster_assets",
+      "model_rel": "robots/T1/T1_23dof.xml",
+      "scene_rel": "robots/T1/T1_23dof.xml"
+    },
+    "notes": {}
+  },
+  "s3": {
+    "official": {
+      "mass_kg": null,
+      "note": "官网无 T1 产品页（R22 侦察：首页+T2 页双页阴性，JS 渲染站，官网现主打 T2）——官方整机质量基准未取证；官方渠道穷尽=gym/assets/deploy 三 README 均无质量字段（S3 前置实测）；s3 mass_kg=null 分支 WARN 披露跳过（官方基准缺失不得虚构，R17 检查点同源）"
+    },
+    "sanity": {
+      "ratio_range": [
+        0.005,
+        0.5
+      ],
+      "axis_tolerance": 1e-06,
+      "mass_diff_warn": 0.02
+    },
+    "cross_alias": {},
+    "notes": {
+      "joint_range": "注：官网无 T1 产品页——限位/扭矩对账无官网基准，纯体检+披露（Lite3 同口径）；DoF 对账基准=官方 assets README 配置表 T1 行逐字（head 2 + arms 4×2 + waist 1 + legs 6×2 = 23）vs URDF 23 revolute 逐位一致；MJCF nu=23 同；booster_deploy README 'T1 23-DOF configuration' 旁证第三件",
+      "upstream_png": "booster_assets robots/T1/ 无图片资产（6 模型件 + 63 STL 实测）——S3 C1 模板 png 提示不适用"
+    }
+  },
+  "s4": {
+    "urdf": [
+      {
+        "src_rel": "robots/T1/T1_23dof.urdf",
+        "dest": "urdf/T1_23dof.urdf"
+      }
+    ],
+    "urdf_meshes": {
+      "package": "T1",
+      "dest_root": "urdf",
+      "note": "relative（meshes/ 前缀变体，G1 同构）：meshes/ 与 urdf 同目录；63 源件按引用闭包 25（38 件为未收变体/并联机构/手部内部网格——G1 共享池先例；AL4-7/AR4-7=29dof 臂加长件、Crank/Link/Ball=踝并联件、left/right_Link*=手部内部件，S1 实测身份自洽）"
+    },
+    "mjcf": [
+      {
+        "src_rel": "robots/T1/T1_23dof.xml",
+        "dest": "mjcf/T1_23dof.xml"
+      }
+    ],
+    "mjcf_assets": {
+      "src_rel": "robots/T1/meshes",
+      "dest": "mjcf/meshes",
+      "mode": "closure",
+      "note": "T1 MJCF 用 meshdir='meshes/'+裸文件名（X2 同构）——closure 以 {dest}/{file} 落位与官方 meshdir 结构逐字节兼容，XML 零改动"
+    },
+    "images": [],
+    "recheck": {
+      "mjcf": "mjcf/T1_23dof.xml",
+      "urdf": "urdf/T1_23dof.urdf",
+      "urdf_mesh_dir": "urdf",
+      "note": "relative（meshes/ 前缀）——meshes/ 与 urdf 同目录"
+    },
+    "excluded": [
+      {
+        "src": "booster_assets/robots/T1/T1_29dof.urdf",
+        "why": "29 自由度变体无 xml 配对（树扫描实测 T1 线唯一无配对件）——R22 锚点=T1_23dof，不入库只记录"
+      },
+      {
+        "src": "booster_assets/robots/T1/T1_locomotion.urdf",
+        "why": "头/臂/腰固化行走裁剪变体——R22 锚点=T1_23dof，不入库只记录"
+      },
+      {
+        "src": "booster_assets/robots/T1/T1_locomotion.xml",
+        "why": "行走裁剪变体 MJCF 侧——R22 锚点=T1_23dof，不入库只记录"
+      },
+      {
+        "src": "booster_assets/robots/T1/T1_23dof_parallel.xml",
+        "why": "并联变体 MJCF（踝关节并联机构表征副本）——R22 已裁不入库，X2 simple_collision 先例同款"
+      }
+    ],
+    "note": "K1/T2 整线与 motions/src 仓级件由 s1 sparse-checkout 天然隔离（subdir=robots/T1）；images 空=上游 T1 目录无图片资产（S3 C1 实测在案）"
+  },
+  "s5": {
+    "viewport": "humanoid",
+    "note": "预览视口体型档位（v5 config 驱动键）：双足人形用 human 的机位；T1 身高约 1.4m 级人形（精确值 S5 实测包围盒为准，本行不做预断——R22 口径）"
+  },
+  "s6": {
+    "warmup_steps": 100,
+    "bench_steps": 10000,
+    "repeats": 5,
+    "scenario": "固定 qpos0、纯重力、无控制器（人形站立初始姿态，测引擎步进吞吐，不掺控制变量——细节 S6 前按双足拓扑校准）"
+  }
+}
