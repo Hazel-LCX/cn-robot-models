@@ -1,0 +1,94 @@
+{
+  "model": "deeprobotics_m20_piper",
+  "format_source": "official",
+  "sources": [
+    {
+      "name": "deep_robotics_model",
+      "repo": "DeepRoboticsLab/deep_robotics_model",
+      "pin": "530e01a5d2ceb6007f8790f1a7e11ee7389fb981",
+      "subdir": "M20_Piper",
+      "license_path": "LICENSE.txt",
+      "note": "M9：云深处 M20_Piper 移动操作复合体（M20 轮足底盘+Piper 臂，复合体谱系首例/第十模型）；同仓第四机型（license 快照与 M2/M5/M6 逐字节同物 cdc6c065 零漂移无新定性，R37 四重同物）；**prismatic↔slide 拓扑补全=管道六类型收官**（18R+4C+2P+2F ↔ 22 hinge+2 slide）；R37 轻度口径=S1/S3 落档：evidence 组件页改名（通用分类页零 Piper 字样）+Piper 独立产品页深挖；R37 预警四条=S1 执行：单池闭包差 27/prismatic 滑条改码 N2/S3 基准分层/head 对账"
+    }
+  ],
+  "s2": {
+    "urdf": {
+      "source": "deep_robotics_model",
+      "rel": "M20_Piper/urdf/M20_Piper.urdf",
+      "package": "M20_Piper",
+      "package_root": "M20_Piper",
+      "ref_style": "relative",
+      "note": "S1 实测：37 引 './meshes/' 前缀→27 唯一（闭包零差）；scale 0；结构数字一律解析器实测（R34 规程）；**prismatic 类型映射 S2 定案（R37 预警②前半：yourdfpy/mujoco slide）**"
+    },
+    "mjcf": {
+      "source": "deep_robotics_model",
+      "model_rel": "M20_Piper/mjcf/M20_Piper.xml",
+      "scene_rel": "M20_Piper/mjcf/M20_Piper.xml"
+    },
+    "notes": {}
+  },
+  "s3": {
+    "official": {
+      "mass_kg": null,
+      "note": "复合体整机基准 S3 前置侦察：Piper 臂为组件产品线（组件页无整机参数，R37 轻度口径在案）——Piper 独立产品页深挖（products/detail 系）实测；无则按 M4 T1 先例 mass_kg=null WARN 分支跳过不虚构（s3 通用能力直接生效）；**底盘侧可参考 M20 官网 35kg（同仓 M5 已锚定口径）但复合体=底盘+臂合成不适用直接对账——分层披露**",
+      "sanity_warning": null
+    },
+    "sanity": {
+      "ratio_range": [
+        0.005,
+        0.5
+      ],
+      "axis_tolerance": 1e-06,
+      "mass_diff_warn": 0.02
+    },
+    "cross_alias": {},
+    "notes": {
+      "joint_range": "注：prismatic 夹爪平移关节限位=位移量纲（m）非角度——S3 限位检查按类型分支如实处理；官网基准 S3 前置侦察定",
+      "upstream_png": "M20_Piper/ 无图片资产（S1 实测）——S3 C1 模板 png 提示不适用"
+    }
+  },
+  "s4": {
+    "urdf": [
+      {
+        "src_rel": "M20_Piper/urdf/M20_Piper.urdf",
+        "dest": "urdf/M20_Piper.urdf"
+      }
+    ],
+    "urdf_meshes": {
+      "package": "M20_Piper",
+      "dest_root": "urdf",
+      "note": "relative（./ 前缀变体，M20 同构）：54 单池闭包差 27 实测（R37 预警①，底盘共用池假设验证）"
+    },
+    "mjcf": [
+      {
+        "src_rel": "M20_Piper/mjcf/M20_Piper.xml",
+        "dest": "mjcf/M20_Piper.xml"
+      }
+    ],
+    "mjcf_assets": {
+      "src_rel": "M20_Piper/mjcf/meshes",
+      "dest": "mjcf/meshes",
+      "mode": "closure",
+      "note": "MJCF 分目录自有池（M20 同构）；closure 零改动落位"
+    },
+    "images": [],
+    "recheck": {
+      "mjcf": "mjcf/M20_Piper.xml",
+      "urdf": "urdf/M20_Piper.urdf",
+      "urdf_mesh_dir": "urdf",
+      "note": "relative（./ 前缀）——meshes/ 与 urdf 同目录"
+    },
+    "excluded": [],
+    "note": "M20_Piper/ 67 目录项 S1 实测（1+1+54+usd 5）；usd 照先例 excluded 逐件 why；其余机型目录天然隔离"
+  },
+  "s5": {
+    "viewport": "quadruped",
+    "note": "轮足底盘+臂复合体——quadruped 机位起步 S5 实测；**prismatic 滑条改码预备（R37 预警②后半）**：位移单位 m 非 rad、无角度限位语义——preview.js 改码 N2 备案"
+  },
+  "s6": {
+    "warmup_steps": 100,
+    "bench_steps": 10000,
+    "repeats": 5,
+    "scenario": "固定 qpos0、纯重力、无控制器（复合体站立初始姿态，测引擎步进吞吐，不掺控制变量）；展幅验收执行 R32 处置先例"
+  }
+}

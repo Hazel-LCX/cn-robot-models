@@ -145,9 +145,12 @@ await Promise.all(jobs);
 // ---- 关节滑条（质检元素：滑条范围比 URDF 限位宽 0.4rad，越限变红） ----
 // continuous 关节纳入（M5/R25 预警①落码，N2 备案）：无限位取 ±3.14 默认域（fallback 既有），
 // 越限变红语义对 continuous = ±π 视觉约定
+// prismatic 关节纳入（M9/R37 预警②落码，N2 备案）：位移关节单位 m（非 rad），限位为位移量纲
 const sliderBox = document.getElementById('sliders');
-const revolute = jointEls.filter(j => ['revolute', 'continuous'].includes(j.getAttribute('type')));
+const revolute = jointEls.filter(j => ['revolute', 'continuous', 'prismatic'].includes(j.getAttribute('type')));
 for (const j of revolute) {
+  const jtype = j.getAttribute('type');
+  const unit = jtype === 'prismatic' ? 'm' : 'rad';
   const name = j.getAttribute('name');
   const axis = new THREE.Vector3(...num3(j.querySelector('axis')?.getAttribute('xyz')));
   const lim = j.querySelector('limit');
@@ -155,6 +158,7 @@ for (const j of revolute) {
   const hi = parseFloat(lim?.getAttribute('upper') ?? '3.14');
   const g = groups.get(j.querySelector('child').getAttribute('link'));
   const q0 = g.quaternion.clone();
+  const p0 = g.position.clone();
   // 初值：0 在限位内取 0，否则取限位中点（calf 的 URDF 限位 [-2.72,-0.84] 不含 0，零位非法）
   const init = (0 >= lo && 0 <= hi) ? 0 : (lo + hi) / 2;
   const row = document.createElement('div');
@@ -165,9 +169,14 @@ for (const j of revolute) {
   const val = row.querySelector('.val');
   const apply = () => {
     const th = parseFloat(input.value);
-    val.textContent = `${th.toFixed(2)} rad`;
+    val.textContent = `${th.toFixed(2)} ${unit}`;
     row.classList.toggle('over', th < lo || th > hi);
-    g.quaternion.copy(q0).multiply(new THREE.Quaternion().setFromAxisAngle(axis, th));
+    if (jtype === 'prismatic') {
+      // 平移关节（R37 预警②落码）：沿 axis 位移 th（米），非旋转
+      g.position.copy(p0).addScaledVector(axis, th);
+    } else {
+      g.quaternion.copy(q0).multiply(new THREE.Quaternion().setFromAxisAngle(axis, th));
+    }
   };
   input.addEventListener('input', apply);
   apply();

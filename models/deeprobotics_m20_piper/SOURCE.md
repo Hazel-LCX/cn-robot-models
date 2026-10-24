@@ -21,7 +21,7 @@
 ## 2. 官方性验证（A4——同仓链条第四机型继承）
 
 - **M2/M5/M6 同仓同 org**：双路径先例四轮在案（R14/R25/R28）——**第四机型直接沿用，无新增阴性项**；
-- 官网组件产品线（Piper 臂为云深处独立组件产品，`products/index/4.html` 组件分类在导航——M9 侦察实测）；README 八机型表含 M20_Piper 行（`evidence/official-readme-deep_robotics_model.txt`）；
+- 官网组件产品线（Piper 臂为云深处独立组件产品，`products/index/4.html` 组件分类在导航——M9 侦察实测）；README 八机型表含 M20_Piper 行（`evidence/official-readme-deep_robotics_model.txt`）；**R37 轻度口径处置（S1 落档）**：①evidence 原件改名 `official-robot-component-index-page.html`（通用分类列表页零 Piper 字样，原"piper-component-page"关联性过强）；②**Piper 独立产品页确认无**（组件分类页 detail 链接 1/2/5/6/7/8/9 全为整机与 J 系列关节，零 Piper 字样，S1 实测在案）——S3 整机基准按 M4 T1 式 mass_kg=null WARN 处置定案；
 - S3 前置侦察留待：Piper 臂独立产品页深挖（质量/负载/DoF 基准可得性实测——组件页 60,233 B 无整机参数，复合体整机基准可能无官网页=M4 T1 式处置预备，如实定案）。
 
 ## 3. License 核对结论

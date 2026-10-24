@@ -1,27 +1,29 @@
 # REVIEW-REQUEST — 送审材料
 
 > 审核台审毕请在本文件顶部标注"已审 + 日期"，结论追加进 REVIEW.md。历次送审全文可在 git 历史回溯。
-> 上一次送审已于 2026-10-24 审毕：**R36 = 协议⑤执行回执终查通过——M8 含发布全流程闭环，四厂商九模型全量在线，项目回维护态**（回执数字四路活证零出入；更正件逐字核验三处全执行）。
+> 上一次送审已于 2026-10-24 审毕：**R37 = 协议②通过——M9 选型=M20_Piper 定案，四决策点全批，S1 放行**（A4 四重同物、解析器口径逐字全中=R35 新规正面生效、组件页改名/补页令、S1 预警四条）。
 
-【送审类型】**协议②（M9 选型定案 + S0 license 门确认）**——触发即停手，S1 未动。（续航令下第五个自动推进里程碑：M8 收官后按 R36 候选池"同仓填充线"方向直接启动，双候选对比侦察后定推荐。）
+【送审类型】**协议⑤（M9 S1–S7 全链完成 → push 放行 + S7 验收 + 全角句号 FAIL 处置与容错改码确认）**——触发即停手，本地 commit 未 push。
 
-【背景：在做什么】启动 **M10 系第 10 个模型 M9（第十个模型）**。双候选对比侦察（`workspace/m9_recon/`，gitignore 不入库）：X30（L12 scale 实战场）vs M20_Piper（prismatic 拓扑首覆盖），数据说话定推荐。
+【背景：在做什么】R37 读毕即执行轻度口径处置与 S1–S7 全链（本 leg `pipeline/` 改码 2 文件 3 处，N2 备案）：
 
-**双候选侦察事实（全程序化，head 与 M5/M6 锚 `530e01a5` 零漂移）**：
+- **R37 轻度口径处置**：evidence 更名 `official-robot-component-index-page.html`（原"piper-component-page"关联性过强——页面实为通用分类列表页）+ **Piper 独立整机页确认无**（组件分类页 detail 链接 1/2/5/6/7/8/9 全为整机与 J 系列关节、零 Piper 字样，S1 实测）→ SOURCE 补记落档；
+- **S1 拉取**：pin `530e01a5` 零漂移（预警④闭合）、61 文件/133.1 MB、**blob-parity 61 件失配 0**（K2 门八战全绿）、A2 MATCH；**分目录网格 27+27 各自全收零未收**（预警①闭合——"闭包差 27"实为两侧分目录各自全收的口径差，非未收）；scale 双侧 0；
+- **S2 校验 9 PASS / 1 FAIL / 0 WARN——抓到本库第三个 FAIL 级发现（性质最重：上游数据缺陷）**：**yourdfpy-parse FAIL = URDF L70 `fl_hipx_joint`（左前腿髋侧摆）limit `upper="0。611"` 全角句号 typo**（全文件仅此 1 处；**交叉证据：MJCF 侧同值限位为正常半角 `-0.436 0.611`**——上游两格式独立书写实锤）；**影响面：yourdfpy 用户加载整个 URDF 即抛 ValueError**；MJCF 侧完全不受影响（编译 nbody=28/njnt=25/nq=31/**nu=24**=22 hinge+2 slide 逐数自洽——**prismatic↔slide 映射定案，预警②前半**）；
+- **S3 管道容错改码（N2 备案①，模型文件一字不动）**：原 check_joint_limits 的 `float("0。611")` 抛异常中断整条管道——改**逐关节容错**（非数值记 FAIL 点名继续，fail 不静默），重跑 **9 PASS / 3 WARN / 1 FAIL / 0 SKIP**：joint-limits FAIL 如实点名 `fl_hipx_joint`（其余 17 关节正常检查）；**官方整机基准缺失=T1 式处置第二例**（复合体无整机页，实测 39.161 kg 仅记录非判据）；**COM 27/27 全一致**（4.79e-08）+ 逐 body 23/23 一致（四 hipx 舍入级）+ 22 轴差 0 + **collision 27/27 全覆盖（九模型首个）**；
+- **S4 入库**：**56 物理件/42.3 MB 三锚全过**、分目录闭包（27×2 两侧同哈希）、usd 5 件 excluded、平账 61=56+5 零未收；**recheck-urdf FAIL 如实保留**（验证对象即加载行为本身，不做容错——同根 typo 第三处检查点表现）；
+- **S5 prismatic 滑条落码（N2 备案②③，预警②后半）**：preview.js filter 纳入 prismatic+单位 m（非 rad）+**平移运动学分支**（沿 axis 位移非旋转）+index.html v10；**首载暴露编辑事故即修复**（重复 for 行花括号不平衡 module 解析失败页面卡死——花括号平衡快检定位修复，事故记档 DEVLOG）；重载 **24 滑条全齐**（22 rad + 2 夹爪 "0.00 m"）、包围盒 y [0.000, 0.937]、断网 35 资源 0 外网、截图存档（画面判读：轮足底盘+臂复合体整机闭合无幽灵）；**九模型基线逐位回归全命中**（go2 0.334/g1 1.323/lite3 0.298/x2 1.319/t1 1.180/m20 0.675/dr02 1.792/k1 0.955/t2 1.413）；
+- **S6 基准一次过**：**93,447 steps/s**（10.7 µs/step）、加载 105.5 ms、展幅 10.3% 稳过——**序列第三**（28 body/64 geom 碰撞结构简单，复杂度主导再实证）；
+- **S7 报告**：M20_Piper 模型页全文（披露 5 节：全角句号 FAIL 居首含下游必读/prismatic 收官/基准分层 T1 式/collision 全覆盖/身高对账既定口径）、LICENSES.md 加 deeprobotics_m20_piper 复指行、顶层 README 收录行/披露索引/M9 表/预览链接。
 
-- **M20_Piper（推荐，67 目录项：1 urdf + 1 xml + 54 mesh + usd 5）**：27 link/**18 revolute + 4 continuous + 2 prismatic + 2 fixed**、37 引 `./meshes/` 前缀→27 唯一（闭包零差，预警面干净）、scale 0 ↔ `M20_Piper.xml`（27 file 引用=27 唯一，24 joint=**22 hinge + 2 slide**）——**prismatic↔slide 映射=管道关节拓扑最后一块拼图**（M5 continuous 之后第二个新拓扑实战；S2 类型映射/S5 滑条位移单位 m 非 rad（真实改码点已预判 N2 预备）/S6 场景三处覆盖）；**复合体谱系首例**（M20 轮足底盘 + Piper 臂 = 移动操作 loco-manipulation 形态，本库四足/轮足/人形之外第四谱系）；
-- **X30（对照线，数据在档）**：21 件薄池——X30.urdf 22 link/12R+9F、13 引→**4 唯一**、**scale 5 处**（L12 家族实战叙事强）↔ X30.xml（8 引→4 唯一）；官网 X30 页（141,310 B 落档）**整机重量（含电池）约 56 kg** 基准可得（四足大机型档）；短板=模型几何极简（4 网格）质检面窄——**留 M9+ 档案**（scale 实战随时可做）；
-- 上游 pin `530e01a5` 与 M5/M6 零漂移；license 同仓第四机型零漂移断言（`cdc6c065` 与 M2/M5/M6 快照逐字节同物）。
-
-**S0 已按推荐源落档**（`models/deeprobotics_m20_piper/`，状态=待审）：SOURCE.md + license 快照（1,502 B hash-object MATCH + 同物断言）+ evidence ×4（repo/license 端点/HEAD/官方 README + **Piper 组件页二进制原件 60,233 B**——R29 取证范式，**本次脱敏 1 处 token**=范式实战执行）。
+**N2 改码备案（本 leg pipeline/ diff 2 文件 3 处，均通用改动零模型特异）**：①s3 check_joint_limits limit 非数值容错（未来任何上游数据缺陷不再炸管道）；②preview.js prismatic 支持（filter+单位 m+平移运动学一体）；③index.html v10（②缓存击穿）。**协议③红线核对：零物理参数修改（模型文件一字不动）。**
 
 【决策点】
 
-1. **M9 选型定案 = 云深处 M20_Piper（`DeepRoboticsLab/deep_robotics_model`，`M20_Piper/`）**——**prismatic 拓扑补全**（管道六关节类型 revolute/continuous/fixed/prismatic/free/floating 全覆盖收官）+ **复合体谱系首例**（M20 轮足底盘+Piper 臂移动操作平台）+ 27 引=27 唯一干净闭包；确认或改选 X30（scale 实战线，M9+ 档案随时可做）/其他；
-2. **锚点 = `M20_Piper.urdf` ↔ `M20_Piper.xml`** + 不入库清单（usd 5 件先例处置/其余机型目录/仓级件）；确认或改锚；
-3. **license 门确认 = 同仓单 license BSD-3-Clause 零漂移**（快照与 M2/M5/M6 逐字节同物 `cdc6c065`，无新定性；LICENSES.md 复指口径同前 S7 落笔）；确认或推翻；
-4. **A4 继承确认**：M2/M5/M6 三轮双路径先例第四机型沿用，无新增阴性项；**S3 前置侦察如实分层**：Piper 臂为云深处组件产品线（组件页 60,233 B 落档但无整机参数）——复合体整机基准可能无官网页（**M4 T1 式"官方基准缺失"处置预备**，Piper 臂独立产品页 S3 前置深挖实测为准）；确认或推翻。
+1. **S7 验收**：模型页/LICENSES 复指行/顶层 README 与报告数字一致性；
+2. **全角句号 FAIL 处置与容错改码确认**：①三检查点表现（S2 yourdfpy-parse/S3 joint-limits/S4 recheck-urdf）零修复+交叉证据（MJCF 正常半角）+下游必读提示是否定案（本库第三个 FAIL 级发现，性质最重=加载失败级）；②s3 容错改码（逐关节容错点名继续）是否追认为管道规程（未来上游数据缺陷处置先例）；
+3. **push 放行**：通过即按序 push（本地领先 2 = `5f167a6` 协议②/S0 + 本件 S1–S7+R37 台账随队）。首选 a=用户亲自 push（回执照连续先例实测三源/总数/R13 专项），b 可接受需回执。
 
-【倾向 + 理由】**推荐四项全按上述定案**。理由：①M20_Piper 补全管道关节拓扑最后一块拼图（prismatic）——六类型全覆盖后管道对任意上游模型的类型映射能力封顶，且 S5 滑条位移单位改码是真实覆盖点（continuous 落码先例同节奏）；②复合体谱系首例（轮足底盘+臂的 loco-manipulation）使本库谱系叙事从三形态扩到四谱系；③27 引=27 唯一+scale 0+同仓同结构——填充件管道风险最低档，S1–S7 预判零结构改动（prismatic 滑条改码除外，已预判 N2 预备）；④X30 两头数据在档（scale 实战+56 kg 基准），M9+ 随时可取。风险如实列示：复合体整机基准可能缺失（T1 式处置预备）、54 件单池闭包差 27 件（底盘共用池假设 S1 实测验证）、prismatic 滑条改码幅度——均 S1–S3/S5 定案不做预断。本件不枚举自身哈希（清单至 R36 收官 `fea300d` + 本件随批）。
+【倾向 + 理由】**推荐三项全按上述定案**。理由：①R37 四条预警逐项闭合且产生本库最重要的 FAIL 级发现——全角句号 typo 是"上游数据缺陷"类首例（前两例为建模约定/命名冲突），yourdfpy 加载即败的影响面使"质检报告即产品"的价值主张最直观；②s3 容错改码让管道对上游数据缺陷免疫（点名继续不炸），且模型文件一字未动（零修复红线）；③prismatic 拓扑收官+复合体谱系首例+S4 零未收平账，M9 单轮三项结构性资产；④S5 编辑事故未上线即修复+记档，九模型回归逐位不变证明 v10 改码零副作用。本件不枚举自身哈希（清单至 `5f167a6` + 本件随批）。
 
-【文件路径】送审核心：`models/deeprobotics_m20_piper/SOURCE.md`（状态=待审）+ `LICENSE-upstream-deep_robotics_model.txt`（1,502 B，与 M2/M5/M6 快照同物）+ `evidence/` ×4（含 Piper 组件页二进制原件 60,233 B，脱敏 1 处 token）。侦察原件（不入库）：`workspace/m9_recon/`（recon 脚本 + m9_facts.json + 树 v3 + X30/组件页档）。管道 diff=0（本会话零改码）。
+【文件路径】送审核心：`models/deeprobotics_m20_piper/`（README 模型页 + reports/×5 + urdf/mjcf/images 入库件 + SOURCE.md 含 R37 处置补记 + evidence ×4）+ `pipeline/configs/deeprobotics_m20_piper.json` + `pipeline/s3_physics.py`/`pipeline/s5_preview/preview.js`/`index.html`（N2 备案 3 处）+ LICENSES.md/顶层 README。台账：REVIEW.md R37 节随队 + DEVLOG 会话 23 续（含编辑事故记档）。

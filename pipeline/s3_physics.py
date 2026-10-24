@@ -182,19 +182,28 @@ def check_collision_inventory(results, links, notes):
 
 
 def check_joint_limits(results, joints, notes):
-    bad, ranges = [], {}
+    # R37 预警②落码（N2 备案）：limit 非数值容错——上游全角句号 typo（M20_Piper fl_hipx
+    # "0。611" 实测）使 float() 抛异常中断整条管道；改为逐关节容错，非数值记 FAIL 继续
+    # （fail 不静默：坏关节点名，其余关节检查不受牵连；模型文件一字不动）
+    bad, ranges, non_numeric = [], {}, []
     for j in joints:
         if j["type"] != "revolute":
             continue
         lim = j["limit"]
-        lo, hi = float(lim.get("lower")), float(lim.get("upper"))
-        eff, vel = float(lim.get("effort", 0)), float(lim.get("velocity", 0))
+        try:
+            lo, hi = float(lim.get("lower")), float(lim.get("upper"))
+            eff, vel = float(lim.get("effort", 0)), float(lim.get("velocity", 0))
+        except (TypeError, ValueError):
+            non_numeric.append(j["name"])
+            continue
         ranges[j["name"]] = (lo, hi, eff, vel)
         if not (lo < hi and eff > 0 and vel > 0):
             bad.append(j["name"])
-    add(results, "urdf:joint-limits", "PASS" if not bad else "FAIL",
-        f"{len(ranges)} 个 revolute 全部 lower<upper 且 effort/velocity>0"
+    has_fail = bool(bad or non_numeric)
+    add(results, "urdf:joint-limits", "FAIL" if has_fail else "PASS",
+        f"{len(ranges)} 个 revolute lower<upper 且 effort/velocity>0"
         + (f"；违规：{bad}" if bad else "")
+        + (f"；limit 非数值（上游数据缺陷如实落表，交叉证据=MJCF 同关节限位正常）：{non_numeric}" if non_numeric else "")
         + f"；{notes['joint_range']}")
 
 
