@@ -23,6 +23,7 @@
 | deeprobotics_m20 | DeepRoboticsLab/deep_robotics_model（单仓多机型，Lite3 同仓） | BSD-3-Clause（**与 Lite3 行同仓同快照逐字节同物 `cdc6c065`**，R25 三重同物全验——同仓单 license 复指口径，无新增 license 行语义） | **Copyright (c) 2024, DeepRoboticsLab**（快照逐字，N1） | models/deeprobotics_m20/LICENSE-upstream-deep_robotics_model.txt | `530e01a5d2ceb6007f8790f1a7e11ee7389fb981` | 2026-10-24 |
 | deeprobotics_dr02 | DeepRoboticsLab/deep_robotics_model（单仓多机型，Lite3/M20 同仓） | BSD-3-Clause（**与 Lite3/M20 行同仓同快照逐字节同物 `cdc6c065`**，R28 三重同物全验——复指口径同上） | **Copyright (c) 2024, DeepRoboticsLab**（快照逐字，N1） | models/deeprobotics_dr02/LICENSE-upstream-deep_robotics_model.txt | `530e01a5d2ceb6007f8790f1a7e11ee7389fb981` | 2026-10-24 |
 | booster_k1 | BoosterRobotics/booster_assets（单仓多机型，T1 同仓） | BSD-3-Clause（**与 T1 行同仓同快照逐字节同物 `d7a14af35ecb`**，R31 双重同物全验——复指口径同上） | **Copyright (c) 2025, BoosterRobotics**（快照逐字，N1） | models/booster_k1/LICENSE-upstream-booster_assets.txt | `12a97516f57469078707afb587a5f84c1cb110d1` | 2026-10-24 |
+| booster_t2 | BoosterRobotics/booster_assets（单仓多机型，T1/K1 同仓） | BSD-3-Clause（**与 T1/K1 行同仓同快照逐字节同物 `d7a14af35ecb`**，R34 三重同物全验——复指口径同上） | **Copyright (c) 2025, BoosterRobotics**（快照逐字，N1） | models/booster_t2/LICENSE-upstream-booster_assets.txt | `12a97516f57469078707afb587a5f84c1cb110d1` | 2026-10-24 |
 
 详细核对过程与三条结论见各模型 SOURCE.md（go2：已确认 R3；g1：已确认 R10，M1 选型 + S0 同件审）。
 

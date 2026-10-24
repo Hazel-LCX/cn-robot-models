@@ -1,0 +1,68 @@
+{
+  "summary": {
+    "model": "booster_t2",
+    "date": "2026-10-24 22:35",
+    "pass": 9,
+    "warn": 0,
+    "fail": 1,
+    "versions": {
+      "yourdfpy": "0.0.60",
+      "trimesh": "5.1.1",
+      "mujoco": "3.15.0",
+      "python": "3.14.6"
+    },
+    "verdict": "1 个阻塞项——fail 已如实落表，处置走 S3/送审"
+  },
+  "checks": [
+    {
+      "check": "urdf:xml-wellformed",
+      "status": "PASS",
+      "detail": "lxml 解析成功（38510 字节）"
+    },
+    {
+      "check": "urdf:names-unique",
+      "status": "FAIL",
+      "detail": "35 links / 34 joints；重名：['logo']"
+    },
+    {
+      "check": "urdf:tree",
+      "status": "PASS",
+      "detail": "根=trunk，全树可达，无环无菱形"
+    },
+    {
+      "check": "urdf:mesh-refs",
+      "status": "PASS",
+      "detail": "39 处引用（ref_style=relative）→ 解析出 37 个文件，缺失 0，越界/外包 0，大小写失配 0；visual 引 33 个文件、collision 引 6 个，集合不同（素材归 S3-A1 清点）"
+    },
+    {
+      "check": "urdf:mesh-loadable",
+      "status": "PASS",
+      "detail": "37 个网格 trimesh 全部读通，最小顶点数 744"
+    },
+    {
+      "check": "urdf:joint-limits",
+      "status": "PASS",
+      "detail": "关节类型 {'revolute': 31, 'fixed': 3}；活动关节全带 <limit>（effort/velocity 数值硬校验留 S3）"
+    },
+    {
+      "check": "urdf:yourdfpy-parse",
+      "status": "PASS",
+      "detail": "yourdfpy 0.0.60 解析成功：35 links / 34 joints"
+    },
+    {
+      "check": "mjcf:xml-wellformed",
+      "status": "PASS",
+      "detail": "lxml 解析成功（27923 字节）"
+    },
+    {
+      "check": "mjcf:compile-model",
+      "status": "PASS",
+      "detail": "nbody=33 njnt=32 ngeom=55 nmesh=37 nu=31 nq=38 timestep=0.0010（292 ms）"
+    },
+    {
+      "check": "mjcf:compile-scene",
+      "status": "PASS",
+      "detail": "场景包装（T2_31dof.xml）编译成功"
+    }
+  ]
+}

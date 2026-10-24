@@ -1,0 +1,101 @@
+{
+  "model": "booster_t2",
+  "format_source": "official",
+  "sources": [
+    {
+      "name": "booster_assets",
+      "repo": "BoosterRobotics/booster_assets",
+      "pin": "12a97516f57469078707afb587a5f84c1cb110d1",
+      "subdir": "robots/T2/T2_31dof",
+      "license_path": "LICENSE",
+      "note": "M8：加速进化 T2 旗舰人形（140cm/42kg，尺度带中位档）；同仓第三机型线（license 快照与 M4/M7 逐字节同物 d7a14af3 零漂移无新定性，R34 三重同物）；**S3 三基准机型=本库首个 effort 全对账（42kg+31DoF+140 N·m）**；**R34 更正令在案**：floating 口径=35 link/34 joint（world 系注释块，K1 同款）——结构断言由解析器生成（R34 规程升级）；subdir 直指 T2_31dof 主版子目录（四手部变体整组天然隔离，R34 裁定仅收主版）"
+    }
+  ],
+  "s2": {
+    "urdf": {
+      "source": "booster_assets",
+      "rel": "robots/T2/T2_31dof/T2_31dof.urdf",
+      "package": "T2",
+      "package_root": "robots/T2/T2_31dof",
+      "ref_style": "relative",
+      "note": "R34 预警①：39 引→37 唯一闭包差 2 件 S1 实测；结构数字（link/joint/floating）一律 S2 解析器实测为准（R34 规程升级：不预写）；scale 预扫 0"
+    },
+    "mjcf": {
+      "source": "booster_assets",
+      "model_rel": "robots/T2/T2_31dof/T2_31dof.xml",
+      "scene_rel": "robots/T2/T2_31dof/T2_31dof.xml"
+    },
+    "notes": {}
+  },
+  "s3": {
+    "official": {
+      "mass_kg": 42.0,
+      "tolerance": 0.1,
+      "evidence": "官网原文「重量：约 42 千克*」「身高：约 140 厘米」「自由度 全身：31」「最大峰值扭矩：140 N·m」（booster.tech/cn/booster-t2 产品页规格表，2026-10-24 静态 HTML，原件 evidence/official-t2-spec-page.html 269,610B=R34 活源逐字节）；README 配置表 T2 行（R34 更正令②活源原文）「head 2 + arms 7×2 + waist 3 + legs 6×2」=2+14+3+12=31 逐位",
+      "caliber": "官网标称口径=整机；42kg 星号注记 S3 前置逐字核对原文（疑为不含电池/手部口径，R34 预警②）；严格口径不可比仅作 sanity（M0/M1 同法）；**effort 对账=官网峰值扭矩 140 N·m（本库首个三基准机型，X2 120 N·m 先例同法升级为全对账）**",
+      "note": "R34 预警②执行中；身高对账点预判 1.40m 级（S5 实测为准）"
+    },
+    "sanity": {
+      "ratio_range": [
+        0.005,
+        0.5
+      ],
+      "axis_tolerance": 1e-06,
+      "mass_diff_warn": 0.02
+    },
+    "cross_alias": {},
+    "notes": {
+      "joint_range": "注：官网 DoF 分解=全身 31（头 2+臂 7×2+腰 3+腿 6×2，R34 更正令②原文）↔ URDF 31R；关节限位官网未公布逐值——纯体检；**effort 基准=官网峰值扭矩 140 N·m（上限合理性 sanity，M3 X2 120 N·m 先例同法）**",
+      "upstream_png": "robots/T2/T2_31dof/ 无图片资产（S1 实测）——S3 C1 模板 png 提示不适用"
+    }
+  },
+  "s4": {
+    "urdf": [
+      {
+        "src_rel": "robots/T2/T2_31dof/T2_31dof.urdf",
+        "dest": "urdf/T2_31dof.urdf"
+      }
+    ],
+    "urdf_meshes": {
+      "package": "T2",
+      "dest_root": "urdf",
+      "note": "relative（meshes/ 前缀变体，T1 同构）：subdir=T2_31dof 子目录、meshes/ 同级；37 引用池闭包 S1 实测（四手部变体目录由 subdir 隔离天然不入）"
+    },
+    "mjcf": [
+      {
+        "src_rel": "robots/T2/T2_31dof/T2_31dof.xml",
+        "dest": "mjcf/T2_31dof.xml"
+      }
+    ],
+    "mjcf_assets": {
+      "src_rel": "robots/T2/T2_31dof/meshes",
+      "dest": "mjcf/meshes",
+      "mode": "closure",
+      "note": "MJCF meshdir 相对 T2_31dof 目录（分目录形态 M20 同款）；closure 零改动落位"
+    },
+    "images": [],
+    "recheck": {
+      "mjcf": "mjcf/T2_31dof.xml",
+      "urdf": "urdf/T2_31dof.urdf",
+      "urdf_mesh_dir": "urdf",
+      "note": "relative（meshes/ 前缀）——meshes/ 与 urdf 同目录"
+    },
+    "excluded": [
+      {
+        "src": "booster_assets/robots/T2/T2_31dof/T2_31dof_parallel.xml",
+        "why": "踝并联变体 MJCF——R34 锚点=主版，R22/M7 parallel 已裁先例同款"
+      }
+    ],
+    "note": "subdir=T2_31dof 直指主版子目录（R34 裁定仅收主版）——四手部变体整组（JZgripper/Revo2Hand/WujiHand/YSgripper）与 parallel 由 subdir 天然隔离不入库只记录；37 引用池外的池内冗余 S1 实测平账"
+  },
+  "s5": {
+    "viewport": "humanoid",
+    "note": "1.40m 旗舰人形——humanoid 机位；31 滑条数=S5 实测"
+  },
+  "s6": {
+    "warmup_steps": 100,
+    "bench_steps": 10000,
+    "repeats": 5,
+    "scenario": "固定 qpos0、纯重力、无控制器（人形站立初始姿态，测引擎步进吞吐，不掺控制变量）；**展幅验收执行 R32 处置先例：首轮超线则三轮复跑+负载源核查+取干净轮（K1 先例）**"
+  }
+}
