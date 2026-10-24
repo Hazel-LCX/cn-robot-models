@@ -3,7 +3,7 @@
 > **这不是模型收集站。** 这是一条可复现的开源仿真模型**质检管道**：
 > license 核对 → 拉取 → 格式校验 → 物理体检 → 双格式入库 → 在线预览 → 基准 → 质检报告。
 > 模型库是管道的副产品，**每一步的检查报告本身就是产品**。
-> 已收录：宇树 Go2（M0 质检样板）· 宇树 G1（M1 · 人形）· 云深处 Lite3（M2 · 异厂首录）· 智元灵犀 X2（M3 · 国产开源许可证首例）· 加速进化 T1（M4 · 第四厂商）· 云深处山猫 M20（M5 · 轮足 · continuous 拓扑首覆盖）· 云深处 DR02 Pro（M6 · 人形 1.8 m · 官方 DoF 基准齐备）——官方双源 URDF/MJCF（BSD-3-Clause / MulanPSL-2.0）。
+> 已收录：宇树 Go2（M0 质检样板）· 宇树 G1（M1 · 人形）· 云深处 Lite3（M2 · 异厂首录）· 智元灵犀 X2（M3 · 国产开源许可证首例）· 加速进化 T1（M4 · 第四厂商）· 云深处山猫 M20（M5 · 轮足 · continuous 拓扑首覆盖）· 云深处 DR02 Pro（M6 · 人形 1.8 m · 官方 DoF 基准齐备）· 加速进化 K1（M7 · 0.95 m 最小型 · 首个官网产品页直证机型）——官方双源 URDF/MJCF（BSD-3-Clause / MulanPSL-2.0）。
 
 ## 为什么是"质检管道"而不是"模型库"
 
@@ -19,7 +19,8 @@
   [X2 · 徽标件 scale 陷阱（native 3.96 m 大件，上游两格式一致缩放为 12 cm——忽略 scale 的查看器得幽灵几何，本库预览器曾踩坑已修，L12）](models/agibot_x2/README.md#1--agibotstl-徽标件与-scale-陷阱上游两格式一致本库预览器曾踩坑已修) ·
   [T1 · 官方整机基准缺失（本库首例无官网基准机型，质量对比 WARN 披露不虚构）/ 网格池 63 收 25（38 件未收身份自洽）/ URDF 显式 world+floating joint](models/booster_t1/README.md#1--官方整机基准缺失本库首例无官网基准的机型) ·
   [M20 · URDF↔MJCF 腿部质量分布分歧（hipy −0.125/knee +0.115 kg ×四腿，COM 却逐位一致——同仓 Lite3 互补模式）/ continuous 关节拓扑首覆盖](models/deeprobotics_m20/README.md#1--urdfmjcf-腿部质量分布分歧hipy--0125kg--knee--0115kg-四腿本模型核心质检发现) ·
-  [DR02 · 引用计数口径更正（grep 39→解析器 36：注释内元素虚增计数）/ 本库首个 collision-mesh 模型 / 身高官方对账 −8mm 姿态差](models/deeprobotics_dr02/README.md#1--引用计数口径更正grep-39--解析器-36l12-家族活案例)。
+  [DR02 · 引用计数口径更正（grep 39→解析器 36：注释内元素虚增计数）/ 本库首个 collision-mesh 模型 / 身高官方对账 −8mm 姿态差](models/deeprobotics_dr02/README.md#1--引用计数口径更正grep-39--解析器-36l12-家族活案例) ·
+  [K1 · 官网域名迁移实证与路径①转正（boosterobotics.com→booster.tech 301，"快照会过期活源才有效"活教材）/ URDF 注释内 world 块虚增结构断言](models/booster_k1/README.md#1--官网域名迁移与-a4-路径①转正本模型核心侦察成果)。
 - 如果体检全绿：价值落在"管道可复现 + 双格式对账 + 基准数字"——同样的成立。
 
 ## 管道
@@ -119,6 +120,18 @@ S0 license核对(门) → S1 拉取 → S2 格式校验 → S3 物理体检(门:
 | S5 3D 预览 | 31 滑条、**包围盒 y [0.000, 1.792] ↔ 官网站立 1800 mm（−8 mm 姿态差，人形首个身高官方对账点）**；**六模型基线逐位回归全命中**（0.334/1.323/0.298/1.319/1.180/0.675） | [pipeline/s5_preview/](pipeline/s5_preview/) |
 | S6 基准 | **MuJoCo 110,257 steps/s（9.1 µs/step）——超越 Go2 成序列最快**（全基元碰撞几何简单度主导，"跨模型不可比"再加固），加载 153.8 ms，展幅 3.4% | [S6-benchmark.md](models/deeprobotics_dr02/reports/S6-benchmark.md) |
 
+### M7 · 加速进化 K1（人形 0.95 m · 同仓第二机型线 · 2026-10-24）
+
+| 步骤 | 结果 | 报告 |
+|---|---|---|
+| S0 license 门 | **同仓单 license 零漂移（R31 双重同物全验）**——快照与 M4 T1 逐字节同物 `d7a14af3`；**A4 路径①转正**（官网域名迁移 boosterobotics.com→booster.tech 实证，K1 产品页 336,389 B 逐字节直证=首个官网直证机型） | [SOURCE.md](models/booster_k1/SOURCE.md) |
+| S1 拉取 | 56 文件锚点锁定（`12a97516` 与 M4 同 HEAD 零漂移），**blob-parity 56 件失配 0**（K2 门六战全绿）；32 引→24 唯一（8 处复用）、scale 双侧 0、单池 52 件闭包 28 未收身份自洽；**R31 预警②闭合：world+floating 系注释内块（非活元素，与 T1 相反）** | SOURCE.md / S1-fetch.md |
+| S2 格式校验 | **10 PASS / 0 FAIL**：URDF 25 link/24 joint（根=trunk，22R+2F）、32 处引用全解析、MJCF 编译 nq=29/**nu=22** 与 URDF 22R 逐数自洽 | [S2-validation.md](models/booster_k1/reports/S2-validation.md) |
+| S3 物理体检 | **10 PASS / 3 WARN / 0 FAIL / 0 SKIP（连续第二最净档）**：**19.666 vs 官网 19.5 kg（+0.9%）两侧同值**；逐 body 23/23 一致 + COM 23/23 差 0；22 轴差 0；**官方 DoF 三方逐位**（官网+README+URDF）；collision mesh 8 处（第二例） | [S3-physics.md](models/booster_k1/reports/S3-physics.md) |
+| S4 双格式入库 | **50 物理件 / 24.0 MB 三锚全过** + 1 质检截图；单池闭包（24×2 两侧落位同哈希）；excluded 2（locomotion+parallel）+未收 28 逐件列名身份自洽 | [S4-package.md](models/booster_k1/reports/S4-package.md) |
+| S5 3D 预览 | 22 滑条、**包围盒 y [0.000, 0.955] ↔ 官网"身高约 95 厘米"逐位命中（+5mm 姿态差，身高官方对账第二例）**；**七模型基线逐位回归全命中**（0.334/1.323/0.298/1.319/1.180/0.675/1.792） | [pipeline/s5_preview/](pipeline/s5_preview/) |
+| S6 基准 | **MuJoCo 40,549 steps/s（24.7 µs/step）**，加载 64.8 ms，展幅 19.2%（八模型序列第六点；**首轮展幅 22.4% 超线=本库首次，三轮复跑定案取干净环境轮**，负载源假设如实记档） | [S6-benchmark.md](models/booster_k1/reports/S6-benchmark.md) |
+
 ## 快速开始
 
 **在线预览（零依赖，断网可用）**
@@ -132,6 +145,7 @@ python -m http.server 8130
 # 或            http://127.0.0.1:8130/pipeline/s5_preview/index.html?model=booster_t1           # T1（加速进化人形）
 # 或            http://127.0.0.1:8130/pipeline/s5_preview/index.html?model=deeprobotics_m20    # M20（云深处轮足，含 4 轮 continuous 滑条）
 # 或            http://127.0.0.1:8130/pipeline/s5_preview/index.html?model=deeprobotics_dr02   # DR02（云深处人形 1.8 m，31 滑条）
+# 或            http://127.0.0.1:8130/pipeline/s5_preview/index.html?model=booster_k1           # K1（加速进化教育人形 0.95 m，22 滑条）
 ```
 
 **MuJoCo 查看 / 加载**

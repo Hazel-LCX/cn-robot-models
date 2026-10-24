@@ -1,0 +1,105 @@
+{
+  "model": "booster_k1",
+  "format_source": "official",
+  "sources": [
+    {
+      "name": "booster_assets",
+      "repo": "BoosterRobotics/booster_assets",
+      "pin": "12a97516f57469078707afb587a5f84c1cb110d1",
+      "subdir": "robots/K1",
+      "license_path": "LICENSE",
+      "note": "M7：加速进化 K1 教育级人形（0.95m/19.5kg 本库最小型，与 DR02 构成尺度带两极）；同仓第二机型线（license 快照与 M4 逐字节同物 d7a14af3 零漂移无新定性，R31 双重同物）；**首个官网产品页直证机型**（A4 路径①转正：官网 boosterobotics.com 301→booster.tech 域名迁移，K1 页 336,389B 逐字节=入库 evidence）；官方双文档 DoF 交叉（官网 22=头2+臂8+腿12↔README 配置表↔URDF 22R）；R31 预警四条=S1 执行：闭包差 8 件/floating+world 口径/52 单池闭包/head 对账"
+    }
+  ],
+  "s2": {
+    "urdf": {
+      "source": "booster_assets",
+      "rel": "robots/K1/K1_22dof.urdf",
+      "package": "K1",
+      "package_root": "robots/K1",
+      "ref_style": "relative",
+      "note": "S1 实测：32 引用 'meshes/X.STL' 前缀（T1 同款）→24 唯一（闭包差 8 件=R31 预警①实测，含注释口径对照 R29 规程：解析器计数为断言依据）；scale 0；floating+world 口径 S1 核对 T1（R31 预警②）"
+    },
+    "mjcf": {
+      "source": "booster_assets",
+      "model_rel": "robots/K1/K1_22dof.xml",
+      "scene_rel": "robots/K1/K1_22dof.xml"
+    },
+    "notes": {}
+  },
+  "s3": {
+    "official": {
+      "mass_kg": 19.5,
+      "tolerance": 0.1,
+      "evidence": "官网原文「重量：约 19.5 千克」「身高：约 95 厘米」「自由度 全身：22 / 单腿：6…」（booster.tech/cn/booster-k1 产品页规格表，2026-10-24 静态 HTML，原件 evidence/official-k1-spec-page.html 336,389B=R31 活源逐字节）；DoF 分解 头2+臂8+腿12 与 README 配置表交叉逐位",
+      "caliber": "官网标称口径=整机（含电池与否官网未注明，S3 实测 URDF 电池 link 后披露）；严格口径不可比仅作 sanity（M0/M1/M2 同法）；DoF 对账=官方逐部位分解（22=2+8+12）↔ URDF 22R（本库第二个官方 DoF 基准齐备机型，DR02 之后）",
+      "note": "R31 活源坐实：官网域名迁移 boosterobotics.com→booster.tech（301），取证路径经新域；身高对账点预判 0.95m 级（S5 实测为准）"
+    },
+    "sanity": {
+      "ratio_range": [
+        0.005,
+        0.5
+      ],
+      "axis_tolerance": 1e-06,
+      "mass_diff_warn": 0.02
+    },
+    "cross_alias": {},
+    "notes": {
+      "joint_range": "注：官网 DoF 分解=全身 22（头 2+臂 8+腿 12）↔ URDF 22R（双文档交叉+模型三重逐位）；关节级扭矩/限位官网未公布——纯体检+披露（Lite3 同口径）",
+      "upstream_png": "robots/K1/ 无图片资产（58 目录项 S1 实测）——S3 C1 模板 png 提示不适用"
+    }
+  },
+  "s4": {
+    "urdf": [
+      {
+        "src_rel": "robots/K1/K1_22dof.urdf",
+        "dest": "urdf/K1_22dof.urdf"
+      }
+    ],
+    "urdf_meshes": {
+      "package": "K1",
+      "dest_root": "urdf",
+      "note": "relative（meshes/ 前缀变体，T1 同构）：meshes/ 与 urdf 同目录（52 单池——R31 预警③：闭包差 8 件 S1 实测身份）"
+    },
+    "mjcf": [
+      {
+        "src_rel": "robots/K1/K1_22dof.xml",
+        "dest": "mjcf/K1_22dof.xml"
+      }
+    ],
+    "mjcf_assets": {
+      "src_rel": "robots/K1/meshes",
+      "dest": "mjcf/meshes",
+      "mode": "closure",
+      "note": "MJCF meshdir='meshes/' 相对 K1 目录、共享单池（T1 同构非 M20 分目录形态）；closure 以 {dest}/{file} 落位零改动"
+    },
+    "images": [],
+    "recheck": {
+      "mjcf": "mjcf/K1_22dof.xml",
+      "urdf": "urdf/K1_22dof.urdf",
+      "urdf_mesh_dir": "urdf",
+      "note": "relative（meshes/ 前缀）——meshes/ 与 urdf 同目录"
+    },
+    "excluded": [
+      {
+        "src": "booster_assets/robots/K1/K1_locomotion.urdf",
+        "why": "行走裁剪变体（23 link/12R+10F）——R31 锚点=K1_22dof，不入库只记录（T1_locomotion 同类）"
+      },
+      {
+        "src": "booster_assets/robots/K1/K1_22dof_parallel.xml",
+        "why": "并联踝变体 MJCF——R31 锚点=K1_22dof，R22 parallel 已裁先例同款"
+      }
+    ],
+    "note": "K1 58 目录项 S1 实测；T2 整线与 motions/src 仓级件由 sparse-checkout 天然隔离；images 空=子目录无图片资产"
+  },
+  "s5": {
+    "viewport": "humanoid",
+    "note": "0.95m 教育级人形——humanoid 机位；22 关节滑条数=S5 实测"
+  },
+  "s6": {
+    "warmup_steps": 100,
+    "bench_steps": 10000,
+    "repeats": 5,
+    "scenario": "固定 qpos0、纯重力、无控制器（人形站立初始姿态，测引擎步进吞吐，不掺控制变量）"
+  }
+}
