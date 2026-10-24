@@ -11,6 +11,9 @@
 - 本会话 `pipeline/` 零 diff（push+回执纯执行，无改码——N2 备案行不适用，如实声明）。
 - 状态：**M3 四模型全量上线、回执已落档 → 停手等审核台 R21**；R21 回写后收尾 push，M3 全闭环项目回维护态（M4 候选未被要求启动，动前先送协议②）。
 - **R21 读毕 → M3 正式闭环收尾**：审核台四路活证终查零出入（ref 四观测一致 `3dc950b`、计数双路 51、R13 专项双路等证、上线抽查 X2 八件套在线 + v4 缺陷图远端绝迹、回执 commit 恰 3 件纯台账零改码属实）→ **R21 = 协议⑤完成，M3 含发布全流程闭环**。R21 本节 + 标注随本收官 commit 与回执 commit `8bcdd00` 一并 push（M2 `9b20289` 先例，纯台账无需新审）——commit 前 grep 自证 R21/R20 节随队，push 后按例三源复核。M3 全周期五审闭环（R17 选型→R18 决策点退回→R19 暂缓→R20 放行→R21 终查），四模型（Go2/G1/Lite3/X2）全量在线；项目回维护态：深度口径差观察项随下次 S5 注明测量法，M4 候选（加速进化 booster_gym NOASSERTION 人工定性/云深处同仓多机型）动前先送协议②。
+- **M4 启动（同会话续）→ 协议②送审**：用户令"继续"，按 M3 会话 19 先例两候选线全程序化侦察（`workspace/m4_recon/`，不入库）。**侦察修正核心成果**：M3 时代"加速进化=跨仓配对"预设三步被修——booster_train 零 T1 资产、booster_gym resources/T1 单仓配对但 license 为 916 B 短格式 Apache-2.0（NOASSERTION 真身，blob `c9e19b34` 零漂移）且 44 STL 池 20 件无引用、**专用资产仓 `booster_assets` 形态最优**（BSD-3 全文 1,502 B、K1/T1/T2 三线、官方 DoF 配置表、活跃维护）——M4 正本源改锚 `booster_assets`，gym 降旁证；历史口径修正如实记录（M3 曾记"T2/K1 等其余 10 URDF 无 MJCF"，实测 10 urdf+11 xml 仅 T1_29dof 无配对）。候选 B 云深处六机型全扫（DR02/M20/M20S/M20_Piper/S10/X30，X30 网格 8 件异常薄预警），license 零漂移（快照 blob `cdc6c065`=上游现值）——留 M4+ 维护态填充。**源修正纪律**：gym 版 S0 取证件撤 `archive_gym_s0/`，证据链不混用两正本（L12 教训）。**S0 落档**（`gen_t1_s0_v2.py`）：`models/booster_t1/` = SOURCE.md（状态=待审）+ `LICENSE-upstream-booster_assets.txt`（1,502 B，blob `d7a14af35ecb…` hash-object MATCH）+ evidence ×6；锚点推荐 `T1_23dof.urdf↔T1_23dof.xml`（官方配置表背书 2+8+1+12=23 算术自洽，M1 g1_23dof 同款形态）；A4 分层如实（路径②成立四件互证/路径①阴性=官网首页+T2 页双零 JS 站）。
+- 本会话 `pipeline/` 零 diff（push/回执/侦察/S0 纯取证，无改码——N2 备案行不适用，如实声明）。
+- 状态：**协议②已触发（M4 选型=加速进化 T1/booster_assets + 锚点与不入库清单 + BSD-3 定性 + A4 分层与源修正确认，四决策点）**，停手等审核台；本地 commit 未 push（push 属协议⑤）。
 
 ## 2026-10-11（会话 22：R19 读毕 → 三小件返工（DoubleSide/lite3 换图/口径更正）→ 增量重送）
 

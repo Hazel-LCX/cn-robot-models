@@ -1,0 +1,111 @@
+{
+ "sha": "12a97516f57469078707afb587a5f84c1cb110d1",
+ "node_id": "C_kwDOQi-KBtoAKDEyYTk3NTE2ZjU3NDY5MDc4NzA3YWZiNTg3YTVmODRjMWNiMTEwZDE",
+ "commit": {
+  "author": {
+   "name": "wufeng",
+   "email": "wufeng@boosterobotics.com",
+   "date": "2026-09-26T15:03:15Z"
+  },
+  "committer": {
+   "name": "wufeng",
+   "email": "wufeng@boosterobotics.com",
+   "date": "2026-09-26T15:03:15Z"
+  },
+  "message": "add motions for T1/T2",
+  "tree": {
+   "sha": "681a37700138f0ebb4af70474b8e3e7ed40e2ee7",
+   "url": "https://api.github.com/repos/BoosterRobotics/booster_assets/git/trees/681a37700138f0ebb4af70474b8e3e7ed40e2ee7"
+  },
+  "url": "https://api.github.com/repos/BoosterRobotics/booster_assets/git/commits/12a97516f57469078707afb587a5f84c1cb110d1",
+  "comment_count": 0,
+  "verification": {
+   "verified": false,
+   "reason": "unsigned",
+   "signature": null,
+   "payload": null,
+   "verified_at": null
+  }
+ },
+ "url": "https://api.github.com/repos/BoosterRobotics/booster_assets/commits/12a97516f57469078707afb587a5f84c1cb110d1",
+ "html_url": "https://github.com/BoosterRobotics/booster_assets/commit/12a97516f57469078707afb587a5f84c1cb110d1",
+ "comments_url": "https://api.github.com/repos/BoosterRobotics/booster_assets/commits/12a97516f57469078707afb587a5f84c1cb110d1/comments",
+ "author": {
+  "login": "BoosterRobotics",
+  "id": 185898637,
+  "node_id": "U_kgDOCxSWjQ",
+  "avatar_url": "https://avatars.githubusercontent.com/u/185898637?v=4",
+  "gravatar_id": "",
+  "url": "https://api.github.com/users/BoosterRobotics",
+  "html_url": "https://github.com/BoosterRobotics",
+  "followers_url": "https://api.github.com/users/BoosterRobotics/followers",
+  "following_url": "https://api.github.com/users/BoosterRobotics/following{/other_user}",
+  "gists_url": "https://api.github.com/users/BoosterRobotics/gists{/gist_id}",
+  "starred_url": "https://api.github.com/users/BoosterRobotics/starred{/owner}{/repo}",
+  "subscriptions_url": "https://api.github.com/users/BoosterRobotics/subscriptions",
+  "organizations_url": "https://api.github.com/users/BoosterRobotics/orgs",
+  "repos_url": "https://api.github.com/users/BoosterRobotics/repos",
+  "events_url": "https://api.github.com/users/BoosterRobotics/events{/privacy}",
+  "received_events_url": "https://api.github.com/users/BoosterRobotics/received_events",
+  "type": "User",
+  "user_view_type": "public",
+  "site_admin": false
+ },
+ "committer": {
+  "login": "BoosterRobotics",
+  "id": 185898637,
+  "node_id": "U_kgDOCxSWjQ",
+  "avatar_url": "https://avatars.githubusercontent.com/u/185898637?v=4",
+  "gravatar_id": "",
+  "url": "https://api.github.com/users/BoosterRobotics",
+  "html_url": "https://github.com/BoosterRobotics",
+  "followers_url": "https://api.github.com/users/BoosterRobotics/followers",
+  "following_url": "https://api.github.com/users/BoosterRobotics/following{/other_user}",
+  "gists_url": "https://api.github.com/users/BoosterRobotics/gists{/gist_id}",
+  "starred_url": "https://api.github.com/users/BoosterRobotics/starred{/owner}{/repo}",
+  "subscriptions_url": "https://api.github.com/users/BoosterRobotics/subscriptions",
+  "organizations_url": "https://api.github.com/users/BoosterRobotics/orgs",
+  "repos_url": "https://api.github.com/users/BoosterRobotics/repos",
+  "events_url": "https://api.github.com/users/BoosterRobotics/events{/privacy}",
+  "received_events_url": "https://api.github.com/users/BoosterRobotics/received_events",
+  "type": "User",
+  "user_view_type": "public",
+  "site_admin": false
+ },
+ "parents": [
+  {
+   "sha": "45588c71d0448b9204a0d15601f730384ef784d5",
+   "url": "https://api.github.com/repos/BoosterRobotics/booster_assets/commits/45588c71d0448b9204a0d15601f730384ef784d5",
+   "html_url": "https://github.com/BoosterRobotics/booster_assets/commit/45588c71d0448b9204a0d15601f730384ef784d5"
+  }
+ ],
+ "stats": {
+  "total": 2794,
+  "additions": 2794,
+  "deletions": 0
+ },
+ "files": [
+  {
+   "sha": "7fa14ed9453b5e23615b1f21e1063706a8813971",
+   "filename": "motions/T1/t1_dance.csv",
+   "status": "added",
+   "additions": 1635,
+   "deletions": 0,
+   "changes": 1635,
+   "blob_url": "https://github.com/BoosterRobotics/booster_assets/blob/12a97516f57469078707afb587a5f84c1cb110d1/motions%2FT1%2Ft1_dance.csv",
+   "raw_url": "https://github.com/BoosterRobotics/booster_assets/raw/12a97516f57469078707afb587a5f84c1cb110d1/motions%2FT1%2Ft1_dance.csv",
+   "contents_url": "https://api.github.com/repos/BoosterRobotics/booster_assets/contents/motions%2FT1%2Ft1_dance.csv?ref=12a97516f57469078707afb587a5f84c1cb110d1"
+  },
+  {
+   "sha": "c0fab25047e472d279975de1be630028a15ebb94",
+   "filename": "motions/T2/t2_dance.csv",
+   "status": "added",
+   "additions": 1159,
+   "deletions": 0,
+   "changes": 1159,
+   "blob_url": "https://github.com/BoosterRobotics/booster_assets/blob/12a97516f57469078707afb587a5f84c1cb110d1/motions%2FT2%2Ft2_dance.csv",
+   "raw_url": "https://github.com/BoosterRobotics/booster_assets/raw/12a97516f57469078707afb587a5f84c1cb110d1/motions%2FT2%2Ft2_dance.csv",
+   "contents_url": "https://api.github.com/repos/BoosterRobotics/booster_assets/contents/motions%2FT2%2Ft2_dance.csv?ref=12a97516f57469078707afb587a5f84c1cb110d1"
+  }
+ ]
+}
