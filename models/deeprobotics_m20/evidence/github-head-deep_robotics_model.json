@@ -1,0 +1,147 @@
+{
+ "sha": "530e01a5d2ceb6007f8790f1a7e11ee7389fb981",
+ "node_id": "C_kwDOK3JVCdoAKDUzMGUwMWE1ZDJjZWI2MDA3Zjg3OTBmMWE3ZTExZWU3Mzg5ZmI5ODE",
+ "commit": {
+  "author": {
+   "name": "Percy",
+   "email": "pengbo@deeprobotics.cn",
+   "date": "2026-10-23T01:53:24Z"
+  },
+  "committer": {
+   "name": "Percy",
+   "email": "pengbo@deeprobotics.cn",
+   "date": "2026-10-23T01:53:24Z"
+  },
+  "message": "Update Lite3 models to the 2026-08-21 OEM release",
+  "tree": {
+   "sha": "209a4aa1d952dea70350d391ddfc242ea322351b",
+   "url": "https://api.github.com/repos/DeepRoboticsLab/deep_robotics_model/git/trees/209a4aa1d952dea70350d391ddfc242ea322351b"
+  },
+  "url": "https://api.github.com/repos/DeepRoboticsLab/deep_robotics_model/git/commits/530e01a5d2ceb6007f8790f1a7e11ee7389fb981",
+  "comment_count": 0,
+  "verification": {
+   "verified": false,
+   "reason": "unsigned",
+   "signature": null,
+   "payload": null,
+   "verified_at": null
+  }
+ },
+ "url": "https://api.github.com/repos/DeepRoboticsLab/deep_robotics_model/commits/530e01a5d2ceb6007f8790f1a7e11ee7389fb981",
+ "html_url": "https://github.com/DeepRoboticsLab/deep_robotics_model/commit/530e01a5d2ceb6007f8790f1a7e11ee7389fb981",
+ "comments_url": "https://api.github.com/repos/DeepRoboticsLab/deep_robotics_model/commits/530e01a5d2ceb6007f8790f1a7e11ee7389fb981/comments",
+ "author": {
+  "login": "bopeng5221",
+  "id": 219242890,
+  "node_id": "U_kgDODRFhig",
+  "avatar_url": "https://avatars.githubusercontent.com/u/219242890?v=4",
+  "gravatar_id": "",
+  "url": "https://api.github.com/users/bopeng5221",
+  "html_url": "https://github.com/bopeng5221",
+  "followers_url": "https://api.github.com/users/bopeng5221/followers",
+  "following_url": "https://api.github.com/users/bopeng5221/following{/other_user}",
+  "gists_url": "https://api.github.com/users/bopeng5221/gists{/gist_id}",
+  "starred_url": "https://api.github.com/users/bopeng5221/starred{/owner}{/repo}",
+  "subscriptions_url": "https://api.github.com/users/bopeng5221/subscriptions",
+  "organizations_url": "https://api.github.com/users/bopeng5221/orgs",
+  "repos_url": "https://api.github.com/users/bopeng5221/repos",
+  "events_url": "https://api.github.com/users/bopeng5221/events{/privacy}",
+  "received_events_url": "https://api.github.com/users/bopeng5221/received_events",
+  "type": "User",
+  "user_view_type": "public",
+  "site_admin": false
+ },
+ "committer": {
+  "login": "bopeng5221",
+  "id": 219242890,
+  "node_id": "U_kgDODRFhig",
+  "avatar_url": "https://avatars.githubusercontent.com/u/219242890?v=4",
+  "gravatar_id": "",
+  "url": "https://api.github.com/users/bopeng5221",
+  "html_url": "https://github.com/bopeng5221",
+  "followers_url": "https://api.github.com/users/bopeng5221/followers",
+  "following_url": "https://api.github.com/users/bopeng5221/following{/other_user}",
+  "gists_url": "https://api.github.com/users/bopeng5221/gists{/gist_id}",
+  "starred_url": "https://api.github.com/users/bopeng5221/starred{/owner}{/repo}",
+  "subscriptions_url": "https://api.github.com/users/bopeng5221/subscriptions",
+  "organizations_url": "https://api.github.com/users/bopeng5221/orgs",
+  "repos_url": "https://api.github.com/users/bopeng5221/repos",
+  "events_url": "https://api.github.com/users/bopeng5221/events{/privacy}",
+  "received_events_url": "https://api.github.com/users/bopeng5221/received_events",
+  "type": "User",
+  "user_view_type": "public",
+  "site_admin": false
+ },
+ "parents": [
+  {
+   "sha": "75824b516ecc8fa3f8f7ce5d6577e1e86d6b614f",
+   "url": "https://api.github.com/repos/DeepRoboticsLab/deep_robotics_model/commits/75824b516ecc8fa3f8f7ce5d6577e1e86d6b614f",
+   "html_url": "https://github.com/DeepRoboticsLab/deep_robotics_model/commit/75824b516ecc8fa3f8f7ce5d6577e1e86d6b614f"
+  }
+ ],
+ "stats": {
+  "total": 49,
+  "additions": 41,
+  "deletions": 8
+ },
+ "files": [
+  {
+   "sha": "983cdf2f86c182b30b4dd8b64b797305642cab50",
+   "filename": "Lite3/mjcf/Lite3.xml",
+   "status": "modified",
+   "additions": 12,
+   "deletions": 8,
+   "changes": 20,
+   "blob_url": "https://github.com/DeepRoboticsLab/deep_robotics_model/blob/530e01a5d2ceb6007f8790f1a7e11ee7389fb981/Lite3%2Fmjcf%2FLite3.xml",
+   "raw_url": "https://github.com/DeepRoboticsLab/deep_robotics_model/raw/530e01a5d2ceb6007f8790f1a7e11ee7389fb981/Lite3%2Fmjcf%2FLite3.xml",
+   "contents_url": "https://api.github.com/repos/DeepRoboticsLab/deep_robotics_model/contents/Lite3%2Fmjcf%2FLite3.xml?ref=530e01a5d2ceb6007f8790f1a7e11ee7389fb981",
+   "patch": "@@ -47,7 +47,9 @@\n \n     <body name=\"TORSO\" pos=\"0 0. 1.\" quat=\"1 0 0 0\" childclass=\"robot\">\n       <freejoint name=\"floating_base\" />\n-      <site name=\"imu_site\" pos=\"0 0 0\" size=\"0.005\" rgba=\"1 0 0 1\"/>\n+      <site name=\"imu_site\" pos=\"0.005 0 0\" size=\"0.005\" rgba=\"1 0 0 1\"/>\n+      <site name=\"depth_camera_site\" pos=\"0.25228 -0.00050 0.07410\" euler=\"0 -0.3490658504 0\" size=\"0.01\" rgba=\"0 1 0 1\"/>\n+      <site name=\"lidar_site\" pos=\"0.18678 0 0.12498\" euler=\"0 -0.2617993878 0\" size=\"0.01\" rgba=\"0 0 1 1\"/>\n       <inertial pos=\"0 0 0\" mass=\"5.6056\" diaginertia=\"0.02456 0.05518 0.07016\"/>\n       <geom name=\"TORSO_collision\" pos=\"0 0 0\" quat=\"1.0 0.0 0.0 0.0\" type=\"mesh\" mesh=\"torso.STL\" class=\"collision\" />\n       <geom name=\"TORSO_visual\" pos=\"0 0 0\" quat=\"1 0 0 0\" material=\"\" type=\"mesh\" mesh=\"torso.STL\" class=\"visual\" />\n@@ -58,7 +60,7 @@\n         <geom name=\"FL_HIP_visual\" pos=\"0 0 0\" quat=\"1 0 0 0\" material=\"\" type=\"mesh\" mesh=\"fl_hip.STL\" class=\"visual\" />\n         <body name=\"FL_THIGH\" pos=\"0 0.09735 0\" quat=\"1.0 0.0 0.0 0.0\">\n           <joint name=\"FL_HipY_joint\" type=\"hinge\" ref=\"0.0\" class=\"motor\" range=\"-2.67 0.314\" axis=\"0 -1 0\" />\n-          <inertial pos=\"-0.0039245 -0.014632 -0.025146\" quat=\"1.0 0.0 0.0 0.0\" mass=\"0.86\" diaginertia=\"0.005736 0.00496 0.001436\" />\n+          <inertial pos=\"-0.0052817 -0.014632 -0.042672\" quat=\"1.0 0.0 0.0 0.0\" mass=\"0.86\" diaginertia=\"0.005736 0.00496 0.001436\" />\n           <geom name=\"FL_THIGH_collision\" pos=\"0 0 0\" quat=\"1.0 0.0 0.0 0.0\" type=\"mesh\" mesh=\"fl_thigh.STL\" class=\"collision\" />\n           <geom name=\"FL_THIGH_visual\" pos=\"0 0 0\" quat=\"1 0 0 0\" material=\"\" type=\"mesh\" mesh=\"fl_thigh.STL\" class=\"visual\" />\n           <body name=\"FL_SHANK\" pos=\"0 0 -0.20\" quat=\"1.0 0.0 0.0 0.0\">\n@@ -82,7 +84,7 @@\n         <geom name=\"FR_HIP_visual\" pos=\"0 0 0\" quat=\"1 0 0 0\" material=\"\" type=\"mesh\" mesh=\"fr_hip.STL\" class=\"visual\" />\n         <body name=\"FR_THIGH\" pos=\"0 -0.09735 0\" quat=\"1.0 0.0 0.0 0.0\">\n           <joint name=\"FR_HipY_joint\" type=\"hinge\" ref=\"0.0\" class=\"motor\" range=\"-2.67 0.314\" axis=\"0 -1 0\" />\n-          <inertial pos=\"-0.0039245 0.014632 -0.025146\" quat=\"1.0 0.0 0.0 0.0\" mass=\"0.86\" diaginertia=\"0.005736 0.00496 0.001436\" />\n+          <inertial pos=\"-0.0039245 0.025256 -0.025146\" quat=\"1.0 0.0 0.0 0.0\" mass=\"0.86\" diaginertia=\"0.005736 0.00496 0.001436\" />\n           <geom name=\"FR_THIGH_collision\" pos=\"0 0 0\" quat=\"1.0 0.0 0.0 0.0\" type=\"mesh\" mesh=\"fr_thigh.STL\" class=\"collision\" />\n           <geom name=\"FR_THIGH_visual\" pos=\"0 0 0\" quat=\"1 0 0 0\" material=\"\" type=\"mesh\" mesh=\"fr_thigh.STL\" class=\"visual\" />\n           <body name=\"FR_SHANK\" pos=\"0 0 -0.20\" quat=\"1.0 0.0 0.0 0.0\">\n@@ -105,7 +107,7 @@\n         <geom name=\"HL_HIP_visual\" pos=\"0 0 0\" quat=\"1 0 0 0\" material=\"\" type=\"mesh\" mesh=\"hl_hip.STL\" class=\"visual\" />\n         <body name=\"HL_THIGH\" pos=\"0 0.09735 0\" quat=\"1.0 0.0 0.0 0.0\">\n           <joint name=\"HL_HipY_joint\" type=\"hinge\" ref=\"0.0\" class=\"motor\" range=\"-2.67 0.314\" axis=\"0 -1 0\" />\n-          <inertial pos=\"-0.0039245 -0.014632 -0.025146\" quat=\"1.0 0.0 0.0 0.0\" mass=\"0.86\" diaginertia=\"0.005736 0.00496 0.001436\" />\n+          <inertial pos=\"-0.0057137 -0.014631 -0.042453\" quat=\"1.0 0.0 0.0 0.0\" mass=\"0.86\" diaginertia=\"0.005736 0.00496 0.001436\" />\n           <geom name=\"HL_THIGH_collision\" pos=\"0 0 0\" quat=\"1.0 0.0 0.0 0.0\" type=\"mesh\" mesh=\"hl_thigh.STL\" class=\"collision\" />\n           <geom name=\"HL_THIGH_visual\" pos=\"0 0 0\" quat=\"1 0 0 0\" material=\"\" type=\"mesh\" mesh=\"hl_thigh.STL\" class=\"visual\" />\n           <body name=\"HL_SHANK\" pos=\"0 0 -0.20\" quat=\"1.0 0.0 0.0 0.0\">\n@@ -128,7 +130,7 @@\n         <geom name=\"HR_HIP_visual\" pos=\"0 0 0\" quat=\"1 0 0 0\" material=\"\" type=\"mesh\" mesh=\"hr_hip.STL\" class=\"visual\" />\n         <body name=\"HR_THIGH\" pos=\"0 -0.09735 0\" quat=\"1.0 0.0 0.0 0.0\">\n           <joint name=\"HR_HipY_joint\" type=\"hinge\" ref=\"0.0\" class=\"motor\" range=\"-2.67 0.314\" axis=\"0 -1 0\" />\n-          <inertial pos=\"-0.0039245 0.014632 -0.025146\" quat=\"1.0 0.0 0.0 0.0\" mass=\"0.86\" diaginertia=\"0.005736 0.00496 0.001436\" />\n+          <inertial pos=\"-0.0031903 0.02526 -0.025617\" quat=\"1.0 0.0 0.0 0.0\" mass=\"0.86\" diaginertia=\"0.005736 0.00496 0.001436\" />\n           <geom name=\"HR_THIGH_collision\" pos=\"0 0 0\" quat=\"1.0 0.0 0.0 0.0\" type=\"mesh\" mesh=\"hr_thigh.STL\" class=\"collision\" />\n           <geom name=\"HR_THIGH_visual\" pos=\"0 0 0\" quat=\"1 0 0 0\" material=\"\" type=\"mesh\" mesh=\"hr_thigh.STL\" class=\"visual\" />\n           <body name=\"HR_SHANK\" pos=\"0 0 -0.20\" quat=\"1.0 0.0 0.0 0.0\">\n@@ -145,6 +147,7 @@\n         </body>\n       </body>\n       <site name=\"TORSO_site\" pos=\"0 0 0\" quat=\"1 0 0 0\" />\n+      <camera name=\"depth_camera\" mode=\"fixed\" fovy=\"58.0\" pos=\"0.25228 -0.00050 0.07410\" euler=\"0 -0.3490658504 0\" />\n       <camera name=\"front_camera\" mode=\"track\" fovy=\"90.0\" quat=\"4.329780281177467e-17 4.329780281177466e-17 0.7071067811865475 0.7071067811865476\" pos=\"0.0 2.0 0.5\" />\n       <camera name=\"side_camera\" mode=\"track\" fovy=\"90.0\" quat=\"-0.5 -0.4999999999999999 0.5 0.5000000000000001\" pos=\"-2.0 0.0 0.5\" />\n     </body>\n@@ -190,7 +193,8 @@\n     <framelinvel name=\"TORSO_site_linvel\" objtype=\"site\" objname=\"TORSO_site\" />\n     <frameangvel name=\"TORSO_site_angvel\" objtype=\"site\" objname=\"TORSO_site\" />\n     <velocimeter name=\"TORSO_site_vel\" site=\"TORSO_site\" />\n-    <accelerometer site=\"imu_site\"/>\n-    <gyro          site=\"imu_site\"/>\n+    <accelerometer name=\"imu_acc\" site=\"imu_site\"/>\n+    <gyro          name=\"imu_gyro\" site=\"imu_site\"/>\n+    <rangefinder   name=\"lidar_range\" site=\"lidar_site\"/>\n   </sensor>\n-</mujoco>\n\\ No newline at end of file\n+</mujoco>"
+  },
+  {
+   "sha": "3616b9f9fe382e49897ae2398f2be55d79ac0092",
+   "filename": "Lite3/urdf/Lite3.urdf",
+   "status": "modified",
+   "additions": 23,
+   "deletions": 0,
+   "changes": 23,
+   "blob_url": "https://github.com/DeepRoboticsLab/deep_robotics_model/blob/530e01a5d2ceb6007f8790f1a7e11ee7389fb981/Lite3%2Furdf%2FLite3.urdf",
+   "raw_url": "https://github.com/DeepRoboticsLab/deep_robotics_model/raw/530e01a5d2ceb6007f8790f1a7e11ee7389fb981/Lite3%2Furdf%2FLite3.urdf",
+   "contents_url": "https://api.github.com/repos/DeepRoboticsLab/deep_robotics_model/contents/Lite3%2Furdf%2FLite3.urdf?ref=530e01a5d2ceb6007f8790f1a7e11ee7389fb981",
+   "patch": "@@ -31,6 +31,29 @@\n         </collision>\r\n     </link>\r\n \r\n+    <!-- Physical sensor mounting frames in the TORSO/body coordinate system.\r\n+         x: forward, y: left, z: up; negative pitch points the sensor downward. -->\r\n+    <link name=\"D435I_LINK\"/>\r\n+    <joint name=\"D435I_FIXED\" type=\"fixed\" dont_collapse=\"true\">\r\n+        <parent link=\"TORSO\"/>\r\n+        <child link=\"D435I_LINK\"/>\r\n+        <origin xyz=\"0.25228 -0.00050 0.07410\" rpy=\"0 -0.3490658504 0\"/>\r\n+    </joint>\r\n+\r\n+    <link name=\"MID360_LINK\"/>\r\n+    <joint name=\"MID360_FIXED\" type=\"fixed\" dont_collapse=\"true\">\r\n+        <parent link=\"TORSO\"/>\r\n+        <child link=\"MID360_LINK\"/>\r\n+        <origin xyz=\"0.18678 0 0.12498\" rpy=\"0 -0.2617993878 0\"/>\r\n+    </joint>\r\n+\r\n+    <link name=\"IMU_LINK\"/>\r\n+    <joint name=\"IMU_FIXED\" type=\"fixed\" dont_collapse=\"true\">\r\n+        <parent link=\"TORSO\"/>\r\n+        <child link=\"IMU_LINK\"/>\r\n+        <origin xyz=\"0.005 0 0\" rpy=\"0 0 0\"/>\r\n+    </joint>\r\n+\r\n     <!--!!!!!!!!!!!! Front Left Leg !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!-->\r\n \r\n     <link name=\"FL_HIP\">\r"
+  },
+  {
+   "sha": "d43f745305f51df161d42cd1cf6e0820f4249fb6",
+   "filename": "Lite3/usd/configuration/Lite3_base.usd",
+   "status": "modified",
+   "additions": 0,
+   "deletions": 0,
+   "changes": 0,
+   "blob_url": "https://github.com/DeepRoboticsLab/deep_robotics_model/blob/530e01a5d2ceb6007f8790f1a7e11ee7389fb981/Lite3%2Fusd%2Fconfiguration%2FLite3_base.usd",
+   "raw_url": "https://github.com/DeepRoboticsLab/deep_robotics_model/raw/530e01a5d2ceb6007f8790f1a7e11ee7389fb981/Lite3%2Fusd%2Fconfiguration%2FLite3_base.usd",
+   "contents_url": "https://api.github.com/repos/DeepRoboticsLab/deep_robotics_model/contents/Lite3%2Fusd%2Fconfiguration%2FLite3_base.usd?ref=530e01a5d2ceb6007f8790f1a7e11ee7389fb981"
+  },
+  {
+   "sha": "2c7532eea1d442bc00bef18fac968d825b140df4",
+   "filename": "Lite3/usd/configuration/Lite3_physics.usd",
+   "status": "modified",
+   "additions": 0,
+   "deletions": 0,
+   "changes": 0,
+   "blob_url": "https://github.com/DeepRoboticsLab/deep_robotics_model/blob/530e01a5d2ceb6007f8790f1a7e11ee7389fb981/Lite3%2Fusd%2Fconfiguration%2FLite3_physics.usd",
+   "raw_url": "https://github.com/DeepRoboticsLab/deep_robotics_model/raw/530e01a5d2ceb6007f8790f1a7e11ee7389fb981/Lite3%2Fusd%2Fconfiguration%2FLite3_physics.usd",
+   "contents_url": "https://api.github.com/repos/DeepRoboticsLab/deep_robotics_model/contents/Lite3%2Fusd%2Fconfiguration%2FLite3_physics.usd?ref=530e01a5d2ceb6007f8790f1a7e11ee7389fb981"
+  },
+  {
+   "sha": "45740edd86d980b6501ef0cfa6b5efcd11e4c4fb",
+   "filename": "README.md",
+   "status": "modified",
+   "additions": 6,
+   "deletions": 0,
+   "changes": 6,
+   "blob_url": "https://github.com/DeepRoboticsLab/deep_robotics_model/blob/530e01a5d2ceb6007f8790f1a7e11ee7389fb981/README.md",
+   "raw_url": "https://github.com/DeepRoboticsLab/deep_robotics_model/raw/530e01a5d2ceb6007f8790f1a7e11ee7389fb981/README.md",
+   "contents_url": "https://api.github.com/repos/DeepRoboticsLab/deep_robotics_model/contents/README.md?ref=530e01a5d2ceb6007f8790f1a7e11ee7389fb981",
+   "patch": "@@ -4,6 +4,12 @@ This repository contains 3D models for eight Deep Robotics robots: **Lite3**, **\n \n High-resolution models are available on [Google Drive](https://drive.google.com/drive/folders/1EOELXUYSBPEJeD0rUIkJxnlLMDr6IHBV?usp=sharing) and are intended for use with modern simulators such as Isaac Lab and Isaac Sim. The low-resolution models bundled in this repository are provided for broad compatibility with older simulators.\n \n+## Lite3 model update (2026-08-21)\n+\n+The Lite3 URDF, MJCF, and USD files use the supplied 2026-08-21 OEM release. The URDF adds fixed D435i, MID360, and IMU mounting frames. The MJCF includes the corresponding sites, a fixed depth camera, a single-ray lidar rangefinder, and named IMU sensors. The USD release updates leg collisions to cylinders and revises thigh centers of mass and joint drive parameters. Meshes and the existing `Lite3/{urdf,mjcf,usd}` paths are retained.\n+\n+These files retain the OEM format-specific data: thigh centers of mass differ between URDF and MJCF/USD, and the USD sensor layer contains no sensor definitions. Check these differences when transferring configurations between simulators. Four dangling USD references to empty foot visual prims were removed; the foot collision spheres and all existing visual geometry are preserved.\n+\n ## Model Overview\n \n | Robot Model | High-Resolution Render | Low-Resolution Render |"
+  }
+ ]
+}
