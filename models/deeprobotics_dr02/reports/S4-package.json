@@ -1,0 +1,599 @@
+{
+  "rows": [
+    {
+      "dest": "mjcf/DR02_pro.xml",
+      "src": "deep_robotics_model/DR02/mjcf/pro/DR02_pro.xml",
+      "kind": "mjcf",
+      "sha256": "ee53516d472799d4bf0dc1765a33f98536570a6c9459dfcc75e0b9a52e6d79e1",
+      "traceable": true,
+      "blob_parity": true
+    },
+    {
+      "dest": "mjcf/meshes/base_link.STL",
+      "src": "deep_robotics_model/DR02/mjcf/pro/meshes/base_link.STL",
+      "kind": "asset",
+      "sha256": "8fee7a61ae3a5a698ed9e3aac256a01bf483082a84c8bc5b0ceaba99ed1aede8",
+      "traceable": true,
+      "blob_parity": true
+    },
+    {
+      "dest": "mjcf/meshes/body.STL",
+      "src": "deep_robotics_model/DR02/mjcf/pro/meshes/body.STL",
+      "kind": "asset",
+      "sha256": "0065326f3bad9e8e503a1bdf4d7fc43040337e1f59b961329adabd424ee4f227",
+      "traceable": true,
+      "blob_parity": true
+    },
+    {
+      "dest": "mjcf/meshes/head_link.STL",
+      "src": "deep_robotics_model/DR02/mjcf/pro/meshes/head_link.STL",
+      "kind": "asset",
+      "sha256": "5dcf25e6d2f5b5d9f00c5a2109e105a04bbfb068e81b7bc8ae536397781e71bb",
+      "traceable": true,
+      "blob_parity": true
+    },
+    {
+      "dest": "mjcf/meshes/left_ankle_x_link.STL",
+      "src": "deep_robotics_model/DR02/mjcf/pro/meshes/left_ankle_x_link.STL",
+      "kind": "asset",
+      "sha256": "933f1df1cde7f3713978cc2485ccae334e94379ad05d82cadaa1019b20c4aa1e",
+      "traceable": true,
+      "blob_parity": true
+    },
+    {
+      "dest": "mjcf/meshes/left_ankle_y_link.STL",
+      "src": "deep_robotics_model/DR02/mjcf/pro/meshes/left_ankle_y_link.STL",
+      "kind": "asset",
+      "sha256": "c09d127aaea44d07daacee747ea0870b1e057620ab985a955d0852b3be08b801",
+      "traceable": true,
+      "blob_parity": true
+    },
+    {
+      "dest": "mjcf/meshes/left_elbow_link.STL",
+      "src": "deep_robotics_model/DR02/mjcf/pro/meshes/left_elbow_link.STL",
+      "kind": "asset",
+      "sha256": "38211d6b0d0a13af4171311ee0055eae8efbf2cbc3d1ffd4fb75bd65fd343b73",
+      "traceable": true,
+      "blob_parity": true
+    },
+    {
+      "dest": "mjcf/meshes/left_hand_link.STL",
+      "src": "deep_robotics_model/DR02/mjcf/pro/meshes/left_hand_link.STL",
+      "kind": "asset",
+      "sha256": "d414b4e7803950c2a19e5f4e710a97d5107fcf939713fae9e2f0b8d81e16dd02",
+      "traceable": true,
+      "blob_parity": true
+    },
+    {
+      "dest": "mjcf/meshes/left_hip_x_link.STL",
+      "src": "deep_robotics_model/DR02/mjcf/pro/meshes/left_hip_x_link.STL",
+      "kind": "asset",
+      "sha256": "427367a500f0ec4d62cdce7599eb77c85fe0428c834a3ba3d2a2a5aea9bc29e4",
+      "traceable": true,
+      "blob_parity": true
+    },
+    {
+      "dest": "mjcf/meshes/left_hip_y_link.STL",
+      "src": "deep_robotics_model/DR02/mjcf/pro/meshes/left_hip_y_link.STL",
+      "kind": "asset",
+      "sha256": "17f51f44097a46489eb60f12afe047f0329f6522a0798f2c2951efbc45358aa3",
+      "traceable": true,
+      "blob_parity": true
+    },
+    {
+      "dest": "mjcf/meshes/left_hip_z_link.STL",
+      "src": "deep_robotics_model/DR02/mjcf/pro/meshes/left_hip_z_link.STL",
+      "kind": "asset",
+      "sha256": "f7dbd864b55c5a5fadf432cc7f12c2dc1724a0ad2679206fb09bb2ea344e23a2",
+      "traceable": true,
+      "blob_parity": true
+    },
+    {
+      "dest": "mjcf/meshes/left_knee_link.STL",
+      "src": "deep_robotics_model/DR02/mjcf/pro/meshes/left_knee_link.STL",
+      "kind": "asset",
+      "sha256": "a77ad7e00be1ac435310559cd60e54b074bd3824ce8dd31a890f9abaf91fab30",
+      "traceable": true,
+      "blob_parity": true
+    },
+    {
+      "dest": "mjcf/meshes/left_shoulder_x_link.STL",
+      "src": "deep_robotics_model/DR02/mjcf/pro/meshes/left_shoulder_x_link.STL",
+      "kind": "asset",
+      "sha256": "91d993c720322f5827aace148815ec4a7d04133b91bdd4af299db7d2d89e10fc",
+      "traceable": true,
+      "blob_parity": true
+    },
+    {
+      "dest": "mjcf/meshes/left_shoulder_y_link.STL",
+      "src": "deep_robotics_model/DR02/mjcf/pro/meshes/left_shoulder_y_link.STL",
+      "kind": "asset",
+      "sha256": "5da423fdac9da96a249dcad2eecf6dfba27c89369421bd840e37faa205c23812",
+      "traceable": true,
+      "blob_parity": true
+    },
+    {
+      "dest": "mjcf/meshes/left_shoulder_z_link.STL",
+      "src": "deep_robotics_model/DR02/mjcf/pro/meshes/left_shoulder_z_link.STL",
+      "kind": "asset",
+      "sha256": "f8aa526e7d84269aab9900983ff58ebaa47ae50394238429285cacd9f1f16d2e",
+      "traceable": true,
+      "blob_parity": true
+    },
+    {
+      "dest": "mjcf/meshes/left_wrist_x_link.STL",
+      "src": "deep_robotics_model/DR02/mjcf/pro/meshes/left_wrist_x_link.STL",
+      "kind": "asset",
+      "sha256": "d8787e6d6d9f4a75430d190a9405e48aec9467ed98e3fa866a782f47877ce225",
+      "traceable": true,
+      "blob_parity": true
+    },
+    {
+      "dest": "mjcf/meshes/left_wrist_y_link.STL",
+      "src": "deep_robotics_model/DR02/mjcf/pro/meshes/left_wrist_y_link.STL",
+      "kind": "asset",
+      "sha256": "9acc97064e54d6b104a16dae99348e73af48781401f4a5a597feed90e85a5fdd",
+      "traceable": true,
+      "blob_parity": true
+    },
+    {
+      "dest": "mjcf/meshes/left_wrist_z_link.STL",
+      "src": "deep_robotics_model/DR02/mjcf/pro/meshes/left_wrist_z_link.STL",
+      "kind": "asset",
+      "sha256": "69a19089f4da9357411b450f56a824fa775ea37aefef836128815d7d9b20de1a",
+      "traceable": true,
+      "blob_parity": true
+    },
+    {
+      "dest": "mjcf/meshes/neck_link.STL",
+      "src": "deep_robotics_model/DR02/mjcf/pro/meshes/neck_link.STL",
+      "kind": "asset",
+      "sha256": "fcc5b16a2d1018e792df34caf5c1f6c43b9576be27e5832b06442ebc1982a71a",
+      "traceable": true,
+      "blob_parity": true
+    },
+    {
+      "dest": "mjcf/meshes/right_ankle_x_link.STL",
+      "src": "deep_robotics_model/DR02/mjcf/pro/meshes/right_ankle_x_link.STL",
+      "kind": "asset",
+      "sha256": "7423f09810dce1248f7960a84ccc9cdcb1a852ae47d521197475373258cfb182",
+      "traceable": true,
+      "blob_parity": true
+    },
+    {
+      "dest": "mjcf/meshes/right_ankle_y_link.STL",
+      "src": "deep_robotics_model/DR02/mjcf/pro/meshes/right_ankle_y_link.STL",
+      "kind": "asset",
+      "sha256": "daf92711d66799000efa06fe41e2e0a831c46bb0c1b8ef6cc146731820284d94",
+      "traceable": true,
+      "blob_parity": true
+    },
+    {
+      "dest": "mjcf/meshes/right_elbow_link.STL",
+      "src": "deep_robotics_model/DR02/mjcf/pro/meshes/right_elbow_link.STL",
+      "kind": "asset",
+      "sha256": "16e60de1c1f42bd12b1333a41f3933765ced13169a7a006eb9387334f510a73d",
+      "traceable": true,
+      "blob_parity": true
+    },
+    {
+      "dest": "mjcf/meshes/right_hand_link.STL",
+      "src": "deep_robotics_model/DR02/mjcf/pro/meshes/right_hand_link.STL",
+      "kind": "asset",
+      "sha256": "87ca2b3916354538e63fbf1814fddab946f5b5cfa4bb178ca51ef7e6686c6f5e",
+      "traceable": true,
+      "blob_parity": true
+    },
+    {
+      "dest": "mjcf/meshes/right_hip_x_link.STL",
+      "src": "deep_robotics_model/DR02/mjcf/pro/meshes/right_hip_x_link.STL",
+      "kind": "asset",
+      "sha256": "8f8e6ed5af6b02bc886e326cf64aca8434e14992b7e173e9c09904d2b23bcf50",
+      "traceable": true,
+      "blob_parity": true
+    },
+    {
+      "dest": "mjcf/meshes/right_hip_y_link.STL",
+      "src": "deep_robotics_model/DR02/mjcf/pro/meshes/right_hip_y_link.STL",
+      "kind": "asset",
+      "sha256": "e81d9cf6c396a39dfb7bbc7309cc1490735c72411751ecabf0a2657fbb6d69a6",
+      "traceable": true,
+      "blob_parity": true
+    },
+    {
+      "dest": "mjcf/meshes/right_hip_z_link.STL",
+      "src": "deep_robotics_model/DR02/mjcf/pro/meshes/right_hip_z_link.STL",
+      "kind": "asset",
+      "sha256": "b8510af591e38e105f7b983b05cffdfb2cf42ad9adb158cc8d84b0cf634a14f8",
+      "traceable": true,
+      "blob_parity": true
+    },
+    {
+      "dest": "mjcf/meshes/right_knee_link.STL",
+      "src": "deep_robotics_model/DR02/mjcf/pro/meshes/right_knee_link.STL",
+      "kind": "asset",
+      "sha256": "3865e57db0dd83d1ca04ba6c5e23c3ec1f58571040b4d8cd39e2afb9d73d5661",
+      "traceable": true,
+      "blob_parity": true
+    },
+    {
+      "dest": "mjcf/meshes/right_shoulder_x_link.STL",
+      "src": "deep_robotics_model/DR02/mjcf/pro/meshes/right_shoulder_x_link.STL",
+      "kind": "asset",
+      "sha256": "8194e2a4893e31db08dc4e2e13f399c87499991a62ebd93ac170d4a0c8993d97",
+      "traceable": true,
+      "blob_parity": true
+    },
+    {
+      "dest": "mjcf/meshes/right_shoulder_y_link.STL",
+      "src": "deep_robotics_model/DR02/mjcf/pro/meshes/right_shoulder_y_link.STL",
+      "kind": "asset",
+      "sha256": "441c0bb194fcf2226b33f4c8ac9bbd60d104feeed363f1d495e5d07e04058bcb",
+      "traceable": true,
+      "blob_parity": true
+    },
+    {
+      "dest": "mjcf/meshes/right_shoulder_z_link.STL",
+      "src": "deep_robotics_model/DR02/mjcf/pro/meshes/right_shoulder_z_link.STL",
+      "kind": "asset",
+      "sha256": "2153a032199cd6d39d5109e73f30e732fac0e8da99847bda09f822c1839d106e",
+      "traceable": true,
+      "blob_parity": true
+    },
+    {
+      "dest": "mjcf/meshes/right_wrist_x_link.STL",
+      "src": "deep_robotics_model/DR02/mjcf/pro/meshes/right_wrist_x_link.STL",
+      "kind": "asset",
+      "sha256": "5754566feb9c4c2aed97aac0d5fbb0b728c0d3741d4f772c75ab8a199b3ea8fd",
+      "traceable": true,
+      "blob_parity": true
+    },
+    {
+      "dest": "mjcf/meshes/right_wrist_y_link.STL",
+      "src": "deep_robotics_model/DR02/mjcf/pro/meshes/right_wrist_y_link.STL",
+      "kind": "asset",
+      "sha256": "5af9ef5145a91f70ba97d997334fd09f6dd81ade479c60e1a1909d14655a31bf",
+      "traceable": true,
+      "blob_parity": true
+    },
+    {
+      "dest": "mjcf/meshes/right_wrist_z_link.STL",
+      "src": "deep_robotics_model/DR02/mjcf/pro/meshes/right_wrist_z_link.STL",
+      "kind": "asset",
+      "sha256": "2c4d7c2267e4f0b9ac72f2eb1258666f87984b65d93c446a8ce639131c24c8b4",
+      "traceable": true,
+      "blob_parity": true
+    },
+    {
+      "dest": "mjcf/meshes/waist_x_link.STL",
+      "src": "deep_robotics_model/DR02/mjcf/pro/meshes/waist_x_link.STL",
+      "kind": "asset",
+      "sha256": "361668ebd46870f3f1d10991d133f45706bbe1d7d2d9e810e5894905f2a6a1bd",
+      "traceable": true,
+      "blob_parity": true
+    },
+    {
+      "dest": "mjcf/meshes/waist_z_link.STL",
+      "src": "deep_robotics_model/DR02/mjcf/pro/meshes/waist_z_link.STL",
+      "kind": "asset",
+      "sha256": "273d64aef6b87e31e39d9aed24f25bb669d46c1405c0733e791cb2017741edc3",
+      "traceable": true,
+      "blob_parity": true
+    },
+    {
+      "dest": "urdf/DR02-pro.urdf",
+      "src": "deep_robotics_model/DR02/urdf/pro/DR02-pro.urdf",
+      "kind": "urdf",
+      "sha256": "7d926201951da8d5facba6e3710049df0b93762c469f2f93a9eadc410de5b70f",
+      "traceable": true,
+      "blob_parity": true
+    },
+    {
+      "dest": "urdf/meshes/base_link.STL",
+      "src": "deep_robotics_model/DR02/urdf/pro/meshes/base_link.STL",
+      "kind": "mesh",
+      "sha256": "8fee7a61ae3a5a698ed9e3aac256a01bf483082a84c8bc5b0ceaba99ed1aede8",
+      "traceable": true,
+      "blob_parity": true
+    },
+    {
+      "dest": "urdf/meshes/body.STL",
+      "src": "deep_robotics_model/DR02/urdf/pro/meshes/body.STL",
+      "kind": "mesh",
+      "sha256": "0065326f3bad9e8e503a1bdf4d7fc43040337e1f59b961329adabd424ee4f227",
+      "traceable": true,
+      "blob_parity": true
+    },
+    {
+      "dest": "urdf/meshes/head_link.STL",
+      "src": "deep_robotics_model/DR02/urdf/pro/meshes/head_link.STL",
+      "kind": "mesh",
+      "sha256": "5dcf25e6d2f5b5d9f00c5a2109e105a04bbfb068e81b7bc8ae536397781e71bb",
+      "traceable": true,
+      "blob_parity": true
+    },
+    {
+      "dest": "urdf/meshes/left_ankle_x_link.STL",
+      "src": "deep_robotics_model/DR02/urdf/pro/meshes/left_ankle_x_link.STL",
+      "kind": "mesh",
+      "sha256": "933f1df1cde7f3713978cc2485ccae334e94379ad05d82cadaa1019b20c4aa1e",
+      "traceable": true,
+      "blob_parity": true
+    },
+    {
+      "dest": "urdf/meshes/left_ankle_y_link.STL",
+      "src": "deep_robotics_model/DR02/urdf/pro/meshes/left_ankle_y_link.STL",
+      "kind": "mesh",
+      "sha256": "c09d127aaea44d07daacee747ea0870b1e057620ab985a955d0852b3be08b801",
+      "traceable": true,
+      "blob_parity": true
+    },
+    {
+      "dest": "urdf/meshes/left_elbow_link.STL",
+      "src": "deep_robotics_model/DR02/urdf/pro/meshes/left_elbow_link.STL",
+      "kind": "mesh",
+      "sha256": "38211d6b0d0a13af4171311ee0055eae8efbf2cbc3d1ffd4fb75bd65fd343b73",
+      "traceable": true,
+      "blob_parity": true
+    },
+    {
+      "dest": "urdf/meshes/left_hand_link.STL",
+      "src": "deep_robotics_model/DR02/urdf/pro/meshes/left_hand_link.STL",
+      "kind": "mesh",
+      "sha256": "d414b4e7803950c2a19e5f4e710a97d5107fcf939713fae9e2f0b8d81e16dd02",
+      "traceable": true,
+      "blob_parity": true
+    },
+    {
+      "dest": "urdf/meshes/left_hip_x_link.STL",
+      "src": "deep_robotics_model/DR02/urdf/pro/meshes/left_hip_x_link.STL",
+      "kind": "mesh",
+      "sha256": "427367a500f0ec4d62cdce7599eb77c85fe0428c834a3ba3d2a2a5aea9bc29e4",
+      "traceable": true,
+      "blob_parity": true
+    },
+    {
+      "dest": "urdf/meshes/left_hip_y_link.STL",
+      "src": "deep_robotics_model/DR02/urdf/pro/meshes/left_hip_y_link.STL",
+      "kind": "mesh",
+      "sha256": "17f51f44097a46489eb60f12afe047f0329f6522a0798f2c2951efbc45358aa3",
+      "traceable": true,
+      "blob_parity": true
+    },
+    {
+      "dest": "urdf/meshes/left_hip_z_link.STL",
+      "src": "deep_robotics_model/DR02/urdf/pro/meshes/left_hip_z_link.STL",
+      "kind": "mesh",
+      "sha256": "f7dbd864b55c5a5fadf432cc7f12c2dc1724a0ad2679206fb09bb2ea344e23a2",
+      "traceable": true,
+      "blob_parity": true
+    },
+    {
+      "dest": "urdf/meshes/left_knee_link.STL",
+      "src": "deep_robotics_model/DR02/urdf/pro/meshes/left_knee_link.STL",
+      "kind": "mesh",
+      "sha256": "a77ad7e00be1ac435310559cd60e54b074bd3824ce8dd31a890f9abaf91fab30",
+      "traceable": true,
+      "blob_parity": true
+    },
+    {
+      "dest": "urdf/meshes/left_shoulder_x_link.STL",
+      "src": "deep_robotics_model/DR02/urdf/pro/meshes/left_shoulder_x_link.STL",
+      "kind": "mesh",
+      "sha256": "91d993c720322f5827aace148815ec4a7d04133b91bdd4af299db7d2d89e10fc",
+      "traceable": true,
+      "blob_parity": true
+    },
+    {
+      "dest": "urdf/meshes/left_shoulder_y_link.STL",
+      "src": "deep_robotics_model/DR02/urdf/pro/meshes/left_shoulder_y_link.STL",
+      "kind": "mesh",
+      "sha256": "5da423fdac9da96a249dcad2eecf6dfba27c89369421bd840e37faa205c23812",
+      "traceable": true,
+      "blob_parity": true
+    },
+    {
+      "dest": "urdf/meshes/left_shoulder_z_link.STL",
+      "src": "deep_robotics_model/DR02/urdf/pro/meshes/left_shoulder_z_link.STL",
+      "kind": "mesh",
+      "sha256": "f8aa526e7d84269aab9900983ff58ebaa47ae50394238429285cacd9f1f16d2e",
+      "traceable": true,
+      "blob_parity": true
+    },
+    {
+      "dest": "urdf/meshes/left_wrist_x_link.STL",
+      "src": "deep_robotics_model/DR02/urdf/pro/meshes/left_wrist_x_link.STL",
+      "kind": "mesh",
+      "sha256": "d8787e6d6d9f4a75430d190a9405e48aec9467ed98e3fa866a782f47877ce225",
+      "traceable": true,
+      "blob_parity": true
+    },
+    {
+      "dest": "urdf/meshes/left_wrist_y_link.STL",
+      "src": "deep_robotics_model/DR02/urdf/pro/meshes/left_wrist_y_link.STL",
+      "kind": "mesh",
+      "sha256": "9acc97064e54d6b104a16dae99348e73af48781401f4a5a597feed90e85a5fdd",
+      "traceable": true,
+      "blob_parity": true
+    },
+    {
+      "dest": "urdf/meshes/left_wrist_z_link.STL",
+      "src": "deep_robotics_model/DR02/urdf/pro/meshes/left_wrist_z_link.STL",
+      "kind": "mesh",
+      "sha256": "69a19089f4da9357411b450f56a824fa775ea37aefef836128815d7d9b20de1a",
+      "traceable": true,
+      "blob_parity": true
+    },
+    {
+      "dest": "urdf/meshes/neck_link.STL",
+      "src": "deep_robotics_model/DR02/urdf/pro/meshes/neck_link.STL",
+      "kind": "mesh",
+      "sha256": "fcc5b16a2d1018e792df34caf5c1f6c43b9576be27e5832b06442ebc1982a71a",
+      "traceable": true,
+      "blob_parity": true
+    },
+    {
+      "dest": "urdf/meshes/right_ankle_x_link.STL",
+      "src": "deep_robotics_model/DR02/urdf/pro/meshes/right_ankle_x_link.STL",
+      "kind": "mesh",
+      "sha256": "7423f09810dce1248f7960a84ccc9cdcb1a852ae47d521197475373258cfb182",
+      "traceable": true,
+      "blob_parity": true
+    },
+    {
+      "dest": "urdf/meshes/right_ankle_y_link.STL",
+      "src": "deep_robotics_model/DR02/urdf/pro/meshes/right_ankle_y_link.STL",
+      "kind": "mesh",
+      "sha256": "daf92711d66799000efa06fe41e2e0a831c46bb0c1b8ef6cc146731820284d94",
+      "traceable": true,
+      "blob_parity": true
+    },
+    {
+      "dest": "urdf/meshes/right_elbow_link.STL",
+      "src": "deep_robotics_model/DR02/urdf/pro/meshes/right_elbow_link.STL",
+      "kind": "mesh",
+      "sha256": "16e60de1c1f42bd12b1333a41f3933765ced13169a7a006eb9387334f510a73d",
+      "traceable": true,
+      "blob_parity": true
+    },
+    {
+      "dest": "urdf/meshes/right_hand_link.STL",
+      "src": "deep_robotics_model/DR02/urdf/pro/meshes/right_hand_link.STL",
+      "kind": "mesh",
+      "sha256": "87ca2b3916354538e63fbf1814fddab946f5b5cfa4bb178ca51ef7e6686c6f5e",
+      "traceable": true,
+      "blob_parity": true
+    },
+    {
+      "dest": "urdf/meshes/right_hip_x_link.STL",
+      "src": "deep_robotics_model/DR02/urdf/pro/meshes/right_hip_x_link.STL",
+      "kind": "mesh",
+      "sha256": "8f8e6ed5af6b02bc886e326cf64aca8434e14992b7e173e9c09904d2b23bcf50",
+      "traceable": true,
+      "blob_parity": true
+    },
+    {
+      "dest": "urdf/meshes/right_hip_y_link.STL",
+      "src": "deep_robotics_model/DR02/urdf/pro/meshes/right_hip_y_link.STL",
+      "kind": "mesh",
+      "sha256": "e81d9cf6c396a39dfb7bbc7309cc1490735c72411751ecabf0a2657fbb6d69a6",
+      "traceable": true,
+      "blob_parity": true
+    },
+    {
+      "dest": "urdf/meshes/right_hip_z_link.STL",
+      "src": "deep_robotics_model/DR02/urdf/pro/meshes/right_hip_z_link.STL",
+      "kind": "mesh",
+      "sha256": "b8510af591e38e105f7b983b05cffdfb2cf42ad9adb158cc8d84b0cf634a14f8",
+      "traceable": true,
+      "blob_parity": true
+    },
+    {
+      "dest": "urdf/meshes/right_knee_link.STL",
+      "src": "deep_robotics_model/DR02/urdf/pro/meshes/right_knee_link.STL",
+      "kind": "mesh",
+      "sha256": "3865e57db0dd83d1ca04ba6c5e23c3ec1f58571040b4d8cd39e2afb9d73d5661",
+      "traceable": true,
+      "blob_parity": true
+    },
+    {
+      "dest": "urdf/meshes/right_shoulder_x_link.STL",
+      "src": "deep_robotics_model/DR02/urdf/pro/meshes/right_shoulder_x_link.STL",
+      "kind": "mesh",
+      "sha256": "8194e2a4893e31db08dc4e2e13f399c87499991a62ebd93ac170d4a0c8993d97",
+      "traceable": true,
+      "blob_parity": true
+    },
+    {
+      "dest": "urdf/meshes/right_shoulder_y_link.STL",
+      "src": "deep_robotics_model/DR02/urdf/pro/meshes/right_shoulder_y_link.STL",
+      "kind": "mesh",
+      "sha256": "441c0bb194fcf2226b33f4c8ac9bbd60d104feeed363f1d495e5d07e04058bcb",
+      "traceable": true,
+      "blob_parity": true
+    },
+    {
+      "dest": "urdf/meshes/right_shoulder_z_link.STL",
+      "src": "deep_robotics_model/DR02/urdf/pro/meshes/right_shoulder_z_link.STL",
+      "kind": "mesh",
+      "sha256": "2153a032199cd6d39d5109e73f30e732fac0e8da99847bda09f822c1839d106e",
+      "traceable": true,
+      "blob_parity": true
+    },
+    {
+      "dest": "urdf/meshes/right_wrist_x_link.STL",
+      "src": "deep_robotics_model/DR02/urdf/pro/meshes/right_wrist_x_link.STL",
+      "kind": "mesh",
+      "sha256": "5754566feb9c4c2aed97aac0d5fbb0b728c0d3741d4f772c75ab8a199b3ea8fd",
+      "traceable": true,
+      "blob_parity": true
+    },
+    {
+      "dest": "urdf/meshes/right_wrist_y_link.STL",
+      "src": "deep_robotics_model/DR02/urdf/pro/meshes/right_wrist_y_link.STL",
+      "kind": "mesh",
+      "sha256": "5af9ef5145a91f70ba97d997334fd09f6dd81ade479c60e1a1909d14655a31bf",
+      "traceable": true,
+      "blob_parity": true
+    },
+    {
+      "dest": "urdf/meshes/right_wrist_z_link.STL",
+      "src": "deep_robotics_model/DR02/urdf/pro/meshes/right_wrist_z_link.STL",
+      "kind": "mesh",
+      "sha256": "2c4d7c2267e4f0b9ac72f2eb1258666f87984b65d93c446a8ce639131c24c8b4",
+      "traceable": true,
+      "blob_parity": true
+    },
+    {
+      "dest": "urdf/meshes/waist_x_link.STL",
+      "src": "deep_robotics_model/DR02/urdf/pro/meshes/waist_x_link.STL",
+      "kind": "mesh",
+      "sha256": "361668ebd46870f3f1d10991d133f45706bbe1d7d2d9e810e5894905f2a6a1bd",
+      "traceable": true,
+      "blob_parity": true
+    },
+    {
+      "dest": "urdf/meshes/waist_z_link.STL",
+      "src": "deep_robotics_model/DR02/urdf/pro/meshes/waist_z_link.STL",
+      "kind": "mesh",
+      "sha256": "273d64aef6b87e31e39d9aed24f25bb669d46c1405c0733e791cb2017741edc3",
+      "traceable": true,
+      "blob_parity": true
+    }
+  ],
+  "checks": [
+    {
+      "check": "s4:traceability",
+      "status": "PASS",
+      "detail": "70 个 raw 源入库件三锚全过（SHA256 命中 manifest 同路径行 + hash-object 命中上游 ls-tree@pin blob id）"
+    },
+    {
+      "check": "s4:mesh-split-decision",
+      "status": "PASS",
+      "detail": "URDF 侧 36 处引用 → 34 个物理网格 vs MJCF 侧 34 个，两侧同哈希（同源同内容，STL 同格式）——分目录落位以保持各自引用协议结构（不改官方一字节，保持官方 meshdir/相对引用结构，记录在案）"
+    },
+    {
+      "check": "s4:dae-dir-parity",
+      "status": "SKIP",
+      "detail": "本模型 urdf 无 dae/ 与 meshes/ 双目录结构（G1 为 meshes/ 单池），R3-D3 判定不适用"
+    },
+    {
+      "check": "s4:coverage",
+      "status": "WARN",
+      "detail": "raw 全量 133（除 .git/manifest）= 根级及中间层 4 + 目标子目录 129；子目录 129 全覆盖 = 入库唯一源 70 + 排除 3（其中 meshes/ 冗余 0）（未覆盖：['deep_robotics_model/DR02/mjcf/standard/meshes/base_link.STL', 'deep_robotics_model/DR02/mjcf/standard/meshes/body.STL', 'deep_robotics_model/DR02/mjcf/standard/meshes/left_ankle_x_link.STL', 'deep_robotics_model/DR02/mjcf/standard/meshes/left_ankle_y_link.STL', 'deep_robotics_model/DR02/mjcf/standard/meshes/left_elbow_link.STL', 'deep_robotics_model/DR02/mjcf/standard/meshes/left_hip_x_link.STL', 'deep_robotics_model/DR02/mjcf/standard/meshes/left_hip_y_link.STL', 'deep_robotics_model/DR02/mjcf/standard/meshes/left_hip_z_link.STL', 'deep_robotics_model/DR02/mjcf/standard/meshes/left_knee_link.STL', 'deep_robotics_model/DR02/mjcf/standard/meshes/left_shoulder_x_link.STL', 'deep_robotics_model/DR02/mjcf/standard/meshes/left_shoulder_y_link.STL', 'deep_robotics_model/DR02/mjcf/standard/meshes/left_shoulder_z_link.STL', 'deep_robotics_model/DR02/mjcf/standard/meshes/right_ankle_x_link.STL', 'deep_robotics_model/DR02/mjcf/standard/meshes/right_ankle_y_link.STL', 'deep_robotics_model/DR02/mjcf/standard/meshes/right_elbow_link.STL', 'deep_robotics_model/DR02/mjcf/standard/meshes/right_hip_x_link.STL', 'deep_robotics_model/DR02/mjcf/standard/meshes/right_hip_y_link.STL', 'deep_robotics_model/DR02/mjcf/standard/meshes/right_hip_z_link.STL', 'deep_robotics_model/DR02/mjcf/standard/meshes/right_knee_link.STL', 'deep_robotics_model/DR02/mjcf/standard/meshes/right_shoulder_x_link.STL', 'deep_robotics_model/DR02/mjcf/standard/meshes/right_shoulder_y_link.STL', 'deep_robotics_model/DR02/mjcf/standard/meshes/right_shoulder_z_link.STL', 'deep_robotics_model/DR02/urdf/pro/meshes/left_wrist_x_link_simplified.STL', 'deep_robotics_model/DR02/urdf/pro/meshes/right_wrist_x_link_simplified.STL', 'deep_robotics_model/DR02/urdf/standard/meshes/base_link.STL', 'deep_robotics_model/DR02/urdf/standard/meshes/body.STL', 'deep_robotics_model/DR02/urdf/standard/meshes/left_ankle_x_link.STL', 'deep_robotics_model/DR02/urdf/standard/meshes/left_ankle_y_link.STL', 'deep_robotics_model/DR02/urdf/standard/meshes/left_elbow_link.STL', 'deep_robotics_model/DR02/urdf/standard/meshes/left_hip_x_link.STL', 'deep_robotics_model/DR02/urdf/standard/meshes/left_hip_y_link.STL', 'deep_robotics_model/DR02/urdf/standard/meshes/left_hip_z_link.STL', 'deep_robotics_model/DR02/urdf/standard/meshes/left_knee_link.STL', 'deep_robotics_model/DR02/urdf/standard/meshes/left_shoulder_x_link.STL', 'deep_robotics_model/DR02/urdf/standard/meshes/left_shoulder_y_link.STL', 'deep_robotics_model/DR02/urdf/standard/meshes/left_shoulder_z_link.STL', 'deep_robotics_model/DR02/urdf/standard/meshes/right_ankle_x_link.STL', 'deep_robotics_model/DR02/urdf/standard/meshes/right_ankle_y_link.STL', 'deep_robotics_model/DR02/urdf/standard/meshes/right_elbow_link.STL', 'deep_robotics_model/DR02/urdf/standard/meshes/right_hip_x_link.STL', 'deep_robotics_model/DR02/urdf/standard/meshes/right_hip_y_link.STL', 'deep_robotics_model/DR02/urdf/standard/meshes/right_hip_z_link.STL', 'deep_robotics_model/DR02/urdf/standard/meshes/right_knee_link.STL', 'deep_robotics_model/DR02/urdf/standard/meshes/right_shoulder_x_link.STL', 'deep_robotics_model/DR02/urdf/standard/meshes/right_shoulder_y_link.STL', 'deep_robotics_model/DR02/urdf/standard/meshes/right_shoulder_z_link.STL', 'deep_robotics_model/DR02/usd/pro/DR02-pro.usd', 'deep_robotics_model/DR02/usd/pro/configuration/DR02-pro_base.usd', 'deep_robotics_model/DR02/usd/pro/configuration/DR02-pro_physics.usd', 'deep_robotics_model/DR02/usd/pro/configuration/DR02-pro_robot.usd', 'deep_robotics_model/DR02/usd/pro/configuration/DR02-pro_sensor.usd', 'deep_robotics_model/DR02/usd/standard/DR02-std.usd', 'deep_robotics_model/DR02/usd/standard/configuration/DR02-std_base.usd', 'deep_robotics_model/DR02/usd/standard/configuration/DR02-std_physics.usd', 'deep_robotics_model/DR02/usd/standard/configuration/DR02-std_robot.usd', 'deep_robotics_model/DR02/usd/standard/configuration/DR02-std_sensor.usd']）——算式按源件口径平账（F1 教训）"
+    },
+    {
+      "check": "s4:recheck-mjcf",
+      "status": "PASS",
+      "detail": "入库后 mjcf/DR02_pro.xml 编译通过：nbody=41 ngeom=70 nmesh=34（官方相对引用结构保持）"
+    },
+    {
+      "check": "s4:recheck-urdf",
+      "status": "PASS",
+      "detail": "入库后 URDF yourdfpy 解析通过：40 links（relative（./ 前缀）——meshes/ 与 urdf 同目录（分目录形态））"
+    }
+  ],
+  "total_bytes": 59814966,
+  "physical_files": 70,
+  "non_raw": []
+}

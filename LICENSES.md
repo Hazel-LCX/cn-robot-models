@@ -21,6 +21,7 @@
 | agibot_x2 | AgibotTech/agibot_x2_urdf（单仓双格式） | **MulanPSL-2.0**（R17 人工定性=可收录：blob `adf05533` + SPDX 名录 `isOsiApproved=true` + 义务清单三件套——GitHub NOASSERTION=检测器盲区） | 智元机器人（AgibotTech org 官方主体）——**上游 LICENSE 为许可模板、未含逐字版权主体行，如实注记不虚构（R17 检查点）**；官方声明=「本项目采用木兰宽松许可证，第2版（Mulan PSL v2）开源」（evidence/official-readme-declaration.txt） | models/agibot_x2/LICENSE-upstream-agibot_x2_urdf.txt | `575cc6b988f976c23550e0db85aa1e5475d3652d` | 2026-10-11 |
 | booster_t1 | BoosterRobotics/booster_assets（单仓双格式） | BSD-3-Clause（GitHub 端点直接识别；R22 活源全验——全文 1,502 B 通读三条款完整+活源 blob 同物+全树仅根级 LICENSE） | **Copyright (c) 2025, BoosterRobotics**（快照逐字，N1） | models/booster_t1/LICENSE-upstream-booster_assets.txt | `12a97516f57469078707afb587a5f84c1cb110d1` | 2026-10-24 |
 | deeprobotics_m20 | DeepRoboticsLab/deep_robotics_model（单仓多机型，Lite3 同仓） | BSD-3-Clause（**与 Lite3 行同仓同快照逐字节同物 `cdc6c065`**，R25 三重同物全验——同仓单 license 复指口径，无新增 license 行语义） | **Copyright (c) 2024, DeepRoboticsLab**（快照逐字，N1） | models/deeprobotics_m20/LICENSE-upstream-deep_robotics_model.txt | `530e01a5d2ceb6007f8790f1a7e11ee7389fb981` | 2026-10-24 |
+| deeprobotics_dr02 | DeepRoboticsLab/deep_robotics_model（单仓多机型，Lite3/M20 同仓） | BSD-3-Clause（**与 Lite3/M20 行同仓同快照逐字节同物 `cdc6c065`**，R28 三重同物全验——复指口径同上） | **Copyright (c) 2024, DeepRoboticsLab**（快照逐字，N1） | models/deeprobotics_dr02/LICENSE-upstream-deep_robotics_model.txt | `530e01a5d2ceb6007f8790f1a7e11ee7389fb981` | 2026-10-24 |
 
 详细核对过程与三条结论见各模型 SOURCE.md（go2：已确认 R3；g1：已确认 R10，M1 选型 + S0 同件审）。
 

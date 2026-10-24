@@ -1,0 +1,109 @@
+{
+  "model": "deeprobotics_dr02",
+  "format_source": "official",
+  "sources": [
+    {
+      "name": "deep_robotics_model",
+      "repo": "DeepRoboticsLab/deep_robotics_model",
+      "pin": "530e01a5d2ceb6007f8790f1a7e11ee7389fb981",
+      "subdir": "DR02",
+      "license_path": "LICENSE.txt",
+      "note": "M6：云深处 DR02 Pro 人形（1.8m 级库内最高/78kg，第 4 个人形机型/云深处首个人形）；同仓第三机型（license 快照与 M2/M5 逐字节同物 cdc6c065 零漂移无新定性，R28 三重同物）；**选型证据=官网逐部位 DoF 分解逐位闭合（31=7×2+6×2+3+2）历次最强**；R28 预警五条=S1 执行；Standard 平替整组留 M6+；轻度口径=S1 重取规格页二进制原件+sessionId 脱敏"
+    }
+  ],
+  "s2": {
+    "urdf": {
+      "source": "deep_robotics_model",
+      "rel": "DR02/urdf/pro/DR02-pro.urdf",
+      "package": "DR02",
+      "package_root": "DR02",
+      "ref_style": "relative",
+      "note": "S1 实测：39 引用 './meshes/X.STL' 前缀（Lite3/M20 同款）→34 唯一（5 件变体共用网格，X2 25 件共用池先例；R28 预警①实测）；scale 0（预警⑤）；urdf 位于 DR02/urdf/pro/ 子目录，meshes/ 同级分目录形态（M20 同款）"
+    },
+    "mjcf": {
+      "source": "deep_robotics_model",
+      "model_rel": "DR02/mjcf/pro/DR02_pro.xml",
+      "scene_rel": "DR02/mjcf/pro/DR02_pro.xml"
+    },
+    "notes": {}
+  },
+  "s3": {
+    "official": {
+      "mass_kg": 78.0,
+      "tolerance": 0.1,
+      "evidence": "官网原文「整机重量（含电池）约 78kg」+「主动自由度 31=单臂 7×2+单腿 6×2+腰 3+头 2」（deeprobotics.cn/products/detail/5.html DR02 Pro 参数表，2026-10-24 静态 HTML，原件 evidence/official-dr02-spec-page.html——R28 轻度口径处置后为二进制原件+sessionId 脱敏注记）；Standard 版 21DoF/68kg 不入库只记录",
+      "caliber": "官网标称口径=含电池整机；URDF/MJCF 电池 link 情况 S3 实测——严格口径不可比仅作 sanity（M0/M1/M2 同法）；**DoF 对账有官方逐部位基准**（31 分解）——本库首个官方自由度基准齐备的机型（T1/M20 仅质量基准）",
+      "note": "R28 预警③：78kg 大质量容差口径=±10%（70.2~85.8kg），模型实测 S3 见；S3 前置侦察完成（官网双基准）"
+    },
+    "sanity": {
+      "ratio_range": [
+        0.005,
+        0.5
+      ],
+      "axis_tolerance": 1e-06,
+      "mass_diff_warn": 0.02
+    },
+    "cross_alias": {},
+    "notes": {
+      "joint_range": "注：官网 DoF 分解=主动 31（臂 7×2+腿 6×2+腰 3+头 2）↔ URDF 31R 逐位（本库首个官方 DoF 基准齐备机型）；关节级扭矩/限位官网未公布——纯体检+披露（Lite3 同口径）",
+      "upstream_png": "DR02/urdf/pro/ 与 mjcf/pro/ 无图片资产（S1 实测）——S3 C1 模板 png 提示不适用"
+    }
+  },
+  "s4": {
+    "urdf": [
+      {
+        "src_rel": "DR02/urdf/pro/DR02-pro.urdf",
+        "dest": "urdf/DR02-pro.urdf"
+      }
+    ],
+    "urdf_meshes": {
+      "package": "DR02",
+      "dest_root": "urdf",
+      "note": "relative（./ 前缀变体）：urdf 位于 urdf/pro/ 子目录、meshes/ 同级（分目录形态 M20 同款）；pro 侧 36 物理件 vs 34 引用=2 件池外（R28 预警②，X2/T1 池外先例——身份 S1 实测，闭包不收走 coverage 平账）"
+    },
+    "mjcf": [
+      {
+        "src_rel": "DR02/mjcf/pro/DR02_pro.xml",
+        "dest": "mjcf/DR02_pro.xml"
+      }
+    ],
+    "mjcf_assets": {
+      "src_rel": "DR02/mjcf/pro/meshes",
+      "dest": "mjcf/meshes",
+      "mode": "closure",
+      "note": "MJCF meshdir 相对 mjcf/pro/ 目录、自有 meshes/ 池（分目录 M20 同款）；closure 零改动落位"
+    },
+    "images": [],
+    "recheck": {
+      "mjcf": "mjcf/DR02_pro.xml",
+      "urdf": "urdf/DR02-pro.urdf",
+      "urdf_mesh_dir": "urdf",
+      "note": "relative（./ 前缀）——meshes/ 与 urdf 同目录（分目录形态）"
+    },
+    "excluded": [
+      {
+        "src": "deep_robotics_model/DR02/urdf/pro/DR02-pro_fix_joints.urdf",
+        "why": "锁死变体（同 40 link、10 关节固化为 fixed=21R+18F）——R28 锚点=Pro 主配对，不入库只记录（T1_locomotion 同类）"
+      },
+      {
+        "src": "deep_robotics_model/DR02/urdf/standard/DR02-std.urdf",
+        "why": "Standard 平替配对 URDF 侧（21R/68kg）——R28 裁定整组留 M6+ 维护态填充，不入库只记录"
+      },
+      {
+        "src": "deep_robotics_model/DR02/mjcf/standard/DR02_std.xml",
+        "why": "Standard 平替配对 MJCF 侧——R28 裁定整组留 M6+，不入库只记录"
+      }
+    ],
+    "note": "DR02/ 144 目录项 S1 实测（3 urdf+2 xml+114 mesh 分 pro/standard 两侧+usd 等仓级件）；usd 件如有照 M20/M2 先例 excluded；池外网格走 coverage 平账"
+  },
+  "s5": {
+    "viewport": "humanoid",
+    "note": "1.8m 双足人形——humanoid 机位（v5 config 键）；31 关节滑条数=S6 前实测"
+  },
+  "s6": {
+    "warmup_steps": 100,
+    "bench_steps": 10000,
+    "repeats": 5,
+    "scenario": "固定 qpos0、纯重力、无控制器（人形站立初始姿态，测引擎步进吞吐，不掺控制变量）"
+  }
+}

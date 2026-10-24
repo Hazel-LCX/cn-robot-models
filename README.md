@@ -3,7 +3,7 @@
 > **这不是模型收集站。** 这是一条可复现的开源仿真模型**质检管道**：
 > license 核对 → 拉取 → 格式校验 → 物理体检 → 双格式入库 → 在线预览 → 基准 → 质检报告。
 > 模型库是管道的副产品，**每一步的检查报告本身就是产品**。
-> 已收录：宇树 Go2（M0 质检样板）· 宇树 G1（M1 · 人形）· 云深处 Lite3（M2 · 异厂首录）· 智元灵犀 X2（M3 · 国产开源许可证首例）· 加速进化 T1（M4 · 第四厂商）· 云深处山猫 M20（M5 · 轮足 · 管道首个 continuous 关节拓扑）——官方双源 URDF/MJCF（BSD-3-Clause / MulanPSL-2.0）。
+> 已收录：宇树 Go2（M0 质检样板）· 宇树 G1（M1 · 人形）· 云深处 Lite3（M2 · 异厂首录）· 智元灵犀 X2（M3 · 国产开源许可证首例）· 加速进化 T1（M4 · 第四厂商）· 云深处山猫 M20（M5 · 轮足 · continuous 拓扑首覆盖）· 云深处 DR02 Pro（M6 · 人形 1.8 m · 官方 DoF 基准齐备）——官方双源 URDF/MJCF（BSD-3-Clause / MulanPSL-2.0）。
 
 ## 为什么是"质检管道"而不是"模型库"
 
@@ -18,7 +18,8 @@
   [Lite3 · 四足端零惯量占位（本库首个 FAIL 级发现）/ MJCF mesh 重复定义](models/deeprobotics_lite3/README.md#-已知分歧披露质检的一部分) ·
   [X2 · 徽标件 scale 陷阱（native 3.96 m 大件，上游两格式一致缩放为 12 cm——忽略 scale 的查看器得幽灵几何，本库预览器曾踩坑已修，L12）](models/agibot_x2/README.md#1--agibotstl-徽标件与-scale-陷阱上游两格式一致本库预览器曾踩坑已修) ·
   [T1 · 官方整机基准缺失（本库首例无官网基准机型，质量对比 WARN 披露不虚构）/ 网格池 63 收 25（38 件未收身份自洽）/ URDF 显式 world+floating joint](models/booster_t1/README.md#1--官方整机基准缺失本库首例无官网基准的机型) ·
-  [M20 · URDF↔MJCF 腿部质量分布分歧（hipy −0.125/knee +0.115 kg ×四腿，COM 却逐位一致——同仓 Lite3 互补模式）/ continuous 关节拓扑首覆盖](models/deeprobotics_m20/README.md#1--urdfmjcf-腿部质量分布分歧hipy--0125kg--knee--0115kg-四腿本模型核心质检发现)。
+  [M20 · URDF↔MJCF 腿部质量分布分歧（hipy −0.125/knee +0.115 kg ×四腿，COM 却逐位一致——同仓 Lite3 互补模式）/ continuous 关节拓扑首覆盖](models/deeprobotics_m20/README.md#1--urdfmjcf-腿部质量分布分歧hipy--0125kg--knee--0115kg-四腿本模型核心质检发现) ·
+  [DR02 · 引用计数口径更正（grep 39→解析器 36：注释内元素虚增计数）/ 本库首个 collision-mesh 模型 / 身高官方对账 −8mm 姿态差](models/deeprobotics_dr02/README.md#1--引用计数口径更正grep-39--解析器-36l12-家族活案例)。
 - 如果体检全绿：价值落在"管道可复现 + 双格式对账 + 基准数字"——同样的成立。
 
 ## 管道
@@ -106,6 +107,18 @@ S0 license核对(门) → S1 拉取 → S2 格式校验 → S3 物理体检(门:
 | S5 3D 预览 | **continuous 滑条落码**（4 轮关节 ±π 语义，16 滑条；N2 备案）；包围盒 y [0.000, 0.675]；**五模型基线逐位回归全命中**（0.334/1.323/0.298/1.319/1.180） | [pipeline/s5_preview/](pipeline/s5_preview/) |
 | S6 基准 | **MuJoCo 43,867 steps/s（22.8 µs/step）**，加载 62.3 ms，展幅 12.0%（六模型序列第四点，跨模型不可比再实证） | [S6-benchmark.md](models/deeprobotics_m20/reports/S6-benchmark.md) |
 
+### M6 · 云深处 DR02 Pro（人形 1.8 m · 同仓第三机型 · 2026-10-24）
+
+| 步骤 | 结果 | 报告 |
+|---|---|---|
+| S0 license 门 | **同仓单 license 零漂移（R28 三重同物全验）**——快照与 M2/M5 逐字节同物 `cdc6c065`；A4 继承双路径；官网双基准（78 kg + 逐部位 DoF 分解）在案 | [SOURCE.md](models/deeprobotics_dr02/SOURCE.md) |
+| S1 拉取 | 129 文件锚点锁定（`530e01a5` 零漂移），**blob-parity 129 件失配 0**（K2 门五战全绿）；网格 114=36+22+34+22 逐位、池外 2 件身份（wrist simplified）、scale 双侧 0；**R28 轻度口径处置：规格页重取二进制原件+sessionId 脱敏** | SOURCE.md / S1-fetch.md |
+| S2 格式校验 | **10 PASS / 0 FAIL**：URDF 40 link/39 joint（根=base_link）、36 处有效引用全解析（**grep 39 系注释内元素——口径更正在案**）、MJCF nq=38/**nu=31** 与 URDF 31R 逐数自洽 | [S2-validation.md](models/deeprobotics_dr02/reports/S2-validation.md) |
+| S3 物理体检 | **10 PASS / 3 WARN / 0 FAIL / 0 SKIP（历次最净）**：**78.085 vs 官网 78 kg（+0.1% 历次最贴）两侧同值**；逐 body 34/34 一致 + COM 34/34 差 0（无 M20 式分歧）；**官方 DoF 基准齐备**（本库首个）；collision-mesh 2 处首见 | [S3-physics.md](models/deeprobotics_dr02/reports/S3-physics.md) |
+| S4 双格式入库 | **70 物理件 / 59.8 MB 三锚全过** + 1 质检截图；Pro 侧分目录闭包（36+34 两侧同哈希）；excluded 3（fix_joints+Standard 整组）+未收 56 逐件列名（Standard 网格 44/池外 2/usd 10） | [S4-package.md](models/deeprobotics_dr02/reports/S4-package.md) |
+| S5 3D 预览 | 31 滑条、**包围盒 y [0.000, 1.792] ↔ 官网站立 1800 mm（−8 mm 姿态差，人形首个身高官方对账点）**；**六模型基线逐位回归全命中**（0.334/1.323/0.298/1.319/1.180/0.675） | [pipeline/s5_preview/](pipeline/s5_preview/) |
+| S6 基准 | **MuJoCo 110,257 steps/s（9.1 µs/step）——超越 Go2 成序列最快**（全基元碰撞几何简单度主导，"跨模型不可比"再加固），加载 153.8 ms，展幅 3.4% | [S6-benchmark.md](models/deeprobotics_dr02/reports/S6-benchmark.md) |
+
 ## 快速开始
 
 **在线预览（零依赖，断网可用）**
@@ -118,6 +131,7 @@ python -m http.server 8130
 # 或            http://127.0.0.1:8130/pipeline/s5_preview/index.html?model=agibot_x2            # X2（智元人形；默认视图含上游徽标件——见模型页披露）
 # 或            http://127.0.0.1:8130/pipeline/s5_preview/index.html?model=booster_t1           # T1（加速进化人形）
 # 或            http://127.0.0.1:8130/pipeline/s5_preview/index.html?model=deeprobotics_m20    # M20（云深处轮足，含 4 轮 continuous 滑条）
+# 或            http://127.0.0.1:8130/pipeline/s5_preview/index.html?model=deeprobotics_dr02   # DR02（云深处人形 1.8 m，31 滑条）
 ```
 
 **MuJoCo 查看 / 加载**
