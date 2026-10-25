@@ -169,7 +169,7 @@ S0 license核对(门) → S1 拉取 → S2 格式校验 → S3 物理体检(门:
 | S3 物理体检 | **10 PASS / 3 WARN / 0 FAIL / 1 SKIP**：**55.839 vs 官网 56 kg（−0.3% 第二贴）两侧同值**；逐 body 21/21 一致 + COM 21/21 差 0；22→12 轴差 0；**inertial rpy≠0 ×3**（hip 镜像系如实记录）；四 LIDAR 挂载座约定项 | [S3-physics.md](models/deeprobotics_x30/reports/S3-physics.md) |
 | S4 双格式入库 | **10 物理件 / 8.4 MB 三锚全过（本库最轻）** + 1 质检截图；极简池 4×2 两侧同哈希；usd 5 件 excluded；平账 15=10+5 零未收 | [S4-package.md](models/deeprobotics_x30/reports/S4-package.md) |
 | S5 3D 预览 | 12 滑条、包围盒 y [0.000, 0.520]（趴姿零位）；**scale 实战检验通过**（四腿镜像渲染正确无缺失/内翻，R18/R19 修复后首次成规模实战）；**十一模型基线逐位回归全命中**（0.334/1.323/0.298/1.319/1.180/0.675/1.792/0.955/1.413/0.937） | [pipeline/s5_preview/](pipeline/s5_preview/) |
-| S6 基准 | **MuJoCo 79,053 steps/s（12.7 µs/step）——序列第四**；**展幅 55~58% 三轮持续=模型内在动力学定性**（nu=0 纯重力坍塌混沌接触，非测量噪声，R32 先例扩展处置）；加载 61.8 ms | [S6-benchmark.md](models/deeprobotics_x30/reports/S6-benchmark.md) |
+| S6 基准 | **MuJoCo 82,080 steps/s（12.2 µs/step，R41 后重测三轮中位）——我方窗口序列第五**（审核台同机交叉参照 119k/130k，窗口负载差异归因开放）；**八轮展幅 53.8~66.6% 未收敛、归因开放**（对照实验排除渲染循环；R32 先例补条款=归因前必须对照/确定性检验）；加载 61.8 ms | [S6-benchmark.md](models/deeprobotics_x30/reports/S6-benchmark.md) |
 
 ## 快速开始
 
