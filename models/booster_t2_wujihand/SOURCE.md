@@ -1,7 +1,7 @@
 # SOURCE — booster_t2_wujihand 来源与 License 核对记录（S0 产物）
 
-> **状态：待审核台确认（协议②送审中，2026-10-25）——S0 license 门未关闭，S1 未启动。**
-> 核对：写码工作台 · 2026-10-25 · 取证方式 = GitHub API 活源（两仓树 JSON + 变体 urdf/xml 原件 base64 落 recon）+ lxml 解析器权威口径（R34 规程：结构断言一律解析器生成）；M11 选型背景与四候选对比见 REVIEW-REQUEST.md（本次送审件）。
+> **状态：R44 已批（2026-10-25，四决策点全批+变体入库升格附三条件+S1 预警六条）——S0 license 门关闭，S1 启动。**
+> 核对：写码工作台 · 2026-10-25 · 取证方式 = GitHub API 活源（两仓树 JSON + 变体 urdf/xml 原件 base64 落 recon）+ lxml 解析器权威口径（R34 规程：结构断言一律解析器生成）；M11 选型背景与四候选对比见 REVIEW-REQUEST.md（git 历史回溯 b10cec6），R44 结论见 REVIEW.md。
 
 ## 1. 数据源（单仓多机型，booster_assets 第四件——T2 变体矩阵首件入库）
 
@@ -26,7 +26,7 @@
 
 | 仓库 | License | 版权方 | 原文快照 |
 |---|---|---|---|
-| BoosterRobotics/booster_assets（整仓单 license，M4 已定性） | **BSD-3-Clause**（M4/R22/R31 三轮先例） | **Copyright (c) 2025, BoosterRobotics**（M4/R22 快照逐字） | **同仓复指**：`models/booster_t2/LICENSE-upstream-booster_assets.txt`（blob `d7a14af35ecb678236db590d77e29232aed10cdd`，1,502 B——2026-10-25 树实测逐位同物，四战零漂移）；本模型目录按同仓复指口径不重复落快照，S1 时 A2 对账；LICENSES.md 于 S7 加复指行 |
+| BoosterRobotics/booster_assets（整仓单 license，M4 已定性） | **BSD-3-Clause**（M4/R22/R31 三轮先例） | **Copyright (c) 2025, BoosterRobotics**（M4/R22 快照逐字） | **同仓复指**：上游根级 LICENSE blob `d7a14af35ecb678236db590d77e29232aed10cdd`，1,502 B——2026-10-25 树实测逐位同物，四战零漂移；本模型目录 S1 落同物快照 `LICENSE-upstream-booster_assets.txt`（与 booster_t2 快照逐字节同物，每模型八件套形态统一——[R44 前更正] 初稿"不重复落快照"与在库形态不符，落笔前自查更正）；LICENSES.md 于 S7 加复指行并注明"**变体首件入库**"口径（R44 条件②） |
 
 ## 4. 选型对比备案（M11 候选池四路，全同仓复指）
 

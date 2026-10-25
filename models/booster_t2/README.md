@@ -5,7 +5,8 @@
 > **管道预览页**渲染截图（`?model=booster_t2`）——模型文件即本页所述入库件，零外网依赖；
 > 同仓第三机型线（T1/K1 之后）、**官网主打旗舰**（140 cm / 42 kg 档，尺度带中位）；
 > **S3 三基准机型（本库首个）**：质量+自由度+**峰值扭矩 140 N·m** 三方可参考（effort 为量级 sanity，见披露 3）；
-> **包围盒 y [0.000, 1.413] ↔ 官网"身高约 140 厘米"逐位命中**（+13 mm 姿态差——身高官方对账第三例）。
+> **包围盒 y [0.000, 1.413] ↔ 官网"身高约 140 厘米"逐位命中**（+13 mm 姿态差——身高官方对账第三例）；
+> **WujiHand 灵巧手变体已入库（M11）**：[booster_t2_wujihand](../booster_t2_wujihand/README.md)（71R，基座与本件逐位对账）。
 
 ## Provenance（来源与授权）
 
@@ -15,7 +16,7 @@
 | License | **BSD-3-Clause**（整仓单 license，与 M4/M7 快照**逐字节同物** `d7a14af35ecb…`，R34 三重同物全验无新定性）。原文快照随文件入库：`LICENSE-upstream-booster_assets.txt`；版权行 `Copyright (c) 2025, BoosterRobotics`（快照逐字，N1） |
 | 官方性验证 | **A4 沿用 K1 转正口径**：同域（booster.tech，域名迁移先例在案）同模板三机型页互证；官网 T2 产品页 269,610 B 二进制原件落 evidence（R29 取证范式，本次零 token 无需脱敏）；README 配置表 T2 行双文档交叉。详见 [SOURCE.md](SOURCE.md) |
 | 入库对账 | **76 物理件 / 99.1 MB，三锚全过**（models↔manifest↔上游 blob id）+ 1 质检截图（S5 自产，不入三锚）；主版子目录直取（四手部变体整组 subdir 天然隔离）；excluded 1（parallel 并联踝）；**平账全绿（40=39+1，未收为零）历史最净**——[S4-package.md](reports/S4-package.md) |
-| 配对 | `T2_31dof.urdf`（**35 link / 31R + 3F，无 floating 无 world**）↔ `T2_31dof.xml`（33 body/32 joint）——**官方双文档 DoF 交叉**：官网"全身 31" ↔ README 配置表（head 2 + arms 7×2 + waist 3 + legs 6×2 = 2+14+3+12=31）↔ URDF 31R 三方逐位；四手部变体（JZgripper/Revo2Hand/WujiHand/YSgripper）整组不入库只记录（X2 手部先例） |
+| 配对 | `T2_31dof.urdf`（**35 link / 31R + 3F，无 floating 无 world**）↔ `T2_31dof.xml`（33 body/32 joint）——**官方双文档 DoF 交叉**：官网"全身 31" ↔ README 配置表（head 2 + arms 7×2 + waist 3 + legs 6×2 = 2+14+3+12=31）↔ URDF 31R 三方逐位；四手部变体（JZgripper 43R/Revo2Hand 53R/WujiHand 71R/YSgripper 43R）：**WujiHand 已于 M11 经 R44 协议②正门升格入库**（[booster_t2_wujihand](../booster_t2_wujihand/README.md)），其余三变体留池不自动跟进每件仍走协议②（R44 条件③） |
 | 引用协议 | URDF **relative（`meshes/` 前缀，39 引 → 37 物理件，大小写失配 0，scale 双侧 0）**；MJCF **meshdir 相对引用**（分目录自有池，closure 零改动落位） |
 
 ## 使用
@@ -86,8 +87,10 @@ STL 33 件（物理文件）统一中性着色；断网可用（41 资源全本�
 ### 5 · 身高官方对账（人形第三例）与变体矩阵处置
 
 - 包围盒 y [0.000, **1.413**] ↔ 官网"身高约 140 厘米"逐位命中（+13 mm 姿态差）；测量法=既定 AABB 并集口径；
-- **四手部变体整组不入库**（JZgripper 43R/Revo2Hand 53R/WujiHand 71R/YSgripper 43R——均为主版 31+手部
-  复合体，官网"末端执行器"选项对应）；如需手部形态，"加 config 即加模型"接口现成（M8+ 候选）。
+- **变体矩阵处置更新（M11）**：WujiHand 变体（71R=31+40 指节）已经 R44 协议②正门升格为**变体矩阵首件入库**
+  ——[booster_t2_wujihand](../booster_t2_wujihand/README.md)（基座与本件 31R 逐位对账+ankle_pitch 限位两文件分歧
+  如实披露于其披露 2）；JZgripper 43R/Revo2Hand 53R/YSgripper 43R **留池**，每件仍走协议②（R44 条件③；
+  M8"仅收主版"系当轮范围裁定非永久禁令，升格程序=R44 正门）。
 
 ## 口径与来源注记
 

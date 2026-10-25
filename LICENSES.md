@@ -26,6 +26,7 @@
 | booster_t2 | BoosterRobotics/booster_assets（单仓多机型，T1/K1 同仓） | BSD-3-Clause（**与 T1/K1 行同仓同快照逐字节同物 `d7a14af35ecb`**，R34 三重同物全验——复指口径同上） | **Copyright (c) 2025, BoosterRobotics**（快照逐字，N1） | models/booster_t2/LICENSE-upstream-booster_assets.txt | `12a97516f57469078707afb587a5f84c1cb110d1` | 2026-10-24 |
 | deeprobotics_m20_piper | DeepRoboticsLab/deep_robotics_model（单仓多机型，Lite3/M20/DR02 同仓） | BSD-3-Clause（**与 Lite3/M20/DR02 行同仓同快照逐字节同物 `cdc6c065`**，R37 四重同物全验——复指口径同上） | **Copyright (c) 2024, DeepRoboticsLab**（快照逐字，N1） | models/deeprobotics_m20_piper/LICENSE-upstream-deep_robotics_model.txt | `530e01a5d2ceb6007f8790f1a7e11ee7389fb981` | 2026-10-24 |
 | deeprobotics_x30 | DeepRoboticsLab/deep_robotics_model（单仓多机型，Lite3/M20/DR02/M20_Piper 同仓） | BSD-3-Clause（**与前四机型行同仓同快照逐字节同物 `cdc6c065`**，R40 五重同物全验——复指口径同上） | **Copyright (c) 2024, DeepRoboticsLab**（快照逐字，N1） | models/deeprobotics_x30/LICENSE-upstream-deep_robotics_model.txt | `530e01a5d2ceb6007f8790f1a7e11ee7389fb981` | 2026-10-24 |
+| booster_t2_wujihand | BoosterRobotics/booster_assets（单仓多机型，T1/K1/T2 同仓；**变体首件入库**——T2 主版的 WujiHand 灵巧手变体，R44 正门升格） | BSD-3-Clause（**与 T1/K1/T2 行同仓同快照逐字节同物 `d7a14af35ecb`**，R44 复指确认+M11 S1 sha256 逐位同物 `056db8cc…`——复指口径同上） | **Copyright (c) 2025, BoosterRobotics**（快照逐字，N1） | models/booster_t2_wujihand/LICENSE-upstream-booster_assets.txt | `12a97516f57469078707afb587a5f84c1cb110d1` | 2026-10-25 |
 
 详细核对过程与三条结论见各模型 SOURCE.md（go2：已确认 R3；g1：已确认 R10，M1 选型 + S0 同件审）。
 

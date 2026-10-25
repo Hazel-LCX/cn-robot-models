@@ -3,7 +3,7 @@
 > **这不是模型收集站。** 这是一条可复现的开源仿真模型**质检管道**：
 > license 核对 → 拉取 → 格式校验 → 物理体检 → 双格式入库 → 在线预览 → 基准 → 质检报告。
 > 模型库是管道的副产品，**每一步的检查报告本身就是产品**。
-> 已收录：宇树 Go2（M0 质检样板）· 宇树 G1（M1 · 人形）· 云深处 Lite3（M2 · 异厂首录）· 智元灵犀 X2（M3 · 国产开源许可证首例）· 加速进化 T1（M4 · 第四厂商）· 云深处山猫 M20（M5 · 轮足 · continuous 拓扑首覆盖）· 云深处 DR02 Pro（M6 · 人形 1.8 m · 官方 DoF 基准齐备）· 加速进化 K1（M7 · 0.95 m 最小型 · 首个官网产品页直证机型）· 加速进化 T2（M8 · 官网旗舰 · S3 三基准机型）· 云深处 M20_Piper（M9 · 移动操作复合体 · prismatic 拓扑收官）· 云深处 绝影 X30（M10 · 56 kg 最大质量四足 · scale 实战线）——官方双源 URDF/MJCF（BSD-3-Clause / MulanPSL-2.0）。
+> 已收录：宇树 Go2（M0 质检样板）· 宇树 G1（M1 · 人形）· 云深处 Lite3（M2 · 异厂首录）· 智元灵犀 X2（M3 · 国产开源许可证首例）· 加速进化 T1（M4 · 第四厂商）· 云深处山猫 M20（M5 · 轮足 · continuous 拓扑首覆盖）· 云深处 DR02 Pro（M6 · 人形 1.8 m · 官方 DoF 基准齐备）· 加速进化 K1（M7 · 0.95 m 最小型 · 首个官网产品页直证机型）· 加速进化 T2（M8 · 官网旗舰 · S3 三基准机型）· 云深处 M20_Piper（M9 · 移动操作复合体 · prismatic 拓扑收官）· 云深处 绝影 X30（M10 · 56 kg 最大质量四足 · scale 实战线）· **加速进化 T2 WujiHand（M11 · 变体矩阵首件入库 · 71R 本库最大关节模型）**——官方双源 URDF/MJCF（BSD-3-Clause / MulanPSL-2.0）。
 
 ## 为什么是"质检管道"而不是"模型库"
 
@@ -23,7 +23,8 @@
   [K1 · 官网域名迁移实证与路径①转正（boosterobotics.com→booster.tech 301，"快照会过期活源才有效"活教材）/ URDF 注释内 world 块虚增结构断言](models/booster_k1/README.md#1--官网域名迁移与-a4-路径①转正本模型核心侦察成果) ·
   [T2 · link/joint 重名 logo（本库第二个 FAIL 级发现，names-unique 首触发，fail 不静默）/ 三基准全对账（质量+DoF+扭矩 140 N·m 本库首个）](models/booster_t2/README.md#1--faillink-与-joint-重名-logo本库第二个-fail-级发现names-unique-首触发) ·
   [M20_Piper · URDF 限位全角句号 `0。611`（本库第三个 FAIL 级发现：上游数据缺陷 yourdfpy 加载即败，MJCF 交叉证据 / 管道容错如实点名）](models/deeprobotics_m20_piper/README.md#1--failurdf-限位含全角句号-0611本库第三个-fail-级发现上游数据缺陷引用前必读) ·
-  [X30 · 跨格式 scale 对账首例（URDF 5 处镜像+MJCF 4 处，镜像分配策略差异如实披露）/ nu=0 无执行器模型与 S6 展幅定性](models/deeprobotics_x30/README.md#1--跨格式-scale-对账本库首例两侧均有-scale-的模型)。
+  [X30 · 跨格式 scale 对账首例（URDF 5 处镜像+MJCF 4 处，镜像分配策略差异如实披露）/ nu=0 无执行器模型与 S6 展幅定性](models/deeprobotics_x30/README.md#1--跨格式-scale-对账本库首例两侧均有-scale-的模型) ·
+  [T2 WujiHand · 变体对账新形态（基座 31R 与主版 29/31 限位逐位同，ankle_pitch ×2 上游两文件分歧如实披露）/ logo 重名家族遗传 / 71R 序列末位超线性观察](models/booster_t2_wujihand/README.md#2--变体对账新形态r44-预警首例基座与主版-2931-限位逐位同ankle_pitch-2-分歧)。
 - 如果体检全绿：价值落在"管道可复现 + 双格式对账 + 基准数字"——同样的成立。
 
 ## 管道
@@ -171,6 +172,18 @@ S0 license核对(门) → S1 拉取 → S2 格式校验 → S3 物理体检(门:
 | S5 3D 预览 | 12 滑条、包围盒 y [0.000, 0.520]（趴姿零位）；**scale 实战检验通过**（四腿镜像渲染正确无缺失/内翻，R18/R19 修复后首次成规模实战）；**十一模型基线逐位回归全命中**（0.334/1.323/0.298/1.319/1.180/0.675/1.792/0.955/1.413/0.937） | [pipeline/s5_preview/](pipeline/s5_preview/) |
 | S6 基准 | **MuJoCo 82,080 steps/s（12.2 µs/step，R41 后重测三轮中位）——我方窗口序列第五**（审核台同机交叉参照 119k/130k，窗口负载差异归因开放）；**八轮展幅 53.8~66.6% 未收敛、归因开放**（对照实验排除渲染循环；R32 先例补条款=归因前必须对照/确定性检验）；加载 61.8 ms | [S6-benchmark.md](models/deeprobotics_x30/reports/S6-benchmark.md) |
 
+### M11 · 加速进化 T2 WujiHand（变体矩阵首件入库 · 71R 本库最大 · 2026-10-25）
+
+| 步骤 | 结果 | 报告 |
+|---|---|---|
+| S0 license 门 | **同仓复指零新定性（R44 裁定②）**——LICENSE blob `d7a14af35ecb` 与 M4/M7/M8 逐字节同物五战零漂移；变体首件入库=R44 协议②正门升格（附三条件：谱系标注+互链/LICENSES 变体首件口径/其余留池每件仍协议②） | [SOURCE.md](models/booster_t2_wujihand/SOURCE.md) |
+| S1 拉取 | 96 文件 / 52.6 MB 锚点锁定（`12a97516` 五战零漂移），**blob-parity 91 件失配 0**（K2 门十战全绿）；141 引→87 唯一闭包差 54 处复用（手指网格）；变体**自包含**无跨目录引用 | SOURCE.md / S1-fetch.md |
+| S2 格式校验 | **9 PASS / 1 FAIL / 0 WARN**：URDF **87 link/86 joint=71R+15F**（lxml 权威——正则 88/87/1floating 注释混计第三次实战）、141 引→87 唯一 100% 解析、87 网格全读通；MJCF nbody=73/njnt=72/nq=78/**nu=71**（71 hinge 全驱动）；**names-unique FAIL=`logo` 跨集重名（主版家族遗传，披露 1，双引擎加载实测可）** | [S2-validation.md](models/booster_t2_wujihand/reports/S2-validation.md) |
+| S3 物理体检 | **9 PASS / 4 WARN / 0 FAIL**：**两侧总量 42.4915 kg 逐位同值**（R44 审核台独立预判逐位命中）vs 官网 42 kg\* 主版口径 sanity（+1.2%，变体无专属基准不虚构）；71 对轴差 0；**变体对账新形态（预警⑤首例）**：基座 31R 名/轴/effort 与主版全同、29/31 限位同——**ankle_pitch ×2 上游两文件分歧披露**；wrist_roll"分歧"=fixed 融合精确闭合（0.156254+0.16914=0.3254） | [S3-physics.md](models/booster_t2_wujihand/reports/S3-physics.md) |
+| S4 双格式入库 | **176 物理文件 / 104.9 MB 三锚全过**；87 网格双侧同哈希分目录落位；唯一源 89=91−2（**池外 2 件=wrist_roll collision STL×2，与 URDF 无 collision 自洽**） | [S4-package.md](models/booster_t2_wujihand/reports/S4-package.md) |
+| S5 3D 预览 | **71 滑条（31 体+40 指节）**、包围盒 y [0.000, 1.413] **与主版逐位同值**（身高对账随主版）；断网 93 资源 0 外网；**R44 改码窗口落地**（页头计数标签"滑条 N（xR+yC+zP）"分解——R26 遗留清账）；**十一模型基线逐位回归 11/11**（0.334/1.323/0.298/1.319/1.180/0.675/1.792/0.955/1.413/0.937/0.520） | [pipeline/s5_preview/](pipeline/s5_preview/) |
+| S6 基准 | **MuJoCo 4,997 steps/s（200.1 µs/step）——十二点序列新末位**（主版 27,583 的 5.5× 慢：njnt 32→72/ngeom 55→157 超线性=接触对规模效应结构性观察）；**展幅 3.2% 稳过**（预警④手指小质量重力摆动 armed 未触发）；加载 262.7 ms | [S6-benchmark.md](models/booster_t2_wujihand/reports/S6-benchmark.md) |
+
 ## 快速开始
 
 **在线预览（零依赖，断网可用）**
@@ -188,6 +201,7 @@ python -m http.server 8130
 # 或            http://127.0.0.1:8130/pipeline/s5_preview/index.html?model=booster_t2           # T2（加速进化旗舰人形 1.40 m，31 滑条）
 # 或            http://127.0.0.1:8130/pipeline/s5_preview/index.html?model=deeprobotics_m20_piper  # M20_Piper（云深处移动操作复合体，22 rad+2 m 滑条）
 # 或            http://127.0.0.1:8130/pipeline/s5_preview/index.html?model=deeprobotics_x30     # X30（云深处绝影工业四足 56 kg，12 滑条）
+# 或            http://127.0.0.1:8130/pipeline/s5_preview/index.html?model=booster_t2_wujihand  # T2 WujiHand（加速进化灵巧手变体，71 滑条=31 体+40 指节）
 ```
 
 **MuJoCo 查看 / 加载**

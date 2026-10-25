@@ -205,11 +205,20 @@ setTimeout(() => {
     : `<span class="bad">断网自检：发现 ${ext} 个外网请求！</span>`;
 }, 800);
 
+// R44 批准改码窗口（R26 遗留清账）：滑条计数标签按类型分解——revolute 数组实为
+// revolute+continuous+prismatic 混合集，旧标签"（revolute N）"在 C/P 模型上误标（M20 16=12R+4C 案例）
+const sliderByType = { revolute: 0, continuous: 0, prismatic: 0 };
+for (const j of revolute) sliderByType[j.getAttribute('type')] += 1;
+const sliderBreakdown = ['revolute', 'continuous', 'prismatic']
+  .filter(t => sliderByType[t])
+  .map(t => `${sliderByType[t]}${{ revolute: 'R', continuous: 'C', prismatic: 'P' }[t]}`)
+  .join('+');
+
 const stlNote = stlUrls.size > 0
   ? ` · <span class="ok">STL ${stlUrls.size} 件（物理文件）统一中性着色——无 UV/材质为格式天性，非上游外观</span>`
   : '';
 meta.innerHTML =
-  `<b>${config.model}</b> · links ${linkEls.length} · joints ${jointEls.length}（revolute ${revolute.length}）· visual 网格 ${meshCount}${stlNote}<br>` +
+  `<b>${config.model}</b> · links ${linkEls.length} · joints ${jointEls.length} · 滑条 ${revolute.length}（${sliderBreakdown}）· visual 网格 ${meshCount}${stlNote}<br>` +
   `根 link：<b>${rootName}</b> · 源：${URDF_URL} · 引用协议 ${refStyle}<br>` +
   `<span class="ok">载入版本 v4（config 驱动）</span> · 落地抬升 ${lift.toFixed(3)} m · ` +
   `包围盒 y [${bbox.min.y.toFixed(3)}, ${bbox.max.y.toFixed(3)}]` +

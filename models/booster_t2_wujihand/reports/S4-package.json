@@ -1,0 +1,1447 @@
+{
+  "rows": [
+    {
+      "dest": "mjcf/T2_31dof_WujiHand.xml",
+      "src": "booster_assets/robots/T2/T2_31dof_WujiHand/T2_31dof_WujiHand.xml",
+      "kind": "mjcf",
+      "sha256": "8aecc568185c3a23a426c3c95d2c059aef4020878dad19439da2d68a28d0d6a1",
+      "traceable": true,
+      "blob_parity": true
+    },
+    {
+      "dest": "mjcf/meshes/head_pitch_link.STL",
+      "src": "booster_assets/robots/T2/T2_31dof_WujiHand/meshes/head_pitch_link.STL",
+      "kind": "asset",
+      "sha256": "f1f59dab47d9e93ce63174b69722c22db9cd336d59ddece822befb1813b501d0",
+      "traceable": true,
+      "blob_parity": true
+    },
+    {
+      "dest": "mjcf/meshes/head_pitch_link_collision.STL",
+      "src": "booster_assets/robots/T2/T2_31dof_WujiHand/meshes/head_pitch_link_collision.STL",
+      "kind": "asset",
+      "sha256": "3ee342ea15b2c0fcff291f98611ed6752447c120edc9b95b990b3fe6697e112c",
+      "traceable": true,
+      "blob_parity": true
+    },
+    {
+      "dest": "mjcf/meshes/head_yaw_link.STL",
+      "src": "booster_assets/robots/T2/T2_31dof_WujiHand/meshes/head_yaw_link.STL",
+      "kind": "asset",
+      "sha256": "82837cb3b7d1f2a416cf7839bb680cfe468c558c8875531c224cbb673c40fe6d",
+      "traceable": true,
+      "blob_parity": true
+    },
+    {
+      "dest": "mjcf/meshes/left_ankle_pitch_link.STL",
+      "src": "booster_assets/robots/T2/T2_31dof_WujiHand/meshes/left_ankle_pitch_link.STL",
+      "kind": "asset",
+      "sha256": "68e0ea886e54c3159b2ae5a94a18917dfb05381298f95df438651968c60f740d",
+      "traceable": true,
+      "blob_parity": true
+    },
+    {
+      "dest": "mjcf/meshes/left_ankle_roll_link.STL",
+      "src": "booster_assets/robots/T2/T2_31dof_WujiHand/meshes/left_ankle_roll_link.STL",
+      "kind": "asset",
+      "sha256": "feeb92e5ff3590817c9b8078c314b0b16a0e03654ba0b8bd6551fd058b341dd4",
+      "traceable": true,
+      "blob_parity": true
+    },
+    {
+      "dest": "mjcf/meshes/left_elbow_pitch_link.STL",
+      "src": "booster_assets/robots/T2/T2_31dof_WujiHand/meshes/left_elbow_pitch_link.STL",
+      "kind": "asset",
+      "sha256": "7a629fe2ce0501cdfaaba3d5020ca044d0c71fd44bba85d3818a1c493444cb0c",
+      "traceable": true,
+      "blob_parity": true
+    },
+    {
+      "dest": "mjcf/meshes/left_elbow_yaw_link.STL",
+      "src": "booster_assets/robots/T2/T2_31dof_WujiHand/meshes/left_elbow_yaw_link.STL",
+      "kind": "asset",
+      "sha256": "35afa050a21fcdd20d70307b5d3f4a567a3aef9302daf91659e83502502fd054",
+      "traceable": true,
+      "blob_parity": true
+    },
+    {
+      "dest": "mjcf/meshes/left_finger1_link1.STL",
+      "src": "booster_assets/robots/T2/T2_31dof_WujiHand/meshes/left_finger1_link1.STL",
+      "kind": "asset",
+      "sha256": "ef6226834aafe36a718c3bdedd6a8a53ac076d833f4c989c4259fe111098426e",
+      "traceable": true,
+      "blob_parity": true
+    },
+    {
+      "dest": "mjcf/meshes/left_finger1_link2.STL",
+      "src": "booster_assets/robots/T2/T2_31dof_WujiHand/meshes/left_finger1_link2.STL",
+      "kind": "asset",
+      "sha256": "4b95c67bfb2d87a9f0bd6ab1cafcad27229eecdd7d22510681f1d394d4249e7c",
+      "traceable": true,
+      "blob_parity": true
+    },
+    {
+      "dest": "mjcf/meshes/left_finger1_link3.STL",
+      "src": "booster_assets/robots/T2/T2_31dof_WujiHand/meshes/left_finger1_link3.STL",
+      "kind": "asset",
+      "sha256": "2a6ba5a4d292b33a972760cd2e536e3bb0b7ff11f3ba070d2ff6b9a4a347e9cb",
+      "traceable": true,
+      "blob_parity": true
+    },
+    {
+      "dest": "mjcf/meshes/left_finger1_link4.STL",
+      "src": "booster_assets/robots/T2/T2_31dof_WujiHand/meshes/left_finger1_link4.STL",
+      "kind": "asset",
+      "sha256": "bcb512d59797e4da81d166c7118197a5f5c6b397091617ca189a56dbbd9b74c9",
+      "traceable": true,
+      "blob_parity": true
+    },
+    {
+      "dest": "mjcf/meshes/left_finger1_tip_link.STL",
+      "src": "booster_assets/robots/T2/T2_31dof_WujiHand/meshes/left_finger1_tip_link.STL",
+      "kind": "asset",
+      "sha256": "83c92a6c07f7c3c9833d56c4cc2d4fc29d691ff458a75d766f16668aa3b7a906",
+      "traceable": true,
+      "blob_parity": true
+    },
+    {
+      "dest": "mjcf/meshes/left_finger2_link1.STL",
+      "src": "booster_assets/robots/T2/T2_31dof_WujiHand/meshes/left_finger2_link1.STL",
+      "kind": "asset",
+      "sha256": "afb3cd29a430e31e1c972b0165f942e95e56e33da80fc234b5c474231f00ce63",
+      "traceable": true,
+      "blob_parity": true
+    },
+    {
+      "dest": "mjcf/meshes/left_finger2_link2.STL",
+      "src": "booster_assets/robots/T2/T2_31dof_WujiHand/meshes/left_finger2_link2.STL",
+      "kind": "asset",
+      "sha256": "02c12143eabd598559b9893ba7e8642b2510abd25fa06d968c8183e625f19ec5",
+      "traceable": true,
+      "blob_parity": true
+    },
+    {
+      "dest": "mjcf/meshes/left_finger2_link3.STL",
+      "src": "booster_assets/robots/T2/T2_31dof_WujiHand/meshes/left_finger2_link3.STL",
+      "kind": "asset",
+      "sha256": "764426f6623a6809565954770980dccfe5694d7c822b3035c75e3fad14712601",
+      "traceable": true,
+      "blob_parity": true
+    },
+    {
+      "dest": "mjcf/meshes/left_finger2_link4.STL",
+      "src": "booster_assets/robots/T2/T2_31dof_WujiHand/meshes/left_finger2_link4.STL",
+      "kind": "asset",
+      "sha256": "32419448505112baa15a7c39613051bdb463cf0e0f235ce5583c582151c9aa4b",
+      "traceable": true,
+      "blob_parity": true
+    },
+    {
+      "dest": "mjcf/meshes/left_finger2_tip_link.STL",
+      "src": "booster_assets/robots/T2/T2_31dof_WujiHand/meshes/left_finger2_tip_link.STL",
+      "kind": "asset",
+      "sha256": "ef47c5b835948311609616142247f6e764adf2fc1e060d620f64fd19efef9458",
+      "traceable": true,
+      "blob_parity": true
+    },
+    {
+      "dest": "mjcf/meshes/left_finger3_link1.STL",
+      "src": "booster_assets/robots/T2/T2_31dof_WujiHand/meshes/left_finger3_link1.STL",
+      "kind": "asset",
+      "sha256": "92839a1448fad363032f9a2cff0e660846a89ff15cf1233ab88e0adab5670466",
+      "traceable": true,
+      "blob_parity": true
+    },
+    {
+      "dest": "mjcf/meshes/left_finger3_link2.STL",
+      "src": "booster_assets/robots/T2/T2_31dof_WujiHand/meshes/left_finger3_link2.STL",
+      "kind": "asset",
+      "sha256": "b538ab9ce27e19931553f2ef2b001788cf75bd7503bf955febc3acc96b9f3074",
+      "traceable": true,
+      "blob_parity": true
+    },
+    {
+      "dest": "mjcf/meshes/left_finger3_link3.STL",
+      "src": "booster_assets/robots/T2/T2_31dof_WujiHand/meshes/left_finger3_link3.STL",
+      "kind": "asset",
+      "sha256": "795ecf9b1fe67da36cea333d47bce7e7dc8339c058d9d6dc6dd954c93beb3ba6",
+      "traceable": true,
+      "blob_parity": true
+    },
+    {
+      "dest": "mjcf/meshes/left_finger3_link4.STL",
+      "src": "booster_assets/robots/T2/T2_31dof_WujiHand/meshes/left_finger3_link4.STL",
+      "kind": "asset",
+      "sha256": "e2428e5723d829567c1905d0253a38075081472f1cf5b6a91622ccc23b66a915",
+      "traceable": true,
+      "blob_parity": true
+    },
+    {
+      "dest": "mjcf/meshes/left_finger3_tip_link.STL",
+      "src": "booster_assets/robots/T2/T2_31dof_WujiHand/meshes/left_finger3_tip_link.STL",
+      "kind": "asset",
+      "sha256": "36b33404458a39a8e87dcc2e842f3d2679439f2a02dce37d441304060e6a235b",
+      "traceable": true,
+      "blob_parity": true
+    },
+    {
+      "dest": "mjcf/meshes/left_finger4_link1.STL",
+      "src": "booster_assets/robots/T2/T2_31dof_WujiHand/meshes/left_finger4_link1.STL",
+      "kind": "asset",
+      "sha256": "34372b6d907d7a8d0b9c7ab776398b9b9ea034ba05a6e17bbd5cb4eb7ee26e1d",
+      "traceable": true,
+      "blob_parity": true
+    },
+    {
+      "dest": "mjcf/meshes/left_finger4_link2.STL",
+      "src": "booster_assets/robots/T2/T2_31dof_WujiHand/meshes/left_finger4_link2.STL",
+      "kind": "asset",
+      "sha256": "d51b96912a9e127abdf89e5673ecaad6db373817b3cc85bd6bbc077dcff3b374",
+      "traceable": true,
+      "blob_parity": true
+    },
+    {
+      "dest": "mjcf/meshes/left_finger4_link3.STL",
+      "src": "booster_assets/robots/T2/T2_31dof_WujiHand/meshes/left_finger4_link3.STL",
+      "kind": "asset",
+      "sha256": "18d23d11f4b8735bbc0a790a3d4493eeb0389afdbdc44665f77e4c6d604c16fb",
+      "traceable": true,
+      "blob_parity": true
+    },
+    {
+      "dest": "mjcf/meshes/left_finger4_link4.STL",
+      "src": "booster_assets/robots/T2/T2_31dof_WujiHand/meshes/left_finger4_link4.STL",
+      "kind": "asset",
+      "sha256": "592c269cd9a47569084028096d3413289e68d3888cc756cb3d092674e137fdff",
+      "traceable": true,
+      "blob_parity": true
+    },
+    {
+      "dest": "mjcf/meshes/left_finger4_tip_link.STL",
+      "src": "booster_assets/robots/T2/T2_31dof_WujiHand/meshes/left_finger4_tip_link.STL",
+      "kind": "asset",
+      "sha256": "67995957f5082af59a3d8745f435adc44133446b1574b7cfacf07ed02ff7aa09",
+      "traceable": true,
+      "blob_parity": true
+    },
+    {
+      "dest": "mjcf/meshes/left_finger5_link1.STL",
+      "src": "booster_assets/robots/T2/T2_31dof_WujiHand/meshes/left_finger5_link1.STL",
+      "kind": "asset",
+      "sha256": "2ddd53a41d441fb1763585ddd031aaef1f30718f1afff3607c08a8065214d96b",
+      "traceable": true,
+      "blob_parity": true
+    },
+    {
+      "dest": "mjcf/meshes/left_finger5_link2.STL",
+      "src": "booster_assets/robots/T2/T2_31dof_WujiHand/meshes/left_finger5_link2.STL",
+      "kind": "asset",
+      "sha256": "09f0d2e932c41f9aa678ff80d5f7a612e43f7d14b12ef38cd98bc330a11f5ed1",
+      "traceable": true,
+      "blob_parity": true
+    },
+    {
+      "dest": "mjcf/meshes/left_finger5_link3.STL",
+      "src": "booster_assets/robots/T2/T2_31dof_WujiHand/meshes/left_finger5_link3.STL",
+      "kind": "asset",
+      "sha256": "2550cb770eba8132cab3208c10b6891de17b05c051555dea79dbb9e8dac2b011",
+      "traceable": true,
+      "blob_parity": true
+    },
+    {
+      "dest": "mjcf/meshes/left_finger5_link4.STL",
+      "src": "booster_assets/robots/T2/T2_31dof_WujiHand/meshes/left_finger5_link4.STL",
+      "kind": "asset",
+      "sha256": "3f095a1ca1733b4769121a3be424ebfdc450a2c384623d079f9c159c4c8b0200",
+      "traceable": true,
+      "blob_parity": true
+    },
+    {
+      "dest": "mjcf/meshes/left_finger5_tip_link.STL",
+      "src": "booster_assets/robots/T2/T2_31dof_WujiHand/meshes/left_finger5_tip_link.STL",
+      "kind": "asset",
+      "sha256": "6955f23515b68a893b6e1c9de7067c4852224e1cc8413211a948ec4c09dbf5aa",
+      "traceable": true,
+      "blob_parity": true
+    },
+    {
+      "dest": "mjcf/meshes/left_hip_pitch_link.STL",
+      "src": "booster_assets/robots/T2/T2_31dof_WujiHand/meshes/left_hip_pitch_link.STL",
+      "kind": "asset",
+      "sha256": "75e86c93f4f3be75ae854391d03230f6f032026c32548caef918d359d3178a8f",
+      "traceable": true,
+      "blob_parity": true
+    },
+    {
+      "dest": "mjcf/meshes/left_hip_roll_link.STL",
+      "src": "booster_assets/robots/T2/T2_31dof_WujiHand/meshes/left_hip_roll_link.STL",
+      "kind": "asset",
+      "sha256": "a712069ff4730a942879c30cdba00f6051d74993589462870acff50873741d6d",
+      "traceable": true,
+      "blob_parity": true
+    },
+    {
+      "dest": "mjcf/meshes/left_hip_yaw_link.STL",
+      "src": "booster_assets/robots/T2/T2_31dof_WujiHand/meshes/left_hip_yaw_link.STL",
+      "kind": "asset",
+      "sha256": "1a48820e718a9724d125ef7dd8717501fbfc8e033139267fc66de3c386af8672",
+      "traceable": true,
+      "blob_parity": true
+    },
+    {
+      "dest": "mjcf/meshes/left_knee_pitch_link.STL",
+      "src": "booster_assets/robots/T2/T2_31dof_WujiHand/meshes/left_knee_pitch_link.STL",
+      "kind": "asset",
+      "sha256": "ee66d048f4157b2e5ed221423d1f69d1d72b03609eea124700fa7dbf82166efc",
+      "traceable": true,
+      "blob_parity": true
+    },
+    {
+      "dest": "mjcf/meshes/left_palm_link.STL",
+      "src": "booster_assets/robots/T2/T2_31dof_WujiHand/meshes/left_palm_link.STL",
+      "kind": "asset",
+      "sha256": "5a16d3510b49444857cc829a18202ce8bf62a129c20684190ccaedb545992298",
+      "traceable": true,
+      "blob_parity": true
+    },
+    {
+      "dest": "mjcf/meshes/left_shoulder_pitch_link.STL",
+      "src": "booster_assets/robots/T2/T2_31dof_WujiHand/meshes/left_shoulder_pitch_link.STL",
+      "kind": "asset",
+      "sha256": "37a19783477a3b4ad62a22c25b7a4058cbaab9af92df15435baade6ea131fde7",
+      "traceable": true,
+      "blob_parity": true
+    },
+    {
+      "dest": "mjcf/meshes/left_shoulder_roll_link.STL",
+      "src": "booster_assets/robots/T2/T2_31dof_WujiHand/meshes/left_shoulder_roll_link.STL",
+      "kind": "asset",
+      "sha256": "d10c4f38c0fd8c434e5f6fcbda260a34405160b96280638aea77b0d629594568",
+      "traceable": true,
+      "blob_parity": true
+    },
+    {
+      "dest": "mjcf/meshes/left_wrist_pitch_link.STL",
+      "src": "booster_assets/robots/T2/T2_31dof_WujiHand/meshes/left_wrist_pitch_link.STL",
+      "kind": "asset",
+      "sha256": "85085ba79d4c1755bbe35a4bce7b0dad732342c9f15cb3732e9d234b12098074",
+      "traceable": true,
+      "blob_parity": true
+    },
+    {
+      "dest": "mjcf/meshes/left_wrist_roll_link.STL",
+      "src": "booster_assets/robots/T2/T2_31dof_WujiHand/meshes/left_wrist_roll_link.STL",
+      "kind": "asset",
+      "sha256": "ea4e1ad6f29610d1fb6e018820a4c3a2dbbfd4e394bdfd3ee5fb806b185e6b25",
+      "traceable": true,
+      "blob_parity": true
+    },
+    {
+      "dest": "mjcf/meshes/left_wrist_yaw_link.STL",
+      "src": "booster_assets/robots/T2/T2_31dof_WujiHand/meshes/left_wrist_yaw_link.STL",
+      "kind": "asset",
+      "sha256": "bfc1d2685458c649466daffe1535a79a25576950fae41be0c78a60c77addb499",
+      "traceable": true,
+      "blob_parity": true
+    },
+    {
+      "dest": "mjcf/meshes/logo.STL",
+      "src": "booster_assets/robots/T2/T2_31dof_WujiHand/meshes/logo.STL",
+      "kind": "asset",
+      "sha256": "58edab292a58607e30a92c332bd6283b8b8b76366802bcd8a2c168e754b6a760",
+      "traceable": true,
+      "blob_parity": true
+    },
+    {
+      "dest": "mjcf/meshes/right_ankle_pitch_link.STL",
+      "src": "booster_assets/robots/T2/T2_31dof_WujiHand/meshes/right_ankle_pitch_link.STL",
+      "kind": "asset",
+      "sha256": "c65638beb7e080057b10bb46f8a6db311cbeb80aa1b189b4d682f5e1b26d48a0",
+      "traceable": true,
+      "blob_parity": true
+    },
+    {
+      "dest": "mjcf/meshes/right_ankle_roll_link.STL",
+      "src": "booster_assets/robots/T2/T2_31dof_WujiHand/meshes/right_ankle_roll_link.STL",
+      "kind": "asset",
+      "sha256": "a61e8f7879fd8c575506fdf78b82805d67f9a70d3bca9a30bcabb424b89b75c1",
+      "traceable": true,
+      "blob_parity": true
+    },
+    {
+      "dest": "mjcf/meshes/right_elbow_pitch_link.STL",
+      "src": "booster_assets/robots/T2/T2_31dof_WujiHand/meshes/right_elbow_pitch_link.STL",
+      "kind": "asset",
+      "sha256": "1d8d06a76e0fa9897cf740d7ae6fb5c735d36e4ce9cdb6ad8f739c7b50700a24",
+      "traceable": true,
+      "blob_parity": true
+    },
+    {
+      "dest": "mjcf/meshes/right_elbow_yaw_link.STL",
+      "src": "booster_assets/robots/T2/T2_31dof_WujiHand/meshes/right_elbow_yaw_link.STL",
+      "kind": "asset",
+      "sha256": "d6600efeefb0f0189cdf9158173b66e3b76c9104576e11efaa1f72a648be6732",
+      "traceable": true,
+      "blob_parity": true
+    },
+    {
+      "dest": "mjcf/meshes/right_finger1_link1.STL",
+      "src": "booster_assets/robots/T2/T2_31dof_WujiHand/meshes/right_finger1_link1.STL",
+      "kind": "asset",
+      "sha256": "0e32302a46cd00d6cc1e7fb03cc483988c639271708c2300a9aecc9de537e42b",
+      "traceable": true,
+      "blob_parity": true
+    },
+    {
+      "dest": "mjcf/meshes/right_finger1_link2.STL",
+      "src": "booster_assets/robots/T2/T2_31dof_WujiHand/meshes/right_finger1_link2.STL",
+      "kind": "asset",
+      "sha256": "080015cce41de31954e53bbfca45f37f0439e2e689bca49e1910c70efc4f70b7",
+      "traceable": true,
+      "blob_parity": true
+    },
+    {
+      "dest": "mjcf/meshes/right_finger1_link3.STL",
+      "src": "booster_assets/robots/T2/T2_31dof_WujiHand/meshes/right_finger1_link3.STL",
+      "kind": "asset",
+      "sha256": "52eef283d29c617fe4457151685386324bddbccf1598b8a7fc675bb8f28dc85a",
+      "traceable": true,
+      "blob_parity": true
+    },
+    {
+      "dest": "mjcf/meshes/right_finger1_link4.STL",
+      "src": "booster_assets/robots/T2/T2_31dof_WujiHand/meshes/right_finger1_link4.STL",
+      "kind": "asset",
+      "sha256": "f0fb321c4abfd4ab7437caeb116f1935b94d1510fd921222eb49ba6c5a57f057",
+      "traceable": true,
+      "blob_parity": true
+    },
+    {
+      "dest": "mjcf/meshes/right_finger1_tip_link.STL",
+      "src": "booster_assets/robots/T2/T2_31dof_WujiHand/meshes/right_finger1_tip_link.STL",
+      "kind": "asset",
+      "sha256": "25929e0c28a5c65afe88dbccaa697664a2385f8ead02126731a7e1b956ec1dea",
+      "traceable": true,
+      "blob_parity": true
+    },
+    {
+      "dest": "mjcf/meshes/right_finger2_link1.STL",
+      "src": "booster_assets/robots/T2/T2_31dof_WujiHand/meshes/right_finger2_link1.STL",
+      "kind": "asset",
+      "sha256": "36e0471a0373a7634fc10911b33f3b30a5fe829f6526e656a911406cebf19731",
+      "traceable": true,
+      "blob_parity": true
+    },
+    {
+      "dest": "mjcf/meshes/right_finger2_link2.STL",
+      "src": "booster_assets/robots/T2/T2_31dof_WujiHand/meshes/right_finger2_link2.STL",
+      "kind": "asset",
+      "sha256": "56bb1972b8cb1d63d48aa18283148ff6760e387dc64fe963b11209e07e243511",
+      "traceable": true,
+      "blob_parity": true
+    },
+    {
+      "dest": "mjcf/meshes/right_finger2_link3.STL",
+      "src": "booster_assets/robots/T2/T2_31dof_WujiHand/meshes/right_finger2_link3.STL",
+      "kind": "asset",
+      "sha256": "48d70e865e2b49139028511808ae3ad25c5cf06e36fe959c6c71b5263dfcbbde",
+      "traceable": true,
+      "blob_parity": true
+    },
+    {
+      "dest": "mjcf/meshes/right_finger2_link4.STL",
+      "src": "booster_assets/robots/T2/T2_31dof_WujiHand/meshes/right_finger2_link4.STL",
+      "kind": "asset",
+      "sha256": "3eede2c8e1eb1301bc23b4b453fb7014ca5965611b44b115a7330bf33e4d922e",
+      "traceable": true,
+      "blob_parity": true
+    },
+    {
+      "dest": "mjcf/meshes/right_finger2_tip_link.STL",
+      "src": "booster_assets/robots/T2/T2_31dof_WujiHand/meshes/right_finger2_tip_link.STL",
+      "kind": "asset",
+      "sha256": "496039ce3f4f3fbe6bac466a01567797f741af95c6f11dc61626ec2de175900b",
+      "traceable": true,
+      "blob_parity": true
+    },
+    {
+      "dest": "mjcf/meshes/right_finger3_link1.STL",
+      "src": "booster_assets/robots/T2/T2_31dof_WujiHand/meshes/right_finger3_link1.STL",
+      "kind": "asset",
+      "sha256": "558fac18be219c0e6bb6224b82c711b3efe762b547818ea074eda93dc38bad07",
+      "traceable": true,
+      "blob_parity": true
+    },
+    {
+      "dest": "mjcf/meshes/right_finger3_link2.STL",
+      "src": "booster_assets/robots/T2/T2_31dof_WujiHand/meshes/right_finger3_link2.STL",
+      "kind": "asset",
+      "sha256": "338db71e2c1ec63fba860d5d2af52bcb1daff72349b0e03a45f82ae63539bd43",
+      "traceable": true,
+      "blob_parity": true
+    },
+    {
+      "dest": "mjcf/meshes/right_finger3_link3.STL",
+      "src": "booster_assets/robots/T2/T2_31dof_WujiHand/meshes/right_finger3_link3.STL",
+      "kind": "asset",
+      "sha256": "3af337085d5f6430a471462c18b9132f1447eb8c0f3c68a8b1e69318ff8c3db8",
+      "traceable": true,
+      "blob_parity": true
+    },
+    {
+      "dest": "mjcf/meshes/right_finger3_link4.STL",
+      "src": "booster_assets/robots/T2/T2_31dof_WujiHand/meshes/right_finger3_link4.STL",
+      "kind": "asset",
+      "sha256": "3b8efa21bafcae21119f243decf924dac51cc55181ed540e69ce6b85ecf03790",
+      "traceable": true,
+      "blob_parity": true
+    },
+    {
+      "dest": "mjcf/meshes/right_finger3_tip_link.STL",
+      "src": "booster_assets/robots/T2/T2_31dof_WujiHand/meshes/right_finger3_tip_link.STL",
+      "kind": "asset",
+      "sha256": "7a99f65a6a473899913d4273e61319e3724fbf81ac8532969ed5c2ff1c1bde54",
+      "traceable": true,
+      "blob_parity": true
+    },
+    {
+      "dest": "mjcf/meshes/right_finger4_link1.STL",
+      "src": "booster_assets/robots/T2/T2_31dof_WujiHand/meshes/right_finger4_link1.STL",
+      "kind": "asset",
+      "sha256": "508321fefaeae1ae0567f89acd2492fac27cc468a2f562d895afcff192b0d00c",
+      "traceable": true,
+      "blob_parity": true
+    },
+    {
+      "dest": "mjcf/meshes/right_finger4_link2.STL",
+      "src": "booster_assets/robots/T2/T2_31dof_WujiHand/meshes/right_finger4_link2.STL",
+      "kind": "asset",
+      "sha256": "e0b28769389c33af6af73c6dbf506be126570fa6ca7cbaf08f85a51005c48cde",
+      "traceable": true,
+      "blob_parity": true
+    },
+    {
+      "dest": "mjcf/meshes/right_finger4_link3.STL",
+      "src": "booster_assets/robots/T2/T2_31dof_WujiHand/meshes/right_finger4_link3.STL",
+      "kind": "asset",
+      "sha256": "b01668bab452260954faf8cbff94fb59c55ccb3e490ff6eb4b73e81e550c787f",
+      "traceable": true,
+      "blob_parity": true
+    },
+    {
+      "dest": "mjcf/meshes/right_finger4_link4.STL",
+      "src": "booster_assets/robots/T2/T2_31dof_WujiHand/meshes/right_finger4_link4.STL",
+      "kind": "asset",
+      "sha256": "d673bf02761f722728eb1ee0e7cc79ee6afba7693c78f623c3a4a89d5a905453",
+      "traceable": true,
+      "blob_parity": true
+    },
+    {
+      "dest": "mjcf/meshes/right_finger4_tip_link.STL",
+      "src": "booster_assets/robots/T2/T2_31dof_WujiHand/meshes/right_finger4_tip_link.STL",
+      "kind": "asset",
+      "sha256": "e8b1fbee8e019afe490e820b1cba5e02c5124bb4a09aa73896bd46db6586dfde",
+      "traceable": true,
+      "blob_parity": true
+    },
+    {
+      "dest": "mjcf/meshes/right_finger5_link1.STL",
+      "src": "booster_assets/robots/T2/T2_31dof_WujiHand/meshes/right_finger5_link1.STL",
+      "kind": "asset",
+      "sha256": "85ce22b8285a7d85e4c866151c972cde0736d4f618f35015b0b96fe39e367e49",
+      "traceable": true,
+      "blob_parity": true
+    },
+    {
+      "dest": "mjcf/meshes/right_finger5_link2.STL",
+      "src": "booster_assets/robots/T2/T2_31dof_WujiHand/meshes/right_finger5_link2.STL",
+      "kind": "asset",
+      "sha256": "9245362396a184e63af8d2707dc85a3250f1d7db4eeb079d5b3ee9b432939dd6",
+      "traceable": true,
+      "blob_parity": true
+    },
+    {
+      "dest": "mjcf/meshes/right_finger5_link3.STL",
+      "src": "booster_assets/robots/T2/T2_31dof_WujiHand/meshes/right_finger5_link3.STL",
+      "kind": "asset",
+      "sha256": "1083dcec6df545d60c3f14af1113613ca89cc8964692dd624baa750491915f40",
+      "traceable": true,
+      "blob_parity": true
+    },
+    {
+      "dest": "mjcf/meshes/right_finger5_link4.STL",
+      "src": "booster_assets/robots/T2/T2_31dof_WujiHand/meshes/right_finger5_link4.STL",
+      "kind": "asset",
+      "sha256": "6342d4562a8bfaef740850c02dc5418ade11dcbe04736b957d93522995080f35",
+      "traceable": true,
+      "blob_parity": true
+    },
+    {
+      "dest": "mjcf/meshes/right_finger5_tip_link.STL",
+      "src": "booster_assets/robots/T2/T2_31dof_WujiHand/meshes/right_finger5_tip_link.STL",
+      "kind": "asset",
+      "sha256": "ebbf48ca7ba3bca5f329f95277ae392d0c1a09615eda23f1bf646c5112a38cee",
+      "traceable": true,
+      "blob_parity": true
+    },
+    {
+      "dest": "mjcf/meshes/right_hip_pitch_link.STL",
+      "src": "booster_assets/robots/T2/T2_31dof_WujiHand/meshes/right_hip_pitch_link.STL",
+      "kind": "asset",
+      "sha256": "9ba8462670328616b80ffdc9ca4fcb9b956a63bc1945fe3c2915d4c4c4be0eef",
+      "traceable": true,
+      "blob_parity": true
+    },
+    {
+      "dest": "mjcf/meshes/right_hip_roll_link.STL",
+      "src": "booster_assets/robots/T2/T2_31dof_WujiHand/meshes/right_hip_roll_link.STL",
+      "kind": "asset",
+      "sha256": "1aacf29649c00da1d9e276804f3793353dcf2e5d11fb8a834557be03c5a56773",
+      "traceable": true,
+      "blob_parity": true
+    },
+    {
+      "dest": "mjcf/meshes/right_hip_yaw_link.STL",
+      "src": "booster_assets/robots/T2/T2_31dof_WujiHand/meshes/right_hip_yaw_link.STL",
+      "kind": "asset",
+      "sha256": "5bfda02be1109f10b30f1aa87848c0c064a516d917b86df11d6bbe46af371620",
+      "traceable": true,
+      "blob_parity": true
+    },
+    {
+      "dest": "mjcf/meshes/right_knee_pitch_link.STL",
+      "src": "booster_assets/robots/T2/T2_31dof_WujiHand/meshes/right_knee_pitch_link.STL",
+      "kind": "asset",
+      "sha256": "a04304cce3fea19a23abee6a22e3910feffba16b59b051b087c50295d058a9f9",
+      "traceable": true,
+      "blob_parity": true
+    },
+    {
+      "dest": "mjcf/meshes/right_palm_link.STL",
+      "src": "booster_assets/robots/T2/T2_31dof_WujiHand/meshes/right_palm_link.STL",
+      "kind": "asset",
+      "sha256": "1ba4495e3b7adc707d50150a8625a0ed3731fa42ab6d40e62ae7437da103ce5e",
+      "traceable": true,
+      "blob_parity": true
+    },
+    {
+      "dest": "mjcf/meshes/right_shoulder_pitch_link.STL",
+      "src": "booster_assets/robots/T2/T2_31dof_WujiHand/meshes/right_shoulder_pitch_link.STL",
+      "kind": "asset",
+      "sha256": "0e4ca045ba6d27dad6755b426581455ee00c28a32a9d4232f96af30e089535d2",
+      "traceable": true,
+      "blob_parity": true
+    },
+    {
+      "dest": "mjcf/meshes/right_shoulder_roll_link.STL",
+      "src": "booster_assets/robots/T2/T2_31dof_WujiHand/meshes/right_shoulder_roll_link.STL",
+      "kind": "asset",
+      "sha256": "0c3b6f453e934d41b519a22affafc6c9002b0356bc40c425a61a35c82970593c",
+      "traceable": true,
+      "blob_parity": true
+    },
+    {
+      "dest": "mjcf/meshes/right_wrist_pitch_link.STL",
+      "src": "booster_assets/robots/T2/T2_31dof_WujiHand/meshes/right_wrist_pitch_link.STL",
+      "kind": "asset",
+      "sha256": "25538e72b962faac3c76c7d08ee1839b72cbaeb5403ec0e465546e7d48e27b9e",
+      "traceable": true,
+      "blob_parity": true
+    },
+    {
+      "dest": "mjcf/meshes/right_wrist_roll_link.STL",
+      "src": "booster_assets/robots/T2/T2_31dof_WujiHand/meshes/right_wrist_roll_link.STL",
+      "kind": "asset",
+      "sha256": "e48d25ea4be337bfa5ac05f197ea0fe22bf9ae2d4f3b4b1a426f3fb62b912cc0",
+      "traceable": true,
+      "blob_parity": true
+    },
+    {
+      "dest": "mjcf/meshes/right_wrist_yaw_link.STL",
+      "src": "booster_assets/robots/T2/T2_31dof_WujiHand/meshes/right_wrist_yaw_link.STL",
+      "kind": "asset",
+      "sha256": "2b6ce1d4710e95a8f45d58b313f4350168460162f80d788120baeda4f069348a",
+      "traceable": true,
+      "blob_parity": true
+    },
+    {
+      "dest": "mjcf/meshes/trunk.STL",
+      "src": "booster_assets/robots/T2/T2_31dof_WujiHand/meshes/trunk.STL",
+      "kind": "asset",
+      "sha256": "52afacf37b3380f4dc7e028d5cef2cfb1e36145cac2ee73a9b5fcfe1167b81c0",
+      "traceable": true,
+      "blob_parity": true
+    },
+    {
+      "dest": "mjcf/meshes/waist_pitch_link.STL",
+      "src": "booster_assets/robots/T2/T2_31dof_WujiHand/meshes/waist_pitch_link.STL",
+      "kind": "asset",
+      "sha256": "ba2d7dd2d4c811618e86931f6fd6480770fd5168f51b640b94ff79d59d19c953",
+      "traceable": true,
+      "blob_parity": true
+    },
+    {
+      "dest": "mjcf/meshes/waist_roll_link.STL",
+      "src": "booster_assets/robots/T2/T2_31dof_WujiHand/meshes/waist_roll_link.STL",
+      "kind": "asset",
+      "sha256": "2196475c282ff1ab40c6f9f761725d6411032fcead9ade993703bfbc5bc78967",
+      "traceable": true,
+      "blob_parity": true
+    },
+    {
+      "dest": "mjcf/meshes/waist_yaw_link.STL",
+      "src": "booster_assets/robots/T2/T2_31dof_WujiHand/meshes/waist_yaw_link.STL",
+      "kind": "asset",
+      "sha256": "c0950ebf894fd9ebf00a69678a713c1b4f2e1a2f1827864707b3d3a8e09ea061",
+      "traceable": true,
+      "blob_parity": true
+    },
+    {
+      "dest": "mjcf/meshes/waist_yaw_link_collision.STL",
+      "src": "booster_assets/robots/T2/T2_31dof_WujiHand/meshes/waist_yaw_link_collision.STL",
+      "kind": "asset",
+      "sha256": "3767612763d5b005c21ac1217b3e078742f51ed63860383ebba61f07da55c481",
+      "traceable": true,
+      "blob_parity": true
+    },
+    {
+      "dest": "urdf/T2_31dof_WujiHand.urdf",
+      "src": "booster_assets/robots/T2/T2_31dof_WujiHand/T2_31dof_WujiHand.urdf",
+      "kind": "urdf",
+      "sha256": "864c674a6f56b353479c782a49599d64e674c20edeb5414728cbc0199b637ac3",
+      "traceable": true,
+      "blob_parity": true
+    },
+    {
+      "dest": "urdf/meshes/head_pitch_link.STL",
+      "src": "booster_assets/robots/T2/T2_31dof_WujiHand/meshes/head_pitch_link.STL",
+      "kind": "mesh",
+      "sha256": "f1f59dab47d9e93ce63174b69722c22db9cd336d59ddece822befb1813b501d0",
+      "traceable": true,
+      "blob_parity": true
+    },
+    {
+      "dest": "urdf/meshes/head_pitch_link_collision.STL",
+      "src": "booster_assets/robots/T2/T2_31dof_WujiHand/meshes/head_pitch_link_collision.STL",
+      "kind": "mesh",
+      "sha256": "3ee342ea15b2c0fcff291f98611ed6752447c120edc9b95b990b3fe6697e112c",
+      "traceable": true,
+      "blob_parity": true
+    },
+    {
+      "dest": "urdf/meshes/head_yaw_link.STL",
+      "src": "booster_assets/robots/T2/T2_31dof_WujiHand/meshes/head_yaw_link.STL",
+      "kind": "mesh",
+      "sha256": "82837cb3b7d1f2a416cf7839bb680cfe468c558c8875531c224cbb673c40fe6d",
+      "traceable": true,
+      "blob_parity": true
+    },
+    {
+      "dest": "urdf/meshes/left_ankle_pitch_link.STL",
+      "src": "booster_assets/robots/T2/T2_31dof_WujiHand/meshes/left_ankle_pitch_link.STL",
+      "kind": "mesh",
+      "sha256": "68e0ea886e54c3159b2ae5a94a18917dfb05381298f95df438651968c60f740d",
+      "traceable": true,
+      "blob_parity": true
+    },
+    {
+      "dest": "urdf/meshes/left_ankle_roll_link.STL",
+      "src": "booster_assets/robots/T2/T2_31dof_WujiHand/meshes/left_ankle_roll_link.STL",
+      "kind": "mesh",
+      "sha256": "feeb92e5ff3590817c9b8078c314b0b16a0e03654ba0b8bd6551fd058b341dd4",
+      "traceable": true,
+      "blob_parity": true
+    },
+    {
+      "dest": "urdf/meshes/left_elbow_pitch_link.STL",
+      "src": "booster_assets/robots/T2/T2_31dof_WujiHand/meshes/left_elbow_pitch_link.STL",
+      "kind": "mesh",
+      "sha256": "7a629fe2ce0501cdfaaba3d5020ca044d0c71fd44bba85d3818a1c493444cb0c",
+      "traceable": true,
+      "blob_parity": true
+    },
+    {
+      "dest": "urdf/meshes/left_elbow_yaw_link.STL",
+      "src": "booster_assets/robots/T2/T2_31dof_WujiHand/meshes/left_elbow_yaw_link.STL",
+      "kind": "mesh",
+      "sha256": "35afa050a21fcdd20d70307b5d3f4a567a3aef9302daf91659e83502502fd054",
+      "traceable": true,
+      "blob_parity": true
+    },
+    {
+      "dest": "urdf/meshes/left_finger1_link1.STL",
+      "src": "booster_assets/robots/T2/T2_31dof_WujiHand/meshes/left_finger1_link1.STL",
+      "kind": "mesh",
+      "sha256": "ef6226834aafe36a718c3bdedd6a8a53ac076d833f4c989c4259fe111098426e",
+      "traceable": true,
+      "blob_parity": true
+    },
+    {
+      "dest": "urdf/meshes/left_finger1_link2.STL",
+      "src": "booster_assets/robots/T2/T2_31dof_WujiHand/meshes/left_finger1_link2.STL",
+      "kind": "mesh",
+      "sha256": "4b95c67bfb2d87a9f0bd6ab1cafcad27229eecdd7d22510681f1d394d4249e7c",
+      "traceable": true,
+      "blob_parity": true
+    },
+    {
+      "dest": "urdf/meshes/left_finger1_link3.STL",
+      "src": "booster_assets/robots/T2/T2_31dof_WujiHand/meshes/left_finger1_link3.STL",
+      "kind": "mesh",
+      "sha256": "2a6ba5a4d292b33a972760cd2e536e3bb0b7ff11f3ba070d2ff6b9a4a347e9cb",
+      "traceable": true,
+      "blob_parity": true
+    },
+    {
+      "dest": "urdf/meshes/left_finger1_link4.STL",
+      "src": "booster_assets/robots/T2/T2_31dof_WujiHand/meshes/left_finger1_link4.STL",
+      "kind": "mesh",
+      "sha256": "bcb512d59797e4da81d166c7118197a5f5c6b397091617ca189a56dbbd9b74c9",
+      "traceable": true,
+      "blob_parity": true
+    },
+    {
+      "dest": "urdf/meshes/left_finger1_tip_link.STL",
+      "src": "booster_assets/robots/T2/T2_31dof_WujiHand/meshes/left_finger1_tip_link.STL",
+      "kind": "mesh",
+      "sha256": "83c92a6c07f7c3c9833d56c4cc2d4fc29d691ff458a75d766f16668aa3b7a906",
+      "traceable": true,
+      "blob_parity": true
+    },
+    {
+      "dest": "urdf/meshes/left_finger2_link1.STL",
+      "src": "booster_assets/robots/T2/T2_31dof_WujiHand/meshes/left_finger2_link1.STL",
+      "kind": "mesh",
+      "sha256": "afb3cd29a430e31e1c972b0165f942e95e56e33da80fc234b5c474231f00ce63",
+      "traceable": true,
+      "blob_parity": true
+    },
+    {
+      "dest": "urdf/meshes/left_finger2_link2.STL",
+      "src": "booster_assets/robots/T2/T2_31dof_WujiHand/meshes/left_finger2_link2.STL",
+      "kind": "mesh",
+      "sha256": "02c12143eabd598559b9893ba7e8642b2510abd25fa06d968c8183e625f19ec5",
+      "traceable": true,
+      "blob_parity": true
+    },
+    {
+      "dest": "urdf/meshes/left_finger2_link3.STL",
+      "src": "booster_assets/robots/T2/T2_31dof_WujiHand/meshes/left_finger2_link3.STL",
+      "kind": "mesh",
+      "sha256": "764426f6623a6809565954770980dccfe5694d7c822b3035c75e3fad14712601",
+      "traceable": true,
+      "blob_parity": true
+    },
+    {
+      "dest": "urdf/meshes/left_finger2_link4.STL",
+      "src": "booster_assets/robots/T2/T2_31dof_WujiHand/meshes/left_finger2_link4.STL",
+      "kind": "mesh",
+      "sha256": "32419448505112baa15a7c39613051bdb463cf0e0f235ce5583c582151c9aa4b",
+      "traceable": true,
+      "blob_parity": true
+    },
+    {
+      "dest": "urdf/meshes/left_finger2_tip_link.STL",
+      "src": "booster_assets/robots/T2/T2_31dof_WujiHand/meshes/left_finger2_tip_link.STL",
+      "kind": "mesh",
+      "sha256": "ef47c5b835948311609616142247f6e764adf2fc1e060d620f64fd19efef9458",
+      "traceable": true,
+      "blob_parity": true
+    },
+    {
+      "dest": "urdf/meshes/left_finger3_link1.STL",
+      "src": "booster_assets/robots/T2/T2_31dof_WujiHand/meshes/left_finger3_link1.STL",
+      "kind": "mesh",
+      "sha256": "92839a1448fad363032f9a2cff0e660846a89ff15cf1233ab88e0adab5670466",
+      "traceable": true,
+      "blob_parity": true
+    },
+    {
+      "dest": "urdf/meshes/left_finger3_link2.STL",
+      "src": "booster_assets/robots/T2/T2_31dof_WujiHand/meshes/left_finger3_link2.STL",
+      "kind": "mesh",
+      "sha256": "b538ab9ce27e19931553f2ef2b001788cf75bd7503bf955febc3acc96b9f3074",
+      "traceable": true,
+      "blob_parity": true
+    },
+    {
+      "dest": "urdf/meshes/left_finger3_link3.STL",
+      "src": "booster_assets/robots/T2/T2_31dof_WujiHand/meshes/left_finger3_link3.STL",
+      "kind": "mesh",
+      "sha256": "795ecf9b1fe67da36cea333d47bce7e7dc8339c058d9d6dc6dd954c93beb3ba6",
+      "traceable": true,
+      "blob_parity": true
+    },
+    {
+      "dest": "urdf/meshes/left_finger3_link4.STL",
+      "src": "booster_assets/robots/T2/T2_31dof_WujiHand/meshes/left_finger3_link4.STL",
+      "kind": "mesh",
+      "sha256": "e2428e5723d829567c1905d0253a38075081472f1cf5b6a91622ccc23b66a915",
+      "traceable": true,
+      "blob_parity": true
+    },
+    {
+      "dest": "urdf/meshes/left_finger3_tip_link.STL",
+      "src": "booster_assets/robots/T2/T2_31dof_WujiHand/meshes/left_finger3_tip_link.STL",
+      "kind": "mesh",
+      "sha256": "36b33404458a39a8e87dcc2e842f3d2679439f2a02dce37d441304060e6a235b",
+      "traceable": true,
+      "blob_parity": true
+    },
+    {
+      "dest": "urdf/meshes/left_finger4_link1.STL",
+      "src": "booster_assets/robots/T2/T2_31dof_WujiHand/meshes/left_finger4_link1.STL",
+      "kind": "mesh",
+      "sha256": "34372b6d907d7a8d0b9c7ab776398b9b9ea034ba05a6e17bbd5cb4eb7ee26e1d",
+      "traceable": true,
+      "blob_parity": true
+    },
+    {
+      "dest": "urdf/meshes/left_finger4_link2.STL",
+      "src": "booster_assets/robots/T2/T2_31dof_WujiHand/meshes/left_finger4_link2.STL",
+      "kind": "mesh",
+      "sha256": "d51b96912a9e127abdf89e5673ecaad6db373817b3cc85bd6bbc077dcff3b374",
+      "traceable": true,
+      "blob_parity": true
+    },
+    {
+      "dest": "urdf/meshes/left_finger4_link3.STL",
+      "src": "booster_assets/robots/T2/T2_31dof_WujiHand/meshes/left_finger4_link3.STL",
+      "kind": "mesh",
+      "sha256": "18d23d11f4b8735bbc0a790a3d4493eeb0389afdbdc44665f77e4c6d604c16fb",
+      "traceable": true,
+      "blob_parity": true
+    },
+    {
+      "dest": "urdf/meshes/left_finger4_link4.STL",
+      "src": "booster_assets/robots/T2/T2_31dof_WujiHand/meshes/left_finger4_link4.STL",
+      "kind": "mesh",
+      "sha256": "592c269cd9a47569084028096d3413289e68d3888cc756cb3d092674e137fdff",
+      "traceable": true,
+      "blob_parity": true
+    },
+    {
+      "dest": "urdf/meshes/left_finger4_tip_link.STL",
+      "src": "booster_assets/robots/T2/T2_31dof_WujiHand/meshes/left_finger4_tip_link.STL",
+      "kind": "mesh",
+      "sha256": "67995957f5082af59a3d8745f435adc44133446b1574b7cfacf07ed02ff7aa09",
+      "traceable": true,
+      "blob_parity": true
+    },
+    {
+      "dest": "urdf/meshes/left_finger5_link1.STL",
+      "src": "booster_assets/robots/T2/T2_31dof_WujiHand/meshes/left_finger5_link1.STL",
+      "kind": "mesh",
+      "sha256": "2ddd53a41d441fb1763585ddd031aaef1f30718f1afff3607c08a8065214d96b",
+      "traceable": true,
+      "blob_parity": true
+    },
+    {
+      "dest": "urdf/meshes/left_finger5_link2.STL",
+      "src": "booster_assets/robots/T2/T2_31dof_WujiHand/meshes/left_finger5_link2.STL",
+      "kind": "mesh",
+      "sha256": "09f0d2e932c41f9aa678ff80d5f7a612e43f7d14b12ef38cd98bc330a11f5ed1",
+      "traceable": true,
+      "blob_parity": true
+    },
+    {
+      "dest": "urdf/meshes/left_finger5_link3.STL",
+      "src": "booster_assets/robots/T2/T2_31dof_WujiHand/meshes/left_finger5_link3.STL",
+      "kind": "mesh",
+      "sha256": "2550cb770eba8132cab3208c10b6891de17b05c051555dea79dbb9e8dac2b011",
+      "traceable": true,
+      "blob_parity": true
+    },
+    {
+      "dest": "urdf/meshes/left_finger5_link4.STL",
+      "src": "booster_assets/robots/T2/T2_31dof_WujiHand/meshes/left_finger5_link4.STL",
+      "kind": "mesh",
+      "sha256": "3f095a1ca1733b4769121a3be424ebfdc450a2c384623d079f9c159c4c8b0200",
+      "traceable": true,
+      "blob_parity": true
+    },
+    {
+      "dest": "urdf/meshes/left_finger5_tip_link.STL",
+      "src": "booster_assets/robots/T2/T2_31dof_WujiHand/meshes/left_finger5_tip_link.STL",
+      "kind": "mesh",
+      "sha256": "6955f23515b68a893b6e1c9de7067c4852224e1cc8413211a948ec4c09dbf5aa",
+      "traceable": true,
+      "blob_parity": true
+    },
+    {
+      "dest": "urdf/meshes/left_hip_pitch_link.STL",
+      "src": "booster_assets/robots/T2/T2_31dof_WujiHand/meshes/left_hip_pitch_link.STL",
+      "kind": "mesh",
+      "sha256": "75e86c93f4f3be75ae854391d03230f6f032026c32548caef918d359d3178a8f",
+      "traceable": true,
+      "blob_parity": true
+    },
+    {
+      "dest": "urdf/meshes/left_hip_roll_link.STL",
+      "src": "booster_assets/robots/T2/T2_31dof_WujiHand/meshes/left_hip_roll_link.STL",
+      "kind": "mesh",
+      "sha256": "a712069ff4730a942879c30cdba00f6051d74993589462870acff50873741d6d",
+      "traceable": true,
+      "blob_parity": true
+    },
+    {
+      "dest": "urdf/meshes/left_hip_yaw_link.STL",
+      "src": "booster_assets/robots/T2/T2_31dof_WujiHand/meshes/left_hip_yaw_link.STL",
+      "kind": "mesh",
+      "sha256": "1a48820e718a9724d125ef7dd8717501fbfc8e033139267fc66de3c386af8672",
+      "traceable": true,
+      "blob_parity": true
+    },
+    {
+      "dest": "urdf/meshes/left_knee_pitch_link.STL",
+      "src": "booster_assets/robots/T2/T2_31dof_WujiHand/meshes/left_knee_pitch_link.STL",
+      "kind": "mesh",
+      "sha256": "ee66d048f4157b2e5ed221423d1f69d1d72b03609eea124700fa7dbf82166efc",
+      "traceable": true,
+      "blob_parity": true
+    },
+    {
+      "dest": "urdf/meshes/left_palm_link.STL",
+      "src": "booster_assets/robots/T2/T2_31dof_WujiHand/meshes/left_palm_link.STL",
+      "kind": "mesh",
+      "sha256": "5a16d3510b49444857cc829a18202ce8bf62a129c20684190ccaedb545992298",
+      "traceable": true,
+      "blob_parity": true
+    },
+    {
+      "dest": "urdf/meshes/left_shoulder_pitch_link.STL",
+      "src": "booster_assets/robots/T2/T2_31dof_WujiHand/meshes/left_shoulder_pitch_link.STL",
+      "kind": "mesh",
+      "sha256": "37a19783477a3b4ad62a22c25b7a4058cbaab9af92df15435baade6ea131fde7",
+      "traceable": true,
+      "blob_parity": true
+    },
+    {
+      "dest": "urdf/meshes/left_shoulder_roll_link.STL",
+      "src": "booster_assets/robots/T2/T2_31dof_WujiHand/meshes/left_shoulder_roll_link.STL",
+      "kind": "mesh",
+      "sha256": "d10c4f38c0fd8c434e5f6fcbda260a34405160b96280638aea77b0d629594568",
+      "traceable": true,
+      "blob_parity": true
+    },
+    {
+      "dest": "urdf/meshes/left_wrist_pitch_link.STL",
+      "src": "booster_assets/robots/T2/T2_31dof_WujiHand/meshes/left_wrist_pitch_link.STL",
+      "kind": "mesh",
+      "sha256": "85085ba79d4c1755bbe35a4bce7b0dad732342c9f15cb3732e9d234b12098074",
+      "traceable": true,
+      "blob_parity": true
+    },
+    {
+      "dest": "urdf/meshes/left_wrist_roll_link.STL",
+      "src": "booster_assets/robots/T2/T2_31dof_WujiHand/meshes/left_wrist_roll_link.STL",
+      "kind": "mesh",
+      "sha256": "ea4e1ad6f29610d1fb6e018820a4c3a2dbbfd4e394bdfd3ee5fb806b185e6b25",
+      "traceable": true,
+      "blob_parity": true
+    },
+    {
+      "dest": "urdf/meshes/left_wrist_yaw_link.STL",
+      "src": "booster_assets/robots/T2/T2_31dof_WujiHand/meshes/left_wrist_yaw_link.STL",
+      "kind": "mesh",
+      "sha256": "bfc1d2685458c649466daffe1535a79a25576950fae41be0c78a60c77addb499",
+      "traceable": true,
+      "blob_parity": true
+    },
+    {
+      "dest": "urdf/meshes/logo.STL",
+      "src": "booster_assets/robots/T2/T2_31dof_WujiHand/meshes/logo.STL",
+      "kind": "mesh",
+      "sha256": "58edab292a58607e30a92c332bd6283b8b8b76366802bcd8a2c168e754b6a760",
+      "traceable": true,
+      "blob_parity": true
+    },
+    {
+      "dest": "urdf/meshes/right_ankle_pitch_link.STL",
+      "src": "booster_assets/robots/T2/T2_31dof_WujiHand/meshes/right_ankle_pitch_link.STL",
+      "kind": "mesh",
+      "sha256": "c65638beb7e080057b10bb46f8a6db311cbeb80aa1b189b4d682f5e1b26d48a0",
+      "traceable": true,
+      "blob_parity": true
+    },
+    {
+      "dest": "urdf/meshes/right_ankle_roll_link.STL",
+      "src": "booster_assets/robots/T2/T2_31dof_WujiHand/meshes/right_ankle_roll_link.STL",
+      "kind": "mesh",
+      "sha256": "a61e8f7879fd8c575506fdf78b82805d67f9a70d3bca9a30bcabb424b89b75c1",
+      "traceable": true,
+      "blob_parity": true
+    },
+    {
+      "dest": "urdf/meshes/right_elbow_pitch_link.STL",
+      "src": "booster_assets/robots/T2/T2_31dof_WujiHand/meshes/right_elbow_pitch_link.STL",
+      "kind": "mesh",
+      "sha256": "1d8d06a76e0fa9897cf740d7ae6fb5c735d36e4ce9cdb6ad8f739c7b50700a24",
+      "traceable": true,
+      "blob_parity": true
+    },
+    {
+      "dest": "urdf/meshes/right_elbow_yaw_link.STL",
+      "src": "booster_assets/robots/T2/T2_31dof_WujiHand/meshes/right_elbow_yaw_link.STL",
+      "kind": "mesh",
+      "sha256": "d6600efeefb0f0189cdf9158173b66e3b76c9104576e11efaa1f72a648be6732",
+      "traceable": true,
+      "blob_parity": true
+    },
+    {
+      "dest": "urdf/meshes/right_finger1_link1.STL",
+      "src": "booster_assets/robots/T2/T2_31dof_WujiHand/meshes/right_finger1_link1.STL",
+      "kind": "mesh",
+      "sha256": "0e32302a46cd00d6cc1e7fb03cc483988c639271708c2300a9aecc9de537e42b",
+      "traceable": true,
+      "blob_parity": true
+    },
+    {
+      "dest": "urdf/meshes/right_finger1_link2.STL",
+      "src": "booster_assets/robots/T2/T2_31dof_WujiHand/meshes/right_finger1_link2.STL",
+      "kind": "mesh",
+      "sha256": "080015cce41de31954e53bbfca45f37f0439e2e689bca49e1910c70efc4f70b7",
+      "traceable": true,
+      "blob_parity": true
+    },
+    {
+      "dest": "urdf/meshes/right_finger1_link3.STL",
+      "src": "booster_assets/robots/T2/T2_31dof_WujiHand/meshes/right_finger1_link3.STL",
+      "kind": "mesh",
+      "sha256": "52eef283d29c617fe4457151685386324bddbccf1598b8a7fc675bb8f28dc85a",
+      "traceable": true,
+      "blob_parity": true
+    },
+    {
+      "dest": "urdf/meshes/right_finger1_link4.STL",
+      "src": "booster_assets/robots/T2/T2_31dof_WujiHand/meshes/right_finger1_link4.STL",
+      "kind": "mesh",
+      "sha256": "f0fb321c4abfd4ab7437caeb116f1935b94d1510fd921222eb49ba6c5a57f057",
+      "traceable": true,
+      "blob_parity": true
+    },
+    {
+      "dest": "urdf/meshes/right_finger1_tip_link.STL",
+      "src": "booster_assets/robots/T2/T2_31dof_WujiHand/meshes/right_finger1_tip_link.STL",
+      "kind": "mesh",
+      "sha256": "25929e0c28a5c65afe88dbccaa697664a2385f8ead02126731a7e1b956ec1dea",
+      "traceable": true,
+      "blob_parity": true
+    },
+    {
+      "dest": "urdf/meshes/right_finger2_link1.STL",
+      "src": "booster_assets/robots/T2/T2_31dof_WujiHand/meshes/right_finger2_link1.STL",
+      "kind": "mesh",
+      "sha256": "36e0471a0373a7634fc10911b33f3b30a5fe829f6526e656a911406cebf19731",
+      "traceable": true,
+      "blob_parity": true
+    },
+    {
+      "dest": "urdf/meshes/right_finger2_link2.STL",
+      "src": "booster_assets/robots/T2/T2_31dof_WujiHand/meshes/right_finger2_link2.STL",
+      "kind": "mesh",
+      "sha256": "56bb1972b8cb1d63d48aa18283148ff6760e387dc64fe963b11209e07e243511",
+      "traceable": true,
+      "blob_parity": true
+    },
+    {
+      "dest": "urdf/meshes/right_finger2_link3.STL",
+      "src": "booster_assets/robots/T2/T2_31dof_WujiHand/meshes/right_finger2_link3.STL",
+      "kind": "mesh",
+      "sha256": "48d70e865e2b49139028511808ae3ad25c5cf06e36fe959c6c71b5263dfcbbde",
+      "traceable": true,
+      "blob_parity": true
+    },
+    {
+      "dest": "urdf/meshes/right_finger2_link4.STL",
+      "src": "booster_assets/robots/T2/T2_31dof_WujiHand/meshes/right_finger2_link4.STL",
+      "kind": "mesh",
+      "sha256": "3eede2c8e1eb1301bc23b4b453fb7014ca5965611b44b115a7330bf33e4d922e",
+      "traceable": true,
+      "blob_parity": true
+    },
+    {
+      "dest": "urdf/meshes/right_finger2_tip_link.STL",
+      "src": "booster_assets/robots/T2/T2_31dof_WujiHand/meshes/right_finger2_tip_link.STL",
+      "kind": "mesh",
+      "sha256": "496039ce3f4f3fbe6bac466a01567797f741af95c6f11dc61626ec2de175900b",
+      "traceable": true,
+      "blob_parity": true
+    },
+    {
+      "dest": "urdf/meshes/right_finger3_link1.STL",
+      "src": "booster_assets/robots/T2/T2_31dof_WujiHand/meshes/right_finger3_link1.STL",
+      "kind": "mesh",
+      "sha256": "558fac18be219c0e6bb6224b82c711b3efe762b547818ea074eda93dc38bad07",
+      "traceable": true,
+      "blob_parity": true
+    },
+    {
+      "dest": "urdf/meshes/right_finger3_link2.STL",
+      "src": "booster_assets/robots/T2/T2_31dof_WujiHand/meshes/right_finger3_link2.STL",
+      "kind": "mesh",
+      "sha256": "338db71e2c1ec63fba860d5d2af52bcb1daff72349b0e03a45f82ae63539bd43",
+      "traceable": true,
+      "blob_parity": true
+    },
+    {
+      "dest": "urdf/meshes/right_finger3_link3.STL",
+      "src": "booster_assets/robots/T2/T2_31dof_WujiHand/meshes/right_finger3_link3.STL",
+      "kind": "mesh",
+      "sha256": "3af337085d5f6430a471462c18b9132f1447eb8c0f3c68a8b1e69318ff8c3db8",
+      "traceable": true,
+      "blob_parity": true
+    },
+    {
+      "dest": "urdf/meshes/right_finger3_link4.STL",
+      "src": "booster_assets/robots/T2/T2_31dof_WujiHand/meshes/right_finger3_link4.STL",
+      "kind": "mesh",
+      "sha256": "3b8efa21bafcae21119f243decf924dac51cc55181ed540e69ce6b85ecf03790",
+      "traceable": true,
+      "blob_parity": true
+    },
+    {
+      "dest": "urdf/meshes/right_finger3_tip_link.STL",
+      "src": "booster_assets/robots/T2/T2_31dof_WujiHand/meshes/right_finger3_tip_link.STL",
+      "kind": "mesh",
+      "sha256": "7a99f65a6a473899913d4273e61319e3724fbf81ac8532969ed5c2ff1c1bde54",
+      "traceable": true,
+      "blob_parity": true
+    },
+    {
+      "dest": "urdf/meshes/right_finger4_link1.STL",
+      "src": "booster_assets/robots/T2/T2_31dof_WujiHand/meshes/right_finger4_link1.STL",
+      "kind": "mesh",
+      "sha256": "508321fefaeae1ae0567f89acd2492fac27cc468a2f562d895afcff192b0d00c",
+      "traceable": true,
+      "blob_parity": true
+    },
+    {
+      "dest": "urdf/meshes/right_finger4_link2.STL",
+      "src": "booster_assets/robots/T2/T2_31dof_WujiHand/meshes/right_finger4_link2.STL",
+      "kind": "mesh",
+      "sha256": "e0b28769389c33af6af73c6dbf506be126570fa6ca7cbaf08f85a51005c48cde",
+      "traceable": true,
+      "blob_parity": true
+    },
+    {
+      "dest": "urdf/meshes/right_finger4_link3.STL",
+      "src": "booster_assets/robots/T2/T2_31dof_WujiHand/meshes/right_finger4_link3.STL",
+      "kind": "mesh",
+      "sha256": "b01668bab452260954faf8cbff94fb59c55ccb3e490ff6eb4b73e81e550c787f",
+      "traceable": true,
+      "blob_parity": true
+    },
+    {
+      "dest": "urdf/meshes/right_finger4_link4.STL",
+      "src": "booster_assets/robots/T2/T2_31dof_WujiHand/meshes/right_finger4_link4.STL",
+      "kind": "mesh",
+      "sha256": "d673bf02761f722728eb1ee0e7cc79ee6afba7693c78f623c3a4a89d5a905453",
+      "traceable": true,
+      "blob_parity": true
+    },
+    {
+      "dest": "urdf/meshes/right_finger4_tip_link.STL",
+      "src": "booster_assets/robots/T2/T2_31dof_WujiHand/meshes/right_finger4_tip_link.STL",
+      "kind": "mesh",
+      "sha256": "e8b1fbee8e019afe490e820b1cba5e02c5124bb4a09aa73896bd46db6586dfde",
+      "traceable": true,
+      "blob_parity": true
+    },
+    {
+      "dest": "urdf/meshes/right_finger5_link1.STL",
+      "src": "booster_assets/robots/T2/T2_31dof_WujiHand/meshes/right_finger5_link1.STL",
+      "kind": "mesh",
+      "sha256": "85ce22b8285a7d85e4c866151c972cde0736d4f618f35015b0b96fe39e367e49",
+      "traceable": true,
+      "blob_parity": true
+    },
+    {
+      "dest": "urdf/meshes/right_finger5_link2.STL",
+      "src": "booster_assets/robots/T2/T2_31dof_WujiHand/meshes/right_finger5_link2.STL",
+      "kind": "mesh",
+      "sha256": "9245362396a184e63af8d2707dc85a3250f1d7db4eeb079d5b3ee9b432939dd6",
+      "traceable": true,
+      "blob_parity": true
+    },
+    {
+      "dest": "urdf/meshes/right_finger5_link3.STL",
+      "src": "booster_assets/robots/T2/T2_31dof_WujiHand/meshes/right_finger5_link3.STL",
+      "kind": "mesh",
+      "sha256": "1083dcec6df545d60c3f14af1113613ca89cc8964692dd624baa750491915f40",
+      "traceable": true,
+      "blob_parity": true
+    },
+    {
+      "dest": "urdf/meshes/right_finger5_link4.STL",
+      "src": "booster_assets/robots/T2/T2_31dof_WujiHand/meshes/right_finger5_link4.STL",
+      "kind": "mesh",
+      "sha256": "6342d4562a8bfaef740850c02dc5418ade11dcbe04736b957d93522995080f35",
+      "traceable": true,
+      "blob_parity": true
+    },
+    {
+      "dest": "urdf/meshes/right_finger5_tip_link.STL",
+      "src": "booster_assets/robots/T2/T2_31dof_WujiHand/meshes/right_finger5_tip_link.STL",
+      "kind": "mesh",
+      "sha256": "ebbf48ca7ba3bca5f329f95277ae392d0c1a09615eda23f1bf646c5112a38cee",
+      "traceable": true,
+      "blob_parity": true
+    },
+    {
+      "dest": "urdf/meshes/right_hip_pitch_link.STL",
+      "src": "booster_assets/robots/T2/T2_31dof_WujiHand/meshes/right_hip_pitch_link.STL",
+      "kind": "mesh",
+      "sha256": "9ba8462670328616b80ffdc9ca4fcb9b956a63bc1945fe3c2915d4c4c4be0eef",
+      "traceable": true,
+      "blob_parity": true
+    },
+    {
+      "dest": "urdf/meshes/right_hip_roll_link.STL",
+      "src": "booster_assets/robots/T2/T2_31dof_WujiHand/meshes/right_hip_roll_link.STL",
+      "kind": "mesh",
+      "sha256": "1aacf29649c00da1d9e276804f3793353dcf2e5d11fb8a834557be03c5a56773",
+      "traceable": true,
+      "blob_parity": true
+    },
+    {
+      "dest": "urdf/meshes/right_hip_yaw_link.STL",
+      "src": "booster_assets/robots/T2/T2_31dof_WujiHand/meshes/right_hip_yaw_link.STL",
+      "kind": "mesh",
+      "sha256": "5bfda02be1109f10b30f1aa87848c0c064a516d917b86df11d6bbe46af371620",
+      "traceable": true,
+      "blob_parity": true
+    },
+    {
+      "dest": "urdf/meshes/right_knee_pitch_link.STL",
+      "src": "booster_assets/robots/T2/T2_31dof_WujiHand/meshes/right_knee_pitch_link.STL",
+      "kind": "mesh",
+      "sha256": "a04304cce3fea19a23abee6a22e3910feffba16b59b051b087c50295d058a9f9",
+      "traceable": true,
+      "blob_parity": true
+    },
+    {
+      "dest": "urdf/meshes/right_palm_link.STL",
+      "src": "booster_assets/robots/T2/T2_31dof_WujiHand/meshes/right_palm_link.STL",
+      "kind": "mesh",
+      "sha256": "1ba4495e3b7adc707d50150a8625a0ed3731fa42ab6d40e62ae7437da103ce5e",
+      "traceable": true,
+      "blob_parity": true
+    },
+    {
+      "dest": "urdf/meshes/right_shoulder_pitch_link.STL",
+      "src": "booster_assets/robots/T2/T2_31dof_WujiHand/meshes/right_shoulder_pitch_link.STL",
+      "kind": "mesh",
+      "sha256": "0e4ca045ba6d27dad6755b426581455ee00c28a32a9d4232f96af30e089535d2",
+      "traceable": true,
+      "blob_parity": true
+    },
+    {
+      "dest": "urdf/meshes/right_shoulder_roll_link.STL",
+      "src": "booster_assets/robots/T2/T2_31dof_WujiHand/meshes/right_shoulder_roll_link.STL",
+      "kind": "mesh",
+      "sha256": "0c3b6f453e934d41b519a22affafc6c9002b0356bc40c425a61a35c82970593c",
+      "traceable": true,
+      "blob_parity": true
+    },
+    {
+      "dest": "urdf/meshes/right_wrist_pitch_link.STL",
+      "src": "booster_assets/robots/T2/T2_31dof_WujiHand/meshes/right_wrist_pitch_link.STL",
+      "kind": "mesh",
+      "sha256": "25538e72b962faac3c76c7d08ee1839b72cbaeb5403ec0e465546e7d48e27b9e",
+      "traceable": true,
+      "blob_parity": true
+    },
+    {
+      "dest": "urdf/meshes/right_wrist_roll_link.STL",
+      "src": "booster_assets/robots/T2/T2_31dof_WujiHand/meshes/right_wrist_roll_link.STL",
+      "kind": "mesh",
+      "sha256": "e48d25ea4be337bfa5ac05f197ea0fe22bf9ae2d4f3b4b1a426f3fb62b912cc0",
+      "traceable": true,
+      "blob_parity": true
+    },
+    {
+      "dest": "urdf/meshes/right_wrist_yaw_link.STL",
+      "src": "booster_assets/robots/T2/T2_31dof_WujiHand/meshes/right_wrist_yaw_link.STL",
+      "kind": "mesh",
+      "sha256": "2b6ce1d4710e95a8f45d58b313f4350168460162f80d788120baeda4f069348a",
+      "traceable": true,
+      "blob_parity": true
+    },
+    {
+      "dest": "urdf/meshes/trunk.STL",
+      "src": "booster_assets/robots/T2/T2_31dof_WujiHand/meshes/trunk.STL",
+      "kind": "mesh",
+      "sha256": "52afacf37b3380f4dc7e028d5cef2cfb1e36145cac2ee73a9b5fcfe1167b81c0",
+      "traceable": true,
+      "blob_parity": true
+    },
+    {
+      "dest": "urdf/meshes/waist_pitch_link.STL",
+      "src": "booster_assets/robots/T2/T2_31dof_WujiHand/meshes/waist_pitch_link.STL",
+      "kind": "mesh",
+      "sha256": "ba2d7dd2d4c811618e86931f6fd6480770fd5168f51b640b94ff79d59d19c953",
+      "traceable": true,
+      "blob_parity": true
+    },
+    {
+      "dest": "urdf/meshes/waist_roll_link.STL",
+      "src": "booster_assets/robots/T2/T2_31dof_WujiHand/meshes/waist_roll_link.STL",
+      "kind": "mesh",
+      "sha256": "2196475c282ff1ab40c6f9f761725d6411032fcead9ade993703bfbc5bc78967",
+      "traceable": true,
+      "blob_parity": true
+    },
+    {
+      "dest": "urdf/meshes/waist_yaw_link.STL",
+      "src": "booster_assets/robots/T2/T2_31dof_WujiHand/meshes/waist_yaw_link.STL",
+      "kind": "mesh",
+      "sha256": "c0950ebf894fd9ebf00a69678a713c1b4f2e1a2f1827864707b3d3a8e09ea061",
+      "traceable": true,
+      "blob_parity": true
+    },
+    {
+      "dest": "urdf/meshes/waist_yaw_link_collision.STL",
+      "src": "booster_assets/robots/T2/T2_31dof_WujiHand/meshes/waist_yaw_link_collision.STL",
+      "kind": "mesh",
+      "sha256": "3767612763d5b005c21ac1217b3e078742f51ed63860383ebba61f07da55c481",
+      "traceable": true,
+      "blob_parity": true
+    }
+  ],
+  "checks": [
+    {
+      "check": "s4:traceability",
+      "status": "PASS",
+      "detail": "176 个 raw 源入库件三锚全过（SHA256 命中 manifest 同路径行 + hash-object 命中上游 ls-tree@pin blob id）"
+    },
+    {
+      "check": "s4:mesh-split-decision",
+      "status": "PASS",
+      "detail": "URDF 侧 141 处引用 → 87 个物理网格 vs MJCF 侧 87 个，两侧同哈希（同源同内容，STL 同格式）——分目录落位以保持各自引用协议结构（不改官方一字节，保持官方 meshdir/相对引用结构，记录在案）"
+    },
+    {
+      "check": "s4:dae-dir-parity",
+      "status": "SKIP",
+      "detail": "本模型 urdf 无 dae/ 与 meshes/ 双目录结构（G1 为 meshes/ 单池），R3-D3 判定不适用"
+    },
+    {
+      "check": "s4:coverage",
+      "status": "WARN",
+      "detail": "raw 全量 96（除 .git/manifest）= 根级及中间层 5 + 目标子目录 91；子目录 91 全覆盖 = 入库唯一源 89；物理落位 176 件（87 件为双侧同源网格重复落位，同源同内容、两侧引用协议各自独立目录） + 排除 0（其中 meshes/ 冗余 0）（未覆盖：['booster_assets/robots/T2/T2_31dof_WujiHand/meshes/left_wrist_roll_link_collision.STL', 'booster_assets/robots/T2/T2_31dof_WujiHand/meshes/right_wrist_roll_link_collision.STL']）——算式按源件口径平账（F1 教训）"
+    },
+    {
+      "check": "s4:recheck-mjcf",
+      "status": "PASS",
+      "detail": "入库后 mjcf/T2_31dof_WujiHand.xml 编译通过：nbody=73 ngeom=157 nmesh=87（官方相对引用结构保持）"
+    },
+    {
+      "check": "s4:recheck-urdf",
+      "status": "PASS",
+      "detail": "入库后 URDF yourdfpy 解析通过：87 links（relative（meshes/ 前缀）——meshes/ 与 urdf 同目录）"
+    }
+  ],
+  "total_bytes": 104926694,
+  "physical_files": 176,
+  "non_raw": []
+}

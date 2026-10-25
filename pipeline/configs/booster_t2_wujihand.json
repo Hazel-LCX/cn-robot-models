@@ -1,0 +1,96 @@
+{
+  "model": "booster_t2_wujihand",
+  "format_source": "official",
+  "sources": [
+    {
+      "name": "booster_assets",
+      "repo": "BoosterRobotics/booster_assets",
+      "pin": "12a97516f57469078707afb587a5f84c1cb110d1",
+      "subdir": "robots/T2/T2_31dof_WujiHand",
+      "license_path": "LICENSE",
+      "note": "M11：加速进化 T2 手部变体矩阵首件入库（R44 正门升格，M8『仅收主版』系当轮范围裁定非永久禁令）——WujiHand 灵巧手 71R=基座 31（与主版 T2 同构）+双手 5 指×4 关节×2=+40（M8 在档今日逐位复现）；license 同仓复指零新定性（blob d7a14af3 与 M4/M7/M8 逐字节同物，四战零漂移）；subdir 直指变体子目录（自包含实测：URDF 141 引→87 唯一全 meshes/ 前缀无跨目录引用）；后续三变体（JZ/Revo2/YS）留池不自动跟进，每件仍走协议②（R44 条件③）"
+    }
+  ],
+  "s2": {
+    "urdf": {
+      "source": "booster_assets",
+      "rel": "robots/T2/T2_31dof_WujiHand/T2_31dof_WujiHand.urdf",
+      "package": "T2",
+      "package_root": "robots/T2/T2_31dof_WujiHand",
+      "ref_style": "relative",
+      "note": "R44 预警①：141 引→87 唯一闭包差 54 处复用（手指网格复用）；结构数字一律 S2 解析器实测为准（R34 规程）——lxml 权威 87 link/86 joint=71R+15F 无 floating（正则 88/87/1floating 注释混计第三次实战）；scale 预扫 0（R44 实证）；2 个无惯量 link 身份 S3 实测（预警②，预计传感器座同款）"
+    },
+    "mjcf": {
+      "source": "booster_assets",
+      "model_rel": "robots/T2/T2_31dof_WujiHand/T2_31dof_WujiHand.xml",
+      "scene_rel": "robots/T2/T2_31dof_WujiHand/T2_31dof_WujiHand.xml"
+    },
+    "notes": {}
+  },
+  "s3": {
+    "official": {
+      "mass_kg": 42.0,
+      "tolerance": 0.1,
+      "evidence": "官网原文「重量：约 42 千克*」「身高：约 140 厘米」「自由度 全身：31」「最大峰值扭矩：140 N·m」（booster.tech/cn/booster-t2 产品页规格表，M8 活源原件 models/booster_t2/evidence/official-t2-spec-page.html 269,610B=R34 逐字节——同仓复指证据不重复取证）；README 配置表 T2 行主版 DoF 31 逐位",
+      "caliber": "**变体无专属官方基准（不虚构，M4 先例）**：42kg*/31DoF/140N·m 系主版 T2 口径，仅作整机 sanity——变体整机质量与主版差值预期=手部替换（WujiHand 双手 vs 默认手），不作主版基准的 PASS/FAIL 依据、如实披露差值；**变体对账真基准=主版 booster_t2 URDF 逐 body 对账（R44 预警⑤跨模型三锚新形态）**；42kg 星号注记 M8 已逐字核对原文在档",
+      "note": "身高对账点预判 1.40m 级（主版同构，S5 实测为准）；head 漂移对账=R44 预警⑥"
+    },
+    "sanity": {
+      "ratio_range": [
+        0.005,
+        0.5
+      ],
+      "axis_tolerance": 1e-06,
+      "mass_diff_warn": 0.02
+    },
+    "cross_alias": {},
+    "notes": {
+      "joint_range": "注：官网 DoF=全身 31（主版口径）↔ 变体 71R=31+40 指节（M8『Wuji +40』逐位复现）——变体 DoF 无官方逐值，结构断言以 S2 解析器实测为准；关节限位官网未公布逐值——纯体检；**effort 基准=官网峰值扭矩 140 N·m 为主版口径 sanity**（上限量级核对，主版全对账不外推至指节）；手指小质量关节（0.001~0.003 kg 级）惯量 sanity=Lite3 零惯量 FAIL 先例对照组（R44 裁定①）",
+      "upstream_png": "robots/T2/T2_31dof/ 无图片资产（S1 实测）——S3 C1 模板 png 提示不适用"
+    }
+  },
+  "s4": {
+    "urdf": [
+      {
+        "src_rel": "robots/T2/T2_31dof_WujiHand/T2_31dof_WujiHand.urdf",
+        "dest": "urdf/T2_31dof_WujiHand.urdf"
+      }
+    ],
+    "urdf_meshes": {
+      "package": "T2",
+      "dest_root": "urdf",
+      "note": "relative（meshes/ 前缀，T1/T2 同款）：subdir=变体子目录、meshes/ 同级；87 引用池闭包 S1 实测（池 89 vs 87 唯一=2 件池外身份 S4 平账，预警①）"
+    },
+    "mjcf": [
+      {
+        "src_rel": "robots/T2/T2_31dof_WujiHand/T2_31dof_WujiHand.xml",
+        "dest": "mjcf/T2_31dof_WujiHand.xml"
+      }
+    ],
+    "mjcf_assets": {
+      "src_rel": "robots/T2/T2_31dof_WujiHand/meshes",
+      "dest": "mjcf/meshes",
+      "mode": "closure",
+      "note": "MJCF meshdir 相对变体目录（分目录形态 M20/T2 同款）；closure 零改动落位"
+    },
+    "images": [],
+    "recheck": {
+      "mjcf": "mjcf/T2_31dof_WujiHand.xml",
+      "urdf": "urdf/T2_31dof_WujiHand.urdf",
+      "urdf_mesh_dir": "urdf",
+      "note": "relative（meshes/ 前缀）——meshes/ 与 urdf 同目录"
+    },
+    "excluded": [],
+    "note": "subdir=T2_31dof_WujiHand 直指变体子目录——变体自包含（无跨目录引用实测），主版/其余三变体由 subdir 天然隔离；变体目录仅 urdf+xml+meshes 三类（无 parallel/usd 件），excluded 空"
+  },
+  "s5": {
+    "viewport": "humanoid",
+    "note": "1.40m 级人形+灵巧手——humanoid 机位；**71 滑条=S5 面板规模实测点（预警③）**；R44 批准顺手改码窗口：页头计数标签细化『滑条 N（xR+yC+zP）』式分解标注（显示层不动 kinematics，N2 备案）"
+  },
+  "s6": {
+    "warmup_steps": 100,
+    "bench_steps": 10000,
+    "repeats": 5,
+    "scenario": "固定 qpos0、纯重力、无控制器（人形站立初始姿态，测引擎步进吞吐，不掺控制变量）；**R44 预警④执行：手指小质量关节纯重力下可能摆动——展幅异常时先口径核对（连续 vs 重置）+对照实验，归因纪律 R32/R41/R42**；连续口径与十一模型序列同法（R42 定案：连续口径为序列数字口径）"
+  }
+}
