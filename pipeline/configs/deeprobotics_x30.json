@@ -1,0 +1,96 @@
+{
+  "model": "deeprobotics_x30",
+  "format_source": "official",
+  "sources": [
+    {
+      "name": "deep_robotics_model",
+      "repo": "DeepRoboticsLab/deep_robotics_model",
+      "pin": "530e01a5d2ceb6007f8790f1a7e11ee7389fb981",
+      "subdir": "X30",
+      "license_path": "LICENSE.txt",
+      "note": "M10：云深处 X30 工业级四足（56kg 本库最大质量四足，尺度带新档）；同仓第五机型（license 快照与 M2/M5/M6/M9 逐字节同物 cdc6c065 零漂移无新定性，R40 五重同物）；**scale 实战线**：URDF 5 处镜像技巧+MJCF 4 处=跨格式 scale 对账首例（S1 逐处对账核心任务；preview.js scale 应用+DoubleSide=R18/R19 修复后首次成规模实战）；R40 预警四条=S1 执行：跨格式 scale 对账/S2 解析器自出 21+20/极简池检查覆盖面/head 对账；结构断言全部解析器生成（R34 规程，config 不预写）"
+    }
+  ],
+  "s2": {
+    "urdf": {
+      "source": "deep_robotics_model",
+      "rel": "X30/urdf/X30.urdf",
+      "package": "X30",
+      "package_root": "X30",
+      "ref_style": "relative",
+      "note": "S1 实测：13 引 './meshes/' 前缀→4 唯一（极简池）；scale 5 处逐处对账（R40 预警①核心：与 MJCF 4 处跨格式一致性）；注释内 base_joint 挂载块=R40 审计发现的 K1/T2 同族第三例（解析器口径为准）"
+    },
+    "mjcf": {
+      "source": "deep_robotics_model",
+      "model_rel": "X30/mjcf/X30.xml",
+      "scene_rel": "X30/mjcf/X30.xml"
+    },
+    "notes": {}
+  },
+  "s3": {
+    "official": {
+      "mass_kg": 56.0,
+      "tolerance": 0.1,
+      "evidence": "官网原文「整机重量（含电池）约 56 kg」「持续运行负载 20 kg」（deeprobotics.cn/products/detail/6.html 绝影X30 参数表，2026-10-24 静态 HTML，原件 evidence/official-x30-product-page.html 141,318B=M10 侦察落档 R40 活源核验）；本库最大质量四足档（vs Go2 8.2/Lite3 12）",
+      "caliber": "官网标称口径=含电池整机；URDF/MJCF 电池 link 情况 S3 实测——严格口径不可比仅作 sanity（M0/M1 同法）；DoF 对账=模型侧互证（URDF 12R ↔ MJCF hinge 数）",
+      "note": "S3 前置侦察完成（官网基准可得，非 T1/Piper 式缺失）；四足大质量容差口径同 ±10%"
+    },
+    "sanity": {
+      "ratio_range": [
+        0.005,
+        0.5
+      ],
+      "axis_tolerance": 1e-06,
+      "mass_diff_warn": 0.02
+    },
+    "cross_alias": {},
+    "notes": {
+      "joint_range": "注：官网未公布关节级参数（扭矩/限位/DoF 逐值）——纯体检+披露（Lite3 同口径）；DoF 对账=模型侧互证（URDF 12R ↔ MJCF hinge）",
+      "upstream_png": "X30/ 无图片资产（S1 实测）——S3 C1 模板 png 提示不适用"
+    }
+  },
+  "s4": {
+    "urdf": [
+      {
+        "src_rel": "X30/urdf/X30.urdf",
+        "dest": "urdf/X30.urdf"
+      }
+    ],
+    "urdf_meshes": {
+      "package": "X30",
+      "dest_root": "urdf",
+      "note": "relative（./ 前缀变体）：8 网格池（本库最小）闭包 4 唯一引用+池外件 S1 实测"
+    },
+    "mjcf": [
+      {
+        "src_rel": "X30/mjcf/X30.xml",
+        "dest": "mjcf/X30.xml"
+      }
+    ],
+    "mjcf_assets": {
+      "src_rel": "X30/mjcf/meshes",
+      "dest": "mjcf/meshes",
+      "mode": "closure",
+      "note": "MJCF meshdir='./meshes/' 相对 mjcf 目录（分目录形态 M20 同构）；closure 零改动落位"
+    },
+    "images": [],
+    "recheck": {
+      "mjcf": "mjcf/X30.xml",
+      "urdf": "urdf/X30.urdf",
+      "urdf_mesh_dir": "urdf",
+      "note": "relative（./ 前缀）——meshes/ 与 urdf 同目录"
+    },
+    "excluded": [],
+    "note": "X30/ 21 目录项 S1 实测（1+1+8+usd 5）；usd 照先例 excluded 逐件 why；其余机型目录天然隔离"
+  },
+  "s5": {
+    "viewport": "quadruped",
+    "note": "四足大机型——quadruped 机位；**scale 实战核心检验**：preview.js scale 应用（R18 修复）+DoubleSide（R19 修复）对 5 处镜像技巧的渲染正确性=S5 画面判据核心（四腿镜像对称），S6 前实测"
+  },
+  "s6": {
+    "warmup_steps": 100,
+    "bench_steps": 10000,
+    "repeats": 5,
+    "scenario": "固定 qpos0、纯重力、无控制器（四足站立初始姿态，测引擎步进吞吐，不掺控制变量）；展幅验收执行 R32 处置先例"
+  }
+}

@@ -3,7 +3,7 @@
 > **这不是模型收集站。** 这是一条可复现的开源仿真模型**质检管道**：
 > license 核对 → 拉取 → 格式校验 → 物理体检 → 双格式入库 → 在线预览 → 基准 → 质检报告。
 > 模型库是管道的副产品，**每一步的检查报告本身就是产品**。
-> 已收录：宇树 Go2（M0 质检样板）· 宇树 G1（M1 · 人形）· 云深处 Lite3（M2 · 异厂首录）· 智元灵犀 X2（M3 · 国产开源许可证首例）· 加速进化 T1（M4 · 第四厂商）· 云深处山猫 M20（M5 · 轮足 · continuous 拓扑首覆盖）· 云深处 DR02 Pro（M6 · 人形 1.8 m · 官方 DoF 基准齐备）· 加速进化 K1（M7 · 0.95 m 最小型 · 首个官网产品页直证机型）· 加速进化 T2（M8 · 官网旗舰 · S3 三基准机型）· 云深处 M20_Piper（M9 · 移动操作复合体 · prismatic 拓扑收官）——官方双源 URDF/MJCF（BSD-3-Clause / MulanPSL-2.0）。
+> 已收录：宇树 Go2（M0 质检样板）· 宇树 G1（M1 · 人形）· 云深处 Lite3（M2 · 异厂首录）· 智元灵犀 X2（M3 · 国产开源许可证首例）· 加速进化 T1（M4 · 第四厂商）· 云深处山猫 M20（M5 · 轮足 · continuous 拓扑首覆盖）· 云深处 DR02 Pro（M6 · 人形 1.8 m · 官方 DoF 基准齐备）· 加速进化 K1（M7 · 0.95 m 最小型 · 首个官网产品页直证机型）· 加速进化 T2（M8 · 官网旗舰 · S3 三基准机型）· 云深处 M20_Piper（M9 · 移动操作复合体 · prismatic 拓扑收官）· 云深处 绝影 X30（M10 · 56 kg 最大质量四足 · scale 实战线）——官方双源 URDF/MJCF（BSD-3-Clause / MulanPSL-2.0）。
 
 ## 为什么是"质检管道"而不是"模型库"
 
@@ -22,7 +22,8 @@
   [DR02 · 引用计数口径更正（grep 39→解析器 36：注释内元素虚增计数）/ 本库首个 collision-mesh 模型 / 身高官方对账 −8mm 姿态差](models/deeprobotics_dr02/README.md#1--引用计数口径更正grep-39--解析器-36l12-家族活案例) ·
   [K1 · 官网域名迁移实证与路径①转正（boosterobotics.com→booster.tech 301，"快照会过期活源才有效"活教材）/ URDF 注释内 world 块虚增结构断言](models/booster_k1/README.md#1--官网域名迁移与-a4-路径①转正本模型核心侦察成果) ·
   [T2 · link/joint 重名 logo（本库第二个 FAIL 级发现，names-unique 首触发，fail 不静默）/ 三基准全对账（质量+DoF+扭矩 140 N·m 本库首个）](models/booster_t2/README.md#1--faillink-与-joint-重名-logo本库第二个-fail-级发现names-unique-首触发) ·
-  [M20_Piper · URDF 限位全角句号 `0。611`（本库第三个 FAIL 级发现：上游数据缺陷 yourdfpy 加载即败，MJCF 交叉证据 / 管道容错如实点名）](models/deeprobotics_m20_piper/README.md#1--failurdf-限位含全角句号-0611本库第三个-fail-级发现上游数据缺陷引用前必读)。
+  [M20_Piper · URDF 限位全角句号 `0。611`（本库第三个 FAIL 级发现：上游数据缺陷 yourdfpy 加载即败，MJCF 交叉证据 / 管道容错如实点名）](models/deeprobotics_m20_piper/README.md#1--failurdf-限位含全角句号-0611本库第三个-fail-级发现上游数据缺陷引用前必读) ·
+  [X30 · 跨格式 scale 对账首例（URDF 5 处镜像+MJCF 4 处，镜像分配策略差异如实披露）/ nu=0 无执行器模型与 S6 展幅定性](models/deeprobotics_x30/README.md#1--跨格式-scale-对账本库首例两侧均有-scale-的模型)。
 - 如果体检全绿：价值落在"管道可复现 + 双格式对账 + 基准数字"——同样的成立。
 
 ## 管道
@@ -158,6 +159,18 @@ S0 license核对(门) → S1 拉取 → S2 格式校验 → S3 物理体检(门:
 | S5 3D 预览 | **prismatic 滑条落码**（joint7/8 夹爪位移单位 m，24 滑条=22 rad+2 m；N2 备案）；包围盒 y [0.000, 0.937]；**九模型基线逐位回归全命中**（0.334/1.323/0.298/1.319/1.180/0.675/1.792/0.955/1.413） | [pipeline/s5_preview/](pipeline/s5_preview/) |
 | S6 基准 | **MuJoCo 93,447 steps/s（10.7 µs/step）——序列第三**（28 body 碰撞结构简单），加载 105.5 ms，展幅 10.3% 一次过 | [S6-benchmark.md](models/deeprobotics_m20_piper/reports/S6-benchmark.md) |
 
+### M10 · 云深处 绝影 X30（四足 56 kg · scale 实战线 · 2026-10-24）
+
+| 步骤 | 结果 | 报告 |
+|---|---|---|
+| S0 license 门 | **同仓单 license 零漂移（R40 五重同物全验）**——快照与 M2/M5/M6/M9 逐字节同物 `cdc6c065`；A4 继承四轮双路径；官网 56 kg 基准在档（非缺失型） | [SOURCE.md](models/deeprobotics_x30/SOURCE.md) |
+| S1 拉取 | 15 文件锚点锁定（`530e01a5` 零漂移），**blob-parity 15 件失配 0**（K2 门九战全绿）；13 引→4 唯一极简池全收零未收；**scale 逐处定位**（URDF 5 镜像+MJCF 4 处）与侦察期 grep 计数差异按 R29 规程修正 | SOURCE.md / S1-fetch.md |
+| S2 格式校验 | **10 PASS / 0 FAIL / 0 WARN**：URDF 21 link/20 joint（根=TORSO，12R+8F）、13 处引用全解析、**MJCF nu=0 无执行器（本库首例，披露 3）**编译 nq=12 逐数自洽 | [S2-validation.md](models/deeprobotics_x30/reports/S2-validation.md) |
+| S3 物理体检 | **10 PASS / 3 WARN / 0 FAIL / 1 SKIP**：**55.839 vs 官网 56 kg（−0.3% 第二贴）两侧同值**；逐 body 21/21 一致 + COM 21/21 差 0；22→12 轴差 0；**inertial rpy≠0 ×3**（hip 镜像系如实记录）；四 LIDAR 挂载座约定项 | [S3-physics.md](models/deeprobotics_x30/reports/S3-physics.md) |
+| S4 双格式入库 | **10 物理件 / 8.4 MB 三锚全过（本库最轻）** + 1 质检截图；极简池 4×2 两侧同哈希；usd 5 件 excluded；平账 15=10+5 零未收 | [S4-package.md](models/deeprobotics_x30/reports/S4-package.md) |
+| S5 3D 预览 | 12 滑条、包围盒 y [0.000, 0.520]（趴姿零位）；**scale 实战检验通过**（四腿镜像渲染正确无缺失/内翻，R18/R19 修复后首次成规模实战）；**十一模型基线逐位回归全命中**（0.334/1.323/0.298/1.319/1.180/0.675/1.792/0.955/1.413/0.937） | [pipeline/s5_preview/](pipeline/s5_preview/) |
+| S6 基准 | **MuJoCo 79,053 steps/s（12.7 µs/step）——序列第四**；**展幅 55~58% 三轮持续=模型内在动力学定性**（nu=0 纯重力坍塌混沌接触，非测量噪声，R32 先例扩展处置）；加载 61.8 ms | [S6-benchmark.md](models/deeprobotics_x30/reports/S6-benchmark.md) |
+
 ## 快速开始
 
 **在线预览（零依赖，断网可用）**
@@ -174,6 +187,7 @@ python -m http.server 8130
 # 或            http://127.0.0.1:8130/pipeline/s5_preview/index.html?model=booster_k1           # K1（加速进化教育人形 0.95 m，22 滑条）
 # 或            http://127.0.0.1:8130/pipeline/s5_preview/index.html?model=booster_t2           # T2（加速进化旗舰人形 1.40 m，31 滑条）
 # 或            http://127.0.0.1:8130/pipeline/s5_preview/index.html?model=deeprobotics_m20_piper  # M20_Piper（云深处移动操作复合体，22 rad+2 m 滑条）
+# 或            http://127.0.0.1:8130/pipeline/s5_preview/index.html?model=deeprobotics_x30     # X30（云深处绝影工业四足 56 kg，12 滑条）
 ```
 
 **MuJoCo 查看 / 加载**

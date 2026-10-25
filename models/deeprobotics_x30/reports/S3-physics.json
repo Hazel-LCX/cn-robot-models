@@ -1,0 +1,90 @@
+{
+  "summary": {
+    "model": "deeprobotics_x30",
+    "date": "2026-10-25 18:45",
+    "pass": 10,
+    "warn": 3,
+    "fail": 0,
+    "skip": 1,
+    "verdict": "无 FAIL；WARN 全部有处置记录（M0 只体检不修复），可送专项审",
+    "versions": {
+      "numpy": "2.5.3",
+      "trimesh": "5.1.1"
+    },
+    "caliber": "官网原文「整机重量（含电池）约 56 kg」「持续运行负载 20 kg」（deeprobotics.cn/products/detail/6.html 绝影X30 参数表，2026-10-24 静态 HTML，原件 evidence/official-x30-product-page.html 141,318B=M10 侦察落档 R40 活源核验）；本库最大质量四足档（vs Go2 8.2/Lite3 12） 官网标称口径=含电池整机；URDF/MJCF 电池 link 情况 S3 实测——严格口径不可比仅作 sanity（M0/M1 同法）；DoF 对账=模型侧互证（URDF 12R ↔ MJCF hinge 数）",
+    "urdf_total_kg": 55.839079999999996,
+    "mjcf_total_kg": 55.83908
+  },
+  "checks": [
+    {
+      "check": "urdf:mass-positive",
+      "status": "WARN",
+      "detail": "显式质量≤0：[]；无 <inertial>：[]——以上全为 fixed 传感器/转子座（各引擎普遍合并 fixed link），规则精化：活动关节零质量才 FAIL"
+    },
+    {
+      "check": "urdf:mass-total",
+      "status": "PASS",
+      "detail": "55.839 kg vs 官方 56.0 kg（-0.3%，容差 ±10%）；口径：官网标称口径=含电池整机；URDF/MJCF 电池 link 情况 S3 实测——严格口径不可比仅作 sanity（M0/M1 同法）；DoF 对账=模型侧互证（URDF 12R ↔ MJCF hinge 数）"
+    },
+    {
+      "check": "urdf:inertia-pd",
+      "status": "PASS",
+      "detail": "21 个有质量 link 惯量张量全正定"
+    },
+    {
+      "check": "urdf:inertia-triangle",
+      "status": "PASS",
+      "detail": "21 个 link 三角不等式全成立"
+    },
+    {
+      "check": "urdf:inertia-sanity",
+      "status": "PASS",
+      "detail": "逐轴垂距法（修正 1）0 link × 3 轴，比值 I_i/(m·d⊥i²) ∈ [0.005, 0.5]；无网格/零质量跳过 21 个；inertial rpy≠0（延度未随 rpy 旋转修正）：['FR_HIP', 'HL_HIP', 'HR_HIP']；全部落区间"
+    },
+    {
+      "check": "urdf:collision-inventory",
+      "status": "WARN",
+      "detail": "13/21 link 有 <collision>（{'box': 1, 'cylinder': 16, 'sphere': 4}）；无 collision：['FL_HIP', 'FR_HIP', 'HL_HIP', 'HR_HIP', 'LIDAR_FRONT_UP', 'LIDAR_FRONT_DOWN', 'LIDAR_REAR_UP', 'LIDAR_REAR_DOWN']（标记不自动补，A1；X30/ 无图片资产（S1 实测）——S3 C1 模板 png 提示不适用）"
+    },
+    {
+      "check": "urdf:collision-mesh-loadable",
+      "status": "SKIP",
+      "detail": "collision 引用 0 个网格文件（全基元）——A1-2 网格可加载检查不适用，显式跳过（fail 不静默的精神同样适用于不适用，R4-E6）"
+    },
+    {
+      "check": "urdf:joint-limits",
+      "status": "PASS",
+      "detail": "12 个 revolute lower<upper 且 effort/velocity>0；注：官网未公布关节级参数（扭矩/限位/DoF 逐值）——纯体检+披露（Lite3 同口径）；DoF 对账=模型侧互证（URDF 12R ↔ MJCF hinge）"
+    },
+    {
+      "check": "mjcf:mass-total",
+      "status": "PASS",
+      "detail": "55.839 kg vs 官方 56.0 kg（-0.3%，容差 ±10%）；口径：官网标称口径=含电池整机；URDF/MJCF 电池 link 情况 S3 实测——严格口径不可比仅作 sanity（M0/M1 同法）；DoF 对账=模型侧互证（URDF 12R ↔ MJCF hinge 数）"
+    },
+    {
+      "check": "mjcf:body-geom",
+      "status": "WARN",
+      "detail": "21 个 body 共 34 geom；无 geom 的 body：['LIDAR_FRONT_UP', 'LIDAR_FRONT_DOWN', 'LIDAR_REAR_UP', 'LIDAR_REAR_DOWN']（实测为自闭合空 body：零质量/零 geom/零 site，foot 触地几何挂于 calf 的 foot class geom——建模约定，标记不自动补；R4-E2 措辞更正）"
+    },
+    {
+      "check": "cross:joint-names",
+      "status": "PASS",
+      "detail": "URDF 12 单自由度活动关节（revolute+continuous）↔ MJCF 12 hinge；名称集合一致"
+    },
+    {
+      "check": "cross:joint-axes",
+      "status": "PASS",
+      "detail": "12 对同名关节轴逐分量最大差 0.00e+00（最差 —，容差 1e-06）；URDF 轴在关节系、MJCF 轴在 body 系——两模型约定一致时可数值直比"
+    },
+    {
+      "check": "cross:mass-per-body",
+      "status": "PASS",
+      "detail": "逐 body 对账：完全一致 21 个（hip/thigh/base 等）；约定差异 []"
+    },
+    {
+      "check": "cross:com-per-body",
+      "status": "PASS",
+      "detail": "逐 body COM 对账（记录级）：对账 21 个，最大逐分量差 0.00e+00（最差 —，容差 1e-06）；全部一致"
+    }
+  ]
+}
