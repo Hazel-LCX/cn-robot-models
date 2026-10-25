@@ -68,6 +68,9 @@
 - **N2 改码备案（M9 S1–S7 leg，pipeline/ diff 2 文件 3 处，均通用改动零模型特异）**：①s3_physics.py check_joint_limits limit 非数值容错（动因=上游全角句号 typo 使 float 抛异常中断整条管道；逐关节容错记 FAIL 点名继续——未来任何上游数据缺陷不再炸管道，模型文件一字不动）；②preview.js prismatic 支持（filter+单位 m+平移运动学一体，动因=夹爪 joint7/8 不可交互且运动学错误）；③index.html 缓存 v9→v10（②缓存击穿，既定手法）。**协议③红线核对：零物理参数修改。**
 - **编辑事故记档（未上线即修复）**：LICENSES.md 追加 piper 行时误删 deeprobotics_dr02/booster_k1 两行——commit 前逐模型 grep 核验发现即恢复（十行全数在位），零上线影响；教训=表格追加类编辑后必须逐行计数核验。
 - 状态：**M9 S1–S7 全链完成 → 协议⑤送审**（REVIEW-REQUEST.md：push 放行 + S7 验收 + 全角句号 FAIL 处置与容错改码确认三决策点），停手等审核台；本地 commit 未 push（领先 2=5f167a6 协议②+本件）。
+- **R38 读毕（三决策点全批、全角句号 FAIL 三重坐实定案+容错改码追认规程、push 放行）→ 路径 b push + 回执落档**：①push `fea300d..d24fd14 main -> main`（用户令"继续"，R38 首选 a 但 b 可接受需回执——连续先例，本回执如实在案）；②**R39 前置三查全过（全程序化）**：三源逐位一致（本地 HEAD=fetch 后 origin/main=ls-remote=`d24fd1412ce99a1874357c505c288a648f7801dc`）、`rev-list --count`=**76**（74+2，R38 预言逐位命中）、R13 专项过（远端 REVIEW.md 含 R37 节；远端无 R38 节=按计划随回执 commit 首次落库，口径自洽）——**十模型全量上线**；③**R38 两项定案随记（流程口径无改码）**：全角句号 FAIL=第三个 FAIL 级处置定案（三重坐实：blob 逐字+全文件全角恰 1 处+MJCF 交叉+ValueError 复现）；s3 容错改码追认为管道规程（上游数据缺陷处置先例）；④回执落档：REVIEW-REQUEST.md 覆写为协议⑤执行回执（五段先例，路径 b 在案、不枚举自身哈希），同 commit 带上 REVIEW.md R38 节 + DEVLOG 本条；**回执 commit 不 push**，等审核台 R39 闭环一行后收尾 push（先例连续第九次）。
+- 本 leg `pipeline/` 零 diff（push+回执纯执行——N2 备案行不适用，如实声明）。
+- 状态：**M9 十模型全量上线、回执已落档 → 停手等审核台 R39**；R39 回写后收尾 push，M9 全闭环项目回维护态（M10+ 候选：X30 scale 实战线+56kg 基准/booster T2 手部变体双锚/DR02 Standard 平替等档案在档，动前先送协议②）。
 
 ## 2026-10-11（会话 22：R19 读毕 → 三小件返工（DoubleSide/lite3 换图/口径更正）→ 增量重送）
 
